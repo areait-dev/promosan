@@ -19,8 +19,8 @@ export default function Hero({ subtitle, image }) {
       <div className="absolute inset-0 z-0">
         {image?.node ? (
           <Image 
-            src={image.node.sourceUrl} 
-            alt={image.node.altText || "Sfondo PromoSan"}
+            src={image?.node?.sourceUrl?.toString()} 
+            alt={image?.node?.altText?.toString() || "Sfondo PromoSan"}
             fill
             priority
             className="object-cover opacity-45"
