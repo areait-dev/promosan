@@ -48,7 +48,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-white font-sans text-dark">
       <Hero 
-        subtitle={datiLanding.heroSubtitle || "Benvenuti in PromoSan"} 
+        subtitle={datiLanding.heroSubtitle} 
         image={datiLanding.heroImage || null} 
       />
     </main>

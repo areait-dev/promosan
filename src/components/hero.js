@@ -17,18 +17,15 @@ export default function Hero({ subtitle, image }) {
 
       {/* Immagine di sfondo dinamica */}
       <div className="absolute inset-0 z-0">
-        {image?.node ? (
+        {image?.node?.sourceUrl && (
           <Image 
-            src={image?.node?.sourceUrl?.toString()} 
-            alt={image?.node?.altText?.toString() || "Sfondo PromoSan"}
+            src={image.node.sourceUrl} 
+            alt={image.node.altText || "Sfondo PromoSan"}
             fill
             priority
             className="object-cover opacity-45"
           />
-        ) : (
-          <div className="bg-slate-900 w-full h-full opacity-50"></div>
         )}
-        <div className="absolute inset-0 bg-linear-to-b to-transparent from-primary/50 via-primary/10"></div>
       </div>
 
       {/* Contenuto principale - Ridotti i margini (mb-4/mb-6) */}

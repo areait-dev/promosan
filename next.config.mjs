@@ -5,6 +5,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'test.promosan.eu',
+        pathname: '**',
       },
     ],
   },

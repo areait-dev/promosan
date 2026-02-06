@@ -14,7 +14,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           
           {/* 1. LOGO: Deve essere proporzionato all'altezza h-20 */}
-          <div className="flex shrink-0">
+          <div className="flex w-auto">
             <Link href="/" className="block">
               <div className="relative w-auto h-10 md:h-50">
                 <Image 
