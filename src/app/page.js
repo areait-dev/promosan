@@ -10,10 +10,6 @@ async function getHomeData() {
             node {
               altText
               sourceUrl(size: LARGE)
-              mediaDetails {
-                width
-                height
-              }
             }
           }
         }
@@ -29,12 +25,16 @@ async function getHomeData() {
       next: { revalidate: 10 }
     });
 
-    if (!res.ok) return null;
-
     const json = await res.json();
+
+    // --- INIZIO SNIPPET DI DEBUG ---
+    // Questo log apparirà nel terminale (in locale) o nei log di Vercel (online)
+    console.log("DEBUG WP DATA:", JSON.stringify(json, null, 2));
+    // --- FINE SNIPPET DI DEBUG ---
+
     return json?.data?.page || null;
   } catch (error) {
-    console.error("Errore fetch WordPress:", error);
+    console.error("Errore durante il fetch:", error);
     return null;
   }
 }
@@ -42,13 +42,13 @@ async function getHomeData() {
 export default async function Home() {
   const data = await getHomeData();
 
-  // Protezione: se data è null, definiamo un fallback vuoto
+  // Se 'data' è null o 'datiLanding' non esiste, usiamo un oggetto vuoto per non crashare
   const datiLanding = data?.datiLanding || {};
 
   return (
-    <main className="min-h-screen bg-white font-sans text-dark">
+    <main className="min-h-screen bg-white font-sans text-dark overflow-x-hidden">
       <Hero 
-        subtitle={datiLanding.heroSubtitle} 
+        subtitle={datiLanding.heroSubtitle || "Benvenuti"} 
         image={datiLanding.heroImage || null} 
       />
     </main>

@@ -11,16 +11,16 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-primary font-sans">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center gap-5 h-20">
           
-          {/* 1. LOGO: Deve essere proporzionato all'altezza h-20 */}
-          <div className="flex w-auto">
+          {/* 1. LOGO: Riduciamo l'altezza per farla stare nel h-20 del padre */}
+          <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="block">
-              <div className="relative w-auto h-10 md:h-50">
-                <Image 
-                  src="/img/logo.png" 
-                  alt="PromoSan Logo" 
-                  width={902} 
+              <div className="relative h-8 md:h-12 w-auto"> {/* Altezza corretta: 32px su mobile, 48px su desktop */}
+                <Image
+                  src="/img/logo.png"
+                  alt="PromoSan Logo"
+                  width={902}
                   height={96}
                   className="h-full w-auto filter brightness-0 invert"
                   priority
@@ -81,7 +81,7 @@ export default function Header() {
           </nav>
 
           {/* 3. SEARCH & AREA RISERVATA */}
-<div className="hidden items-center space-x-4 lg:flex">
+<div className="hidden items-center space-x-5 lg:flex">
   
   {/* Search Bar con animazione e effetto Glass */}
   <div className="relative group">
@@ -102,7 +102,7 @@ export default function Header() {
   {/* Area Riservata con effetto Glass */}
   <Link 
     href="/area-riservata" 
-    className="flex gap-2 items-center px-5 py-2.5 text-white rounded-full border border-white/20 
+    className="flex gap-2 items-center px-5 py-2 text-white rounded-full border border-white/20 
                bg-white/10 backdrop-blur-md transition-all duration-300 
                hover:bg-white hover:text-primary hover:border-white text-15 font-medium shadow-sm"
   >
