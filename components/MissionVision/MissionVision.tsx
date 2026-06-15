@@ -2,7 +2,20 @@
 
 import { useState } from 'react';
 
-export default function MissionVision() {
+export interface MissionVisionProps {
+  missionText?: string; // HTML
+  visionText?: string; // HTML
+}
+
+const DEFAULT_MISSION_TEXT =
+  'Al centro della nostra attività c\'è la <strong class="text-primary">sorveglianza sanitaria</strong>: l\'insieme degli atti medici finalizzati alla tutela dello stato di salute e sicurezza dei lavoratori, in relazione all\'ambiente di lavoro, ai fattori di rischio professionali e alle modalità di svolgimento dell\'attività lavorativa (art. 2, lettera m del D.Lgs. 81/08).';
+const DEFAULT_VISION_TEXT =
+  '<strong class="text-primary">PromoSan</strong> si impegna a diventare <strong class="text-primary">un punto di riferimento nel settore della Medicina del Lavoro</strong>, collaborando attivamente con le aziende per diffondere una cultura aziendale basata sulla salute, la sicurezza e il benessere delle persone.';
+
+export default function MissionVision({
+  missionText = DEFAULT_MISSION_TEXT,
+  visionText = DEFAULT_VISION_TEXT,
+}: MissionVisionProps = {}) {
   const [activeTab, setActiveTab] = useState('mission');
 
   return (
@@ -35,13 +48,10 @@ export default function MissionVision() {
                 <h2 className="section-title">MISSION</h2>
               </div>
               
-              <p className="section-text mb-5">
-                Al centro della nostra attività c'è la <strong className="text-primary">sorveglianza sanitaria</strong>: l'insieme 
-                degli atti medici finalizzati alla tutela dello stato di salute e sicurezza 
-                dei lavoratori, in relazione all'ambiente di lavoro, ai fattori di rischio 
-                professionali e alle modalità di svolgimento dell'attività lavorativa 
-                (art. 2, lettera m del D.Lgs. 81/08).
-              </p>
+              <p
+                className="section-text mb-5"
+                dangerouslySetInnerHTML={{ __html: missionText }}
+              />
               
               <div>
                 <h4>IL NOSTRO IMPEGNO È GARANTIRE:</h4>
@@ -91,12 +101,10 @@ export default function MissionVision() {
                 <h2 className="section-title">VISION</h2>
               </div>
               
-              <p className="section-text mb-5">
-                <strong className="text-primary">PromoSan</strong> si impegna a diventare 
-                <strong className="text-primary">un punto di riferimento nel settore della Medicina del Lavoro</strong>, collaborando 
-                attivamente con le aziende per diffondere una cultura aziendale basata sulla 
-                salute, la sicurezza e il benessere delle persone.
-              </p>
+              <p
+                className="section-text mb-5"
+                dangerouslySetInnerHTML={{ __html: visionText }}
+              />
 
               <h3 className="section-subtitle">I NOSTRI OBIETTIVI:</h3>
               

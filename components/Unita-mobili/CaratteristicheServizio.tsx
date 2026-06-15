@@ -8,7 +8,19 @@ interface Caratteristica {
   items: string[];
 }
 
-export default function CaratteristicheServizio() {
+export interface CaratteristicheServizioProps {
+  title?: string;
+  intro?: string; // HTML
+}
+
+const DEFAULT_TITLE = 'CARATTERISTICHE DEL SERVIZIO';
+const DEFAULT_INTRO =
+  '<strong style="color: #2c5282">PromoSan</strong> dispone di Unità Mobili attrezzate per lo svolgimento completo delle visite mediche di medicina del lavoro, portando il servizio direttamente presso le sedi aziendali, i cantieri e i centri operativi dislocati sul territorio.';
+
+export default function CaratteristicheServizio({
+  title = DEFAULT_TITLE,
+  intro = DEFAULT_INTRO,
+}: CaratteristicheServizioProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   
   // Modifica i percorsi con le tue immagini reali
@@ -76,18 +88,19 @@ export default function CaratteristicheServizio() {
             color: '#2c5282',
             textAlign: 'left'
           }}>
-            CARATTERISTICHE DEL SERVIZIO
+            {title}
           </h3>
         </div>
 
-        <p style={{ 
-          marginBottom: '3rem', 
-          fontSize: '1.125rem', 
-          lineHeight: '1.75',
-          color: '#4b5563'
-        }}>
-          <strong style={{ color: '#2c5282' }}>PromoSan</strong> dispone di Unità Mobili attrezzate per lo svolgimento completo delle visite mediche di medicina del lavoro, portando il servizio direttamente presso le sedi aziendali, i cantieri e i centri operativi dislocati sul territorio.
-        </p>
+        <p
+          style={{
+            marginBottom: '3rem',
+            fontSize: '1.125rem',
+            lineHeight: '1.75',
+            color: '#4b5563',
+          }}
+          dangerouslySetInnerHTML={{ __html: intro }}
+        />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {/* Card principale */}

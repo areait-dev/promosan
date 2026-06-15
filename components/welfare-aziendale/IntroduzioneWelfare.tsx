@@ -3,7 +3,19 @@
 
 import { useEffect, useRef } from 'react';
 
-export default function IntroduzioneWelfare() {
+export interface IntroduzioneWelfareProps {
+  title?: string;
+  text?: string; // HTML
+}
+
+const DEFAULT_TITLE = 'WELFARE AZIENDALE';
+const DEFAULT_TEXT =
+  'Il <strong style="font-weight:600;color:#2c5282">Welfare Aziendale</strong> rappresenta l\'evoluzione strategica della medicina del lavoro: <strong style="color:#2c5282">non più solo adempimento normativo</strong>, ma investimento concreto sul benessere delle persone e sulla competitività dell\'impresa. <strong style="font-weight:600;color:#2c5282">PromoSan</strong> offre pacchetti personalizzati che trasformano la tutela della salute in un <strong style="font-weight:600;color:#1f2937">vantaggio competitivo per l\'azienda</strong> e in un beneficio tangibile per i lavoratori.';
+
+export default function IntroduzioneWelfare({
+  title = DEFAULT_TITLE,
+  text = DEFAULT_TEXT,
+}: IntroduzioneWelfareProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -52,7 +64,7 @@ export default function IntroduzioneWelfare() {
               transition: 'all 0.7s ease-out'
             }}
           >
-            WELFARE AZIENDALE
+            {title}
           </h2>
 
           {/* Linea decorativa animata */}
@@ -88,20 +100,15 @@ export default function IntroduzioneWelfare() {
               transitionDelay: '0.5s'
             }}
           >
-            <p style={{ 
-              lineHeight: '1.8',
-              textAlign: 'justify',
-              transition: 'color 0.3s ease',
-              maxWidth: '1200px'
-            }}>
-              Il <strong style={{ 
-                fontWeight: '600', 
-                color: '#2c5282',
-                transition: 'color 0.3s ease'
-              }}>Welfare Aziendale</strong> rappresenta l'evoluzione strategica della medicina del lavoro: <strong style={{ color: '#2c5282' }}>non più solo adempimento normativo</strong>, ma investimento concreto sul benessere delle persone e sulla competitività dell'impresa.
-         
-              <strong style={{ fontWeight: '600', color: '#2c5282' }}> PromoSan</strong> offre pacchetti personalizzati che trasformano la tutela della salute in un <strong style={{ fontWeight: '600', color: '#1f2937' }}>vantaggio competitivo per l'azienda</strong> e in un beneficio tangibile per i lavoratori.
-            </p>
+            <p
+              style={{
+                lineHeight: '1.8',
+                textAlign: 'justify',
+                transition: 'color 0.3s ease',
+                maxWidth: '1200px',
+              }}
+              dangerouslySetInnerHTML={{ __html: text }}
+            />
           </div>
         </div>
       </div>

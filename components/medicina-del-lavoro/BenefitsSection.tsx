@@ -1,24 +1,27 @@
 'use client';
 
-export default function BenefitsSection() {
-  const benefits = [
-    {
-      title: 'COMPETENZA NORMATIVA',
-      description: 'Piena conformità al D.Lgs. 81/08 e successivi aggiornamenti.'
-    },
-    {
-      title: 'PERSONALIZZAZIONE',
-      description: 'Soluzioni flessibili che si adattano alla tua struttura aziendale.'
-    },
-    {
-      title: 'APPROCCIO PROATTIVO',
-      description: 'Non solo adempimenti, ma analisi dei dati e consulenza per migliorare la prevenzione.'
-    },
-    {
-      title: 'COPERTURA NAZIONALE',
-      description: 'Servizio erogato su tutto il territorio nazionale con professionalità omogenea.'
-    }
-  ];
+interface Benefit {
+  title: string;
+  description: string;
+}
+
+export interface BenefitsSectionProps {
+  title?: string;
+  benefits?: Benefit[];
+}
+
+const DEFAULT_TITLE = 'PERCHÈ SCEGLIERE PROMOSAN?';
+const DEFAULT_BENEFITS: Benefit[] = [
+  { title: 'COMPETENZA NORMATIVA', description: 'Piena conformità al D.Lgs. 81/08 e successivi aggiornamenti.' },
+  { title: 'PERSONALIZZAZIONE', description: 'Soluzioni flessibili che si adattano alla tua struttura aziendale.' },
+  { title: 'APPROCCIO PROATTIVO', description: 'Non solo adempimenti, ma analisi dei dati e consulenza per migliorare la prevenzione.' },
+  { title: 'COPERTURA NAZIONALE', description: 'Servizio erogato su tutto il territorio nazionale con professionalità omogenea.' },
+];
+
+export default function BenefitsSection({
+  title = DEFAULT_TITLE,
+  benefits = DEFAULT_BENEFITS,
+}: BenefitsSectionProps = {}) {
 
   return (
     <section className="benefits-section" style={{ 
@@ -35,7 +38,7 @@ export default function BenefitsSection() {
             fontWeight: '700', 
             color: '#2c5282' 
           }}>
-            PERCHÈ SCEGLIERE PROMOSAN?
+            {title}
           </h2>
           <div style={{ 
             width: 'clamp(4rem, 10vw, 6rem)', 

@@ -3,7 +3,32 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-export default function VantaggiUnitaMobili() {
+interface VantaggioItem {
+  title: string;
+  description: string;
+}
+
+export interface VantaggiUnitaMobiliProps {
+  title?: string;
+  subtitle?: string;
+  vantaggi?: VantaggioItem[];
+}
+
+const DEFAULT_TITLE = 'I VANTAGGI PER LA TUA AZIENDA';
+const DEFAULT_SUBTITLE = 'Il servizio con Unità Mobili offre significativi benefici alle aziende:';
+const DEFAULT_VANTAGGI: VantaggioItem[] = [
+  { title: 'RIDUZIONE DEI TEMPI', description: 'I lavoratori non devono spostarsi, eliminando <strong>tempi di viaggio e attese</strong>.' },
+  { title: 'COSTI STANDARDIZZATI', description: '<strong>Tariffe uniformi su tutto il territorio</strong>, indipendentemente dalla localizzazione.' },
+  { title: 'ACCESSIBILITÀ TERRITORIALE', description: 'Possibilità di raggiungere <strong>cantieri, siti produttivi e aree interne</strong> anche in zone remote.' },
+  { title: 'FLESSIBILITÀ ORGANIZZATIVA', description: '<strong>Programmazione personalizzata</strong> in base alle esigenze produttive aziendali.' },
+  { title: 'CONTINUITÀ OPERATIVA', description: "<strong>Minore impatto sull'attività lavorativa</strong> quotidiana." },
+];
+
+export default function VantaggiUnitaMobili({
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+  vantaggi: vantaggiProp = DEFAULT_VANTAGGI,
+}: VantaggiUnitaMobiliProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -38,38 +63,14 @@ export default function VantaggiUnitaMobili() {
     return () => observer.disconnect();
   }, []);
 
-  const vantaggi = [
-    {
-      id: 1,
-      title: "RIDUZIONE DEI TEMPI",
-      description: "I lavoratori non devono spostarsi, eliminando <strong>tempi di viaggio e attese</strong>.",
-      isCentral: false
-    },
-    {
-      id: 2,
-      title: "COSTI STANDARDIZZATI",
-      description: "<strong>Tariffe uniformi su tutto il territorio</strong>, indipendentemente dalla localizzazione.",
-      isCentral: false
-    },
-    {
-      id: 3,
-      title: "ACCESSIBILITÀ TERRITORIALE",
-      description: "Possibilità di raggiungere <strong>cantieri, siti produttivi e aree interne</strong> anche in zone remote.",
-      isCentral: true
-    },
-    {
-      id: 4,
-      title: "FLESSIBILITÀ ORGANIZZATIVA",
-      description: "<strong>Programmazione personalizzata</strong> in base alle esigenze produttive aziendali.",
-      isCentral: false
-    },
-    {
-      id: 5,
-      title: "CONTINUITÀ OPERATIVA",
-      description: "<strong>Minore impatto sull'attività lavorativa</strong> quotidiana.",
-      isCentral: false
-    }
-  ];
+  // La card centrale (evidenziata) è quella in posizione mediana.
+  const centralIndex = Math.floor(vantaggiProp.length / 2);
+  const vantaggi = vantaggiProp.map((v, i) => ({
+    id: i + 1,
+    title: v.title,
+    description: v.description,
+    isCentral: i === centralIndex,
+  }));
 
   return (
     <section 
@@ -101,7 +102,7 @@ export default function VantaggiUnitaMobili() {
             position: 'relative',
             display: 'inline-block'
           }}>
-            I VANTAGGI PER LA TUA AZIENDA
+            {title}
             <span style={{
               position: 'absolute',
               bottom: '-0.5rem',
@@ -115,7 +116,7 @@ export default function VantaggiUnitaMobili() {
             }}></span>
           </h2>
           <p style={{ fontSize: '1.125rem', color: '#4b5563' }}>
-            Il servizio con Unità Mobili offre significativi benefici alle aziende:
+            {subtitle}
           </p>
         </div>
 

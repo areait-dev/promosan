@@ -2,7 +2,30 @@
 
 import React, { useEffect, useRef } from 'react';
 
-export default function HeroWelfare() {
+export interface HeroWelfareProps {
+  badge?: string;
+  title?: string;
+  btn1Label?: string;
+  btn1Link?: string;
+  btn2Label?: string;
+  btn2Link?: string;
+}
+
+const DEFAULT_BADGE = 'PromoSan • Welfare Aziendale';
+const DEFAULT_TITLE = "DALL'ADEMPIMENTO NORMATIVO ALL'INVESTIMENTO STRATEGICO SUL BENESSERE";
+const DEFAULT_BTN1_LABEL = 'Scopri i pacchetti';
+const DEFAULT_BTN1_LINK = '#pacchetti';
+const DEFAULT_BTN2_LABEL = 'I vantaggi strategici';
+const DEFAULT_BTN2_LINK = '#vantaggi';
+
+export default function HeroWelfare({
+  badge = DEFAULT_BADGE,
+  title = DEFAULT_TITLE,
+  btn1Label = DEFAULT_BTN1_LABEL,
+  btn1Link = DEFAULT_BTN1_LINK,
+  btn2Label = DEFAULT_BTN2_LABEL,
+  btn2Link = DEFAULT_BTN2_LINK,
+}: HeroWelfareProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -91,7 +114,7 @@ export default function HeroWelfare() {
               color: '#ffffff',
               letterSpacing: '0.5px'
             }}>
-              PromoSan • Welfare Aziendale
+              {badge}
             </span>
           </div>
 
@@ -114,7 +137,7 @@ export default function HeroWelfare() {
               marginRight: 'auto'
             }}
           >
-            DALL'ADEMPIMENTO NORMATIVO ALL'INVESTIMENTO STRATEGICO SUL BENESSERE
+            {title}
           </h1>
 
           {/* Bottoni */}
@@ -134,8 +157,8 @@ export default function HeroWelfare() {
               marginBottom: '4rem'
             }}
           >
-            <a 
-              href="#pacchetti"
+            <a
+              href={btn1Link}
               style={{
                 padding: '0.75rem 2rem',
                 fontSize: '1rem',
@@ -163,11 +186,11 @@ export default function HeroWelfare() {
                 e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.2)';
               }}
             >
-              Scopri i pacchetti
+              {btn1Label}
             </a>
 
-            <a 
-              href="#vantaggi"
+            <a
+              href={btn2Link}
               style={{
                 padding: '0.75rem 2rem',
                 fontSize: '1rem',
@@ -195,7 +218,7 @@ export default function HeroWelfare() {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              I vantaggi strategici
+              {btn2Label}
             </a>
           </div>
 

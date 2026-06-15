@@ -5,7 +5,30 @@ import { useEffect, useRef } from 'react';
 import CardServizio from './CardServizio';
 import FocusGrid from './FocusGrid';
 
-export default function ServiziInSviluppo() {
+export interface ServiziInSviluppoProps {
+  badge?: string;
+  title?: string;
+  intro?: string; // HTML
+  focusItems?: string[];
+}
+
+const DEFAULT_BADGE = 'INNOVAZIONE IN CORSO';
+const DEFAULT_TITLE = 'SERVIZI IN SVILUPPO';
+const DEFAULT_INTRO =
+  "<p>PromoSan è costantemente impegnata nell'ampliamento della propria offerta per rispondere alle esigenze emergenti in ambito sanitario e assistenziale.</p><p>Tra i servizi in fase di sviluppo figurano l'Assistenza Domiciliare Integrata (ADI) e programmi avanzati di Prevenzione della Salute, che rappresentano l'evoluzione naturale del nostro impegno nella tutela del benessere delle persone.</p>";
+const DEFAULT_FOCUS = [
+  'Screening oncologici',
+  'Educazione sanitaria',
+  'Monitoraggio cronicità',
+  'Stili di vita salutari',
+];
+
+export default function ServiziInSviluppo({
+  badge = DEFAULT_BADGE,
+  title = DEFAULT_TITLE,
+  intro = DEFAULT_INTRO,
+  focusItems = DEFAULT_FOCUS,
+}: ServiziInSviluppoProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -22,13 +45,6 @@ export default function ServiziInSviluppo() {
 
   const adiFeatures = [
     { title: 'Obiettivo principale', text: 'Garantire cure di qualità nel comfort domestico' }
-  ];
-
-  const prevenzioneFocus = [
-    'Screening oncologici',
-    'Educazione sanitaria',
-    'Monitoraggio cronicità',
-    'Stili di vita salutari'
   ];
 
   return (
@@ -68,7 +84,7 @@ export default function ServiziInSviluppo() {
             }}
           >
             <i className="fas fa-flask"></i>
-            <span>INNOVAZIONE IN CORSO</span>
+            <span>{badge}</span>
           </div>
 
           <h2 
@@ -84,7 +100,7 @@ export default function ServiziInSviluppo() {
               transitionDelay: '0.1s'
             }}
           >
-            SERVIZI IN SVILUPPO
+            {title}
           </h2>
 
           <div 
@@ -114,66 +130,10 @@ export default function ServiziInSviluppo() {
             transitionDelay: '0.3s'
           }}
         >
-          <div>
-            <p style={{ 
-              marginBottom: '1.5rem',
-              fontSize: '1.125rem',
-              lineHeight: '1.8',
-              color: '#4b5563'
-            }}>
-              PromoSan è costantemente impegnata nell'ampliamento della propria offerta per rispondere alle esigenze emergenti in ambito sanitario e assistenziale.
-            </p>
-
-            <p style={{ 
-              fontSize: '1.125rem',
-              lineHeight: '1.8',
-              color: '#4b5563'
-            }}>
-              Tra i servizi in fase di sviluppo figurano 
-              <span style={{
-                display: 'inline-block',
-                position: 'relative',
-                fontWeight: '600',
-                color: '#2c5282',
-                margin: '0 0.25rem'
-              }}>
-                <span style={{ position: 'relative', zIndex: 10 }}>
-                  l'Assistenza Domiciliare Integrata (ADI)
-                </span>
-                <span style={{
-                  position: 'absolute',
-                  bottom: '0',
-                  left: '0',
-                  width: '100%',
-                  height: '0.25rem',
-                  background: '#ebf8ff',
-                  borderRadius: '9999px'
-                }}></span>
-              </span> 
-              e programmi avanzati di 
-              <span style={{
-                display: 'inline-block',
-                position: 'relative',
-                fontWeight: '600',
-                color: '#2c5282',
-                margin: '0 0.25rem'
-              }}>
-                <span style={{ position: 'relative', zIndex: 10 }}>
-                  Prevenzione della Salute
-                </span>
-                <span style={{
-                  position: 'absolute',
-                  bottom: '0',
-                  left: '0',
-                  width: '100%',
-                  height: '0.25rem',
-                  background: '#ebf8ff',
-                  borderRadius: '9999px'
-                }}></span>
-              </span>, 
-              che rappresentano l'evoluzione naturale del nostro impegno nella tutela del benessere delle persone.
-            </p>
-          </div>
+          <div
+            style={{ fontSize: '1.125rem', lineHeight: '1.8', color: '#4b5563' }}
+            dangerouslySetInnerHTML={{ __html: intro }}
+          />
         </div>
 
         {/* Grid Servizi */}
@@ -238,7 +198,7 @@ export default function ServiziInSviluppo() {
                 >
                   Focus principali:
                 </h4>
-                <FocusGrid items={prevenzioneFocus} />
+                <FocusGrid items={focusItems} />
               </div>
             </CardServizio>
           </div>

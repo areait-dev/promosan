@@ -8,7 +8,13 @@ import PrenotaConsulenza from '../../components/Contatti/PrenotaConsulenza';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { draftMode } from 'next/headers';
-import { getGlobalOptions, type GlobalOptions } from '@/lib/wordpress';
+import {
+  getGlobalOptions,
+  getPageFields,
+  parseList,
+  type GlobalOptions,
+  type PageContentFields,
+} from '@/lib/wordpress';
 
 export const revalidate = 60;
 
@@ -27,11 +33,18 @@ export const metadata: Metadata = {
   export default async function ContattiPage() {
     const { isEnabled: draft } = await draftMode();
     let options: GlobalOptions | undefined;
+    let pageContent: PageContentFields | null = null;
     try {
-      options = await getGlobalOptions(draft);
+      [options, pageContent] = await Promise.all([
+        getGlobalOptions(draft),
+        getPageFields<PageContentFields>('contatti', draft),
+      ]);
     } catch (error) {
       console.error('[Contatti] Fetch WordPress fallito, uso i default:', error);
     }
+
+    const contatti = pageContent?.contatti;
+    const prenotaItems = parseList(contatti?.prenota?.lista);
 
     return (
       <>
@@ -47,7 +60,11 @@ export const metadata: Metadata = {
               padding: '0 1rem'
             }}>
               
-              <ContattiHeader />
+              <ContattiHeader
+                badge={contatti?.header?.badge || undefined}
+                title={contatti?.header?.titolo || undefined}
+                subtitle={contatti?.header?.sottotitolo || undefined}
+              />
               
               {/* CSS Media Query per mobile */}
               <style>{`
@@ -93,7 +110,11 @@ export const metadata: Metadata = {
                     orari={options?.orari}
                   />
                   <AssistenzaRapida whatsapp={options?.whatsapp} />
-                  <PrenotaConsulenza />
+                  <PrenotaConsulenza
+                    title={contatti?.prenota?.titolo || undefined}
+                    items={prenotaItems.length ? prenotaItems : undefined}
+                    nota={contatti?.prenota?.nota || undefined}
+                  />
                 </div>
                 
               </div>

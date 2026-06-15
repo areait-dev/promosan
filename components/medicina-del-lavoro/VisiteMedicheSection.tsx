@@ -3,7 +3,19 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-export default function VisiteMedicheSection() {
+export interface VisiteMedicheSectionProps {
+  title?: string;
+  intro?: string; // HTML
+}
+
+const DEFAULT_TITLE = 'VISITE MEDICHE';
+const DEFAULT_INTRO =
+  'Le visite mediche rappresentano il momento centrale della sorveglianza sanitaria e costituiscono lo strumento attraverso cui il Medico Competente valuta la salute dei lavoratori in relazione ai rischi professionali. Secondo l\'<strong style="color: #2c5282">art. 41 del D.Lgs. 81/08</strong>, la sorveglianza sanitaria comprende diverse tipologie di visite mediche, ciascuna con finalità specifiche.';
+
+export default function VisiteMedicheSection({
+  title = DEFAULT_TITLE,
+  intro = DEFAULT_INTRO,
+}: VisiteMedicheSectionProps = {}) {
   const [activeTab, setActiveTab] = useState('tipologie');
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   
@@ -65,18 +77,19 @@ export default function VisiteMedicheSection() {
             textTransform: 'uppercase',
             letterSpacing: '0.05em'
           }}>
-            VISITE MEDICHE
+            {title}
           </h2>
-          
+
           <div style={{ marginBottom: '2rem', maxWidth: '1280px' }}>
-            <p style={{ 
-              marginBottom: '1rem', 
-              fontSize: 'clamp(0.95rem, 3vw, 1.125rem)', 
-              color: '#374151', 
-              lineHeight: '1.75' 
-            }}>
-              Le visite mediche rappresentano il momento centrale della sorveglianza sanitaria e costituiscono lo strumento attraverso cui il Medico Competente valuta la salute dei lavoratori in relazione ai rischi professionali. Secondo l'<strong style={{ color: '#2c5282' }}>art. 41 del D.Lgs. 81/08</strong>, la sorveglianza sanitaria comprende diverse tipologie di visite mediche, ciascuna con finalità specifiche.
-            </p>
+            <p
+              style={{
+                marginBottom: '1rem',
+                fontSize: 'clamp(0.95rem, 3vw, 1.125rem)',
+                color: '#374151',
+                lineHeight: '1.75',
+              }}
+              dangerouslySetInnerHTML={{ __html: intro }}
+            />
           </div>
         </div>
 

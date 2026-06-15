@@ -3,7 +3,22 @@
 
 import React, { useEffect, useRef } from 'react';
 
-export default function ContattiHeader() {
+export interface ContattiHeaderProps {
+  badge?: string;
+  title?: string;
+  subtitle?: string; // HTML
+}
+
+const DEFAULT_BADGE = 'Contatti';
+const DEFAULT_TITLE = 'RICHIEDI INFORMAZIONI';
+const DEFAULT_SUBTITLE =
+  'Ottieni un <span style="font-weight:600;color:#2c5282">preventivo personalizzato</span> per la tua azienda';
+
+export default function ContattiHeader({
+  badge = DEFAULT_BADGE,
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+}: ContattiHeaderProps = {}) {
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,7 +63,7 @@ export default function ContattiHeader() {
         }}
       >
         <i className="fas fa-comments"></i>
-        <span>Contatti</span>
+        <span>{badge}</span>
       </div>
 
       {/* Titolo */}
@@ -69,7 +84,7 @@ export default function ContattiHeader() {
           transitionDelay: '0.1s'
         }}
       >
-        RICHIEDI INFORMAZIONI
+        {title}
       </h1>
 
       {/* Sottotitolo */}
@@ -86,9 +101,8 @@ export default function ContattiHeader() {
           transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
           transitionDelay: '0.2s'
         }}
-      >
-        Ottieni un <span style={{ fontWeight: '600', color: '#2c5282' }}>preventivo personalizzato</span> per la tua azienda
-      </p>
+        dangerouslySetInnerHTML={{ __html: subtitle }}
+      />
     </div>
   );
 }

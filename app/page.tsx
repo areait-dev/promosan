@@ -14,6 +14,7 @@ import {
   getLatestNews,
   getFaq,
   getPageFields,
+  parseColumns,
   type GlobalOptions,
   type NewsItem,
   type FaqItem,
@@ -44,8 +45,28 @@ export default async function Home() {
     console.error("[Home] Fetch WordPress fallito, uso i default:", error);
   }
 
-  // Hero dal gruppo ACF "hero" (acf.hero.*). Props undefined -> il componente usa i suoi default.
-  const hero = pageContent?.hero;
+  // Contenuti namespaced sotto acf.home.* (Tab "Home"). Props undefined -> default del componente.
+  const home = pageContent?.home;
+  const hero = home?.hero;
+
+  // Liste textarea ACF -> strutture attese dai componenti (vuote = default del componente).
+  const servizi = parseColumns(home?.servizi?.lista)
+    .filter((c) => c[0])
+    .map((c) => ({
+      title: c[0] ?? "",
+      description: c[1] ?? "",
+      image: c[2] ?? "",
+      link: c[3] ?? "#",
+    }));
+  const stats = parseColumns(home?.numeri?.lista)
+    .filter((c) => c[0])
+    .map((c, i) => ({
+      id: i + 1,
+      value: Number(String(c[0]).replace(/[^\d]/g, "")) || 0,
+      suffix: c[1] ?? "",
+      label: c[2] ?? "",
+      duration: 2.5,
+    }));
 
   return (
     <>
@@ -60,19 +81,33 @@ export default async function Home() {
 
         {/* Sezioni con spacing uniforme */}
         <section className="section">
-          <ChiSiamo />
+          <ChiSiamo
+            title={home?.chisiamo?.titolo || undefined}
+            text={home?.chisiamo?.testo || undefined}
+          />
         </section>
 
         <section className="section">
-          <MissionVision />
+          <MissionVision
+            missionText={home?.mission?.mission_testo || undefined}
+            visionText={home?.mission?.vision_testo || undefined}
+          />
         </section>
 
         <section className="section">
-          <PromoSanNumeri />
+          <PromoSanNumeri
+            title={home?.numeri?.titolo || undefined}
+            subtitle={home?.numeri?.sottotitolo || undefined}
+            stats={stats.length ? stats : undefined}
+          />
         </section>
 
         <section className="section section-light">
-          <Services />
+          <Services
+            title={home?.servizi?.titolo || undefined}
+            subtitle={home?.servizi?.sottotitolo || undefined}
+            services={servizi.length ? servizi : undefined}
+          />
         </section>
 
         <section className="section">

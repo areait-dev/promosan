@@ -89,23 +89,84 @@ export interface GlobalOptions {
 }
 
 /**
- * Campi ACF del gruppo "Contenuti Pagina (Hero, Intro, CTA)"
- * (acf-json/group_pagina_hero_cta.json). I sotto-campi sono raggruppati:
- * in REST arrivano come oggetti annidati (es. acf.hero.titolo).
+ * Campi ACF del gruppo unico "Contenuti Pagina" (acf-json/group_pagina_hero_cta.json),
+ * organizzato in Tab per pagina. I sotto-campi sono raggruppati: in REST arrivano come
+ * oggetti annidati e namespaced per pagina (es. acf.home.hero.titolo, acf.medicina.benefits.lista).
+ *
+ * I campi "lista*" sono textarea (vincolo ACF Free — niente Repeater): una voce per riga,
+ * con eventuali colonne separate da " | " (vedi helper parseList/parseCards più sotto).
  */
+export interface HeroFields {
+  badge?: string;
+  titolo?: string;
+  sottotitolo?: string;
+  immagine?: WPImage | false;
+  btn1_label?: string;
+  btn1_link?: string;
+  btn2_label?: string;
+  btn2_link?: string;
+}
+
 export interface PageContentFields {
-  hero?: {
-    badge?: string;
-    titolo?: string;
-    sottotitolo?: string;
-    immagine?: WPImage | false;
-    btn1_label?: string;
-    btn1_link?: string;
-    btn2_label?: string;
-    btn2_link?: string;
+  // --- Home ---
+  home?: {
+    hero?: HeroFields;
+    servizi?: { titolo?: string; sottotitolo?: string; lista?: string }; // "Titolo | Descrizione | image | link"
+    numeri?: { titolo?: string; sottotitolo?: string; lista?: string }; // "valore | suffisso | etichetta"
+    mission?: { mission_testo?: string; vision_testo?: string };
+    chisiamo?: { titolo?: string; testo?: string };
   };
-  intro?: { titolo?: string; testo?: string };
-  cta?: { titolo?: string; testo?: string; label?: string; link?: string };
+  // --- Medicina del Lavoro ---
+  medicina?: {
+    hero?: HeroFields;
+    benefits?: { titolo?: string; lista?: string }; // "Titolo | Descrizione"
+    visite?: { titolo?: string; intro?: string };
+  };
+  // --- Unità Mobili ---
+  unita?: {
+    hero?: HeroFields;
+    caratteristiche?: { titolo?: string; intro?: string };
+    vantaggi?: { titolo?: string; sottotitolo?: string; lista?: string }; // "Titolo | Descrizione"
+  };
+  // --- Welfare ---
+  welfare?: {
+    hero?: HeroFields;
+    introduzione?: { titolo?: string; testo?: string };
+    vantaggi?: { titolo?: string; sottotitolo?: string; lista?: string; citazione?: string };
+  };
+  // --- Altri Servizi ---
+  altri?: {
+    hero?: HeroFields;
+    servizi_sviluppo?: { badge?: string; titolo?: string; intro?: string; focus_lista?: string };
+  };
+  // --- Promo Health Center ---
+  sedi?: {
+    hero?: { titolo?: string; sottotitolo?: string };
+    rete_partner?: { titolo?: string; testo?: string };
+  };
+  // --- Contatti ---
+  contatti?: {
+    header?: { badge?: string; titolo?: string; sottotitolo?: string };
+    prenota?: { titolo?: string; lista?: string; nota?: string };
+  };
+}
+
+/** Una textarea (una voce per riga) -> array di stringhe pulite. */
+export function parseList(text?: string): string[] {
+  return splitLines(text);
+}
+
+/** Textarea "colonna | colonna | ..." per riga -> array di array di colonne. */
+export function parseColumns(text?: string): string[][] {
+  return splitLines(text).map((line) => line.split("|").map((c) => c.trim()));
+}
+
+/** Textarea "Titolo | Descrizione" per riga -> array di card. */
+export function parseCards(text?: string): { title: string; description: string }[] {
+  return parseColumns(text).map((cols) => ({
+    title: cols[0] ?? "",
+    description: cols[1] ?? "",
+  }));
 }
 
 /* -------------------------------------------------------------------------- */

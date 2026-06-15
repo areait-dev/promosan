@@ -8,8 +8,10 @@ import { draftMode } from 'next/headers';
 import {
   getGlobalOptions,
   getSedi,
+  getPageFields,
   type GlobalOptions,
   type Sede,
+  type PageContentFields,
 } from '@/lib/wordpress';
 
 export const revalidate = 60;
@@ -88,9 +90,14 @@ export default async function SediPage() {
 
   let options: GlobalOptions | undefined;
   let sedi: Sede[] = [];
+  let pageContent: PageContentFields | null = null;
 
   try {
-    [options, sedi] = await Promise.all([getGlobalOptions(draft), getSedi(draft)]);
+    [options, sedi, pageContent] = await Promise.all([
+      getGlobalOptions(draft),
+      getSedi(draft),
+      getPageFields<PageContentFields>('promo-health-center', draft),
+    ]);
   } catch (error) {
     console.error('[PromoHealthCenter] Fetch WordPress fallito, uso i default:', error);
   }
@@ -98,13 +105,17 @@ export default async function SediPage() {
   const sediData = sedi.length ? buildSediData(sedi) : FALLBACK_SEDI_DATA;
   const servizi =
     sedi.find((s) => s.servizi?.length)?.servizi ?? FALLBACK_SERVIZI;
+  const sediContent = pageContent?.sedi;
 
   return (
     <main className="sedi-page">
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
       {/* Hero Section */}
-      <HeroSedi />
+      <HeroSedi
+        title={sediContent?.hero?.titolo || undefined}
+        subtitle={sediContent?.hero?.sottotitolo || undefined}
+      />
 
       {/* DIV PER SPAZIO ENORME DOPO HERO */}
       <div className="h-64 md:h-96"></div>
@@ -125,7 +136,10 @@ export default async function SediPage() {
       {/* DIV PER SPAZIO PRIMA DEL FOOTER (opzionale) */}
       <div className="h-32 md:h-48"></div>
       {/* RetePartner */}
-      <RetePartner />
+      <RetePartner
+        title={sediContent?.rete_partner?.titolo || undefined}
+        text={sediContent?.rete_partner?.testo || undefined}
+      />
       <Footer options={options} />
     </main>
   );

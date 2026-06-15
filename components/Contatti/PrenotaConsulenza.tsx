@@ -4,7 +4,26 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 
-export default function PrenotaConsulenza() {
+export interface PrenotaConsulenzaProps {
+  title?: string;
+  items?: string[];
+  nota?: string;
+}
+
+const DEFAULT_TITLE = 'PRENOTA UNA CONSULENZA';
+const DEFAULT_ITEMS = [
+  'Analisi personalizzata delle tue esigenze',
+  'Preventivo gratuito e senza impegno',
+  'Consulenza con i nostri specialisti',
+];
+const DEFAULT_NOTA =
+  "*La consulenza è un'opportunità per conoscere come possiamo aiutarti";
+
+export default function PrenotaConsulenza({
+  title = DEFAULT_TITLE,
+  items = DEFAULT_ITEMS,
+  nota = DEFAULT_NOTA,
+}: PrenotaConsulenzaProps = {}) {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -80,7 +99,7 @@ export default function PrenotaConsulenza() {
           fontWeight: '700',
           color: '#2c5282'
         }}>
-          PRENOTA UNA CONSULENZA
+          {title}
         </h3>
       </div>
 
@@ -89,18 +108,12 @@ export default function PrenotaConsulenza() {
         listStyle: 'none',
         padding: 0
       }}>
-        <li style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-          <i className="fas fa-check-circle" style={{ color: '#2c5282', flexShrink: 0, marginTop: '0.2rem' }}></i>
-          <span style={{ color: '#000000', fontWeight: '500' }}>Analisi personalizzata delle tue esigenze</span>
-        </li>
-        <li style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-          <i className="fas fa-check-circle" style={{ color: '#2c5282', flexShrink: 0, marginTop: '0.2rem' }}></i>
-          <span style={{ color: '#000000', fontWeight: '500' }}>Preventivo gratuito e senza impegno</span>
-        </li>
-        <li style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-          <i className="fas fa-check-circle" style={{ color: '#2c5282', flexShrink: 0, marginTop: '0.2rem' }}></i>
-          <span style={{ color: '#000000', fontWeight: '500' }}>Consulenza con i nostri specialisti</span>
-        </li>
+        {items.map((item, index) => (
+          <li key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
+            <i className="fas fa-check-circle" style={{ color: '#2c5282', flexShrink: 0, marginTop: '0.2rem' }}></i>
+            <span style={{ color: '#000000', fontWeight: '500' }}>{item}</span>
+          </li>
+        ))}
       </ul>
 
       <p style={{
@@ -112,7 +125,7 @@ export default function PrenotaConsulenza() {
         background: '#f0f0f0',
         borderRadius: '0.5rem',
       }}>
-        *La consulenza è un'opportunità per conoscere come possiamo aiutarti
+        {nota}
       </p>
 
       <Link

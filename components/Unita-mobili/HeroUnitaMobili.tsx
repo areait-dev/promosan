@@ -2,7 +2,30 @@
 
 import Image from 'next/image';
 
-export default function HeroUnitaMobili() {
+export interface HeroUnitaMobiliProps {
+  badge?: string;
+  title?: string;
+  btn1Label?: string;
+  btn1Link?: string;
+  btn2Label?: string;
+  btn2Link?: string;
+}
+
+const DEFAULT_BADGE = 'Unità mobili';
+const DEFAULT_TITLE = 'PORTIAMO LA MEDICINA DEL LAVORO DIRETTAMENTE DOVE LAVORI';
+const DEFAULT_BTN1_LABEL = 'Scopri i vantaggi';
+const DEFAULT_BTN1_LINK = '#vantaggi';
+const DEFAULT_BTN2_LABEL = "Prenota un'unità mobile";
+const DEFAULT_BTN2_LINK = '/contatti';
+
+export default function HeroUnitaMobili({
+  badge = DEFAULT_BADGE,
+  title = DEFAULT_TITLE,
+  btn1Label = DEFAULT_BTN1_LABEL,
+  btn1Link = DEFAULT_BTN1_LINK,
+  btn2Label = DEFAULT_BTN2_LABEL,
+  btn2Link = DEFAULT_BTN2_LINK,
+}: HeroUnitaMobiliProps = {}) {
   const scrollToContent = () => {
     const heroSection = document.querySelector('section');
     if (heroSection) {
@@ -100,7 +123,7 @@ export default function HeroUnitaMobili() {
             backgroundColor: 'rgba(255, 255, 255, 0.15)',
             backdropFilter: 'blur(4px)'
           }}>
-            <span>Unità mobili</span>
+            <span>{badge}</span>
           </div>
           
           {/* Titolo */}
@@ -114,7 +137,7 @@ export default function HeroUnitaMobili() {
             color: '#ffffff',
             textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)'
           }}>
-            PORTIAMO LA MEDICINA DEL LAVORO DIRETTAMENTE DOVE LAVORI
+            {title}
           </h1>
           
           {/* CTA Buttons */}
@@ -126,8 +149,8 @@ export default function HeroUnitaMobili() {
             alignItems: 'center',
             marginBottom: '2rem'
           }}>
-            <a 
-              href="#vantaggi" 
+            <a
+              href={btn1Link}
               style={{
                 display: 'inline-block',
                 padding: '1rem 2rem',
@@ -154,11 +177,11 @@ export default function HeroUnitaMobili() {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              Scopri i vantaggi
+              {btn1Label}
             </a>
-            
-            <a 
-              href="/contatti" 
+
+            <a
+              href={btn2Link}
               style={{
                 display: 'inline-block',
                 padding: '0.75rem 1rem',
@@ -185,7 +208,7 @@ export default function HeroUnitaMobili() {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              Prenota un'unità mobile
+              {btn2Label}
             </a>
           </div>
 

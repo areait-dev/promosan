@@ -5,7 +5,13 @@ import ServiziInSviluppo from '../../components/altri-servizi/ServiziInSviluppo'
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { draftMode } from 'next/headers';
-import { getGlobalOptions, type GlobalOptions } from '@/lib/wordpress';
+import {
+  getGlobalOptions,
+  getPageFields,
+  parseList,
+  type GlobalOptions,
+  type PageContentFields,
+} from '@/lib/wordpress';
 
 export const revalidate = 60;
 
@@ -36,11 +42,18 @@ export const metadata: Metadata = {
 export default async function AltriServiziPage() {
   const { isEnabled: draft } = await draftMode();
   let options: GlobalOptions | undefined;
+  let pageContent: PageContentFields | null = null;
   try {
-    options = await getGlobalOptions(draft);
+    [options, pageContent] = await Promise.all([
+      getGlobalOptions(draft),
+      getPageFields<PageContentFields>('altri-servizi', draft),
+    ]);
   } catch (error) {
     console.error('[AltriServizi] Fetch WordPress fallito, uso i default:', error);
   }
+
+  const altri = pageContent?.altri;
+  const focusItems = parseList(altri?.servizi_sviluppo?.focus_lista);
 
   return (
     <main style={{
@@ -50,10 +63,19 @@ export default async function AltriServiziPage() {
     }}>
       {/* Hero Section */}
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
-      <HeroAltriServizi />
+      <HeroAltriServizi
+        badge={altri?.hero?.badge || undefined}
+        title={altri?.hero?.titolo || undefined}
+        subtitle={altri?.hero?.sottotitolo || undefined}
+      />
 
       {/* Servizi in Sviluppo Section */}
-        <ServiziInSviluppo />
+        <ServiziInSviluppo
+          badge={altri?.servizi_sviluppo?.badge || undefined}
+          title={altri?.servizi_sviluppo?.titolo || undefined}
+          intro={altri?.servizi_sviluppo?.intro || undefined}
+          focusItems={focusItems.length ? focusItems : undefined}
+        />
       <Footer options={options} />
     </main>
   );

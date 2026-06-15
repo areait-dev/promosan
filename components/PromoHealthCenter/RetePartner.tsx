@@ -2,7 +2,19 @@
 import React from 'react';
 import Image from 'next/image';
 
-export default function RetePartner() {  // <-- Rimosso :JSX.Element
+export interface RetePartnerProps {
+  title?: string;
+  text?: string; // HTML
+}
+
+const DEFAULT_TITLE = 'RETE DI PARTNER QUALIFICATI';
+const DEFAULT_TEXT =
+  'La nostra presenza è ulteriormente rafforzata da una distribuzione capillare di partner certificati su tutto il territorio nazionale. Questa rete di professionisti qualificati ci consente di garantire vicinanza alle aziende clienti, tempestività negli interventi e standard qualitativi uniformi, anche nelle aree più periferiche.';
+
+export default function RetePartner({
+  title = DEFAULT_TITLE,
+  text = DEFAULT_TEXT,
+}: RetePartnerProps = {}) {
   return (
     <section style={{ padding: '3rem 0', backgroundColor: 'white' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
@@ -23,27 +35,25 @@ export default function RetePartner() {  // <-- Rimosso :JSX.Element
               color: '#2c5282',
               marginBottom: '1rem'
             }}>
-              RETE DI PARTNER QUALIFICATI
-              <span style={{ 
-                display: 'block', 
-                width: '5rem', 
-                height: '4px', 
+              {title}
+              <span style={{
+                display: 'block',
+                width: '5rem',
+                height: '4px',
                 backgroundColor: '#2c5282',
                 marginTop: '0.75rem',
                 borderRadius: '2px'
               }}></span>
             </h3>
-            
-            <p style={{ 
-              fontSize: '1.125rem', 
-              color: '#374151',
-              lineHeight: '1.75'
-            }}>
-              La nostra presenza è ulteriormente rafforzata da una distribuzione capillare di partner certificati 
-              su tutto il territorio nazionale. Questa rete di professionisti qualificati ci consente di garantire 
-              vicinanza alle aziende clienti, tempestività negli interventi e standard qualitativi uniformi, 
-              anche nelle aree più periferiche.
-            </p>
+
+            <p
+              style={{
+                fontSize: '1.125rem',
+                color: '#374151',
+                lineHeight: '1.75',
+              }}
+              dangerouslySetInnerHTML={{ __html: text }}
+            />
           </div>
           
           {/* FOTO A DESTRA */}

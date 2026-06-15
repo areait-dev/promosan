@@ -1,7 +1,24 @@
 'use client'
 import Link from 'next/link';
 
-export default function HeroMedicinaLavoro() {
+export interface HeroMedicinaLavoroProps {
+  badge?: string;
+  title?: string;
+  ctaLabel?: string;
+  ctaLink?: string;
+}
+
+const DEFAULT_BADGE = 'Medicina del Lavoro';
+const DEFAULT_TITLE = 'IL TUO PARTNER PER LA SORVEGLIANZA SANITARIA';
+const DEFAULT_CTA_LABEL = 'Richiedi un preventivo';
+const DEFAULT_CTA_LINK = '/contatti';
+
+export default function HeroMedicinaLavoro({
+  badge = DEFAULT_BADGE,
+  title = DEFAULT_TITLE,
+  ctaLabel = DEFAULT_CTA_LABEL,
+  ctaLink = DEFAULT_CTA_LINK,
+}: HeroMedicinaLavoroProps = {}) {
   const scrollToContent = () => {
     const heroSection = document.querySelector('.hero-section-medicina');
     if (heroSection) {
@@ -20,15 +37,15 @@ export default function HeroMedicinaLavoro() {
       <div className="hero-content">
         <div className="hero-inner">
           <div className="hero-badge">
-            <span>Medicina del Lavoro</span>
+            <span>{badge}</span>
           </div>
-          
+
           <h1 className="hero-title">
-            IL TUO PARTNER PER LA SORVEGLIANZA SANITARIA
-          </h1>            
-          
-          <Link href="/contatti" className="btn btn-white">
-            Richiedi un preventivo
+            {title}
+          </h1>
+
+          <Link href={ctaLink} className="btn btn-white">
+            {ctaLabel}
           </Link>
 
           {/* Scroll Indicator - Solo la freccia */}

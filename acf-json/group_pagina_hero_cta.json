@@ -1,122 +1,368 @@
 {
   "key": "group_pagina_hero_cta",
-  "title": "Contenuti Pagina (Hero, Intro, CTA)",
-  "show_in_graphql": 1,
-  "graphql_field_name": "paginaContenuti",
+  "title": "Contenuti Pagina (per sezione)",
   "fields": [
     {
-      "key": "field_pg_hero",
-      "label": "Hero",
-      "name": "hero",
+      "key": "field_tab_home",
+      "label": "Home",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_home",
+      "label": "Home",
+      "name": "home",
       "type": "group",
       "layout": "block",
       "sub_fields": [
         {
-          "key": "field_pg_hero_badge",
-          "label": "Badge",
-          "name": "badge",
-          "type": "text"
+          "key": "field_home_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_home_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_home_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array" },
+            { "key": "field_home_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_home_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text" },
+            { "key": "field_home_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
+            { "key": "field_home_hero_btn2_link", "label": "Bottone 2 - Link", "name": "btn2_link", "type": "text" }
+          ]
         },
         {
-          "key": "field_pg_hero_titolo",
-          "label": "Titolo",
-          "name": "titolo",
-          "type": "text"
+          "key": "field_home_servizi",
+          "label": "Servizi",
+          "name": "servizi",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_servizi_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_servizi_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_home_servizi_lista", "label": "Lista servizi", "name": "lista", "type": "textarea", "rows": 6, "instructions": "Una voce per riga: Titolo | Descrizione | percorso-immagine | link" }
+          ]
         },
         {
-          "key": "field_pg_hero_sottotitolo",
-          "label": "Sottotitolo",
-          "name": "sottotitolo",
-          "type": "textarea",
-          "rows": 3
+          "key": "field_home_numeri",
+          "label": "Numeri",
+          "name": "numeri",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_numeri_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_numeri_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_home_numeri_lista", "label": "Statistiche", "name": "lista", "type": "textarea", "rows": 4, "instructions": "Una voce per riga: valore | suffisso | etichetta (es. 25000 | + | VISITE MEDICHE)" }
+          ]
         },
         {
-          "key": "field_pg_hero_immagine",
-          "label": "Immagine di sfondo",
-          "name": "immagine",
-          "type": "image",
-          "return_format": "array"
+          "key": "field_home_mission",
+          "label": "Mission & Vision",
+          "name": "mission",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_mission_testo", "label": "Testo Mission", "name": "mission_testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_home_vision_testo", "label": "Testo Vision", "name": "vision_testo", "type": "wysiwyg", "media_upload": 0 }
+          ]
         },
         {
-          "key": "field_pg_hero_btn1_label",
-          "label": "Bottone 1 - Etichetta",
-          "name": "btn1_label",
-          "type": "text"
-        },
-        {
-          "key": "field_pg_hero_btn1_link",
-          "label": "Bottone 1 - Link",
-          "name": "btn1_link",
-          "type": "text"
-        },
-        {
-          "key": "field_pg_hero_btn2_label",
-          "label": "Bottone 2 - Etichetta",
-          "name": "btn2_label",
-          "type": "text"
-        },
-        {
-          "key": "field_pg_hero_btn2_link",
-          "label": "Bottone 2 - Link",
-          "name": "btn2_link",
-          "type": "text"
+          "key": "field_home_chisiamo",
+          "label": "Chi Siamo",
+          "name": "chisiamo",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_chisiamo_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_chisiamo_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 }
+          ]
         }
       ]
     },
+
     {
-      "key": "field_pg_intro",
-      "label": "Introduzione",
-      "name": "intro",
+      "key": "field_tab_medicina",
+      "label": "Medicina del Lavoro",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_medicina",
+      "label": "Medicina del Lavoro",
+      "name": "medicina",
       "type": "group",
       "layout": "block",
       "sub_fields": [
         {
-          "key": "field_pg_intro_titolo",
-          "label": "Titolo",
-          "name": "titolo",
-          "type": "text"
+          "key": "field_medicina_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_medicina_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_medicina_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_medicina_hero_btn1_label", "label": "Bottone - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_medicina_hero_btn1_link", "label": "Bottone - Link", "name": "btn1_link", "type": "text" }
+          ]
         },
         {
-          "key": "field_pg_intro_testo",
-          "label": "Testo",
-          "name": "testo",
-          "type": "wysiwyg",
-          "media_upload": 0
+          "key": "field_medicina_benefits",
+          "label": "Perché sceglierci",
+          "name": "benefits",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_medicina_benefits_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_medicina_benefits_lista", "label": "Lista", "name": "lista", "type": "textarea", "rows": 6, "instructions": "Una voce per riga: Titolo | Descrizione" }
+          ]
+        },
+        {
+          "key": "field_medicina_visite",
+          "label": "Visite Mediche",
+          "name": "visite",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_medicina_visite_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_medicina_visite_intro", "label": "Introduzione", "name": "intro", "type": "wysiwyg", "media_upload": 0 }
+          ]
         }
       ]
     },
+
     {
-      "key": "field_pg_cta",
-      "label": "Call To Action (sezione finale)",
-      "name": "cta",
+      "key": "field_tab_unita",
+      "label": "Unità Mobili",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_unita",
+      "label": "Unità Mobili",
+      "name": "unita",
       "type": "group",
       "layout": "block",
       "sub_fields": [
         {
-          "key": "field_pg_cta_titolo",
-          "label": "Titolo",
-          "name": "titolo",
-          "type": "text"
+          "key": "field_unita_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_unita_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_unita_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_unita_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_unita_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text" },
+            { "key": "field_unita_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
+            { "key": "field_unita_hero_btn2_link", "label": "Bottone 2 - Link", "name": "btn2_link", "type": "text" }
+          ]
         },
         {
-          "key": "field_pg_cta_testo",
-          "label": "Testo",
-          "name": "testo",
-          "type": "textarea",
-          "rows": 2
+          "key": "field_unita_caratteristiche",
+          "label": "Caratteristiche del servizio",
+          "name": "caratteristiche",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_unita_caratteristiche_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_unita_caratteristiche_intro", "label": "Introduzione", "name": "intro", "type": "wysiwyg", "media_upload": 0 }
+          ]
         },
         {
-          "key": "field_pg_cta_label",
-          "label": "Etichetta bottone",
-          "name": "label",
-          "type": "text"
+          "key": "field_unita_vantaggi",
+          "label": "Vantaggi",
+          "name": "vantaggi",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_unita_vantaggi_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_unita_vantaggi_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 2 },
+            { "key": "field_unita_vantaggi_lista", "label": "Lista vantaggi", "name": "lista", "type": "textarea", "rows": 6, "instructions": "Una voce per riga: Titolo | Descrizione (HTML ammesso)" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "key": "field_tab_welfare",
+      "label": "Welfare",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_welfare",
+      "label": "Welfare",
+      "name": "welfare",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_welfare_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_welfare_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_welfare_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_welfare_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_welfare_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text" },
+            { "key": "field_welfare_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
+            { "key": "field_welfare_hero_btn2_link", "label": "Bottone 2 - Link", "name": "btn2_link", "type": "text" }
+          ]
         },
         {
-          "key": "field_pg_cta_link",
-          "label": "Link bottone",
-          "name": "link",
-          "type": "text",
-          "default_value": "/contatti"
+          "key": "field_welfare_introduzione",
+          "label": "Introduzione",
+          "name": "introduzione",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_welfare_introduzione_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_welfare_introduzione_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 }
+          ]
+        },
+        {
+          "key": "field_welfare_vantaggi",
+          "label": "Vantaggi strategici",
+          "name": "vantaggi",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_welfare_vantaggi_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_welfare_vantaggi_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "text" },
+            { "key": "field_welfare_vantaggi_lista", "label": "Lista vantaggi", "name": "lista", "type": "textarea", "rows": 8, "instructions": "Una voce per riga: Titolo | Descrizione" },
+            { "key": "field_welfare_vantaggi_citazione", "label": "Citazione finale", "name": "citazione", "type": "textarea", "rows": 3 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "key": "field_tab_altri",
+      "label": "Altri Servizi",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_altri",
+      "label": "Altri Servizi",
+      "name": "altri",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_altri_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_altri_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_altri_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_altri_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 }
+          ]
+        },
+        {
+          "key": "field_altri_servizi_sviluppo",
+          "label": "Servizi in sviluppo",
+          "name": "servizi_sviluppo",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_altri_ss_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_altri_ss_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_altri_ss_intro", "label": "Introduzione", "name": "intro", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_altri_ss_focus", "label": "Focus prevenzione", "name": "focus_lista", "type": "textarea", "rows": 5, "instructions": "Una voce per riga" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "key": "field_tab_sedi",
+      "label": "Promo Health Center",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_sedi",
+      "label": "Promo Health Center",
+      "name": "sedi",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_sedi_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_sedi_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_sedi_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 }
+          ]
+        },
+        {
+          "key": "field_sedi_rete_partner",
+          "label": "Rete Partner",
+          "name": "rete_partner",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_sedi_rp_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_sedi_rp_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "key": "field_tab_contatti",
+      "label": "Contatti",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_contatti",
+      "label": "Contatti",
+      "name": "contatti",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_contatti_header",
+          "label": "Header",
+          "name": "header",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_contatti_header_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_contatti_header_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_contatti_header_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 2 }
+          ]
+        },
+        {
+          "key": "field_contatti_prenota",
+          "label": "Prenota consulenza",
+          "name": "prenota",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_contatti_prenota_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_contatti_prenota_lista", "label": "Punti elenco", "name": "lista", "type": "textarea", "rows": 5, "instructions": "Una voce per riga" },
+            { "key": "field_contatti_prenota_nota", "label": "Nota", "name": "nota", "type": "textarea", "rows": 2 }
+          ]
         }
       ]
     }
@@ -133,7 +379,9 @@
   "menu_order": 0,
   "position": "normal",
   "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
   "active": true,
   "show_in_rest": 1,
-  "description": "Hero/Intro/CTA editabili per le pagine native (home, medicina-del-lavoro, unita-mobili, welfare-aziendale, altri-servizi, promo-health-center, contatti)."
+  "description": "Contenuti editoriali per sezione, organizzati per pagina tramite Tab. Appare su tutte le pagine (post_type == page); ogni redattore compila il Tab della pagina che sta modificando."
 }

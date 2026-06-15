@@ -11,7 +11,32 @@ interface Vantaggio {
   description: string;
 }
 
-export default function VantaggiWelfare() {
+export interface VantaggiWelfareProps {
+  title?: string;
+  subtitle?: string;
+  vantaggi?: { title: string; description: string }[];
+  citazione?: string;
+}
+
+const DEFAULT_TITLE = 'I VANTAGGI STRATEGICI';
+const DEFAULT_SUBTITLE = 'INVESTIRE NEL WELFARE AZIENDALE SIGNIFICA:';
+const DEFAULT_CITAZIONE =
+  'La prevenzione diventa così uno strumento di gestione strategica delle risorse umane, in cui la salute è un asset aziendale che genera valore condiviso per l\'impresa e per chi lavora.';
+const DEFAULT_VANTAGGI: { title: string; description: string }[] = [
+  { title: 'MIGLIORAMENTO DEL CLIMA AZIENDALE', description: 'Il welfare contribuisce a creare un ambiente di lavoro più sereno e collaborativo.' },
+  { title: 'AUMENTO DELLA PRODUTTIVITÀ', description: 'Dipendenti soddisfatti sono più motivati e produttivi.' },
+  { title: 'RIDUZIONE DEL TURNOVER', description: 'Minore turnover del personale grazie a maggior senso di appartenenza.' },
+  { title: 'VANTAGGI FISCALI', description: "Detrazioni fiscali per l'azienda e vantaggi in busta paga per i dipendenti." },
+  { title: 'MIGLIORAMENTO DELL\'IMMAGINE AZIENDALE', description: "L'azienda si posiziona come datore di lavoro responsabile e attrattivo." },
+  { title: 'MAGGIORE ATTRATTIVITÀ PER I TALENTI', description: 'Strumento strategico per attrarre nuovi talenti in un mercato competitivo.' },
+];
+
+export default function VantaggiWelfare({
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+  vantaggi: vantaggiProp = DEFAULT_VANTAGGI,
+  citazione = DEFAULT_CITAZIONE,
+}: VantaggiWelfareProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -35,38 +60,11 @@ export default function VantaggiWelfare() {
     }
   }, []);
 
-  const vantaggi: Vantaggio[] = [
-    {
-      id: 1,
-      title: "MIGLIORAMENTO DEL CLIMA AZIENDALE",
-      description: "Il welfare contribuisce a creare un ambiente di lavoro più sereno e collaborativo."
-    },
-    {
-      id: 2,
-      title: "AUMENTO DELLA PRODUTTIVITÀ",
-      description: "Dipendenti soddisfatti sono più motivati e produttivi."
-    },
-    {
-      id: 3,
-      title: "RIDUZIONE DEL TURNOVER",
-      description: "Minore turnover del personale grazie a maggior senso di appartenenza."
-    },
-    {
-      id: 4,
-      title: "VANTAGGI FISCALI",
-      description: "Detrazioni fiscali per l'azienda e vantaggi in busta paga per i dipendenti."
-    },
-    {
-      id: 5,
-      title: "MIGLIORAMENTO DELL'IMMAGINE AZIENDALE",
-      description: "L'azienda si posiziona come datore di lavoro responsabile e attrattivo."
-    },
-    {
-      id: 6,
-      title: "MAGGIORE ATTRATTIVITÀ PER I TALENTI",
-      description: "Strumento strategico per attrarre nuovi talenti in un mercato competitivo."
-    }
-  ];
+  const vantaggi: Vantaggio[] = vantaggiProp.map((v, i) => ({
+    id: i + 1,
+    title: v.title,
+    description: v.description,
+  }));
 
   return (
     <section 
@@ -99,7 +97,7 @@ export default function VantaggiWelfare() {
               transition: 'opacity 0.7s ease-out, transform 0.7s ease-out'
             }}
           >
-            I VANTAGGI STRATEGICI
+            {title}
           </h2>
           <p 
             data-animate="true"
@@ -113,7 +111,7 @@ export default function VantaggiWelfare() {
               transitionDelay: '0.1s'
             }}
           >
-           INVESTIRE NEL WELFARE AZIENDALE SIGNIFICA:
+           {subtitle}
           </p>
         </div>
 
@@ -211,14 +209,16 @@ export default function VantaggiWelfare() {
               />
             </div>
             <div className="quote-text" style={{ flex: 1 }}>
-              <blockquote style={{
-                fontSize: 'clamp(1rem, 3.5vw, 1.25rem)',
-                fontStyle: 'italic',
-                color: '#ffffff',
-                lineHeight: '1.6',
-                margin: 0
-              }}>
-                La prevenzione diventa così uno strumento di gestione strategica delle risorse umane, in cui la salute è un asset aziendale che genera valore condiviso per l'impresa e per chi lavora.
+              <blockquote
+                style={{
+                  fontSize: 'clamp(1rem, 3.5vw, 1.25rem)',
+                  fontStyle: 'italic',
+                  color: '#ffffff',
+                  lineHeight: '1.6',
+                  margin: 0,
+                }}
+              >
+                {citazione}
               </blockquote>
             </div>
           </div>

@@ -4,7 +4,22 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 
-export default function HeroAltriServizi() {
+export interface HeroAltriServiziProps {
+  badge?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const DEFAULT_BADGE = 'Servizi in Evoluzione';
+const DEFAULT_TITLE = 'ALTRI SERVIZI';
+const DEFAULT_SUBTITLE =
+  "L'evoluzione continua dei servizi sanitari per rispondere alle esigenze emergenti";
+
+export default function HeroAltriServizi({
+  badge = DEFAULT_BADGE,
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+}: HeroAltriServiziProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -71,7 +86,7 @@ export default function HeroAltriServizi() {
           }}
         >
           <i className="fas fa-plus" style={{ fontSize: '0.75rem' }}></i>
-          <span>Servizi in Evoluzione</span>
+          <span>{badge}</span>
         </div>
 
         {/* Titolo */}
@@ -90,7 +105,7 @@ export default function HeroAltriServizi() {
             transitionDelay: '0.1s'
           }}
         >
-          ALTRI SERVIZI
+          {title}
         </h1>
 
         {/* Sottotitolo */}
@@ -108,7 +123,7 @@ export default function HeroAltriServizi() {
             transitionDelay: '0.2s'
           }}
         >
-          L'evoluzione continua dei servizi sanitari per rispondere alle esigenze emergenti
+          {subtitle}
         </p>
 
         {/* Bottoni principali */}

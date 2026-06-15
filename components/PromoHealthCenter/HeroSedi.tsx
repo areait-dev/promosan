@@ -3,7 +3,19 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const HeroSedi = () => {
+export interface HeroSediProps {
+  title?: string;
+  subtitle?: string;
+}
+
+const DEFAULT_TITLE = 'PRESENTI DOVE SERVE, QUANDO SERVE';
+const DEFAULT_SUBTITLE =
+  'PromoSan garantisce copertura su tutto il territorio nazionale grazie a una rete capillare e flessibile, pensata per rispondere alle esigenze di ogni azienda, ovunque essa operi.';
+
+const HeroSedi = ({
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+}: HeroSediProps = {}) => {
   return (
     <section 
       className="hero-sedi"
@@ -21,11 +33,11 @@ const HeroSedi = () => {
       
       <div className="hero-content">
         <h1 className="hero-title">
-        PRESENTI DOVE SERVE, QUANDO SERVE
+        {title}
         </h1>
-        
+
         <p className="hero-subtitle">
-        PromoSan garantisce copertura su tutto il territorio nazionale grazie a una rete capillare e flessibile, pensata per rispondere alle esigenze di ogni azienda, ovunque essa operi.
+        {subtitle}
         </p>
         
         <div className="hero-buttons">
