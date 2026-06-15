@@ -13,9 +13,11 @@ import {
   getGlobalOptions,
   getLatestNews,
   getFaq,
+  getPageFields,
   type GlobalOptions,
   type NewsItem,
   type FaqItem,
+  type PageContentFields,
 } from "@/lib/wordpress";
 
 // ISR: rigenera la pagina al massimo ogni 60 secondi.
@@ -29,22 +31,32 @@ export default async function Home() {
   let options: GlobalOptions | undefined;
   let latestNews: NewsItem[] | undefined;
   let faq: FaqItem[] | undefined;
+  let pageContent: PageContentFields | null = null;
 
   try {
-    [options, latestNews, faq] = await Promise.all([
+    [options, latestNews, faq, pageContent] = await Promise.all([
       getGlobalOptions(draft),
       getLatestNews(4, draft),
       getFaq(draft),
+      getPageFields<PageContentFields>("home", draft),
     ]);
   } catch (error) {
     console.error("[Home] Fetch WordPress fallito, uso i default:", error);
   }
 
+  // Hero dal gruppo ACF "hero" (acf.hero.*). Props undefined -> il componente usa i suoi default.
+  const hero = pageContent?.hero;
+
   return (
     <>
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <main>
-        <Hero />
+        <Hero
+          title={hero?.titolo || undefined}
+          backgroundImage={hero?.immagine ? hero.immagine.url : undefined}
+          ctaLabel={hero?.btn1_label || undefined}
+          ctaLink={hero?.btn1_link || undefined}
+        />
 
         {/* Sezioni con spacing uniforme */}
         <section className="section">

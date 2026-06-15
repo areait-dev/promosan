@@ -88,6 +88,26 @@ export interface GlobalOptions {
   social: { linkedin: string; facebook: string; instagram: string };
 }
 
+/**
+ * Campi ACF del gruppo "Contenuti Pagina (Hero, Intro, CTA)"
+ * (acf-json/group_pagina_hero_cta.json). I sotto-campi sono raggruppati:
+ * in REST arrivano come oggetti annidati (es. acf.hero.titolo).
+ */
+export interface PageContentFields {
+  hero?: {
+    badge?: string;
+    titolo?: string;
+    sottotitolo?: string;
+    immagine?: WPImage | false;
+    btn1_label?: string;
+    btn1_link?: string;
+    btn2_label?: string;
+    btn2_link?: string;
+  };
+  intro?: { titolo?: string; testo?: string };
+  cta?: { titolo?: string; testo?: string; label?: string; link?: string };
+}
+
 /* -------------------------------------------------------------------------- */
 /*                              Fetch generico                                */
 /* -------------------------------------------------------------------------- */
@@ -329,8 +349,10 @@ export async function getPageFields<T = Record<string, any>>(
   slug: string,
   draft = false
 ): Promise<T | null> {
-  const data = await wpFetch<any[]>(`/pages?slug=${encodeURIComponent(slug)}`, {
-    draft,
-  });
+  // _fields limita la risposta REST ai soli campi che servono (payload più leggero).
+  const data = await wpFetch<any[]>(
+    `/pages?slug=${encodeURIComponent(slug)}&_fields=id,slug,acf`,
+    { draft }
+  );
   return data.length ? ((data[0].acf ?? {}) as T) : null;
 }
