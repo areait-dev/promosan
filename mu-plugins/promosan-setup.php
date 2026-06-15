@@ -136,8 +136,7 @@ function promosan_cors_headers() {
 
 	$allowed_origins = array(
 		'http://localhost:3000',
-		'https://promosan.vercel.app',
-		'https://promosan.eu',
+		'https://promosanext.vercel.app',
 	);
 
 	$origin = isset( $_SERVER['HTTP_ORIGIN'] ) ? $_SERVER['HTTP_ORIGIN'] : '';
@@ -203,14 +202,19 @@ function promosan_trigger_revalidate( $post_id, $post, $update ) {
 	}
 
 	// Configurazione (definisci queste costanti in wp-config.php).
-	$next_url = defined( 'NEXT_URL' ) ? NEXT_URL : '';
-	$token    = defined( 'WP_REVALIDATE_TOKEN' ) ? WP_REVALIDATE_TOKEN : '';
-	if ( empty( $next_url ) || empty( $token ) ) {
+	if ( ! defined( 'NEXT_URL' ) || ! defined( 'WP_REVALIDATE_TOKEN' ) ) {
+		return;
+	}
+	$token = WP_REVALIDATE_TOKEN;
+	if ( empty( NEXT_URL ) || empty( $token ) ) {
 		return;
 	}
 
+	// URL del webhook costruito dalla costante NEXT_URL di wp-config.php.
+	$revalidate_url = NEXT_URL . '/api/revalidate';
+
 	// Notifica asincrona (non blocca il salvataggio in admin).
-	wp_remote_post( trailingslashit( $next_url ) . 'api/revalidate', array(
+	wp_remote_post( $revalidate_url, array(
 		'method'   => 'POST',
 		'timeout'  => 5,
 		'blocking' => false,
@@ -248,21 +252,17 @@ function promosan_preview_admin_bar( $wp_admin_bar ) {
 		return;
 	}
 
-	$next_url = defined( 'NEXT_URL' ) ? NEXT_URL : '';
-	$secret   = defined( 'WP_PREVIEW_SECRET' ) ? WP_PREVIEW_SECRET : '';
-	if ( empty( $next_url ) || empty( $secret ) ) {
+	if ( ! defined( 'NEXT_URL' ) || ! defined( 'WP_PREVIEW_SECRET' ) ) {
+		return;
+	}
+	if ( empty( NEXT_URL ) || empty( WP_PREVIEW_SECRET ) ) {
 		return;
 	}
 
-	// Costruisce l'URL di preview con secret, slug e post_type.
-	$preview_url = add_query_arg(
-		array(
-			'secret'    => rawurlencode( $secret ),
-			'slug'      => rawurlencode( $post->post_name ),
-			'post_type' => rawurlencode( $post->post_type ),
-		),
-		trailingslashit( $next_url ) . 'api/preview'
-	);
+	$slug = $post->post_name;
+
+	// Costruisce l'URL di preview con secret e slug usando la costante NEXT_URL.
+	$preview_url = NEXT_URL . '/api/preview?secret=' . WP_PREVIEW_SECRET . '&slug=' . $slug;
 
 	$wp_admin_bar->add_node( array(
 		'id'    => 'promosan-preview',
