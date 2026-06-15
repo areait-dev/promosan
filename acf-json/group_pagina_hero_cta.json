@@ -1,0 +1,139 @@
+{
+  "key": "group_pagina_hero_cta",
+  "title": "Contenuti Pagina (Hero, Intro, CTA)",
+  "show_in_graphql": 1,
+  "graphql_field_name": "paginaContenuti",
+  "fields": [
+    {
+      "key": "field_pg_hero",
+      "label": "Hero",
+      "name": "hero",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_pg_hero_badge",
+          "label": "Badge",
+          "name": "badge",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_hero_titolo",
+          "label": "Titolo",
+          "name": "titolo",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_hero_sottotitolo",
+          "label": "Sottotitolo",
+          "name": "sottotitolo",
+          "type": "textarea",
+          "rows": 3
+        },
+        {
+          "key": "field_pg_hero_immagine",
+          "label": "Immagine di sfondo",
+          "name": "immagine",
+          "type": "image",
+          "return_format": "array"
+        },
+        {
+          "key": "field_pg_hero_btn1_label",
+          "label": "Bottone 1 - Etichetta",
+          "name": "btn1_label",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_hero_btn1_link",
+          "label": "Bottone 1 - Link",
+          "name": "btn1_link",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_hero_btn2_label",
+          "label": "Bottone 2 - Etichetta",
+          "name": "btn2_label",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_hero_btn2_link",
+          "label": "Bottone 2 - Link",
+          "name": "btn2_link",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_pg_intro",
+      "label": "Introduzione",
+      "name": "intro",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_pg_intro_titolo",
+          "label": "Titolo",
+          "name": "titolo",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_intro_testo",
+          "label": "Testo",
+          "name": "testo",
+          "type": "wysiwyg",
+          "media_upload": 0
+        }
+      ]
+    },
+    {
+      "key": "field_pg_cta",
+      "label": "Call To Action (sezione finale)",
+      "name": "cta",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_pg_cta_titolo",
+          "label": "Titolo",
+          "name": "titolo",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_cta_testo",
+          "label": "Testo",
+          "name": "testo",
+          "type": "textarea",
+          "rows": 2
+        },
+        {
+          "key": "field_pg_cta_label",
+          "label": "Etichetta bottone",
+          "name": "label",
+          "type": "text"
+        },
+        {
+          "key": "field_pg_cta_link",
+          "label": "Link bottone",
+          "name": "link",
+          "type": "text",
+          "default_value": "/contatti"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "page"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Hero/Intro/CTA editabili per le pagine native (home, medicina-del-lavoro, unita-mobili, welfare-aziendale, altri-servizi, promo-health-center, contatti)."
+}

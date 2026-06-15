@@ -1,0 +1,69 @@
+{
+  "key": "group_news",
+  "title": "News - Campi aggiuntivi",
+  "show_in_graphql": 1,
+  "graphql_field_name": "newsFields",
+  "fields": [
+    {
+      "key": "field_news_tempo_lettura",
+      "label": "Tempo di lettura (minuti)",
+      "name": "tempo_lettura",
+      "type": "number",
+      "instructions": "Minuti stimati di lettura mostrati nelle card.",
+      "default_value": 5,
+      "min": 1,
+      "max": 60
+    },
+    {
+      "key": "field_news_visualizzazioni",
+      "label": "Visualizzazioni",
+      "name": "visualizzazioni",
+      "type": "number",
+      "instructions": "Contatore visualizzazioni (single news).",
+      "default_value": 0
+    },
+    {
+      "key": "field_news_autore",
+      "label": "Autore",
+      "name": "autore",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_news_autore_nome",
+          "label": "Nome",
+          "name": "nome",
+          "type": "text"
+        },
+        {
+          "key": "field_news_autore_ruolo",
+          "label": "Ruolo",
+          "name": "ruolo",
+          "type": "text"
+        },
+        {
+          "key": "field_news_autore_iniziali",
+          "label": "Iniziali",
+          "name": "iniziali",
+          "type": "text",
+          "maxlength": 3
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "news"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Campi extra per il CPT News. Titolo, estratto, immagine in evidenza e data usano i campi nativi WordPress."
+}

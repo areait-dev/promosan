@@ -1,0 +1,130 @@
+'use client';
+
+import { useState } from 'react';
+import type { FaqItem } from '../../lib/wordpress';
+
+export interface FAQProps {
+  title?: string;
+  subtitle?: string;
+  items?: FaqItem[];
+}
+
+const DEFAULT_TITLE = 'DOMANDE FREQUENTI';
+const DEFAULT_SUBTITLE =
+  'Trova le risposte alle domande più comuni sui nostri servizi, costi, normative e procedure.';
+
+// Fallback usato finché il fetch da WordPress non è collegato.
+// answer è HTML (in WordPress = editor dei contenuti del CPT "faq").
+const DEFAULT_ITEMS: FaqItem[] = [
+  {
+    categoria: 'servizi',
+    question: 'Quanto costa il servizio di medicina del lavoro?',
+    answer:
+      '<p>I costi variano in base a:</p><ul><li>Numero di lavoratori: preventivi personalizzati</li><li>Tipologia di rischi presenti in azienda</li><li>Frequenza delle visite richieste</li></ul><p>Offriamo un <strong>costo standardizzato</strong> su tutto il territorio nazionale.</p>',
+  },
+  {
+    categoria: 'servizi',
+    question: 'Le unità mobili sono presenti in tutta Italia?',
+    answer:
+      '<p><strong>Sì, copriamo tutto il territorio nazionale</strong> grazie alla nostra rete di partner qualificati: programmazione flessibile, costi standardizzati e attrezzature complete a bordo.</p>',
+  },
+  {
+    categoria: 'servizi',
+    question: 'Cosa include il pacchetto welfare aziendale?',
+    answer:
+      '<p>Pacchetti personalizzabili che includono: check-up, screening, visite specialistiche e assistenza psicologica.</p>',
+  },
+  {
+    categoria: 'normative',
+    question: 'Come funziona la nomina del medico competente?',
+    answer:
+      '<p>Processo in 4 fasi: valutazione rischi, nomina formale, piano sorveglianza, gestione continuativa. Documentazione conforme al D.Lgs. 81/08.</p>',
+  },
+  {
+    categoria: 'normative',
+    question: 'Quali sono i tempi per le visite mediche?',
+    answer:
+      '<p>Tempi medi: <strong>Unità Mobili</strong> 7-10 giorni lavorativi, <strong>Sedi Fisse</strong> 10-15 giorni lavorativi. Per le urgenze sono disponibili slot entro 48h.</p>',
+  },
+  {
+    categoria: 'normative',
+    question: 'Che documentazione serve per iniziare?',
+    answer:
+      '<p>Documenti necessari: documenti aziendali (P.IVA, visura), lista lavoratori con mansioni, DVR aggiornato (se disponibile). Ti aiutiamo nella preparazione se mancano documenti.</p>',
+  },
+];
+
+export default function FAQ({
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+  items = DEFAULT_ITEMS,
+}: FAQProps = {}) {
+  const [activeFaq, setActiveFaq] = useState<string | null>(null);
+
+  const source = items.length ? items : DEFAULT_ITEMS;
+  const servizi = source.filter((f) => f.categoria === 'servizi');
+  const normative = source.filter((f) => f.categoria === 'normative');
+
+  const handleFaqClick = (categoryIndex: number, itemIndex: number) => {
+    const key = `${categoryIndex}-${itemIndex}`;
+    setActiveFaq(activeFaq === key ? null : key);
+  };
+
+  const renderColumn = (
+    list: FaqItem[],
+    categoryIndex: number,
+    columnTitle: string,
+    columnIcon: string
+  ) => (
+    <div className="faq-column">
+      <h3 className="faq-column-title">
+        <i className={`fas ${columnIcon}`}></i>
+        {columnTitle}
+      </h3>
+
+      <div className="faq-items">
+        {list.map((faq, index) => {
+          const isActive = activeFaq === `${categoryIndex}-${index}`;
+
+          return (
+            <div
+              key={index}
+              className={`faq-item ${isActive ? 'active' : ''}`}
+              onClick={() => handleFaqClick(categoryIndex, index)}
+            >
+              <div className="faq-question">
+                <h4>{faq.question}</h4>
+                <i className={`fas fa-chevron-down faq-question-icon ${isActive ? 'rotated' : ''}`}></i>
+              </div>
+
+              <div className={`faq-answer ${isActive ? 'visible' : ''}`}>
+                <div
+                  className="faq-answer-content"
+                  dangerouslySetInnerHTML={{ __html: faq.answer }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  return (
+    <section id="faq" className="section section-light">
+      <div className="container">
+        {/* Header */}
+        <div className="section-header">
+          <h2 className="section-title">{title}</h2>
+          <p className="section-subtitle">{subtitle}</p>
+        </div>
+
+        {/* FAQ Grid */}
+        <div className="faq-grid">
+          {renderColumn(servizi, 0, 'Servizi & Costi', 'fa-briefcase-medical')}
+          {renderColumn(normative, 1, 'Normative & Procedure', 'fa-file-contract')}
+        </div>
+      </div>
+    </section>
+  );
+}

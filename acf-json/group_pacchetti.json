@@ -1,0 +1,64 @@
+{
+  "key": "group_pacchetti",
+  "title": "Pacchetto Welfare - Dati",
+  "show_in_graphql": 1,
+  "graphql_field_name": "pacchettoFields",
+  "fields": [
+    {
+      "key": "field_pacchetto_nome",
+      "label": "Nome",
+      "name": "nome",
+      "type": "text",
+      "required": 1,
+      "instructions": "Es. ESSENTIAL, BUSINESS, PREMIUM."
+    },
+    {
+      "key": "field_pacchetto_sottotitolo",
+      "label": "Sottotitolo",
+      "name": "sottotitolo",
+      "type": "text",
+      "instructions": "Es. PREVENZIONE DI BASE."
+    },
+    {
+      "key": "field_pacchetto_popolare",
+      "label": "Più richiesto?",
+      "name": "popolare",
+      "type": "true_false",
+      "ui": 1,
+      "instructions": "Evidenzia la card con badge 'PIÙ RICHIESTO'."
+    },
+    {
+      "key": "field_pacchetto_incluse",
+      "label": "Caratteristiche INCLUSE",
+      "name": "caratteristiche_incluse",
+      "type": "textarea",
+      "rows": 8,
+      "new_lines": "",
+      "instructions": "Una caratteristica per riga. Verranno mostrate come incluse (✓)."
+    },
+    {
+      "key": "field_pacchetto_escluse",
+      "label": "Caratteristiche ESCLUSE",
+      "name": "caratteristiche_escluse",
+      "type": "textarea",
+      "rows": 6,
+      "new_lines": "",
+      "instructions": "Una caratteristica per riga. Verranno mostrate come escluse/disattivate."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "pacchetti"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Pacchetto di welfare aziendale (ordine gestito da menu_order del post)."
+}

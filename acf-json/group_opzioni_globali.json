@@ -1,0 +1,99 @@
+{
+  "key": "group_opzioni_globali",
+  "title": "Opzioni Globali PromoSan",
+  "show_in_graphql": 1,
+  "graphql_field_name": "opzioniGlobali",
+  "fields": [
+    {
+      "key": "field_opt_telefono",
+      "label": "Telefono",
+      "name": "telefono",
+      "type": "text"
+    },
+    {
+      "key": "field_opt_email",
+      "label": "Email",
+      "name": "email",
+      "type": "email"
+    },
+    {
+      "key": "field_opt_whatsapp",
+      "label": "Numero WhatsApp",
+      "name": "whatsapp",
+      "type": "text",
+      "instructions": "Solo cifre con prefisso internazionale, es. 390932862613."
+    },
+    {
+      "key": "field_opt_orari",
+      "label": "Orari",
+      "name": "orari",
+      "type": "text",
+      "default_value": "Lun-Ven: 9:00-18:00"
+    },
+    {
+      "key": "field_opt_piva",
+      "label": "P.IVA",
+      "name": "piva",
+      "type": "text"
+    },
+    {
+      "key": "field_opt_rea",
+      "label": "REA",
+      "name": "rea",
+      "type": "text"
+    },
+    {
+      "key": "field_opt_area_riservata",
+      "label": "URL Area Riservata",
+      "name": "area_riservata_url",
+      "type": "url",
+      "default_value": "https://clienti.promotergroup.eu/login"
+    },
+    {
+      "key": "field_opt_brochure",
+      "label": "URL Brochure (PDF)",
+      "name": "brochure_url",
+      "type": "url",
+      "instructions": "Carica il PDF in Media, copia l'URL e incollalo qui (campo url, non file)."
+    },
+    {
+      "key": "field_opt_copyright",
+      "label": "Testo Copyright",
+      "name": "copyright",
+      "type": "text"
+    },
+    {
+      "key": "field_opt_social_linkedin",
+      "label": "Social - LinkedIn",
+      "name": "social_linkedin",
+      "type": "url"
+    },
+    {
+      "key": "field_opt_social_facebook",
+      "label": "Social - Facebook",
+      "name": "social_facebook",
+      "type": "url"
+    },
+    {
+      "key": "field_opt_social_instagram",
+      "label": "Social - Instagram",
+      "name": "social_instagram",
+      "type": "url"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "opzioni-globali"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Contatti, social e dati legali globali. Campi semplici (text/email/url) su una pagina WordPress normale con slug 'opzioni-globali'. Niente Options Page (ACF free). NB: nella regola di location 'page', sostituisci il valore con l'ID della pagina creata se ACF non accetta lo slug."
+}

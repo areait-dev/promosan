@@ -1,0 +1,80 @@
+{
+  "key": "group_sedi",
+  "title": "Sede - Dati",
+  "show_in_graphql": 1,
+  "graphql_field_name": "sedeFields",
+  "fields": [
+    {
+      "key": "field_sede_regione",
+      "label": "Regione",
+      "name": "regione",
+      "type": "text",
+      "required": 1,
+      "instructions": "Es. Sicilia, Veneto."
+    },
+    {
+      "key": "field_sede_indirizzo",
+      "label": "Indirizzo",
+      "name": "indirizzo",
+      "type": "text",
+      "required": 1
+    },
+    {
+      "key": "field_sede_telefono",
+      "label": "Telefono",
+      "name": "telefono",
+      "type": "text"
+    },
+    {
+      "key": "field_sede_email",
+      "label": "Email",
+      "name": "email",
+      "type": "email"
+    },
+    {
+      "key": "field_sede_mappa_url",
+      "label": "URL Embed Mappa",
+      "name": "mappa_url",
+      "type": "url",
+      "instructions": "URL src dell'iframe Google Maps (incorpora > copia src)."
+    },
+    {
+      "key": "field_sede_mappa_titolo",
+      "label": "Titolo Mappa",
+      "name": "mappa_titolo",
+      "type": "text",
+      "instructions": "Attributo title dell'iframe (accessibilità)."
+    },
+    {
+      "key": "field_sede_google_maps_link",
+      "label": "Link Google Maps",
+      "name": "google_maps_link",
+      "type": "url",
+      "instructions": "Link 'Vai alla mappa' (apertura esterna)."
+    },
+    {
+      "key": "field_sede_servizi",
+      "label": "Servizi principali",
+      "name": "servizi",
+      "type": "textarea",
+      "rows": 6,
+      "new_lines": "",
+      "instructions": "Un servizio per riga (es. Medicina del Lavoro). Niente repeater: ACF free."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "sedi"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Dati di una sede Promo Health Center."
+}

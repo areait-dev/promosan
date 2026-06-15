@@ -1,0 +1,36 @@
+{
+  "key": "group_faq",
+  "title": "FAQ - Dati",
+  "show_in_graphql": 1,
+  "graphql_field_name": "faqFields",
+  "fields": [
+    {
+      "key": "field_faq_categoria",
+      "label": "Categoria",
+      "name": "categoria",
+      "type": "select",
+      "choices": {
+        "servizi": "Servizi & Costi",
+        "normative": "Normative & Procedure"
+      },
+      "default_value": "servizi",
+      "required": 1,
+      "instructions": "Domanda = Titolo del post. Risposta = Editor dei contenuti. Qui solo la categoria."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "faq"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Domande frequenti raggruppate per categoria."
+}
