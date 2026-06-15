@@ -26,6 +26,9 @@ export default function ContattiForm() {
     privacy: false
   });
 
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [feedback, setFeedback] = useState<string>('');
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     
@@ -43,19 +46,40 @@ export default function ContattiForm() {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Grazie! La tua richiesta è stata inviata. Ti risponderemo a breve.');
-    setFormData({
-      nome: '',
-      email: '',
-      azienda: '',
-      telefono: '',
-      servizio: '',
-      dipendenti: '',
-      messaggio: '',
-      privacy: false
-    });
+    setStatus('loading');
+    setFeedback('');
+
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Invio non riuscito. Riprova più tardi.');
+      }
+
+      setStatus('success');
+      setFeedback('Grazie! La tua richiesta è stata inviata. Ti risponderemo a breve.');
+      setFormData({
+        nome: '',
+        email: '',
+        azienda: '',
+        telefono: '',
+        servizio: '',
+        dipendenti: '',
+        messaggio: '',
+        privacy: false
+      });
+    } catch (err) {
+      setStatus('error');
+      setFeedback(err instanceof Error ? err.message : 'Si è verificato un errore. Riprova più tardi.');
+    }
   };
 
   return (
@@ -418,9 +442,36 @@ export default function ContattiForm() {
             <span>I tuoi dati sono protetti e sicuri</span>
           </div>
 
+          {/* Messaggio di feedback */}
+          {status !== 'idle' && status !== 'loading' && feedback && (
+            <div
+              role="status"
+              style={{
+                display: 'flex',
+                gap: '0.5rem',
+                alignItems: 'flex-start',
+                marginBottom: '1.5rem',
+                padding: '0.875rem 1rem',
+                borderRadius: '0.75rem',
+                fontSize: '0.875rem',
+                lineHeight: 1.5,
+                background: status === 'success' ? '#ecfdf5' : '#fef2f2',
+                color: status === 'success' ? '#065f46' : '#991b1b',
+                border: `1px solid ${status === 'success' ? '#a7f3d0' : '#fecaca'}`
+              }}
+            >
+              <i
+                className={status === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'}
+                style={{ marginTop: '0.15rem', flexShrink: 0 }}
+              ></i>
+              <span>{feedback}</span>
+            </div>
+          )}
+
           {/* Bottone */}
-          <button 
+          <button
             type="submit"
+            disabled={status === 'loading'}
             style={{
               width: '100%',
               padding: '1rem',
@@ -430,7 +481,8 @@ export default function ContattiForm() {
               borderRadius: '0.75rem',
               fontSize: '1rem',
               fontWeight: '600',
-              cursor: 'pointer',
+              cursor: status === 'loading' ? 'not-allowed' : 'pointer',
+              opacity: status === 'loading' ? 0.7 : 1,
               transition: 'all 0.3s ease',
               display: 'flex',
               alignItems: 'center',
@@ -438,8 +490,8 @@ export default function ContattiForm() {
               gap: '0.5rem'
             }}
           >
-            <i className="fas fa-paper-plane"></i>
-            Richiedi preventivo
+            <i className={status === 'loading' ? 'fas fa-spinner fa-spin' : 'fas fa-paper-plane'}></i>
+            {status === 'loading' ? 'Invio in corso...' : 'Richiedi preventivo'}
           </button>
         </form>
       </div>
