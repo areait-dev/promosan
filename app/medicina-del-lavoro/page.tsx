@@ -14,6 +14,7 @@ import { draftMode } from 'next/headers';
 import {
   getGlobalOptions,
   getPageFields,
+  mediaUrl,
   parseCards,
   type GlobalOptions,
   type PageContentFields,
@@ -36,6 +37,7 @@ export default async function MedicinaDelLavoroPage() {
 
   const medicina = pageContent?.medicina;
   const benefits = parseCards(medicina?.benefits?.lista);
+  const heroBg = await mediaUrl(medicina?.hero?.immagine, draft);
 
   return (
     <>
@@ -46,7 +48,7 @@ export default async function MedicinaDelLavoroPage() {
           title={medicina?.hero?.titolo || undefined}
           ctaLabel={medicina?.hero?.btn1_label || undefined}
           ctaLink={medicina?.hero?.btn1_link || undefined}
-          backgroundImage={medicina?.hero?.immagine ? medicina.hero.immagine.url : undefined}
+          backgroundImage={heroBg}
         />
         <NominaMedicoSection />
         <ValutazioneRischiSection />

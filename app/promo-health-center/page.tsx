@@ -9,6 +9,7 @@ import {
   getGlobalOptions,
   getSedi,
   getPageFields,
+  mediaUrl,
   type GlobalOptions,
   type Sede,
   type PageContentFields,
@@ -108,6 +109,7 @@ export default async function SediPage() {
   const servizi =
     sedi.find((s) => s.servizi?.length)?.servizi ?? FALLBACK_SERVIZI;
   const sediContent = pageContent?.sedi;
+  const heroBg = await mediaUrl(sediContent?.hero?.immagine, draft);
 
   return (
     <main className="sedi-page">
@@ -117,7 +119,7 @@ export default async function SediPage() {
       <HeroSedi
         title={sediContent?.hero?.titolo || undefined}
         subtitle={sediContent?.hero?.sottotitolo || undefined}
-        backgroundImage={sediContent?.hero?.immagine ? sediContent.hero.immagine.url : undefined}
+        backgroundImage={heroBg}
       />
 
       {/* DIV PER SPAZIO ENORME DOPO HERO */}

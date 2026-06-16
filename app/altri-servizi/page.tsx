@@ -8,6 +8,7 @@ import { draftMode } from 'next/headers';
 import {
   getGlobalOptions,
   getPageFields,
+  mediaUrl,
   parseList,
   type GlobalOptions,
   type PageContentFields,
@@ -54,6 +55,7 @@ export default async function AltriServiziPage() {
 
   const altri = pageContent?.altri;
   const focusItems = parseList(altri?.servizi_sviluppo?.focus_lista);
+  const heroBg = await mediaUrl(altri?.hero?.immagine, draft);
 
   return (
     <main style={{
@@ -67,7 +69,7 @@ export default async function AltriServiziPage() {
         badge={altri?.hero?.badge || undefined}
         title={altri?.hero?.titolo || undefined}
         subtitle={altri?.hero?.sottotitolo || undefined}
-        backgroundImage={altri?.hero?.immagine ? altri.hero.immagine.url : undefined}
+        backgroundImage={heroBg}
       />
 
       {/* Servizi in Sviluppo Section */}

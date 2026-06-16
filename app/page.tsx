@@ -14,6 +14,7 @@ import {
   getLatestNews,
   getFaq,
   getPageFields,
+  mediaUrl,
   parseColumns,
   type GlobalOptions,
   type NewsItem,
@@ -49,6 +50,13 @@ export default async function Home() {
   const home = pageContent?.home;
   const hero = home?.hero;
 
+  // Risolve le immagini ACF (ID/oggetto/stringa) in URL prima del render.
+  const [heroBg, fotoTeam, missionImg] = await Promise.all([
+    mediaUrl(hero?.immagine, draft),
+    mediaUrl(home?.chisiamo?.foto_team, draft),
+    mediaUrl(home?.mission?.immagine, draft),
+  ]);
+
   // Liste textarea ACF -> strutture attese dai componenti (vuote = default del componente).
   const servizi = parseColumns(home?.servizi?.lista)
     .filter((c) => c[0])
@@ -74,7 +82,7 @@ export default async function Home() {
       <main>
         <Hero
           title={hero?.titolo || undefined}
-          backgroundImage={hero?.immagine ? hero.immagine.url : undefined}
+          backgroundImage={heroBg}
           logo={options?.logoBianco || undefined}
           ctaLabel={hero?.btn1_label || undefined}
           ctaLink={hero?.btn1_link || undefined}
@@ -85,7 +93,7 @@ export default async function Home() {
           <ChiSiamo
             title={home?.chisiamo?.titolo || undefined}
             text={home?.chisiamo?.testo || undefined}
-            fotoTeam={home?.chisiamo?.foto_team ? home.chisiamo.foto_team.url : undefined}
+            fotoTeam={fotoTeam}
           />
         </section>
 
@@ -93,7 +101,7 @@ export default async function Home() {
           <MissionVision
             missionText={home?.mission?.mission_testo || undefined}
             visionText={home?.mission?.vision_testo || undefined}
-            image={home?.mission?.immagine ? home.mission.immagine.url : undefined}
+            image={missionImg}
           />
         </section>
 

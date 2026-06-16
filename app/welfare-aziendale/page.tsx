@@ -12,6 +12,7 @@ import {
   getGlobalOptions,
   getPacchettiWelfare,
   getPageFields,
+  mediaUrl,
   parseCards,
   type GlobalOptions,
   type PacchettoWelfare,
@@ -51,6 +52,7 @@ export default async function WelfareAziendalePage() {
 
   const welfare = pageContent?.welfare;
   const vantaggi = parseCards(welfare?.vantaggi?.lista);
+  const heroBg = await mediaUrl(welfare?.hero?.immagine, draft);
 
   return (
     <main style={{
@@ -66,7 +68,7 @@ export default async function WelfareAziendalePage() {
         btn1Link={welfare?.hero?.btn1_link || undefined}
         btn2Label={welfare?.hero?.btn2_label || undefined}
         btn2Link={welfare?.hero?.btn2_link || undefined}
-        backgroundImage={welfare?.hero?.immagine ? welfare.hero.immagine.url : undefined}
+        backgroundImage={heroBg}
       />
 
       {/* Introduzione Section */}

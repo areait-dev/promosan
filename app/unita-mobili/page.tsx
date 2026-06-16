@@ -7,6 +7,7 @@ import { draftMode } from 'next/headers';
 import {
   getGlobalOptions,
   getPageFields,
+  mediaUrl,
   parseCards,
   type GlobalOptions,
   type PageContentFields,
@@ -29,6 +30,7 @@ export default async function UnitaMobiliPage() {
 
   const unita = pageContent?.unita;
   const vantaggi = parseCards(unita?.vantaggi?.lista);
+  const heroBg = await mediaUrl(unita?.hero?.immagine, draft);
 
   return (
     <main>
@@ -40,7 +42,7 @@ export default async function UnitaMobiliPage() {
         btn1Link={unita?.hero?.btn1_link || undefined}
         btn2Label={unita?.hero?.btn2_label || undefined}
         btn2Link={unita?.hero?.btn2_link || undefined}
-        backgroundImage={unita?.hero?.immagine ? unita.hero.immagine.url : undefined}
+        backgroundImage={heroBg}
       />
       <CaratteristicheServizio
         title={unita?.caratteristiche?.titolo || undefined}

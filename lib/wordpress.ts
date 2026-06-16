@@ -236,6 +236,66 @@ function extractAcfImage(img: any): WPImage | null {
   };
 }
 
+/**
+ * Risolve un valore di un campo ACF image in WPImage, qualunque sia il formato
+ * restituito da WordPress:
+ *  - oggetto  { url, alt, ... }   (return_format "array")
+ *  - stringa  "https://.../x.jpg" (return_format "url")
+ *  - numero   170                 (return_format "id" / REST nativo ACF) → fetch /media/<id>
+ * Ritorna null se vuoto o non risolvibile.
+ */
+async function resolveAcfImage(
+  value: any,
+  draft = false
+): Promise<WPImage | null> {
+  if (value === null || value === undefined || value === "" || value === false)
+    return null;
+
+  // Oggetto ACF già formattato.
+  if (typeof value === "object") return extractAcfImage(value);
+
+  // Stringa: URL diretto (assoluto o relativo).
+  if (typeof value === "string") {
+    return value.startsWith("http") || value.startsWith("/")
+      ? { url: value, alt: "" }
+      : null;
+  }
+
+  // Numero: ID allegato → recupera l'URL dalla Media Library.
+  if (typeof value === "number") {
+    try {
+      const media = await wpFetch<any>(
+        `/media/${value}?_fields=source_url,alt_text,media_details`,
+        { draft }
+      );
+      if (!media?.source_url) return null;
+      return {
+        url: media.source_url,
+        alt: media.alt_text || "",
+        width: media.media_details?.width,
+        height: media.media_details?.height,
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Helper comodo per i componenti: risolve un campo ACF image nel solo URL
+ * (o undefined). Accetta ID, oggetto o stringa. Usalo nelle pagine per passare
+ * l'immagine ai componenti, es: `backgroundImage={await mediaUrl(hero?.immagine, draft)}`.
+ */
+export async function mediaUrl(
+  value: any,
+  draft = false
+): Promise<string | undefined> {
+  const img = await resolveAcfImage(value, draft);
+  return img?.url;
+}
+
 /** Converte una textarea multi-riga in array di stringhe (righe vuote scartate). */
 function splitLines(text?: string): string[] {
   if (!text) return [];
@@ -261,7 +321,7 @@ function clean(html?: string): string {
 /*                                   NEWS                                      */
 /* -------------------------------------------------------------------------- */
 
-function mapNews(post: any): NewsItem {
+async function mapNews(post: any, draft = false): Promise<NewsItem> {
   const acf = post.acf ?? {};
   // Le categorie arrivano come termini embedded della tassonomia 'categoria_news'.
   const terms: any[] = post?._embedded?.["wp:term"]?.flat?.() ?? [];
@@ -276,7 +336,7 @@ function mapNews(post: any): NewsItem {
     excerpt: clean(post.excerpt?.rendered),
     content: post.content?.rendered ?? "",
     // Immagine ACF impostata dal redattore; in mancanza, fallback all'immagine in evidenza nativa.
-    image: extractAcfImage(acf.immagine) ?? extractFeaturedImage(post),
+    image: (await resolveAcfImage(acf.immagine, draft)) ?? extractFeaturedImage(post),
     date: post.date,
     readTime: Number(acf.tempo_lettura) || 5,
     categories: categories.length ? categories : ["normativa"],
@@ -297,7 +357,7 @@ export async function getNews(perPage = 12, draft = false): Promise<NewsItem[]> 
     `/news?_embed&per_page=${perPage}&orderby=date&order=desc`,
     { draft }
   );
-  return data.map(mapNews);
+  return Promise.all(data.map((post) => mapNews(post, draft)));
 }
 
 /** News in evidenza per la homepage (default 4). */
@@ -310,7 +370,7 @@ export async function getNewsBySlug(slug: string, draft = false): Promise<NewsIt
   const data = await wpFetch<any[]>(`/news?slug=${encodeURIComponent(slug)}&_embed`, {
     draft,
   });
-  return data.length ? mapNews(data[0]) : null;
+  return data.length ? mapNews(data[0], draft) : null;
 }
 
 /** News correlate (stessa categoria, esclusa quella corrente). */
@@ -333,22 +393,24 @@ export async function getRelatedNews(
 
 export async function getSedi(draft = false): Promise<Sede[]> {
   const data = await wpFetch<any[]>(`/sedi?_embed&per_page=50`, { draft });
-  return data.map((post) => {
-    const acf = post.acf ?? {};
-    return {
-      id: post.id,
-      regione: acf.regione ?? clean(post.title?.rendered),
-      indirizzo: acf.indirizzo ?? "",
-      telefono: acf.telefono ?? "",
-      email: acf.email ?? "",
-      mappaUrl: acf.mappa_url ?? "",
-      mappaTitolo: acf.mappa_titolo ?? `Mappa sede ${acf.regione ?? ""}`.trim(),
-      googleMapsLink: acf.google_maps_link ?? "",
-      // 'servizi' è una textarea: una voce per riga (niente repeater Pro).
-      servizi: splitLines(acf.servizi),
-      image: extractAcfImage(acf.immagine),
-    };
-  });
+  return Promise.all(
+    data.map(async (post) => {
+      const acf = post.acf ?? {};
+      return {
+        id: post.id,
+        regione: acf.regione ?? clean(post.title?.rendered),
+        indirizzo: acf.indirizzo ?? "",
+        telefono: acf.telefono ?? "",
+        email: acf.email ?? "",
+        mappaUrl: acf.mappa_url ?? "",
+        mappaTitolo: acf.mappa_titolo ?? `Mappa sede ${acf.regione ?? ""}`.trim(),
+        googleMapsLink: acf.google_maps_link ?? "",
+        // 'servizi' è una textarea: una voce per riga (niente repeater Pro).
+        servizi: splitLines(acf.servizi),
+        image: await resolveAcfImage(acf.immagine, draft),
+      };
+    })
+  );
 }
 
 /* -------------------------------------------------------------------------- */
@@ -360,21 +422,23 @@ export async function getPacchettiWelfare(draft = false): Promise<PacchettoWelfa
     `/pacchetti?per_page=20&orderby=menu_order&order=asc`,
     { draft }
   );
-  return data.map((post) => {
-    const acf = post.acf ?? {};
-    return {
-      id: post.id,
-      name: acf.nome ?? clean(post.title?.rendered),
-      subtitle: acf.sottotitolo ?? "",
-      isPopular: Boolean(acf.popolare),
-      // Due textarea separate (incluse / escluse) al posto del repeater Pro.
-      features: [
-        ...splitLines(acf.caratteristiche_incluse).map((text) => ({ text, included: true })),
-        ...splitLines(acf.caratteristiche_escluse).map((text) => ({ text, included: false })),
-      ],
-      image: extractAcfImage(acf.immagine),
-    };
-  });
+  return Promise.all(
+    data.map(async (post) => {
+      const acf = post.acf ?? {};
+      return {
+        id: post.id,
+        name: acf.nome ?? clean(post.title?.rendered),
+        subtitle: acf.sottotitolo ?? "",
+        isPopular: Boolean(acf.popolare),
+        // Due textarea separate (incluse / escluse) al posto del repeater Pro.
+        features: [
+          ...splitLines(acf.caratteristiche_incluse).map((text) => ({ text, included: true })),
+          ...splitLines(acf.caratteristiche_escluse).map((text) => ({ text, included: false })),
+        ],
+        image: await resolveAcfImage(acf.immagine, draft),
+      };
+    })
+  );
 }
 
 /* -------------------------------------------------------------------------- */
@@ -406,6 +470,11 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
     { revalidate: 300, draft }
   );
   const acf = data[0]?.acf ?? {};
+  // I loghi possono arrivare come ID allegato (REST ACF nativo): risolviamo l'URL.
+  const [logo, logoBianco] = await Promise.all([
+    resolveAcfImage(acf.logo, draft),
+    resolveAcfImage(acf.logo_bianco, draft),
+  ]);
   return {
     telefono: acf.telefono ?? "",
     email: acf.email ?? "",
@@ -416,8 +485,8 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
     areaRiservataUrl: acf.area_riservata_url ?? "",
     brochureUrl: acf.brochure_url ?? "",
     copyright: acf.copyright ?? "",
-    logoUrl: extractAcfImage(acf.logo)?.url ?? IMAGE_FALLBACKS.logo,
-    logoBianco: extractAcfImage(acf.logo_bianco)?.url ?? IMAGE_FALLBACKS.logoBianco,
+    logoUrl: logo?.url ?? IMAGE_FALLBACKS.logo,
+    logoBianco: logoBianco?.url ?? IMAGE_FALLBACKS.logoBianco,
     social: {
       linkedin: acf.social_linkedin ?? "#",
       facebook: acf.social_facebook ?? "#",
