@@ -53,6 +53,17 @@
       "instructions": "Link 'Vai alla mappa' (apertura esterna)."
     },
     {
+      "key": "field_sede_immagine",
+      "label": "Immagine sede",
+      "name": "immagine",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "show_in_rest": 1,
+      "instructions": "Foto/immagine rappresentativa della sede. Se vuota viene usato il logo predefinito Promo Health Center."
+    },
+    {
       "key": "field_sede_servizi",
       "label": "Servizi principali",
       "name": "servizi",

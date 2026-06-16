@@ -9,6 +9,7 @@ export interface HeroWelfareProps {
   btn1Link?: string;
   btn2Label?: string;
   btn2Link?: string;
+  backgroundImage?: string;
 }
 
 const DEFAULT_BADGE = 'PromoSan • Welfare Aziendale';
@@ -25,6 +26,7 @@ export default function HeroWelfare({
   btn1Link = DEFAULT_BTN1_LINK,
   btn2Label = DEFAULT_BTN2_LABEL,
   btn2Link = DEFAULT_BTN2_LINK,
+  backgroundImage,
 }: HeroWelfareProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -69,6 +71,19 @@ export default function HeroWelfare({
           padding: '4rem 1rem'
         }}
       >
+        {/* Immagine di sfondo opzionale (da WordPress) sotto il gradiente */}
+        {backgroundImage && (
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.35,
+            zIndex: 0,
+          }}></div>
+        )}
+
         {/* Overlay pattern */}
         <div style={{
           position: 'absolute',

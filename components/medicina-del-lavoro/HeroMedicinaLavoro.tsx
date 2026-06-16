@@ -6,6 +6,7 @@ export interface HeroMedicinaLavoroProps {
   title?: string;
   ctaLabel?: string;
   ctaLink?: string;
+  backgroundImage?: string;
 }
 
 const DEFAULT_BADGE = 'Medicina del Lavoro';
@@ -18,6 +19,7 @@ export default function HeroMedicinaLavoro({
   title = DEFAULT_TITLE,
   ctaLabel = DEFAULT_CTA_LABEL,
   ctaLink = DEFAULT_CTA_LINK,
+  backgroundImage,
 }: HeroMedicinaLavoroProps = {}) {
   const scrollToContent = () => {
     const heroSection = document.querySelector('.hero-section-medicina');
@@ -33,7 +35,14 @@ export default function HeroMedicinaLavoro({
   };
 
   return (
-    <section className="hero-section hero-section-medicina">
+    <section
+      className="hero-section hero-section-medicina"
+      style={
+        backgroundImage
+          ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+          : undefined
+      }
+    >
       <div className="hero-content">
         <div className="hero-inner">
           <div className="hero-badge">

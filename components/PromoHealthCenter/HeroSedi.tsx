@@ -6,6 +6,7 @@ import Image from 'next/image';
 export interface HeroSediProps {
   title?: string;
   subtitle?: string;
+  backgroundImage?: string;
 }
 
 const DEFAULT_TITLE = 'PRESENTI DOVE SERVE, QUANDO SERVE';
@@ -15,12 +16,16 @@ const DEFAULT_SUBTITLE =
 const HeroSedi = ({
   title = DEFAULT_TITLE,
   subtitle = DEFAULT_SUBTITLE,
+  backgroundImage,
 }: HeroSediProps = {}) => {
+  const gradient = 'linear-gradient(90deg, rgba(44,82,130,0.85) 0%, rgba(66,153,225,0.85) 100%)';
   return (
-    <section 
+    <section
       className="hero-sedi"
       style={{
-        background: 'linear-gradient(90deg, #2c5282 0%, #4299e1 100%)',
+        background: backgroundImage
+          ? `${gradient}, url(${backgroundImage}) center / cover no-repeat`
+          : 'linear-gradient(90deg, #2c5282 0%, #4299e1 100%)',
         position: 'relative',
         overflow: 'hidden',
         marginBottom: '80px'

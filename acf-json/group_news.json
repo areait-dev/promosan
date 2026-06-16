@@ -15,6 +15,17 @@
       "max": 60
     },
     {
+      "key": "field_news_immagine",
+      "label": "Immagine",
+      "name": "immagine",
+      "type": "image",
+      "instructions": "Immagine principale della news. Se non impostata viene usata l'immagine in evidenza.",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "show_in_rest": 1
+    },
+    {
       "key": "field_news_visualizzazioni",
       "label": "Visualizzazioni",
       "name": "visualizzazioni",

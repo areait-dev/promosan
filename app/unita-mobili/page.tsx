@@ -40,6 +40,7 @@ export default async function UnitaMobiliPage() {
         btn1Link={unita?.hero?.btn1_link || undefined}
         btn2Label={unita?.hero?.btn2_label || undefined}
         btn2Link={unita?.hero?.btn2_link || undefined}
+        backgroundImage={unita?.hero?.immagine ? unita.hero.immagine.url : undefined}
       />
       <CaratteristicheServizio
         title={unita?.caratteristiche?.titolo || undefined}

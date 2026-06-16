@@ -14,6 +14,7 @@ interface Pacchetto {
     included: boolean;
   }[];
   bgClass: string;
+  image?: string;
 }
 
 export interface PacchettiWelfareProps {
@@ -30,6 +31,7 @@ function toPacchetto(p: PacchettoWelfare): Pacchetto {
     features: p.features,
     // Il pacchetto "popolare" usa lo sfondo a gradiente (come nel design originale).
     bgClass: p.isPopular ? 'gradient' : 'white',
+    image: p.image?.url,
   };
 }
 
@@ -237,6 +239,21 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
                 }}>
                   PIÙ RICHIESTO
                 </div>
+              )}
+
+              {/* Icona/Immagine pacchetto (opzionale, da WordPress) */}
+              {pacchetto.image && (
+                <img
+                  src={pacchetto.image}
+                  alt={pacchetto.name}
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    objectFit: 'contain',
+                    marginBottom: '1.5rem',
+                    marginTop: pacchetto.isPopular ? '1rem' : '0',
+                  }}
+                />
               )}
 
               {/* Header Card */}

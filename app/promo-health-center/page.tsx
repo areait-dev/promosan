@@ -30,6 +30,7 @@ interface SedeData {
   mappaUrl: string;
   mappaTitolo: string;
   googleMapsLink: string;
+  image?: string;
 }
 
 // Fallback usato finché il fetch da WordPress non è collegato.
@@ -78,6 +79,7 @@ function buildSediData(sedi: Sede[]): { sicilia: SedeData; veneto: SedeData } {
       mappaUrl: sede.mappaUrl,
       mappaTitolo: sede.mappaTitolo,
       googleMapsLink: sede.googleMapsLink,
+      image: sede.image?.url,
     };
     if (regione.includes('sicilia')) result.sicilia = data;
     else if (regione.includes('veneto')) result.veneto = data;
@@ -115,6 +117,7 @@ export default async function SediPage() {
       <HeroSedi
         title={sediContent?.hero?.titolo || undefined}
         subtitle={sediContent?.hero?.sottotitolo || undefined}
+        backgroundImage={sediContent?.hero?.immagine ? sediContent.hero.immagine.url : undefined}
       />
 
       {/* DIV PER SPAZIO ENORME DOPO HERO */}

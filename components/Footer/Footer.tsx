@@ -37,6 +37,8 @@ const DEFAULT_OPTIONS: GlobalOptions = {
   areaRiservataUrl: 'https://clienti.promotergroup.eu/login',
   brochureUrl: '/Brochure PromoSan.pdf',
   copyright: '© 2024 PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: 01234567890 - REA: MI-1234567',
+  logoUrl: '/assets/img/PromoSan.png',
+  logoBianco: '/assets/img/PromoSan_white.png',
   social: { linkedin: '#', facebook: '#', instagram: '#' },
 };
 
@@ -178,9 +180,9 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
           {/* Colonna 1: Logo & Contatti */}
           <div className="footer-col">
             <div className="footer-logo mb-6">
-              <Image 
-                src="/assets/img/PromoSan_white.png"
-                alt="Logo" 
+              <Image
+                src={opt.logoBianco || '/assets/img/PromoSan_white.png'}
+                alt="Logo"
                 width={140} 
                 height={40}
                 className="footer-logo-img brightness-0 invert mb-4"

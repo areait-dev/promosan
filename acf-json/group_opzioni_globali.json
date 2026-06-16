@@ -5,6 +5,28 @@
   "graphql_field_name": "opzioniGlobali",
   "fields": [
     {
+      "key": "field_opt_logo",
+      "label": "Logo principale",
+      "name": "logo",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "show_in_rest": 1,
+      "instructions": "Logo principale PromoSan (header/navbar). Se vuoto viene usato /assets/img/PromoSan.png."
+    },
+    {
+      "key": "field_opt_logo_bianco",
+      "label": "Logo bianco",
+      "name": "logo_bianco",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "show_in_rest": 1,
+      "instructions": "Versione bianca del logo per footer e hero su sfondo scuro. Se vuoto viene usato /assets/img/PromoSan_white.png."
+    },
+    {
       "key": "field_opt_telefono",
       "label": "Telefono",
       "name": "telefono",

@@ -13,6 +13,7 @@ interface SedeData {
   mappaUrl: string;
   mappaTitolo: string;
   googleMapsLink?: string;
+  image?: string;
 }
 
 interface SediInteractiveProps {

@@ -15,14 +15,41 @@
  *
  * NB: i valori qui sotto sono trascritti dai default hardcoded dei componenti
  *     (Hero, Services, PromoSanNumeri, FAQ, PacchettiWelfare, fallback sedi, ecc.).
- *     L'immagine hero (campo ACF image) NON viene impostata: va caricata a mano in Media.
+ *
+ * IMMAGINI: vengono caricate automaticamente da public/assets/img/ nella Media
+ *     Library (uploadMedia, con dedup per slug) e collegate ai campi ACF di tipo
+ *     image come ID allegato. Le mappature filename->campo sono in PAGE_IMAGES /
+ *     OPZIONI_IMAGES / NEWS_IMAGES / SEDI_IMAGES / PACCHETTI_IMAGES.
+ *
+ * Al termine viene stampato un riepilogo (pagine, immagini, CPT, errori).
  */
 
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
+// L'hosting (o un antivirus che fa scanning TLS in locale) può presentare una
+// catena di certificati che Node non verifica: per l'import verso il PROPRIO
+// WordPress accettiamo comunque la connessione. Impostato PRIMA di ogni fetch.
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Cartella immagini locali da cui caricare i media.
+const IMG_DIR = resolve(__dirname, '..', 'public', 'assets', 'img');
+
+/* -------------------------------------------------------------------------- */
+/*                              Contatori riepilogo                           */
+/* -------------------------------------------------------------------------- */
+
+const stats = {
+  pagesUpdated: 0,
+  imagesUploaded: 0,
+  imagesReused: 0,
+  cptCreated: 0,
+  cptUpdated: 0,
+  errors: [],
+};
 
 /* -------------------------------------------------------------------------- */
 /*                          Lettura .env.local                                */
@@ -67,10 +94,6 @@ if (!API_URL || !WP_USER || !WP_APP_PASSWORD) {
   );
   process.exit(1);
 }
-
-// Alcuni hosting cPanel usano catene di certificati incomplete: in fase di import
-// (solo verso il proprio WordPress) accettiamo il certificato per evitare il blocco.
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const AUTH =
   'Basic ' + Buffer.from(`${WP_USER}:${WP_APP_PASSWORD}`).toString('base64');
@@ -118,13 +141,17 @@ async function updatePageAcf(slug, acf) {
   try {
     const id = await findIdBySlug('pages', slug);
     if (!id) {
-      console.log(`❌ ${label}: pagina non trovata (crea la pagina con questo slug)`);
+      const msg = `${label}: pagina non trovata (crea la pagina con questo slug)`;
+      console.log(`❌ ${msg}`);
+      stats.errors.push(msg);
       return;
     }
     await api(`/pages/${id}`, { method: 'POST', body: { acf } });
     console.log(`✅ ${label}: campi ACF aggiornati (id ${id})`);
+    stats.pagesUpdated++;
   } catch (err) {
     console.log(`❌ ${label}: ${err.message}`);
+    stats.errors.push(`${label}: ${err.message}`);
   }
 }
 
@@ -137,16 +164,139 @@ async function upsertPost(restBase, slug, data, labelName) {
     if (id) {
       await api(`/${restBase}/${id}`, { method: 'POST', body });
       console.log(`✅ ${label}: aggiornato (id ${id})`);
+      stats.cptUpdated++;
     } else {
       const created = await api(`/${restBase}`, { method: 'POST', body });
       console.log(`✅ ${label}: creato (id ${created.id})`);
+      stats.cptCreated++;
     }
   } catch (err) {
     console.log(`❌ ${label}: ${err.message}`);
+    stats.errors.push(`${label}: ${err.message}`);
   }
 }
 
 const nl = (arr) => arr.join('\n'); // per i campi textarea (una voce per riga)
+
+/* -------------------------------------------------------------------------- */
+/*                              Upload Media                                  */
+/* -------------------------------------------------------------------------- */
+
+const MIME_BY_EXT = {
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.png': 'image/png',
+  '.webp': 'image/webp',
+  '.gif': 'image/gif',
+};
+
+// Cache filename -> media ID (evita doppi upload nello stesso run).
+const mediaCache = new Map();
+
+/** Slug WP atteso a partire dal nome file (senza estensione, sanitizzato). */
+function slugFromFilename(filename) {
+  return filename
+    .replace(/\.[^.]+$/, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/** Cerca un media già presente per slug; ritorna l'ID o null. */
+async function findMediaBySlug(slug) {
+  try {
+    const data = await api(
+      `/media?slug=${encodeURIComponent(slug)}&per_page=1&_fields=id,slug`
+    );
+    return Array.isArray(data) && data.length ? data[0].id : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Carica un'immagine da public/assets/img/ nella Media Library di WordPress
+ * e ritorna l'ID dell'allegato. Riusa il media se già caricato (per slug).
+ */
+async function uploadMedia(filename) {
+  if (!filename) return null;
+  if (mediaCache.has(filename)) return mediaCache.get(filename);
+
+  const ext = filename.slice(filename.lastIndexOf('.')).toLowerCase();
+  const mime = MIME_BY_EXT[ext];
+  if (!mime) {
+    const msg = `media "${filename}": estensione non supportata`;
+    console.log(`❌ ${msg}`);
+    stats.errors.push(msg);
+    return null;
+  }
+
+  // Riuso: se esiste già un allegato con lo stesso slug, non ricaricare.
+  const slug = slugFromFilename(filename);
+  const existing = await findMediaBySlug(slug);
+  if (existing) {
+    mediaCache.set(filename, existing);
+    stats.imagesReused++;
+    console.log(`  ♻️  media "${filename}" già presente → id ${existing}`);
+    return existing;
+  }
+
+  let buffer;
+  try {
+    buffer = readFileSync(resolve(IMG_DIR, filename));
+  } catch {
+    const msg = `media "${filename}": file non trovato in public/assets/img/`;
+    console.log(`❌ ${msg}`);
+    stats.errors.push(msg);
+    return null;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/media`, {
+      method: 'POST',
+      headers: {
+        Authorization: AUTH,
+        'Content-Type': mime,
+        'Content-Disposition': `attachment; filename="${filename}"`,
+      },
+      body: buffer,
+    });
+    const text = await res.text();
+    const json = text ? JSON.parse(text) : {};
+    if (!res.ok) throw new Error(json?.message || res.statusText);
+    mediaCache.set(filename, json.id);
+    stats.imagesUploaded++;
+    console.log(`  🖼  upload "${filename}" → media id ${json.id}`);
+    return json.id;
+  } catch (err) {
+    const msg = `media "${filename}": ${err.message}`;
+    console.log(`❌ ${msg}`);
+    stats.errors.push(msg);
+    return null;
+  }
+}
+
+/** Imposta un valore in profondità su un oggetto, dato un path "a.b.c". */
+function setByPath(obj, path, value) {
+  const parts = path.split('.');
+  let cur = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    cur[parts[i]] = cur[parts[i]] ?? {};
+    cur = cur[parts[i]];
+  }
+  cur[parts[parts.length - 1]] = value;
+}
+
+/**
+ * Carica le immagini indicate in `imageMap` (path ACF -> filename) e le
+ * inietta come ID media nell'oggetto `acf`. Path saltati se l'upload fallisce.
+ */
+async function applyImages(acf, imageMap) {
+  for (const [path, filename] of Object.entries(imageMap)) {
+    const id = await uploadMedia(filename);
+    if (id) setByPath(acf, path, id);
+  }
+}
 
 /* -------------------------------------------------------------------------- */
 /*                       CONTENUTI HARDCODED (dai componenti)                 */
@@ -552,6 +702,59 @@ const FAQ = [
 ];
 
 /* -------------------------------------------------------------------------- */
+/*               MAPPATURA IMMAGINI -> CAMPI ACF (filename in img/)            */
+/* -------------------------------------------------------------------------- */
+
+// Pagine: path ACF (relativo all'oggetto acf della pagina) -> filename immagine.
+const PAGE_IMAGES = {
+  home: {
+    'home.hero.immagine': 'camper9.jpg',
+    'home.chisiamo.foto_team': 'fototeam.jpg',
+    'home.mission.immagine': 'teamwork-concept.jpg',
+  },
+  'medicina-del-lavoro': {
+    'medicina.hero.immagine': 'doctor-with-yellow-stethoscope.jpg',
+  },
+  'unita-mobili': {
+    'unita.hero.immagine': 'camper5.png',
+  },
+  'welfare-aziendale': {
+    'welfare.hero.immagine': 'side-view-smiley-woman-work.jpg',
+  },
+  'altri-servizi': {
+    'altri.hero.immagine':
+      'various-applications-forming-circle-front-two-people-using-mobile-phone.jpg',
+  },
+  'promo-health-center': {
+    'sedi.hero.immagine': 'camper7.png',
+  },
+  // 'contatti' non ha campi immagine.
+};
+
+// Opzioni globali: campo ACF -> filename.
+const OPZIONI_IMAGES = {
+  logo: 'logo.png',
+  logo_bianco: 'PromoSan_white.png',
+};
+
+// CPT: slug -> filename per il campo acf.immagine.
+const NEWS_IMAGES = {
+  'nuovo-decreto-sorveglianza-sanitaria': 'hand-with-pen-filling-out-document.jpg',
+  'unita-mobili-nuova-dotazione': 'camper5.png',
+  'welfare-aziendale-vantaggi-fiscali': 'teamwork-concept.jpg',
+  'prevenzione-screening-oncologici': 'close-up-doctor-holding-red-heart.jpg',
+};
+const SEDI_IMAGES = {
+  sicilia: 'Promo_Health_Center_Logo_def.png',
+  veneto: 'Promo_Health_Center_Logo_def.png',
+};
+const PACCHETTI_IMAGES = {
+  essential: 'promo.san400x400.png',
+  business: 'promo.san400x400.png',
+  premium: 'promo.san400x400.png',
+};
+
+/* -------------------------------------------------------------------------- */
 /*                                 RUN                                        */
 /* -------------------------------------------------------------------------- */
 
@@ -559,27 +762,41 @@ async function main() {
   console.log(`\n🔗 Target: ${API_URL}`);
   console.log(`👤 Utente: ${WP_USER}\n`);
 
-  console.log('— Pagine (campi ACF per Tab) —');
+  console.log('— Pagine (campi ACF per Tab + immagini) —');
   for (const [slug, acf] of Object.entries(PAGES)) {
+    // Carica e inietta le immagini (come ID media) nei campi ACF della pagina.
+    if (PAGE_IMAGES[slug]) await applyImages(acf, PAGE_IMAGES[slug]);
     await updatePageAcf(slug, acf);
   }
 
-  console.log('\n— Opzioni globali —');
+  console.log('\n— Opzioni globali (logo + dati) —');
+  await applyImages(OPZIONI_GLOBALI, OPZIONI_IMAGES);
   await updatePageAcf('opzioni-globali', OPZIONI_GLOBALI);
 
   console.log('\n— CPT News —');
   for (const n of NEWS) {
-    await upsertPost('news', n.slug, { title: n.title, excerpt: n.excerpt, content: n.content, acf: n.acf }, n.title);
+    const imgId = await uploadMedia(NEWS_IMAGES[n.slug]);
+    const acf = { ...n.acf, ...(imgId ? { immagine: imgId } : {}) };
+    await upsertPost(
+      'news',
+      n.slug,
+      { title: n.title, excerpt: n.excerpt, content: n.content, acf, ...(imgId ? { featured_media: imgId } : {}) },
+      n.title
+    );
   }
 
   console.log('\n— CPT Sedi —');
   for (const s of SEDI) {
-    await upsertPost('sedi', s.slug, { title: s.title, acf: s.acf }, s.title);
+    const imgId = await uploadMedia(SEDI_IMAGES[s.slug]);
+    const acf = { ...s.acf, ...(imgId ? { immagine: imgId } : {}) };
+    await upsertPost('sedi', s.slug, { title: s.title, acf }, s.title);
   }
 
   console.log('\n— CPT Pacchetti —');
   for (const p of PACCHETTI) {
-    await upsertPost('pacchetti', p.slug, { title: p.title, menu_order: p.menu_order, acf: p.acf }, p.title);
+    const imgId = await uploadMedia(PACCHETTI_IMAGES[p.slug]);
+    const acf = { ...p.acf, ...(imgId ? { immagine: imgId } : {}) };
+    await upsertPost('pacchetti', p.slug, { title: p.title, menu_order: p.menu_order, acf }, p.title);
   }
 
   console.log('\n— CPT FAQ —');
@@ -587,7 +804,25 @@ async function main() {
     await upsertPost('faq', f.slug, { title: f.title, content: f.content, acf: f.acf }, f.title);
   }
 
-  console.log('\n✨ Import completato.\n');
+  /* ----------------------------- Riepilogo --------------------------------- */
+  console.log('\n────────────────────────────────────────');
+  console.log('📊 RIEPILOGO IMPORT');
+  console.log('────────────────────────────────────────');
+  console.log(`📄 Pagine ACF aggiornate : ${stats.pagesUpdated}`);
+  console.log(`🖼  Immagini caricate     : ${stats.imagesUploaded}`);
+  console.log(`♻️  Immagini riusate      : ${stats.imagesReused}`);
+  console.log(`🆕 CPT creati            : ${stats.cptCreated}`);
+  console.log(`🔁 CPT aggiornati        : ${stats.cptUpdated}`);
+  console.log(`❌ Errori                : ${stats.errors.length}`);
+  if (stats.errors.length) {
+    console.log('\n  Dettaglio errori:');
+    for (const e of stats.errors) console.log(`   • ${e}`);
+  }
+  console.log('────────────────────────────────────────');
+  console.log(stats.errors.length ? '\n⚠️  Import completato con errori.\n' : '\n✨ Import completato senza errori.\n');
+
+  // Exit code non-zero se ci sono stati errori (utile in CI).
+  if (stats.errors.length) process.exitCode = 1;
 }
 
 main().catch((err) => {

@@ -28,6 +28,17 @@
       "instructions": "Evidenzia la card con badge 'PIÙ RICHIESTO'."
     },
     {
+      "key": "field_pacchetto_immagine",
+      "label": "Immagine / Icona",
+      "name": "immagine",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "show_in_rest": 1,
+      "instructions": "Icona o immagine rappresentativa del pacchetto (opzionale). Se vuota la card resta senza immagine."
+    },
+    {
       "key": "field_pacchetto_incluse",
       "label": "Caratteristiche INCLUSE",
       "name": "caratteristiche_incluse",

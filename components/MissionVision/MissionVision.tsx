@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export interface MissionVisionProps {
   missionText?: string; // HTML
   visionText?: string; // HTML
+  image?: string; // URL immagine decorativa opzionale (da WordPress)
 }
 
 const DEFAULT_MISSION_TEXT =
@@ -15,12 +17,24 @@ const DEFAULT_VISION_TEXT =
 export default function MissionVision({
   missionText = DEFAULT_MISSION_TEXT,
   visionText = DEFAULT_VISION_TEXT,
+  image,
 }: MissionVisionProps = {}) {
   const [activeTab, setActiveTab] = useState('mission');
 
   return (
     <section className="section">
       <div className="container">
+        {image && (
+          <div style={{ marginBottom: 'var(--space-xl)', textAlign: 'center' }}>
+            <Image
+              src={image}
+              alt="Mission e Vision PromoSan"
+              width={1000}
+              height={500}
+              style={{ width: '100%', height: 'auto', borderRadius: 'var(--border-radius-lg)' }}
+            />
+          </div>
+        )}
         {/* Switch buttons */}
         <div className="tabs-wrapper">
           <div className="tabs-container">

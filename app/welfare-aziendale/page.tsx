@@ -66,6 +66,7 @@ export default async function WelfareAziendalePage() {
         btn1Link={welfare?.hero?.btn1_link || undefined}
         btn2Label={welfare?.hero?.btn2_label || undefined}
         btn2Link={welfare?.hero?.btn2_link || undefined}
+        backgroundImage={welfare?.hero?.immagine ? welfare.hero.immagine.url : undefined}
       />
 
       {/* Introduzione Section */}

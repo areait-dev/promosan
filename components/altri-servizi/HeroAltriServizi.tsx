@@ -8,6 +8,7 @@ export interface HeroAltriServiziProps {
   badge?: string;
   title?: string;
   subtitle?: string;
+  backgroundImage?: string;
 }
 
 const DEFAULT_BADGE = 'Servizi in Evoluzione';
@@ -19,6 +20,7 @@ export default function HeroAltriServizi({
   badge = DEFAULT_BADGE,
   title = DEFAULT_TITLE,
   subtitle = DEFAULT_SUBTITLE,
+  backgroundImage,
 }: HeroAltriServiziProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -47,6 +49,19 @@ export default function HeroAltriServizi({
         overflow: 'hidden'
       }}
     >
+      {/* Immagine di sfondo opzionale (da WordPress) sotto il gradiente */}
+      {backgroundImage && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.35,
+          zIndex: 0,
+        }}></div>
+      )}
+
       {/* Overlay pattern */}
       <div style={{
         position: 'absolute',

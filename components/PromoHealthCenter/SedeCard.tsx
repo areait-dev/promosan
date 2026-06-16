@@ -13,6 +13,7 @@ interface SedeData {
   mappaUrl: string;
   mappaTitolo: string;
   googleMapsLink?: string;
+  image?: string;
 }
 
 // Definisci i tipi per le props del componente
@@ -26,9 +27,9 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
   return (
     <div className="sede-card">
       <div className="card-logo">
-      <Image 
-  src="/assets/img/Promo_Health_Center_Logo_def.png" 
-  alt="Promo Health Center Logo" 
+      <Image
+  src={data.image || "/assets/img/Promo_Health_Center_Logo_def.png"}
+  alt={data.image ? `Sede ${data.regione}` : "Promo Health Center Logo"}
   width={180}
   height={60}
   className="h-12 w-auto"

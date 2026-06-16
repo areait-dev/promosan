@@ -75,6 +75,7 @@ export default async function Home() {
         <Hero
           title={hero?.titolo || undefined}
           backgroundImage={hero?.immagine ? hero.immagine.url : undefined}
+          logo={options?.logoBianco || undefined}
           ctaLabel={hero?.btn1_label || undefined}
           ctaLink={hero?.btn1_link || undefined}
         />
@@ -84,6 +85,7 @@ export default async function Home() {
           <ChiSiamo
             title={home?.chisiamo?.titolo || undefined}
             text={home?.chisiamo?.testo || undefined}
+            fotoTeam={home?.chisiamo?.foto_team ? home.chisiamo.foto_team.url : undefined}
           />
         </section>
 
@@ -91,6 +93,7 @@ export default async function Home() {
           <MissionVision
             missionText={home?.mission?.mission_testo || undefined}
             visionText={home?.mission?.vision_testo || undefined}
+            image={home?.mission?.immagine ? home.mission.immagine.url : undefined}
           />
         </section>
 

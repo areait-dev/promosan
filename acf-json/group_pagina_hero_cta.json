@@ -65,7 +65,8 @@
           "layout": "block",
           "sub_fields": [
             { "key": "field_home_mission_testo", "label": "Testo Mission", "name": "mission_testo", "type": "wysiwyg", "media_upload": 0 },
-            { "key": "field_home_vision_testo", "label": "Testo Vision", "name": "vision_testo", "type": "wysiwyg", "media_upload": 0 }
+            { "key": "field_home_vision_testo", "label": "Testo Vision", "name": "vision_testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_home_mission_immagine", "label": "Immagine decorativa", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine decorativa opzionale per la sezione Mission/Vision." }
           ]
         },
         {
@@ -76,7 +77,8 @@
           "layout": "block",
           "sub_fields": [
             { "key": "field_home_chisiamo_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
-            { "key": "field_home_chisiamo_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 }
+            { "key": "field_home_chisiamo_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_home_chisiamo_foto_team", "label": "Foto team", "name": "foto_team", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Foto del team mostrata nella sezione Chi Siamo. Se vuota viene usata l'immagine predefinita /assets/img/fototeam.jpg." }
           ]
         }
       ]
@@ -105,6 +107,7 @@
           "sub_fields": [
             { "key": "field_medicina_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
             { "key": "field_medicina_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_medicina_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." },
             { "key": "field_medicina_hero_btn1_label", "label": "Bottone - Etichetta", "name": "btn1_label", "type": "text" },
             { "key": "field_medicina_hero_btn1_link", "label": "Bottone - Link", "name": "btn1_link", "type": "text" }
           ]
@@ -157,6 +160,7 @@
           "sub_fields": [
             { "key": "field_unita_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
             { "key": "field_unita_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_unita_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito (/assets/img/camper5.png)." },
             { "key": "field_unita_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
             { "key": "field_unita_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text" },
             { "key": "field_unita_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
@@ -212,6 +216,7 @@
           "sub_fields": [
             { "key": "field_welfare_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
             { "key": "field_welfare_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_welfare_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." },
             { "key": "field_welfare_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
             { "key": "field_welfare_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text" },
             { "key": "field_welfare_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
@@ -268,7 +273,8 @@
           "sub_fields": [
             { "key": "field_altri_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
             { "key": "field_altri_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
-            { "key": "field_altri_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 }
+            { "key": "field_altri_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_altri_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." }
           ]
         },
         {
@@ -309,7 +315,8 @@
           "layout": "block",
           "sub_fields": [
             { "key": "field_sedi_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
-            { "key": "field_sedi_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 }
+            { "key": "field_sedi_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_sedi_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." }
           ]
         },
         {

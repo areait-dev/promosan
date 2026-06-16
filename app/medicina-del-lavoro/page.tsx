@@ -46,6 +46,7 @@ export default async function MedicinaDelLavoroPage() {
           title={medicina?.hero?.titolo || undefined}
           ctaLabel={medicina?.hero?.btn1_label || undefined}
           ctaLink={medicina?.hero?.btn1_link || undefined}
+          backgroundImage={medicina?.hero?.immagine ? medicina.hero.immagine.url : undefined}
         />
         <NominaMedicoSection />
         <ValutazioneRischiSection />

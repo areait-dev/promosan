@@ -9,6 +9,7 @@ export interface HeroUnitaMobiliProps {
   btn1Link?: string;
   btn2Label?: string;
   btn2Link?: string;
+  backgroundImage?: string;
 }
 
 const DEFAULT_BADGE = 'Unità mobili';
@@ -25,6 +26,7 @@ export default function HeroUnitaMobili({
   btn1Link = DEFAULT_BTN1_LINK,
   btn2Label = DEFAULT_BTN2_LABEL,
   btn2Link = DEFAULT_BTN2_LINK,
+  backgroundImage = '/assets/img/camper5.png',
 }: HeroUnitaMobiliProps = {}) {
   const scrollToContent = () => {
     const heroSection = document.querySelector('section');
@@ -60,7 +62,7 @@ export default function HeroUnitaMobili({
         zIndex: '0'
       }}>
         <Image
-          src="/assets/img/camper5.png"
+          src={backgroundImage}
           alt="Unità mobili background"
           fill
           style={{

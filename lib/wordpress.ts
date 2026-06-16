@@ -59,7 +59,16 @@ export interface Sede {
   mappaTitolo: string;
   googleMapsLink: string;
   servizi: string[];
+  image: WPImage | null;
 }
+
+/** Path immagini di fallback (hardcoded nei componenti prima del CMS). */
+export const IMAGE_FALLBACKS = {
+  logo: "/assets/img/PromoSan.png",
+  logoBianco: "/assets/img/PromoSan_white.png",
+  fotoTeam: "/assets/img/fototeam.jpg",
+  sede: "/assets/img/Promo_Health_Center_Logo_def.png",
+} as const;
 
 export interface PacchettoWelfare {
   id: number;
@@ -67,6 +76,7 @@ export interface PacchettoWelfare {
   subtitle: string;
   isPopular: boolean;
   features: { text: string; included: boolean }[];
+  image: WPImage | null;
 }
 
 export interface FaqItem {
@@ -85,6 +95,8 @@ export interface GlobalOptions {
   areaRiservataUrl: string;
   brochureUrl: string;
   copyright: string;
+  logoUrl: string;
+  logoBianco: string;
   social: { linkedin: string; facebook: string; instagram: string };
 }
 
@@ -113,8 +125,8 @@ export interface PageContentFields {
     hero?: HeroFields;
     servizi?: { titolo?: string; sottotitolo?: string; lista?: string }; // "Titolo | Descrizione | image | link"
     numeri?: { titolo?: string; sottotitolo?: string; lista?: string }; // "valore | suffisso | etichetta"
-    mission?: { mission_testo?: string; vision_testo?: string };
-    chisiamo?: { titolo?: string; testo?: string };
+    mission?: { mission_testo?: string; vision_testo?: string; immagine?: WPImage | false };
+    chisiamo?: { titolo?: string; testo?: string; foto_team?: WPImage | false };
   };
   // --- Medicina del Lavoro ---
   medicina?: {
@@ -141,7 +153,7 @@ export interface PageContentFields {
   };
   // --- Promo Health Center ---
   sedi?: {
-    hero?: { titolo?: string; sottotitolo?: string };
+    hero?: { titolo?: string; sottotitolo?: string; immagine?: WPImage | false };
     rete_partner?: { titolo?: string; testo?: string };
   };
   // --- Contatti ---
@@ -213,6 +225,17 @@ function extractFeaturedImage(post: any): WPImage | null {
   };
 }
 
+/** Estrae l'immagine dal campo ACF `immagine` (return_format "array"). */
+function extractAcfImage(img: any): WPImage | null {
+  if (!img?.url) return null;
+  return {
+    url: img.url,
+    alt: img.alt || "",
+    width: img.width,
+    height: img.height,
+  };
+}
+
 /** Converte una textarea multi-riga in array di stringhe (righe vuote scartate). */
 function splitLines(text?: string): string[] {
   if (!text) return [];
@@ -252,7 +275,8 @@ function mapNews(post: any): NewsItem {
     title: clean(post.title?.rendered),
     excerpt: clean(post.excerpt?.rendered),
     content: post.content?.rendered ?? "",
-    image: extractFeaturedImage(post),
+    // Immagine ACF impostata dal redattore; in mancanza, fallback all'immagine in evidenza nativa.
+    image: extractAcfImage(acf.immagine) ?? extractFeaturedImage(post),
     date: post.date,
     readTime: Number(acf.tempo_lettura) || 5,
     categories: categories.length ? categories : ["normativa"],
@@ -322,6 +346,7 @@ export async function getSedi(draft = false): Promise<Sede[]> {
       googleMapsLink: acf.google_maps_link ?? "",
       // 'servizi' è una textarea: una voce per riga (niente repeater Pro).
       servizi: splitLines(acf.servizi),
+      image: extractAcfImage(acf.immagine),
     };
   });
 }
@@ -347,6 +372,7 @@ export async function getPacchettiWelfare(draft = false): Promise<PacchettoWelfa
         ...splitLines(acf.caratteristiche_incluse).map((text) => ({ text, included: true })),
         ...splitLines(acf.caratteristiche_escluse).map((text) => ({ text, included: false })),
       ],
+      image: extractAcfImage(acf.immagine),
     };
   });
 }
@@ -390,6 +416,8 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
     areaRiservataUrl: acf.area_riservata_url ?? "",
     brochureUrl: acf.brochure_url ?? "",
     copyright: acf.copyright ?? "",
+    logoUrl: extractAcfImage(acf.logo)?.url ?? IMAGE_FALLBACKS.logo,
+    logoBianco: extractAcfImage(acf.logo_bianco)?.url ?? IMAGE_FALLBACKS.logoBianco,
     social: {
       linkedin: acf.social_linkedin ?? "#",
       facebook: acf.social_facebook ?? "#",

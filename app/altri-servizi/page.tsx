@@ -67,6 +67,7 @@ export default async function AltriServiziPage() {
         badge={altri?.hero?.badge || undefined}
         title={altri?.hero?.titolo || undefined}
         subtitle={altri?.hero?.sottotitolo || undefined}
+        backgroundImage={altri?.hero?.immagine ? altri.hero.immagine.url : undefined}
       />
 
       {/* Servizi in Sviluppo Section */}
