@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test:wp": "node scripts/test-wp-connection.mjs",
-    "import:wp": "node scripts/import-to-wp.mjs"
+    "import:wp": "node scripts/import-to-wp.mjs",
+    "import:wp:full": "node scripts/import-to-wp.mjs --with-media"
   },
   "dependencies": {
     "next": "16.1.6",

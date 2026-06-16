@@ -38,6 +38,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Cartella immagini locali da cui caricare i media.
 const IMG_DIR = resolve(__dirname, '..', 'public', 'assets', 'img');
 
+// Flag CLI: l'upload delle immagini avviene SOLO con --with-media.
+// Senza flag l'import è solo testuale (campi ACF/CPT, niente media).
+//   node scripts/import-to-wp.mjs               -> solo testo  (npm run import:wp)
+//   node scripts/import-to-wp.mjs --with-media  -> testo + img (npm run import:wp:full)
+const WITH_MEDIA = process.argv.includes('--with-media');
+
 /* -------------------------------------------------------------------------- */
 /*                              Contatori riepilogo                           */
 /* -------------------------------------------------------------------------- */
@@ -219,6 +225,8 @@ async function findMediaBySlug(slug) {
  * e ritorna l'ID dell'allegato. Riusa il media se già caricato (per slug).
  */
 async function uploadMedia(filename) {
+  // Upload disabilitato se non è stato passato --with-media.
+  if (!WITH_MEDIA) return null;
   if (!filename) return null;
   if (mediaCache.has(filename)) return mediaCache.get(filename);
 
@@ -760,7 +768,10 @@ const PACCHETTI_IMAGES = {
 
 async function main() {
   console.log(`\n🔗 Target: ${API_URL}`);
-  console.log(`👤 Utente: ${WP_USER}\n`);
+  console.log(`👤 Utente: ${WP_USER}`);
+  console.log(
+    `🖼  Media : ${WITH_MEDIA ? 'ON (--with-media) — upload immagini attivo' : 'OFF — solo testo (usa --with-media o npm run import:wp:full)'}\n`
+  );
 
   console.log('— Pagine (campi ACF per Tab + immagini) —');
   for (const [slug, acf] of Object.entries(PAGES)) {
