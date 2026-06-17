@@ -3214,12 +3214,14 @@ header li button,
    CSS puro con !important: il reset/tipografia globale (h2{color:primary},
    p{...}, ul/ol/li{list-style:none !important}) sovrascriverebbe le utility
    generate da @apply, quindi qui forziamo gli stili. */
-.news-content h2 {
+.news-content h2,
+.news-content .wp-block-heading {
   font-size: 1.5rem !important;
   font-weight: 700 !important;
   color: #1a202c !important;
   margin-top: 2.5rem !important;
   margin-bottom: 1rem !important;
+  display: block !important;
 }
 .news-content h3 {
   font-size: 1.25rem !important;
@@ -3234,7 +3236,8 @@ header li button,
   color: #374151 !important;
   margin-bottom: 1rem !important;
 }
-.news-content blockquote {
+.news-content blockquote,
+.news-content .wp-block-quote {
   border-left: 4px solid #2c5282 !important;
   background-color: #f7fafc !important;
   padding: 1rem 1.5rem !important;
@@ -3245,7 +3248,8 @@ header li button,
   font-weight: 500 !important;
   color: #374151 !important;
 }
-.news-content .wp-block-group {
+.news-content .wp-block-group,
+.news-content .wp-block-group__inner-container {
   background-color: #ebf8ff !important;
   border: 1px solid #bee3f8 !important;
   border-radius: 0.75rem !important;

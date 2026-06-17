@@ -316,8 +316,11 @@ function clean(html?: string): string {
     .replace(/<\/?p>/g, "")
     .replace(/&#8217;/g, "'")
     .replace(/&#8211;/g, "–")
+    .replace(/&#8230;/g, "…")
+    .replace(/&hellip;/g, "…")
     .replace(/&amp;/g, "&")
     .replace(/&nbsp;/g, " ")
+    .replace(/<[^>]+>/g, "") // rimuove tutti i tag HTML residui
     .trim();
 }
 
