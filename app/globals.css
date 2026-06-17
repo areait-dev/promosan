@@ -3,9 +3,11 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 /* ========== TAILWIND BASE ========== */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Sintassi nativa Tailwind v4: abilita la scansione automatica delle sorgenti
+   (genera tutte le utility realmente usate, incluse quelle dei componenti news1).
+   @config carica il config JS legacy (theme colors + plugin typography). */
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 
 /* ========== VARIABILI GLOBALI RESPONSIVE ========== */
 :root {
