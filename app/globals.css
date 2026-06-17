@@ -3230,7 +3230,21 @@ header li button,
   @apply bg-blue-50 border border-blue-200 rounded-xl p-6 my-6;
 }
 .news-content ul {
-  @apply list-disc list-inside space-y-2 mb-4 text-gray-700 text-lg;
+  @apply space-y-2 mb-4 text-gray-700 text-lg;
+  list-style: disc !important;
+  padding-left: 1.5rem;
+}
+.news-content ol {
+  @apply space-y-2 mb-4 text-gray-700 text-lg;
+  list-style: decimal !important;
+  padding-left: 1.5rem;
+}
+/* Override del reset globale (li { list-style: none !important }) per i marker */
+.news-content ul li {
+  list-style: disc !important;
+}
+.news-content ol li {
+  list-style: decimal !important;
 }
 .news-content img {
   @apply rounded-xl my-6 w-full object-cover;
