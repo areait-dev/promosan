@@ -135,7 +135,7 @@ export default async function NewsSinglePage({ params }: PageProps) {
 
         <News1Hero news={view} />
 
-        <div className="px-4 py-12 mx-auto max-w-5xl sm:px-6 lg:px-8">
+        <div className="px-4 py-12 mx-auto max-w-4xl">
           <News1Content news={view} />
 
           {relatedView.length > 0 && <News1Related relatedNews={relatedView} />}
