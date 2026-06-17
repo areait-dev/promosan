@@ -114,33 +114,14 @@ export default async function SediPage() {
   return (
     <main className="sedi-page">
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
-
-      {/* Hero Section */}
       <HeroSedi
         title={sediContent?.hero?.titolo || undefined}
         subtitle={sediContent?.hero?.sottotitolo || undefined}
         backgroundImage={heroBg}
       />
-
-      {/* DIV PER SPAZIO ENORME DOPO HERO */}
-      <div className="h-64 md:h-96"></div>
-
-      <div id="strutture-section" className="scroll-target"></div>
-
-      {/* DIV PER SPAZIO ENORME PRIMA DELLE SEDI */}
-      <div className="h-64 md:h-96"></div>
-
-      {/* Sezione SediInteractive */}
-      <div className="container mx-auto px-4 md:px-6">
+      <div id="strutture-section" className="container mx-auto px-4 md:px-6 py-16">
         <SediInteractive sediData={sediData} servizi={servizi} />
       </div>
-
-      {/* DIV PER SPAZIO ENORME PRIMA DI RETE PARTNER */}
-      <div className="h-64 md:h-96"></div>
-
-      {/* DIV PER SPAZIO PRIMA DEL FOOTER (opzionale) */}
-      <div className="h-32 md:h-48"></div>
-      {/* RetePartner */}
       <RetePartner
         title={sediContent?.rete_partner?.titolo || undefined}
         text={sediContent?.rete_partner?.testo || undefined}
