@@ -351,13 +351,13 @@ async function mapNews(post: any, draft = false): Promise<NewsItem> {
     categories: categories.length ? categories : ["normativa"],
     tags,
     seo: extractYoast(post),
-    author: acf.autore
-      ? {
-          name: acf.autore.nome ?? "",
-          role: acf.autore.ruolo ?? "",
-          initials: acf.autore.iniziali ?? "",
-        }
-      : undefined,
+    // Autore sempre valorizzato: se i campi ACF sono vuoti, usa i default redazione
+    // (i componenti accedono a author.initials senza optional chaining).
+    author: {
+      name: acf.autore?.nome || "Redazione PromoSan",
+      role: acf.autore?.ruolo || "Staff",
+      initials: acf.autore?.iniziali || "RP",
+    },
     views: Number(acf.visualizzazioni) || 0,
   };
 }
