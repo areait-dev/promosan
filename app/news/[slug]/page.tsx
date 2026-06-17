@@ -124,7 +124,15 @@ export default async function NewsSinglePage({ params }: PageProps) {
     <>
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
-      <main style={{ overflowX: 'hidden', width: '100%' }}>
+      <main className="overflow-x-hidden w-full min-h-screen bg-gray-50">
+        <nav className="px-4 py-3 mx-auto max-w-5xl text-sm text-gray-600">
+          <Link href="/" className="hover:text-primary">Home</Link>
+          {' › '}
+          <Link href="/news" className="hover:text-primary">News</Link>
+          {' › '}
+          <span className="text-gray-400">{news.title}</span>
+        </nav>
+
         <News1Hero news={view} />
 
         <div className="px-4 py-12 mx-auto max-w-5xl sm:px-6 lg:px-8">
