@@ -77,9 +77,9 @@ const PromoSanNumeri: React.FC<PromoSanNumeriProps> = ({
       <div className="section-orb section-orb--left"></div>
       <div className="section-orb section-orb--right"></div>
 
-      <div className="container">
+      <div className="container" style={{ maxWidth: '1500px' }}>
         {/* Header */}
-        <div className="section-header">
+        <div className="section-header numeri-header">
           <h2 className="section-title text-white">
             {title}
           </h2>
@@ -99,7 +99,7 @@ const PromoSanNumeri: React.FC<PromoSanNumeriProps> = ({
               className={`stat-card ${visibleCards[index] ? 'card-visible' : ''}`}
               style={{ transitionDelay: `${index * 0.15}s` }}
             >
-              <div className="stat-value">
+              <div className="stat-value text-5xl md:text-6xl">
                 {startAnimation ? (
                   <CountUp
                     start={0}

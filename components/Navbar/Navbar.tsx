@@ -15,7 +15,6 @@ export default function Navbar({
   areaRiservataUrl = 'https://clienti.promotergroup.eu/login',
 }: NavbarProps = {}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isChiSiamoOpen, setIsChiSiamoOpen] = useState(false);
   const [isServiziOpen, setIsServiziOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
@@ -44,7 +43,6 @@ export default function Navbar({
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    setIsChiSiamoOpen(false);
     setIsServiziOpen(false);
   };
 
@@ -70,36 +68,19 @@ export default function Navbar({
                 width={140}
                 height={40}
                 className="brightness-0 invert"
-                style={{ width: 'auto', height: '50px' }}
+                style={{ width: 'auto', height: '38px' }}
                 priority
               />
             </Link>
           </div>
 
-          {/* Menu Desktop */}
-          <nav className="hidden lg:block">
-            <ul className="flex gap-1 items-center px-2 py-2 rounded-full bg-primary">
+          {/* Menu Desktop (centrato nello spazio tra logo e azioni) */}
+          <nav className="hidden lg:flex flex-1 justify-center">
+            <ul className="flex gap-1 items-center px-2 py-2 rounded-full">
               <li>
                 <Link href="/" className="nav-pill" onClick={closeMobileMenu}>
                   Home
                 </Link>
-              </li>
-
-              {/* Chi siamo Dropdown */}
-              <li className="relative group">
-                <button className="nav-pill flex items-center gap-1">
-                  <span>Chi siamo</span>
-                  <i className="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-                </button>
-                <div className="dropdown-menu">
-                  <Link
-                    href="/promo-health-center"
-                    className="dropdown-item"
-                    onClick={closeMobileMenu}
-                  >
-                    Promo Health Center
-                  </Link>
-                </div>
               </li>
 
               {/* Servizi Dropdown */}
@@ -141,6 +122,11 @@ export default function Navbar({
               </li>
 
               <li>
+                <Link href="/promo-health-center" className="nav-pill" onClick={closeMobileMenu}>
+                  Sedi
+                </Link>
+              </li>
+              <li>
                 <Link href="/news" className="nav-pill" onClick={closeMobileMenu}>
                   News
                 </Link>
@@ -154,7 +140,7 @@ export default function Navbar({
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex gap-4 items-center">
+          <div className="hidden lg:flex gap-6 items-center">
             <form onSubmit={handleSearch} className="search-form">
               <input
                 type="text"
@@ -200,35 +186,6 @@ export default function Navbar({
             >
               Home
             </Link>
-
-            <div className="mobile-divider"></div>
-
-            {/* Chi siamo mobile */}
-            <div>
-              <button
-                className="mobile-dropdown-btn"
-                onClick={() => setIsChiSiamoOpen(!isChiSiamoOpen)}
-              >
-                <span>Chi siamo</span>
-                <i className={`fas fa-chevron-down mobile-dropdown-icon ${
-                  isChiSiamoOpen ? 'rotate-180 text-primary' : ''
-                }`}></i>
-              </button>
-              
-              <div className={`mobile-submenu ${
-                isChiSiamoOpen ? 'open' : ''
-              }`}>
-                <div className="pb-2 pl-4 pr-4">
-                  <Link 
-                    href="/promo-health-center" 
-                    className="mobile-submenu-link"
-                    onClick={closeMobileMenu}
-                  >
-                    Promo Health Center
-                  </Link>
-                </div>
-              </div>
-            </div>
 
             <div className="mobile-divider"></div>
 
@@ -282,8 +239,16 @@ export default function Navbar({
 
             <div className="mobile-divider"></div>
 
-            <Link 
-              href="/news" 
+            <Link
+              href="/promo-health-center"
+              className="mobile-nav-link"
+              onClick={closeMobileMenu}
+            >
+              Sedi
+            </Link>
+
+            <Link
+              href="/news"
               className="mobile-nav-link"
               onClick={closeMobileMenu}
             >

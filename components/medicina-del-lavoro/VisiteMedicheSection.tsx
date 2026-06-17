@@ -94,37 +94,41 @@ export default function VisiteMedicheSection({
         </div>
 
         {/* Tab Buttons - Griglia su mobile, orizzontale su desktop */}
-        <div className="visite-tabs-grid" style={{ 
+        <div className="visite-tabs-grid" style={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '0.75rem',
+          gap: '0',
+          borderRadius: '0.5rem',
+          overflow: 'hidden',
           marginBottom: '2rem'
         }}>
           {tabOrder.map((tab) => (
-            <button 
+            <button
               key={tab}
-              onClick={() => switchTab(tab)} 
+              onClick={() => switchTab(tab)}
               className="visite-tab-btn"
               style={{
                 padding: '0.75rem 1.25rem',
-                fontWeight: '500',
-                borderRadius: '0.5rem',
+                fontWeight: '700',
+                textTransform: 'uppercase',
+                borderRadius: '0',
                 transition: 'all 0.3s ease',
                 border: 'none',
+                outline: 'none',
                 cursor: 'pointer',
-                backgroundColor: activeTab === tab ? '#2c5282' : '#e5e7eb',
+                backgroundColor: activeTab === tab ? '#1a3a6b' : '#e8eaf0',
                 color: activeTab === tab ? '#ffffff' : '#374151',
                 flex: '1 1 auto',
                 minWidth: 'fit-content'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== tab) {
-                  e.currentTarget.style.backgroundColor = '#d1d5db';
+                  e.currentTarget.style.backgroundColor = '#dcdfe9';
                 }
               }}
               onMouseLeave={(e) => {
                 if (activeTab !== tab) {
-                  e.currentTarget.style.backgroundColor = '#e5e7eb';
+                  e.currentTarget.style.backgroundColor = '#e8eaf0';
                 }
               }}
             >
@@ -503,7 +507,7 @@ export default function VisiteMedicheSection({
           .visite-tabs-grid {
             display: grid !important;
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 0.75rem !important;
+            gap: 0 !important;
           }
           
           .visite-tab-btn {

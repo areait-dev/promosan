@@ -152,8 +152,7 @@ export default function Hero(props: HeroProps = {}) {
         .hero-logo {
           max-height: 90px;
           width: auto;
-          filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5)) brightness(1.3);
-          animation: logoFloat 4s ease-in-out infinite;
+          filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5)) drop-shadow(0 2px 4px rgba(0,0,0,0.3)) brightness(1.3) contrast(1.1);
         }
 
         .hero-text-homepage {
@@ -221,10 +220,10 @@ export default function Hero(props: HeroProps = {}) {
           align-items: center;
           justify-content: center;
           gap: var(--space-xs);
-          padding: var(--space-sm) var(--space-lg);
-          font-weight: 600;
+          padding: var(--space-md) var(--space-xl);
+          font-weight: 700;
           font-size: var(--text-base);
-          border-radius: var(--border-radius-full);
+          border-radius: var(--border-radius-btn);
           transition: var(--transition-base);
           cursor: pointer;
           border: 2px solid transparent;

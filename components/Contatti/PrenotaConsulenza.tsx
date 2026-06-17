@@ -53,7 +53,7 @@ export default function PrenotaConsulenza({
         transform: 'translateY(0)',
         transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
         backgroundColor: '#ffffff',
-        color: '#000000',
+        color: '#374151',
         minHeight: '250px'
       }}
     >
@@ -111,18 +111,18 @@ export default function PrenotaConsulenza({
         {items.map((item, index) => (
           <li key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
             <i className="fas fa-check-circle" style={{ color: '#2c5282', flexShrink: 0, marginTop: '0.2rem' }}></i>
-            <span style={{ color: '#000000', fontWeight: '500' }}>{item}</span>
+            <span style={{ color: '#374151', fontWeight: '500' }}>{item}</span>
           </li>
         ))}
       </ul>
 
       <p style={{
         fontSize: '0.875rem',
-        color: '#333333',
+        color: '#4b5563',
         fontStyle: 'italic',
         marginBottom: '1rem',
         padding: '0.5rem',
-        background: '#f0f0f0',
+        background: '#f3f4f6',
         borderRadius: '0.5rem',
       }}>
         {nota}
@@ -136,7 +136,7 @@ export default function PrenotaConsulenza({
           padding: '0.75rem',
           background: 'linear-gradient(135deg, #2c5282, #4299e1)',
           color: '#ffffff',
-          borderRadius: '9999px',
+          borderRadius: '14px',
           textDecoration: 'none',
           fontWeight: '700',
           border: '2px solid #ffffff'
