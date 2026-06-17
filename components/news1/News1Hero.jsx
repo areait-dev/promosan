@@ -31,14 +31,14 @@ const News1Hero = ({ news }) => {
     : '';
 
   return (
-    <div className="overflow-hidden relative w-full h-[500px]">
+    <div className="overflow-hidden relative mb-8 w-full h-[480px] rounded-2xl">
       <img
         src={news.image}
         alt={news.title}
         className="object-cover absolute inset-0 w-full h-full"
       />
       {/* Overlay scuro per contrasto del testo */}
-      <div className="absolute inset-0 bg-gradient-to-t to-transparent from-black/70 via-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t to-transparent from-black/80 via-black/40" />
 
       {/* Badge "News" in alto a sinistra */}
       <div className="flex absolute top-6 left-6 gap-3 items-center">

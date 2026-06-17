@@ -3210,42 +3210,82 @@ header li button,
   }
 }
 
-/* ========== CONTENUTO ARTICOLO NEWS (HTML da WordPress) ========== */
+/* ========== CONTENUTO ARTICOLO NEWS (HTML da WordPress) ==========
+   CSS puro con !important: il reset/tipografia globale (h2{color:primary},
+   p{...}, ul/ol/li{list-style:none !important}) sovrascriverebbe le utility
+   generate da @apply, quindi qui forziamo gli stili. */
 .news-content h2 {
-  @apply text-2xl font-bold text-gray-900 mt-10 mb-4;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #1a202c !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
 }
 .news-content h3 {
-  @apply text-xl font-bold text-gray-800 mt-8 mb-3;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #2d3748 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 0.75rem !important;
 }
 .news-content p {
-  @apply text-gray-700 leading-relaxed mb-4 text-lg;
+  font-size: 1.125rem !important;
+  line-height: 1.75 !important;
+  color: #374151 !important;
+  margin-bottom: 1rem !important;
 }
 .news-content blockquote {
-  @apply border-l-4 border-primary bg-gray-50 px-6 py-4 my-6 rounded-r-xl;
+  border-left: 4px solid #2c5282 !important;
+  background-color: #f7fafc !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 0 0.75rem 0.75rem 0 !important;
 }
 .news-content blockquote p {
-  @apply text-gray-700 font-medium;
+  font-weight: 500 !important;
+  color: #374151 !important;
 }
 .news-content .wp-block-group {
-  @apply bg-blue-50 border border-blue-200 rounded-xl p-6 my-6;
+  background-color: #ebf8ff !important;
+  border: 1px solid #bee3f8 !important;
+  border-radius: 0.75rem !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
 }
 .news-content ul {
-  @apply space-y-2 mb-4 text-gray-700 text-lg;
+  font-size: 1.125rem !important;
+  color: #374151 !important;
   list-style: disc !important;
-  padding-left: 1.5rem;
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
 }
 .news-content ol {
-  @apply space-y-2 mb-4 text-gray-700 text-lg;
+  font-size: 1.125rem !important;
+  color: #374151 !important;
   list-style: decimal !important;
-  padding-left: 1.5rem;
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
 }
 /* Override del reset globale (li { list-style: none !important }) per i marker */
 .news-content ul li {
   list-style: disc !important;
+  margin-bottom: 0.5rem !important;
 }
 .news-content ol li {
   list-style: decimal !important;
+  margin-bottom: 0.5rem !important;
+}
+.news-content strong {
+  font-weight: 700 !important;
+  color: #1a202c !important;
+}
+.news-content a {
+  color: #2c5282 !important;
+  text-decoration: underline !important;
 }
 .news-content img {
-  @apply rounded-xl my-6 w-full object-cover;
+  border-radius: 0.75rem !important;
+  margin: 1.5rem 0 !important;
+  width: 100% !important;
+  object-fit: cover !important;
 }

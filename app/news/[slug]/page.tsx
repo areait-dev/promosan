@@ -107,6 +107,10 @@ export default async function NewsSinglePage({ params }: PageProps) {
     ]);
     if (news) {
       related0 = await getRelatedNews(news.id, news.categories[0], 8, draft);
+      // Fallback: con poche news per categoria getRelatedNews può tornare vuoto.
+      if (related0.length === 0) {
+        related0 = await getNews(8, draft);
+      }
     }
   } catch (error) {
     console.error('[NewsSingle] Fetch WordPress fallito:', error);
@@ -129,7 +133,7 @@ export default async function NewsSinglePage({ params }: PageProps) {
 
   const related = related0
     .filter((n) => n.slug !== slug)
-    .slice(0, 8)
+    .slice(0, 6)
     .map(toView);
 
   return (
