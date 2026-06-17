@@ -45,6 +45,7 @@ export interface NewsItem {
   date: string; // ISO
   readTime: number;
   categories: string[]; // slug tassonomia
+  tags?: string[]; // tag nativi WP (post_tag)
   author?: { name: string; role: string; initials: string };
   views?: number;
 }
@@ -328,6 +329,11 @@ async function mapNews(post: any, draft = false): Promise<NewsItem> {
   const categories = terms
     .filter((t) => t?.taxonomy === "categoria_news")
     .map((t) => t.slug);
+  // I tag dell'articolo arrivano dalla tassonomia nativa 'post_tag' (non da ACF).
+  const tags = terms
+    .filter((t) => t?.taxonomy === "post_tag")
+    .map((t) => t.name as string)
+    .filter(Boolean);
 
   return {
     id: post.id,
@@ -340,6 +346,7 @@ async function mapNews(post: any, draft = false): Promise<NewsItem> {
     date: post.date,
     readTime: Number(acf.tempo_lettura) || 5,
     categories: categories.length ? categories : ["normativa"],
+    tags,
     author: acf.autore
       ? {
           name: acf.autore.nome ?? "",
