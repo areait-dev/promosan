@@ -15,6 +15,8 @@
  * NB: i CPT/tassonomie/slug ACF qui usati corrispondono ai file in /acf-json.
  */
 
+import { extractYoast, type SeoFields } from "./seo";
+
 const API_URL =
   process.env.NEXT_PUBLIC_WP_API_URL ?? "https://wp.promosan.eu/wp-json/wp/v2";
 
@@ -48,6 +50,7 @@ export interface NewsItem {
   tags?: string[]; // tag nativi WP (post_tag)
   author?: { name: string; role: string; initials: string };
   views?: number;
+  seo?: SeoFields; // dati Yoast normalizzati (yoast_head_json)
 }
 
 export interface Sede {
@@ -347,6 +350,7 @@ async function mapNews(post: any, draft = false): Promise<NewsItem> {
     readTime: Number(acf.tempo_lettura) || 5,
     categories: categories.length ? categories : ["normativa"],
     tags,
+    seo: extractYoast(post),
     author: acf.autore
       ? {
           name: acf.autore.nome ?? "",

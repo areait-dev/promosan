@@ -17,6 +17,7 @@ import {
   type GlobalOptions,
   type NewsItem,
 } from '@/lib/wordpress';
+import { yoastToMetadata } from '@/lib/seo';
 
 export const revalidate = 60;
 
@@ -80,19 +81,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   if (!news) {
-    return { title: 'News | PromoSan' };
+    return { title: 'Articolo non trovato | PromoSan' };
   }
 
-  return {
-    title: `${news.title} | PromoSan`,
+  // Usa i dati SEO di Yoast (news.seo) con fallback su titolo/excerpt della news.
+  return yoastToMetadata(news.seo, {
+    title: news.title,
     description: news.excerpt,
-    openGraph: {
-      title: news.title,
-      description: news.excerpt,
-      type: 'article',
-      images: news.image ? [{ url: news.image.url }] : undefined,
-    },
-  };
+    image: news.image?.url,
+  });
 }
 
 export default async function NewsSinglePage({ params }: PageProps) {
