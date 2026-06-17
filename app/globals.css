@@ -3209,3 +3209,29 @@ header li button,
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
+
+/* ========== CONTENUTO ARTICOLO NEWS (HTML da WordPress) ========== */
+.news-content h2 {
+  @apply text-2xl font-bold text-gray-900 mt-10 mb-4;
+}
+.news-content h3 {
+  @apply text-xl font-bold text-gray-800 mt-8 mb-3;
+}
+.news-content p {
+  @apply text-gray-700 leading-relaxed mb-4 text-lg;
+}
+.news-content blockquote {
+  @apply border-l-4 border-primary bg-gray-50 px-6 py-4 my-6 rounded-r-xl;
+}
+.news-content blockquote p {
+  @apply text-gray-700 font-medium;
+}
+.news-content .wp-block-group {
+  @apply bg-blue-50 border border-blue-200 rounded-xl p-6 my-6;
+}
+.news-content ul {
+  @apply list-disc list-inside space-y-2 mb-4 text-gray-700 text-lg;
+}
+.news-content img {
+  @apply rounded-xl my-6 w-full object-cover;
+}

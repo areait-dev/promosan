@@ -97,7 +97,7 @@ export default async function NewsSinglePage({ params }: PageProps) {
   const { isEnabled: draft } = await draftMode();
 
   let news: NewsItem | null = null;
-  let related: NewsItem[] = [];
+  let related0: NewsItem[] = [];
   let options: GlobalOptions | undefined;
 
   try {
@@ -106,7 +106,7 @@ export default async function NewsSinglePage({ params }: PageProps) {
       getGlobalOptions(draft),
     ]);
     if (news) {
-      related = await getRelatedNews(news.id, news.categories[0], 4, draft);
+      related0 = await getRelatedNews(news.id, news.categories[0], 8, draft);
     }
   } catch (error) {
     console.error('[NewsSingle] Fetch WordPress fallito:', error);
@@ -118,37 +118,44 @@ export default async function NewsSinglePage({ params }: PageProps) {
   }
 
   const view = toView(news);
-  const relatedView = related.map(toView);
+
+  // toView normalizza già `image` a stringa URL.
+  const newsForHero = view;
+
+  const newsForContent = {
+    content: news.content,
+    tags: news.tags ?? [],
+  };
+
+  const related = related0
+    .filter((n) => n.slug !== slug)
+    .slice(0, 8)
+    .map(toView);
 
   return (
     <>
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
-      <main className="overflow-x-hidden w-full min-h-screen bg-gray-50">
-        <nav className="px-4 py-3 mx-auto max-w-5xl text-sm text-gray-600">
-          <Link href="/" className="hover:text-primary">Home</Link>
-          {' › '}
-          <Link href="/news" className="hover:text-primary">News</Link>
-          {' › '}
-          <span className="text-gray-400">{news.title}</span>
-        </nav>
+      <main className="container px-4 py-8 mx-auto mt-4">
+        <div className="mx-auto max-w-6xl">
+          {/* Breadcrumb */}
+          <nav className="mb-8 text-sm text-gray-600">
+            <ol className="flex flex-wrap items-center space-x-2">
+              <li>
+                <Link href="/" className="transition hover:text-primary">Home</Link>
+              </li>
+              <li><i className="text-xs fas fa-chevron-right"></i></li>
+              <li>
+                <Link href="/news" className="transition hover:text-primary">News</Link>
+              </li>
+              <li><i className="text-xs fas fa-chevron-right"></i></li>
+              <li className="font-medium text-gray-900 line-clamp-1">{news.title}</li>
+            </ol>
+          </nav>
 
-        <News1Hero news={view} />
-
-        <div className="px-4 py-12 mx-auto max-w-4xl">
-          <News1Content news={view} />
-
-          {relatedView.length > 0 && <News1Related relatedNews={relatedView} />}
-
-          <div>
-            <Link
-              href="/news"
-              className="inline-flex gap-2 items-center font-semibold text-primary hover:text-secondary"
-            >
-              <i className="fas fa-arrow-left"></i>
-              Torna a tutte le news
-            </Link>
-          </div>
+          <News1Hero news={newsForHero} />
+          <News1Content news={newsForContent} />
+          {related.length > 0 && <News1Related relatedNews={related} />}
         </div>
       </main>
 

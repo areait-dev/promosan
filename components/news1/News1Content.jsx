@@ -56,7 +56,10 @@ const News1Content = ({ news }) => {
           </div>
 
           {/* Contenuto HTML */}
-          <div dangerouslySetInnerHTML={{ __html: news.content }} />
+          <div
+            className="news-content"
+            dangerouslySetInnerHTML={{ __html: news.content }}
+          />
 
           {/* Tags */}
           {news.tags && (
