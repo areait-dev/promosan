@@ -1,8 +1,7 @@
 // app/ricerca/RicercaClient.tsx
 'use client';
 
-import { useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useMemo } from 'react';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
@@ -47,9 +46,6 @@ interface RicercaClientProps {
 }
 
 export default function RicercaClient({ initialQuery, news, options }: RicercaClientProps) {
-  const router = useRouter();
-  const [query, setQuery] = useState(initialQuery);
-
   const items = useMemo<SearchableItem[]>(
     () => (news && news.length ? news.map(toSearchable) : []),
     [news]
@@ -74,13 +70,6 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
 
   const totalResults = results.length + pageResults.length;
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (query.trim()) {
-      router.push(`/ricerca?q=${encodeURIComponent(query.trim())}`);
-    }
-  };
-
   const hasQuery = initialQuery.trim() !== '';
 
   return (
@@ -94,28 +83,14 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
             <i className="fas fa-search"></i>
             <span>Ricerca nel sito</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Cosa stai cercando?
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            Risultati della ricerca per:
           </h1>
-          <p className="text-white/80 text-lg mb-8">
-            Cerca tra news, normative e aggiornamenti di PromoSan.
-          </p>
-          <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto mt-8">
-            <i className="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 z-10"></i>
-            <input
-              type="text"
-              placeholder="Cerca nel sito..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="w-full box-border py-4 pl-14 pr-32 rounded-2xl text-gray-900 text-base shadow-xl focus:outline-none border-0"
-            />
-            <button
-              type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white px-5 py-2 rounded-xl font-semibold hover:bg-blue-800 transition-colors text-sm"
-            >
-              Cerca
-            </button>
-          </form>
+          {hasQuery && (
+            <p className="text-white text-2xl md:text-3xl font-semibold">
+              &ldquo;{initialQuery}&rdquo;
+            </p>
+          )}
         </div>
       </section>
 
