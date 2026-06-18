@@ -84,120 +84,87 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
   const hasQuery = initialQuery.trim() !== '';
 
   return (
-    <main style={{ overflowX: 'hidden', width: '100%' }}>
+    <main className="w-full overflow-x-hidden">
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
       {/* Hero ricerca */}
-      <section
-        style={{
-          background: 'linear-gradient(135deg, #2c5282 0%, #4299e1 100%)',
-          padding: '6rem 1rem 4rem',
-          color: '#ffffff',
-        }}
-      >
-        <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '2.25rem', fontWeight: 700, marginBottom: '1rem' }}>
-            Ricerca nel sito
+      <section className="bg-gradient-to-br from-primary to-secondary py-24 px-4 text-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-sm font-medium mb-6">
+            <i className="fas fa-search"></i>
+            <span>Ricerca nel sito</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Cosa stai cercando?
           </h1>
-          <p style={{ opacity: 0.9, marginBottom: '2rem' }}>
+          <p className="text-white/80 text-lg mb-8">
             Cerca tra news, normative e aggiornamenti di PromoSan.
           </p>
-          <form onSubmit={handleSearch} style={{ position: 'relative', maxWidth: '560px', margin: '0 auto' }}>
-            <i
-              className="fas fa-search"
-              style={{
-                position: 'absolute',
-                left: '1rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: '#9ca3af',
-              }}
-            ></i>
+          <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
+            <i className="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
             <input
               type="text"
               placeholder="Cerca nel sito..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.875rem 1rem 0.875rem 2.75rem',
-                borderRadius: '9999px',
-                border: 'none',
-                fontSize: '1rem',
-                color: '#1f2937',
-                outline: 'none',
-              }}
+              className="w-full py-4 pl-14 pr-6 rounded-2xl text-gray-900 text-lg shadow-xl focus:outline-none focus:ring-4 focus:ring-white/30"
             />
+            <button
+              type="submit"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-primary text-white px-6 py-2 rounded-xl font-semibold hover:bg-blue-800 transition-colors"
+            >
+              Cerca
+            </button>
           </form>
         </div>
       </section>
 
-      <section style={{ padding: '4rem 1rem' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      {/* Risultati */}
+      <section className="py-16 px-4 bg-gray-50 min-h-screen">
+        <div className="max-w-6xl mx-auto">
           {hasQuery && (
-            <p style={{ color: '#4b5563', marginBottom: '2rem' }}>
-              {totalResults > 0
-                ? `${totalResults} risultato${totalResults === 1 ? '' : 'i'} per `
-                : 'Nessun risultato per '}
-              <strong style={{ color: '#1f2937' }}>“{initialQuery}”</strong>
-            </p>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-1 h-8 bg-primary rounded-full"></div>
+              <p className="text-gray-600 text-lg">
+                {totalResults > 0 ? (
+                  <>
+                    <span className="font-bold text-primary text-2xl">{totalResults}</span>
+                    {' '}risultato{totalResults === 1 ? '' : 'i'} per{' '}
+                    <span className="font-semibold text-gray-900">&ldquo;{initialQuery}&rdquo;</span>
+                  </>
+                ) : (
+                  <>Nessun risultato per <span className="font-semibold">&ldquo;{initialQuery}&rdquo;</span></>
+                )}
+              </p>
+            </div>
           )}
 
           {totalResults > 0 ? (
             <>
               {pageResults.length > 0 && (
-                <div style={{ marginBottom: results.length > 0 ? '3.5rem' : 0 }}>
-                  <h2
-                    style={{
-                      fontSize: '1.25rem',
-                      fontWeight: 700,
-                      color: '#1f2937',
-                      marginBottom: '1.25rem',
-                    }}
-                  >
+                <div className={results.length > 0 ? 'mb-14' : ''}>
+                  <h2 className="text-xl font-bold text-gray-900 mb-5">
                     Pagine del sito
                   </h2>
-                  <div style={{ display: 'grid', gap: '1rem' }}>
+                  <div className="grid gap-4">
                     {pageResults.map((page) => (
                       <Link
                         key={page.url}
                         href={page.url}
-                        style={{
-                          display: 'block',
-                          padding: '1.25rem 1.5rem',
-                          background: '#ffffff',
-                          border: '1px solid #e5e7eb',
-                          borderRadius: '0.75rem',
-                          textDecoration: 'none',
-                          transition: 'all 0.2s ease',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.borderColor = '#4299e1';
-                          e.currentTarget.style.boxShadow =
-                            '0 4px 6px -1px rgba(0, 0, 0, 0.08)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.borderColor = '#e5e7eb';
-                          e.currentTarget.style.boxShadow = 'none';
-                        }}
+                        className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 group"
                       >
-                        <span
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            fontSize: '1.05rem',
-                            fontWeight: 600,
-                            color: '#2c5282',
-                            marginBottom: '0.35rem',
-                          }}
-                        >
-                          <i className="far fa-file-alt"></i>
-                          {page.title}
-                        </span>
-                        <span style={{ color: '#4b5563', lineHeight: 1.5 }}>
-                          {page.description}
-                        </span>
+                        <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                          <i className="far fa-file-alt text-primary group-hover:text-white"></i>
+                        </div>
+                        <div>
+                          <span className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors block mb-1">
+                            {page.title}
+                          </span>
+                          <span className="text-gray-500 text-sm leading-relaxed">
+                            {page.description}
+                          </span>
+                        </div>
+                        <i className="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-primary transition-colors mt-1"></i>
                       </Link>
                     ))}
                   </div>
@@ -206,23 +173,10 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
 
               {results.length > 0 && (
                 <div>
-                  <h2
-                    style={{
-                      fontSize: '1.25rem',
-                      fontWeight: 700,
-                      color: '#1f2937',
-                      marginBottom: '1.25rem',
-                    }}
-                  >
-                    News & Articoli
+                  <h2 className="text-xl font-bold text-gray-900 mb-5">
+                    News &amp; Articoli
                   </h2>
-                  <div
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(3, 1fr)',
-                      gap: '2rem',
-                    }}
-                  >
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {results.map((item) => (
                       <NewsPageCard key={item.id} news={item} />
                     ))}
@@ -231,45 +185,31 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
               )}
             </>
           ) : (
-            <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-              <i
-                className="fas fa-search"
-                style={{ fontSize: '3rem', color: '#9ca3af', marginBottom: '1rem' }}
-              ></i>
-              <h3
-                style={{
-                  fontSize: '1.5rem',
-                  fontWeight: 600,
-                  color: '#1f2937',
-                  marginBottom: '0.5rem',
-                }}
-              >
+            <div className="text-center py-20">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-search text-4xl text-gray-400"></i>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
                 {hasQuery ? 'Nessun risultato trovato' : 'Inizia la tua ricerca'}
               </h3>
-              <p style={{ color: '#6b7280' }}>
+              <p className="text-gray-500 max-w-md mx-auto">
                 {hasQuery
                   ? 'Prova con parole chiave diverse o più generiche.'
                   : 'Digita un termine nel campo qui sopra per cercare nel sito.'}
               </p>
+              {hasQuery && (
+                <Link
+                  href="/news"
+                  className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors"
+                >
+                  <i className="fas fa-newspaper"></i>
+                  Sfoglia tutte le news
+                </Link>
+              )}
             </div>
           )}
         </div>
       </section>
-
-      <style jsx global>{`
-        * {
-          scroll-behavior: smooth;
-        }
-        ::selection {
-          background: #2c5282;
-          color: #ffffff;
-        }
-        @media (max-width: 1024px) {
-          section .results-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-      `}</style>
 
       <Footer options={options} />
     </main>
