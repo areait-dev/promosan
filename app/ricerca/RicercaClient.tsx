@@ -83,11 +83,11 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
             <i className="fas fa-search"></i>
             <span>Ricerca nel sito</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
             Risultati della ricerca per:
           </h1>
           {hasQuery && (
-            <p className="text-white text-2xl md:text-3xl font-semibold">
+            <p className="text-2xl md:text-3xl font-semibold" style={{ color: '#ffffff' }}>
               &ldquo;{initialQuery}&rdquo;
             </p>
           )}
