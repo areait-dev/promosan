@@ -88,8 +88,11 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
       {/* Hero ricerca */}
-      <section className="bg-gradient-to-br from-primary to-secondary py-24 px-4 text-white">
-        <div className="max-w-3xl mx-auto text-center">
+      <section
+        className="bg-gradient-to-br from-primary to-secondary text-white"
+        style={{ paddingTop: '8rem', paddingBottom: '5rem' }}
+      >
+        <div className="max-w-3xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-sm font-medium mb-6">
             <i className="fas fa-search"></i>
             <span>Ricerca nel sito</span>
@@ -100,18 +103,19 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
           <p className="text-white/80 text-lg mb-8">
             Cerca tra news, normative e aggiornamenti di PromoSan.
           </p>
-          <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
-            <i className="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+          <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto mt-8">
+            <i className="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 z-10"></i>
             <input
               type="text"
               placeholder="Cerca nel sito..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full py-4 pl-14 pr-6 rounded-2xl text-gray-900 text-lg shadow-xl focus:outline-none focus:ring-4 focus:ring-white/30"
+              className="w-full py-4 pl-14 pr-32 rounded-2xl text-gray-900 text-base shadow-xl focus:outline-none border-0"
+              style={{ boxSizing: 'border-box' }}
             />
             <button
               type="submit"
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-primary text-white px-6 py-2 rounded-xl font-semibold hover:bg-blue-800 transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white px-5 py-2 rounded-xl font-semibold hover:bg-blue-800 transition-colors text-sm"
             >
               Cerca
             </button>
