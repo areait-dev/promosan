@@ -88,11 +88,8 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
       {/* Hero ricerca */}
-      <section
-        className="bg-gradient-to-br from-primary to-secondary text-white"
-        style={{ paddingTop: '8rem', paddingBottom: '5rem' }}
-      >
-        <div className="max-w-3xl mx-auto px-4 text-center">
+      <section className="w-full bg-gradient-to-br from-[#1e3a5f] via-primary to-secondary text-white pt-28 pb-20">
+        <div className="w-full max-w-3xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-sm font-medium mb-6">
             <i className="fas fa-search"></i>
             <span>Ricerca nel sito</span>
@@ -110,8 +107,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
               placeholder="Cerca nel sito..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full py-4 pl-14 pr-32 rounded-2xl text-gray-900 text-base shadow-xl focus:outline-none border-0"
-              style={{ boxSizing: 'border-box' }}
+              className="w-full box-border py-4 pl-14 pr-32 rounded-2xl text-gray-900 text-base shadow-xl focus:outline-none border-0"
             />
             <button
               type="submit"
@@ -124,8 +120,8 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
       </section>
 
       {/* Risultati */}
-      <section className="py-16 px-4 bg-gray-50 min-h-screen">
-        <div className="max-w-6xl mx-auto">
+      <section className="w-full bg-gray-50 py-16 px-6 min-h-screen">
+        <div className="w-full max-w-6xl mx-auto">
           {hasQuery && (
             <div className="flex items-center gap-3 mb-8">
               <div className="w-1 h-8 bg-primary rounded-full"></div>
