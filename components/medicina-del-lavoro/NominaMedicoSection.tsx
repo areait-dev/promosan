@@ -57,7 +57,7 @@ export default function NominaMedicoSection() {
           {/* Card 1 - COORDINATORE/COORDINATO */}
           <Card 
             badgeText="Ideale per Gruppi"
-            badgeColor="linear-gradient(135deg, var(--color-primary), var(--color-secondary))"
+            badgeColor="#204c84"
             title="COORDINATORE/COORDINATO"
             description="Una soluzione integrata che prevede sia la funzione di coordinamento di più medici competenti, ideale per realtà complesse con sedi multiple o articolazioni organizzative distribuite sul territorio, sia l'operatività diretta nella sorveglianza sanitaria."
             recommendation="Gruppi aziendali, multinazionali, aziende con più sedi operative"
@@ -66,17 +66,16 @@ export default function NominaMedicoSection() {
           {/* Card 2 - SOLO COORDINATO */}
           <Card 
             badgeText="Flessibile"
-            badgeColor="linear-gradient(135deg, var(--color-secondary), var(--color-accent))"
+            badgeColor="#3b82f6"
             title="SOLO COORDINATO"
             description="Il servizio si concentra sull'attività operativa di sorveglianza sanitaria, perfetto per aziende che hanno già una struttura di coordinamento definita o che necessitano di supporto specialistico su specifiche sedi o reparti."
-            recommendation="Aziende con team RSPP interno, realtà con strutture di coordinamento"
-            descriptionMargin="3.5rem"
+            recommendation="Aziende con team RSPP interno, realtà che hanno già strutture di coordinamento"
           />
 
           {/* Card 3 - MEDICO COMPETENTE DEDICATO */}
           <Card 
             badgeText="Soluzione Standard"
-            badgeColor="linear-gradient(135deg, var(--color-accent), var(--color-primary))"
+            badgeColor="#2c5282"
             title="MEDICO COMPETENTE DEDICATO"
             description="La nomina con tutti gli obblighi normativi per aziende di piccole dimensioni, con un professionista dedicato che segue in modo continuativo tutti gli aspetti della medicina del lavoro aziendale."
             recommendation="PMI, startup, aziende che cercano una soluzione completa e autonoma"
@@ -123,7 +122,6 @@ interface CardProps {
   title: string;
   description: string;
   recommendation: string;
-  descriptionMargin?: string;
 }
 
 function Card({ 
@@ -131,34 +129,34 @@ function Card({
   badgeColor, 
   title, 
   description, 
-  recommendation,
-  descriptionMargin = '2rem'
+  recommendation
 }: CardProps) {
   return (
     <div className="protocol-card" style={{
-      borderRadius: '24px',
-      padding: '2.5rem',
+      borderRadius: '20px',
+      padding: '2.2rem',
       background: 'var(--color-white)',
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+      border: '1px solid #f1f5f9',
       transition: 'transform 0.3s ease, box-shadow 0.3s ease'
     }}
     onMouseEnter={(e) => {
       e.currentTarget.style.transform = 'translateY(-5px)';
-      e.currentTarget.style.boxShadow = '0 20px 40px rgba(44, 82, 130, 0.15)';
+      e.currentTarget.style.boxShadow = '0 12px 30px rgba(44, 82, 130, 0.1)';
     }}
     onMouseLeave={(e) => {
       e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.04)';
     }}>
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1.2rem' }}>
         <span style={{
           display: 'inline-block',
-          padding: '0.5rem 1.5rem',
+          padding: '5px 14px',
           borderRadius: '50px',
-          fontSize: 'clamp(0.75rem, 2vw, 0.85rem)',
+          fontSize: '11px',
           fontWeight: '700',
           background: badgeColor,
           color: 'white',
@@ -170,50 +168,47 @@ function Card({
       </div>
       
       <h4 style={{ 
-        fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', 
+        fontSize: 'clamp(1.15rem, 3vw, 1.35rem)', 
         fontWeight: '700', 
         color: 'var(--color-primary)',
-        marginBottom: '1.5rem',
-        lineHeight: '1.3'
+        marginBottom: '1.2rem',
+        lineHeight: '1.35'
       }}>
-        {title.split('<br/>').map((part, i, arr) => (
-          <React.Fragment key={i}>
-            {part}
-            {i < arr.length - 1 && <br />}
-          </React.Fragment>
-        ))}
+        {title}
       </h4>
       
       <p style={{ 
-        color: 'var(--color-gray-600)', 
-        marginBottom: descriptionMargin,
-        lineHeight: '1.8',
+        color: '#64748b', 
+        marginBottom: '1.8rem',
+        lineHeight: '1.7',
         flex: '1',
-        fontSize: 'clamp(0.9rem, 2.5vw, 1rem)'
+        fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)'
       }}>
         {description}
       </p>
       
       <div style={{ 
-        paddingTop: '1.5rem', 
-        borderTop: '2px solid rgba(44, 82, 130, 0.1)'
+        padding: '16px',
+        backgroundColor: '#f4f7fa',
+        borderRadius: '12px',
+        marginTop: 'auto'
       }}>
         <h6 style={{ 
-          fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', 
-          fontWeight: '600', 
-          color: 'var(--color-gray-500)', 
-          marginBottom: '0.75rem', 
+          fontSize: '11px', 
+          fontWeight: '700', 
+          color: '#64748b', 
+          marginBottom: '6px', 
           textTransform: 'uppercase', 
           letterSpacing: '0.5px' 
         }}>
           Consigliato per:
         </h6>
         <p style={{ 
-          color: 'var(--color-gray-800)', 
+          color: '#334155', 
           fontWeight: '600',
           margin: 0,
-          fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
-          lineHeight: '1.5'
+          fontSize: 'clamp(0.8rem, 2.5vw, 0.88rem)',
+          lineHeight: '1.45'
         }}>
           {recommendation}
         </p>

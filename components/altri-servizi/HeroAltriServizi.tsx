@@ -250,11 +250,9 @@ export default function HeroAltriServizi({
             }}
           >
             <span>Scopri di più</span>
-            <i className="fas fa-chevron-down" style={{
-              width: '1.25rem',
-              height: '1.25rem',
-              animation: 'bounce 2s infinite'
-            }}></i>
+            <div className="scroll-mouse">
+              <span className="scroll-wheel" />
+            </div>
           </Link>
         </div>
       </div>
@@ -283,12 +281,44 @@ export default function HeroAltriServizi({
       }}></div>
 
       <style jsx>{`
-        @keyframes bounce {
-          0%, 100% {
-            transform: translateY(0);
+        .scroll-mouse {
+          width: 22px;
+          height: 36px;
+          border: 2px solid rgba(255, 255, 255, 0.8);
+          border-radius: 12px;
+          position: relative;
+          margin-top: 0.5rem;
+          transition: all 0.3s ease;
+        }
+
+        .scroll-wheel {
+          display: block;
+          width: 4px;
+          height: 8px;
+          background: #ffffff;
+          border-radius: 2px;
+          position: absolute;
+          left: 50%;
+          top: 6px;
+          transform: translateX(-50%);
+          animation: scrollWheel 1.8s ease-in-out infinite;
+        }
+
+        @keyframes scrollWheel {
+          0% {
+            transform: translate(-50%, 0);
+            opacity: 0;
+          }
+          15% {
+            opacity: 1;
           }
           50% {
-            transform: translateY(5px);
+            transform: translate(-50%, 8px);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, 14px);
+            opacity: 0;
           }
         }
         

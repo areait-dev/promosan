@@ -5,6 +5,9 @@ import PreviewBanner from "../components/PreviewBanner";
 export const metadata: Metadata = {
   title: "PromoSan - Medicina del Lavoro | Welfare Aziendale | Unità Mobili",
   description: "PromoSan S.r.l. è il tuo partner per la medicina del lavoro, welfare aziendale e servizi sanitari mobili.",
+  icons: {
+    icon: "/assets/img/favicon.png",
+  },
 };
 
 export default function RootLayout({

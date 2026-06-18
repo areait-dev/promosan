@@ -114,10 +114,68 @@ export default function FAQ({
     <section id="faq" className="section section-light">
       <div className="container">
         {/* Header */}
-        <div className="section-header">
+        <div className="section-header faq-header">
+          <div className="faq-badge">
+            <span className="faq-badge-icon">
+              <i className="fas fa-question" />
+            </span>
+            FAQ
+          </div>
           <h2 className="section-title">{title}</h2>
           <p className="section-subtitle">{subtitle}</p>
         </div>
+
+        <style jsx>{`
+          .faq-header {
+            text-align: left;
+            margin-bottom: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .faq-badge {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: var(--color-white);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+            box-shadow: 0 4px 10px rgba(44, 82, 130, 0.15);
+          }
+
+          .faq-badge-icon {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+          }
+
+          .faq-header .section-title {
+            margin-bottom: var(--space-xs);
+            color: var(--color-dark);
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+          }
+
+          .faq-header .section-subtitle {
+            margin-bottom: 0;
+            max-width: 800px;
+            color: var(--color-gray-600);
+            font-size: var(--text-base);
+          }
+        `}</style>
 
         {/* FAQ Grid */}
         <div className="faq-grid">

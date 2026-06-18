@@ -28,15 +28,15 @@ export interface FooterProps {
 }
 
 const DEFAULT_OPTIONS: GlobalOptions = {
-  telefono: '+39 123 456 7890',
-  email: 'info@promosan.it',
+  telefono: '800 034 615',
+  email: 'info@promosan.eu',
   whatsapp: '',
-  piva: '01234567890',
+  piva: '01840870883',
   rea: 'MI-1234567',
   orari: '',
   areaRiservataUrl: 'https://clienti.promotergroup.eu/login',
   brochureUrl: '/Brochure PromoSan.pdf',
-  copyright: '© 2024 PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: 01234567890 - REA: MI-1234567',
+  copyright: '© 2026 PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: 01840870883 - REA: MI-1234567',
   logoUrl: '/assets/img/PromoSan.png',
   logoBianco: '/assets/img/PromoSan_white.png',
   social: { linkedin: '#', facebook: '#', instagram: '#' },
@@ -49,30 +49,25 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
     social: { ...DEFAULT_OPTIONS.social, ...(options?.social ?? {}) },
   };
 
-  // Costruisce il copyright: usa quello da CMS, altrimenti compone da P.IVA/REA.
   const copyright =
-    opt.copyright ||
-    `© ${new Date().getFullYear()} PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: ${opt.piva} - REA: ${opt.rea}`;
+    opt.copyright && opt.copyright.includes('01840870883')
+      ? opt.copyright
+      : `© 2026 PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: 01840870883 - REA: MI-1234567`;
 
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const telefono = opt.telefono || '800 034 615';
+  const emailVal = opt.email || 'info@promosan.eu';
+
   const navItems: NavItem[] = [
-    { 
-      name: 'Home', 
+    {
+      name: 'Home',
       path: '/',
       type: 'link'
     },
-    { 
-      name: 'Chi Siamo', 
-      path: '/chi-siamo',
-      type: 'parent',
-      children: [
-        { name: 'Promo Health Center', path: '/promo-health-center' }
-      ]
-    },
-    { 
-      name: 'Servizi', 
+    {
+      name: 'Servizi',
       path: '/servizi',
       type: 'parent',
       children: [
@@ -82,13 +77,18 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
         { name: 'Altri servizi', path: '/altri-servizi' }
       ]
     },
-    { 
-      name: 'News', 
+    {
+      name: 'Sedi',
+      path: '/sedi',
+      type: 'link'
+    },
+    {
+      name: 'News',
       path: '/news',
       type: 'link'
     },
-    { 
-      name: 'Contatti', 
+    {
+      name: 'Contatti',
       path: '/contatti',
       type: 'link'
     }
@@ -108,14 +108,14 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       alert('Inserisci una email valida');
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     setTimeout(() => {
       alert('Grazie per l\'iscrizione!');
       setEmail('');
@@ -133,93 +133,89 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
   };
 
   return (
-    <footer className="footer bg-gray-900 text-white pt-16 pb-8">
-      <div className="container mx-auto px-4">
-        
-        {/* NEWSLETTER - PIÙ SPAZIATA */}
-        <div className="footer-newsletter mb-16">
-          <div className="footer-newsletter-content bg-gray-800 rounded-xl p-8">
-            <div className="footer-newsletter-text mb-6">
-              <h3 className="text-2xl font-semibold mb-2">Newsletter</h3>
-              <p className="text-gray-400">Ricevi le ultime novità normative</p>
+    <footer className="footer promosan-footer">
+      <div className="footer-container">
+
+        {/* NEWSLETTER */}
+        <div className="footer-newsletter">
+          <div className="footer-newsletter-content">
+            <div className="footer-newsletter-text">
+              <h3>Newsletter</h3>
+              <p>Ricevi le ultime novità normative</p>
             </div>
-            <form 
+            <form
               onSubmit={handleNewsletterSubmit}
-              className="footer-newsletter-form flex flex-col sm:flex-row gap-4"
+              className="footer-newsletter-form"
             >
-              <div className="footer-newsletter-input-wrapper flex-1 relative">
+              <div className="footer-newsletter-input-wrapper">
                 <input
                   type="email"
                   placeholder="La tua email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="footer-newsletter-input w-full px-5 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-primary pl-12"
+                  className="footer-newsletter-input"
                 />
-                <i className="fas fa-envelope footer-newsletter-icon absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <i className="fas fa-envelope footer-newsletter-icon"></i>
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="footer-newsletter-btn px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors disabled:opacity-50 whitespace-nowrap font-medium"
+                className="footer-newsletter-btn"
               >
-                {isSubmitting ? (
-                  <>
-                    <i className="fas fa-spinner fa-spin mr-2"></i>
-                    Invio...
-                  </>
-                ) : 'Iscriviti'}
+                {isSubmitting ? 'Invio...' : 'Iscriviti'}
               </button>
             </form>
           </div>
         </div>
 
-        {/* 3 COLONNE - PIÙ SPAZIATE */}
-        <div className="footer-grid grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          
+        {/* 3 COLONNE */}
+        <div className="footer-grid">
+
           {/* Colonna 1: Logo & Contatti */}
           <div className="footer-col">
             <div className="footer-logo mb-6">
               <Image
                 src={opt.logoBianco || '/assets/img/PromoSan_white.png'}
                 alt="Logo"
-                width={140} 
-                height={40}
-                className="footer-logo-img brightness-0 invert mb-4"
+                width={160}
+                height={45}
+                className="footer-logo-img mb-4"
+                style={{ width: '50%', height: 'auto' }}
               />
-              <p className="text-gray-400">{tagline}</p>
+              <p className="footer-tagline">{tagline}</p>
             </div>
-            <div className="footer-contacts space-y-4">
-              <div className="footer-contact-item flex items-center gap-3">
-                <i className="fas fa-phone text-primary w-5"></i>
-                <a href={`tel:${opt.telefono.replace(/[\s-]/g, '')}`} className="text-gray-300 hover:text-primary transition-colors">{opt.telefono}</a>
+            <div className="footer-contacts">
+              <div className="footer-contact-item">
+                <i className="fas fa-phone"></i>
+                <a href={`tel:${telefono.replace(/[\s-]/g, '')}`}>{telefono}</a>
               </div>
-              <div className="footer-contact-item flex items-center gap-3">
-                <i className="fas fa-envelope text-primary w-5"></i>
-                <a href={`mailto:${opt.email}`} className="text-gray-300 hover:text-primary transition-colors">{opt.email}</a>
+              <div className="footer-contact-item">
+                <i className="fas fa-envelope"></i>
+                <a href={`mailto:${emailVal}`}>{emailVal}</a>
               </div>
             </div>
           </div>
-          
+
           {/* Colonna 2: Navigazione */}
           <div className="footer-col">
-            <h4 className="footer-col-title text-xl font-semibold mb-6">Navigazione</h4>
-            <ul className="footer-nav space-y-3">
+            <h4 className="footer-col-title">Navigazione</h4>
+            <ul className="footer-nav">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.path} className="footer-nav-link text-gray-300 hover:text-primary transition-colors">
+                  <Link href={item.path} className="footer-nav-link">
                     {item.name}
                   </Link>
-                  
+
                   {item.type === 'parent' && item.children && (
-                    <div className="footer-submenu ml-4 mt-2 space-y-2">
+                    <div className="footer-submenu">
                       {item.children.map((child) => (
-                        <Link 
+                        <Link
                           key={child.name}
-                          href={child.path} 
-                          className="footer-submenu-link text-gray-400 hover:text-primary transition-colors text-sm block"
+                          href={child.path}
+                          className="footer-submenu-link"
                         >
-                          • {child.name}
+                          {child.name}
                         </Link>
                       ))}
                     </div>
@@ -228,41 +224,39 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
               ))}
             </ul>
           </div>
-          
-          {/* Colonna 3: Accesso & Social - CON PIÙ SPAZIO TRA GLI ELEMENTI */}
+
+          {/* Colonna 3: Accesso & Social */}
           <div className="footer-col">
-            <h4 className="footer-col-title text-xl font-semibold mb-4">Accesso</h4>
-            
-            {/* BOTTONI CON PIÙ SPAZIO TRA LORO */}
+            <h4 className="footer-col-title">Accesso</h4>
+
             <div className="footer-buttons">
-  <a
-    href={opt.areaRiservataUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="footer-btn-first footer-btn-primary inline-flex items-center justify-center gap-2 w-full px-4 py-2 text-sm rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors mb-4"  /* Aggiunto mb-4 */
-  >
-    <i className="fas fa-lock text-xs"></i>
-    Area Riservata
-  </a>
-  
-  <button
-    onClick={handleDownloadBrochure}
-    className="footer-btn footer-btn-secondary inline-flex items-center justify-center gap-2 w-full px-4 py-2 text-sm rounded-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors"
-  >
-    <i className="fas fa-file-pdf text-xs"></i>
-    Scarica Brochure
-  </button>
-</div>
-            
-            {/* SOCIAL CON PIÙ SPAZIO DAI BOTTONI */}
-            <h4 className="footer-col-title text-xl font-semibold mb-6">Seguici</h4>
-            
-            <div className="footer-social flex gap-4 mb-8">
+              <a
+                href={opt.areaRiservataUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-btn-primary"
+              >
+                <i className="fas fa-lock"></i>
+                Area Riservata
+              </a>
+
+              <button
+                onClick={handleDownloadBrochure}
+                className="footer-btn-secondary"
+              >
+                <i className="fas fa-file-pdf"></i>
+                Scarica Brochure
+              </button>
+            </div>
+
+            <h4 className="footer-col-title">Seguici</h4>
+
+            <div className="footer-social">
               {socialLinks.map((social, index) => (
-                <a 
+                <a
                   key={index}
                   href={social.href}
-                  className="footer-social-link w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 text-white hover:bg-primary transition-colors"
+                  className="footer-social-link"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -270,13 +264,12 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                 </a>
               ))}
             </div>
-            
-            {/* LINK LEGALI CON PIÙ SPAZIO DAI SOCIAL */}
-            <div className="footer-legal text-sm text-gray-500">
+
+            <div className="footer-legal">
               {legalLinks.map((link, index) => (
                 <span key={link.name} className="footer-legal-item">
-                  {index > 0 && <span className="footer-legal-separator mx-2">•</span>}
-                  <Link href={link.href} className="footer-legal-link hover:text-primary transition-colors">
+                  {index > 0 && <span className="footer-legal-separator">•</span>}
+                  <Link href={link.href} className="footer-legal-link">
                     {link.name}
                   </Link>
                 </span>
@@ -284,14 +277,333 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
             </div>
           </div>
         </div>
-        
-        {/* COPYRIGHT - PIÙ SPAZIATO */}
-        <div className="footer-copyright pt-8 mt-8 border-t border-gray-800">
-          <p className="text-center text-gray-500 text-sm">
+
+        {/* COPYRIGHT */}
+        <div className="footer-copyright">
+          <p>
             {copyright}
           </p>
         </div>
       </div>
+
+      <style jsx>{`
+        .promosan-footer {
+          background-color: #141f2e !important;
+          color: #94a3b8;
+          font-family: var(--font-family-base);
+          padding: 64px 0 32px 0;
+        }
+
+        .footer-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+        }
+
+        /* Newsletter Box */
+        .footer-newsletter {
+          background: transparent !important;
+          border: none !important;
+          padding: 0 !important;
+          margin-bottom: 32px !important;
+        }
+
+        .footer-newsletter-content {
+          background-color: #1d2c3f !important;
+          border: 1px solid rgba(255, 255, 255, 0.04);
+          border-radius: 12px;
+          padding: 24px 32px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 24px;
+        }
+
+        .footer-newsletter-text {
+          flex: 1;
+          min-width: 250px;
+        }
+
+        .footer-newsletter-text h3 {
+          color: #fff;
+          font-size: 1.25rem;
+          font-weight: 700;
+          margin-bottom: 4px;
+          text-transform: none;
+        }
+
+        .footer-newsletter-text p {
+          color: #94a3b8;
+          font-size: 0.85rem;
+          margin-bottom: 0;
+        }
+
+        .footer-newsletter-form {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex: 1.2;
+          min-width: 300px;
+        }
+
+        .footer-newsletter-input-wrapper {
+          position: relative;
+          flex: 1;
+        }
+
+        .footer-newsletter-input {
+          width: 100%;
+          padding: 10px 44px 10px 16px;
+          background-color: #141f2e !important;
+          border: 1px solid rgba(255, 255, 255, 0.08) !important;
+          border-radius: 8px;
+          color: #fff;
+          font-size: 0.85rem;
+          height: 42px;
+        }
+
+        .footer-newsletter-icon {
+          position: absolute;
+          right: 16px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #64748b;
+          font-size: 0.9rem;
+        }
+
+        .footer-newsletter-btn {
+          background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+          color: #fff !important;
+          padding: 0 24px !important;
+          height: 42px;
+          border: none;
+          border-radius: 8px;
+          font-weight: 700;
+          font-size: 0.85rem;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2) !important;
+        }
+
+        .footer-newsletter-btn:hover {
+          opacity: 0.95;
+          transform: translateY(-1px);
+        }
+
+        /* Grid */
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 1fr 1.3fr;
+          gap: 48px;
+          margin-top: 48px;
+          padding-bottom: 48px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+        }
+
+        .footer-logo-img {
+          /* Keep original white/blue logo colors */
+          filter: none;
+        }
+
+        .footer-tagline {
+          color: #94a3b8;
+          font-size: 0.85rem;
+          margin-top: 8px;
+        }
+
+        .footer-col-title {
+          color: #fff;
+          font-size: 0.95rem;
+          font-weight: 700;
+          margin-bottom: 20px;
+          text-transform: none; /* Removed uppercase to match screen */
+        }
+
+        .footer-contacts {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 16px;
+        }
+
+        .footer-contact-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .footer-contact-item i {
+          color: #fff; /* White icons to match screen */
+          width: 16px;
+        }
+
+        .footer-contact-item a {
+          color: #fff !important;
+          font-size: 0.85rem;
+          transition: color 0.2s ease;
+        }
+
+        .footer-contact-item a:hover {
+          color: #4299e1 !important;
+        }
+
+        /* Nav links */
+        .footer-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .footer-nav-link {
+          color: #fff; /* White navigation headers to match screen */
+          font-size: 0.9rem;
+          font-weight: 600;
+          transition: color 0.2s ease;
+        }
+
+        .footer-nav-link:hover {
+          color: #4299e1;
+        }
+
+        .footer-submenu {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-left: 12px;
+          margin-top: 8px;
+        }
+
+        .footer-submenu-link {
+          color: #94a3b8;
+          font-size: 0.85rem;
+          transition: color 0.2s ease;
+          display: flex;
+          align-items: center;
+        }
+
+        .footer-submenu-link:hover {
+          color: #4299e1;
+        }
+
+        .footer-submenu-link::before {
+          content: '▪';
+          color: #4299e1;
+          font-size: 0.65rem;
+          margin-right: 8px;
+          display: inline-block;
+        }
+
+        /* Col 3 Buttons - Side-by-side */
+        .footer-buttons {
+          display: flex;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+
+        .footer-btn-primary {
+          background-color: #1a2c42 !important;
+          border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          color: #fff !important;
+          border-radius: 8px !important;
+          padding: 10px 16px !important;
+          font-weight: 700 !important;
+          font-size: 0.82rem !important;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          flex: 1;
+          justify-content: center;
+          transition: all 0.2s ease;
+        }
+
+        .footer-btn-primary:hover {
+          background-color: #24354c !important;
+        }
+
+        .footer-btn-secondary {
+          background: linear-gradient(135deg, #4299e1, #2b6cb0) !important;
+          color: #fff !important;
+          border-radius: 8px !important;
+          padding: 10px 16px !important;
+          font-weight: 700 !important;
+          font-size: 0.82rem !important;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          flex: 1;
+          justify-content: center;
+          transition: all 0.2s ease;
+          border: none !important;
+        }
+
+        .footer-btn-secondary:hover {
+          opacity: 0.95;
+        }
+
+        /* Social circles */
+        .footer-social {
+          display: flex;
+          gap: 12px;
+          margin-bottom: 28px;
+        }
+
+        .footer-social-link {
+          width: 36px;
+          height: 36px;
+          background-color: #1a2c42;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          transition: all 0.2s ease;
+          font-size: 0.9rem;
+        }
+
+        .footer-social-link:hover {
+          background-color: #4299e1;
+        }
+
+        /* Legal Links */
+        .footer-legal {
+          display: flex;
+          gap: 12px;
+          font-size: 0.78rem;
+          color: #64748b;
+        }
+
+        .footer-legal-link {
+          color: #64748b;
+          transition: color 0.2s ease;
+        }
+
+        .footer-legal-link:hover {
+          color: #4299e1;
+        }
+
+        .footer-legal-separator {
+          margin: 0 4px;
+        }
+
+        /* Copyright */
+        .footer-copyright {
+          text-align: left !important;
+          font-size: 0.78rem;
+          color: #64748b;
+          margin-top: 24px;
+        }
+      `}</style>
     </footer>
   );
 }

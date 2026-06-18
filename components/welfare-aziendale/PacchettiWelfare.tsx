@@ -180,7 +180,9 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
         <div className="pacchetti-grid" style={{ 
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '2.5rem'
+          gap: '1.5rem',
+          maxWidth: '1080px',
+          margin: '0 auto'
         }}>
           {pacchetti.map((pacchetto, index) => (
             <div
@@ -195,7 +197,7 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
-                padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+                padding: '2rem 1.75rem',
                 background: pacchetto.bgClass === 'gradient' 
                   ? 'linear-gradient(to bottom, #2c5282, #4299e1)' 
                   : '#ffffff',
@@ -241,26 +243,11 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
                 </div>
               )}
 
-              {/* Icona/Immagine pacchetto (opzionale, da WordPress) */}
-              {pacchetto.image && (
-                <img
-                  src={pacchetto.image}
-                  alt={pacchetto.name}
-                  style={{
-                    width: '64px',
-                    height: '64px',
-                    objectFit: 'contain',
-                    marginBottom: '1.5rem',
-                    marginTop: pacchetto.isPopular ? '1rem' : '0',
-                  }}
-                />
-              )}
-
               {/* Header Card */}
-              <div style={{ marginBottom: '2.5rem', marginTop: pacchetto.isPopular ? '1rem' : '0' }}>
+              <div style={{ marginBottom: '1.5rem', marginTop: pacchetto.isPopular ? '1rem' : '0' }}>
                 <h3 style={{ 
                   marginBottom: '0.5rem',
-                  fontSize: 'clamp(1.5rem, 4vw, 1.875rem)',
+                  fontSize: 'clamp(1.35rem, 3.5vw, 1.6rem)',
                   fontWeight: '700',
                   color: pacchetto.bgClass === 'gradient' ? '#ffffff' : '#2c5282'
                 }}>
@@ -268,7 +255,7 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
                 </h3>
                 <p style={{ 
                   fontWeight: '500',
-                  fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
+                  fontSize: 'clamp(0.8rem, 2.5vw, 0.95rem)',
                   color: pacchetto.bgClass === 'gradient' ? 'rgba(255,255,255,0.9)' : '#6b7280'
                 }}>
                   {pacchetto.subtitle}
@@ -278,18 +265,18 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
               {/* Lista Caratteristiche */}
               <ul style={{ 
                 flexGrow: 1,
-                marginBottom: '2.5rem'
+                marginBottom: '2rem'
               }}>
                 {pacchetto.features.map((feature, idx) => (
                   <li 
                     key={idx}
                     style={{ 
-                      marginBottom: idx < pacchetto.features.length - 1 ? '1rem' : '0',
+                      marginBottom: idx < pacchetto.features.length - 1 ? '0.75rem' : '0',
                       color: pacchetto.bgClass === 'gradient' 
                         ? feature.included ? '#ffffff' : 'rgba(255,255,255,0.4)'
                         : feature.included ? '#374151' : '#9ca3af',
                       opacity: feature.included ? 1 : 0.5,
-                      fontSize: 'clamp(0.9rem, 2.5vw, 1rem)'
+                      fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)'
                     }}
                   >
                     • {feature.text}

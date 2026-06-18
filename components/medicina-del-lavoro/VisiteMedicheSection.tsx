@@ -93,14 +93,13 @@ export default function VisiteMedicheSection({
           </div>
         </div>
 
-        {/* Tab Buttons - Griglia su mobile, orizzontale su desktop */}
+        {/* Tab Buttons - spaced control */}
         <div className="visite-tabs-grid" style={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '0',
-          borderRadius: '0.5rem',
-          overflow: 'hidden',
-          marginBottom: '2rem'
+          gap: '12px',
+          marginBottom: '2rem',
+          width: '100%'
         }}>
           {tabOrder.map((tab) => (
             <button
@@ -108,27 +107,29 @@ export default function VisiteMedicheSection({
               onClick={() => switchTab(tab)}
               className="visite-tab-btn"
               style={{
-                padding: '0.75rem 1.25rem',
+                padding: '12px 20px',
                 fontWeight: '700',
                 textTransform: 'uppercase',
-                borderRadius: '0',
-                transition: 'all 0.3s ease',
+                borderRadius: '8px',
+                transition: 'all 0.2s ease',
                 border: 'none',
                 outline: 'none',
                 cursor: 'pointer',
-                backgroundColor: activeTab === tab ? '#1a3a6b' : '#e8eaf0',
-                color: activeTab === tab ? '#ffffff' : '#374151',
+                backgroundColor: activeTab === tab ? '#2c5282' : '#edf2f7',
+                color: activeTab === tab ? '#ffffff' : '#475569',
                 flex: '1 1 auto',
-                minWidth: 'fit-content'
+                minWidth: 'fit-content',
+                fontSize: '0.82rem',
+                letterSpacing: '0.5px'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== tab) {
-                  e.currentTarget.style.backgroundColor = '#dcdfe9';
+                  e.currentTarget.style.backgroundColor = '#e2e8f0';
                 }
               }}
               onMouseLeave={(e) => {
                 if (activeTab !== tab) {
-                  e.currentTarget.style.backgroundColor = '#e8eaf0';
+                  e.currentTarget.style.backgroundColor = '#edf2f7';
                 }
               }}
             >
@@ -438,60 +439,6 @@ export default function VisiteMedicheSection({
           </div>
         )}
 
-        {/* Navigation - Desktop style su desktop, mobile style su mobile */}
-        <div className="visite-navigation" style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
-          maxWidth: '896px', 
-          margin: '2rem auto 0'
-        }}>
-          <button 
-            onClick={prevTab} 
-            className="visite-nav-btn prev"
-            style={{
-              display: 'flex',
-              gap: '0.5rem',
-              alignItems: 'center',
-              padding: '0.75rem 1.25rem',
-              fontWeight: '500',
-              borderRadius: '0.5rem',
-              border: 'none',
-              cursor: currentTabIndex === 0 ? 'not-allowed' : 'pointer',
-              backgroundColor: currentTabIndex === 0 ? '#e5e7eb' : '#d1d5db',
-              color: currentTabIndex === 0 ? '#9ca3af' : '#374151',
-              opacity: currentTabIndex === 0 ? 0.5 : 1
-            }}
-            disabled={currentTabIndex === 0}
-          >
-            <span>Precedente</span>
-          </button>
-          
-          <div style={{ textAlign: 'center' }}>
-            <span style={{ fontWeight: '700', color: '#2c5282' }}>{currentTabIndex + 1}</span>
-            <span style={{ color: '#9ca3af' }}> / {tabOrder.length}</span>
-          </div>
-          
-          <button 
-            onClick={nextTab} 
-            className="visite-nav-btn next"
-            style={{
-              display: 'flex',
-              gap: '0.5rem',
-              alignItems: 'center',
-              padding: '0.75rem 1.25rem',
-              fontWeight: '500',
-              borderRadius: '0.5rem',
-              border: 'none',
-              cursor: currentTabIndex === tabOrder.length - 1 ? 'not-allowed' : 'pointer',
-              backgroundColor: currentTabIndex === tabOrder.length - 1 ? '#10b981' : '#2c5282',
-              color: '#ffffff'
-            }}
-            disabled={currentTabIndex === tabOrder.length - 1}
-          >
-            <span>{currentTabIndex === tabOrder.length - 1 ? 'Completato' : 'Successivo'}</span>
-          </button>
-        </div>
       </div>
 
       {/* Stili responsive */}
@@ -507,14 +454,15 @@ export default function VisiteMedicheSection({
           .visite-tabs-grid {
             display: grid !important;
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 0 !important;
+            gap: 8px !important;
           }
           
           .visite-tab-btn {
             width: 100% !important;
             text-align: center !important;
             padding: 0.75rem 0.5rem !important;
-            font-size: 0.9rem !important;
+            font-size: 0.8rem !important;
+            border-radius: 6px !important;
           }
           
           .visite-grid-3 {

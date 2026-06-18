@@ -254,10 +254,9 @@ export default function HeroUnitaMobili({
               aria-label="Scorri verso il basso"
             >
               <span>Scopri di più</span>
-              <i className="fas fa-chevron-down" style={{
-                fontSize: '1.5rem',
-                animation: 'bounceArrow 2s ease-in-out infinite'
-              }} />
+              <div className="scroll-mouse">
+                <span className="scroll-wheel" />
+              </div>
             </button>
           </div>
         </div>
@@ -265,18 +264,50 @@ export default function HeroUnitaMobili({
 
       {/* Animazione keyframes */}
       <style>{`
-        @keyframes bounceArrow {
-          0%,100% { transform: translateY(0); }
-          50% { transform: translateY(8px); }
+        .scroll-mouse {
+          width: 22px;
+          height: 36px;
+          border: 2px solid rgba(255, 255, 255, 0.8);
+          border-radius: 12px;
+          position: relative;
+          margin-top: 0.5rem;
+          transition: all 0.3s ease;
+        }
+
+        .scroll-wheel {
+          display: block;
+          width: 4px;
+          height: 8px;
+          background: #ffffff;
+          border-radius: 2px;
+          position: absolute;
+          left: 50%;
+          top: 6px;
+          transform: translateX(-50%);
+          animation: scrollWheel 1.8s ease-in-out infinite;
+        }
+
+        @keyframes scrollWheel {
+          0% {
+            transform: translate(-50%, 0);
+            opacity: 0;
+          }
+          15% {
+            opacity: 1;
+          }
+          50% {
+            transform: translate(-50%, 8px);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, 14px);
+            opacity: 0;
+          }
         }
         
         @media (max-width: 480px) {
           button span {
             display: none;
-          }
-          
-          .fas.fa-chevron-down {
-            font-size: 2rem !important;
           }
         }
       `}</style>

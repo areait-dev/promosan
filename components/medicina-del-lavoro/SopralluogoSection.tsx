@@ -3,15 +3,23 @@ export default function SopralluogoSection() {
   return (
     <section className="section section-white" id="sopralluogo">
       <div className="container">
-        
+
         {/* Header con titolo e badge */}
         <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
-          <h2 className="sopralluogo-title">SOPRALLUOGO AZIENDALE</h2>
-          <span className="norm-badge px-5 py-2.5 text-sm font-bold rounded-full" style={{
-            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+          <h2 className="sopralluogo-title" style={{
+            fontSize: 'clamp(1.5rem, 4vw, 2.2rem)',
+            fontWeight: 800,
+            color: 'var(--color-dark)'
+          }}>SOPRALLUOGO AZIENDALE</h2>
+          <span className="norm-badge" style={{
+            background: '#204c84',
             color: 'var(--color-white)',
-            border: '2px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: 'var(--border-radius-full)'
+            borderRadius: '50px',
+            fontSize: '11px',
+            fontWeight: '700',
+            padding: '6px 16px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px'
           }}>
             Art. 25 D.Lgs. 81/08
           </span>
@@ -25,51 +33,37 @@ export default function SopralluogoSection() {
           width: '100%',
           marginTop: '1.5rem'
         }}>
-          
+
           {/* Obbligo fondamentale - Box SINISTRA */}
           <div className="norm-box" style={{
-            background: 'linear-gradient(145deg, #ffffff, #f8fafc)',
-            border: '2px solid rgba(44, 82, 130, 0.15)',
-            borderRadius: 'var(--border-radius-xl)',
-            padding: '2.5rem',
-            transition: 'all 0.4s ease',
-            position: 'relative',
-            overflow: 'hidden',
-            height: '100%'
+            background: 'var(--color-white)',
+            border: '1px solid #e2e8f0',
+            borderRadius: '16px',
+            padding: '2.2rem',
+            transition: 'all 0.3s ease',
+            height: '100%',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
           }}>
-            <div className="norm-icon-box mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full" style={{
-              background: 'linear-gradient(135deg, rgba(44, 82, 130, 0.1), rgba(66, 153, 225, 0.1))',
-              border: '2px solid rgba(44, 82, 130, 0.2)',
-              transition: 'all 0.3s ease'
-            }}>
-              <i className="norm-icon fas fa-building text-2xl" style={{
-                color: 'var(--color-primary)',
-                transition: 'all 0.3s ease'
-              }}></i>
-            </div>
-            
-            <h3 className="norm-subtitle text-xl mb-4" style={{
+            <h3 className="norm-subtitle text-xl" style={{
               color: 'var(--color-primary)',
               fontWeight: '700',
-              marginBottom: '1.5rem',
-              position: 'relative',
-              paddingLeft: '15px'
+              marginBottom: '1.2rem'
             }}>
               OBBLIGO FONDAMENTALE
             </h3>
-            
+
             <p className="text-gray-700" style={{
-              color: 'var(--color-gray-700)',
-              lineHeight: '1.8',
-              marginBottom: '1rem',
-              fontSize: '1rem'
+              color: '#64748b',
+              lineHeight: '1.7',
+              marginBottom: '1.2rem',
+              fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)'
             }}>
-              Il sopralluogo negli ambienti di lavoro è un obbligo fondamentale del Medico Competente stabilito dall'<strong className="text-primary">art. 25 comma 1 lettera l) del D.Lgs. 81/08</strong>.
+              Il sopralluogo negli ambienti di lavoro è un obbligo fondamentale del Medico Competente stabilito dall'<strong style={{ color: 'var(--color-primary)', fontWeight: '700' }}>art. 25 comma 1 lettera l) del D.Lgs. 81/08</strong>.
             </p>
             <p className="text-gray-700" style={{
-              color: 'var(--color-gray-700)',
-              lineHeight: '1.8',
-              fontSize: '1rem',
+              color: '#64748b',
+              lineHeight: '1.7',
+              fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
               margin: 0
             }}>
               Questa attività permette di conoscere direttamente i luoghi di lavoro, verificare le condizioni ambientali e valutare l'esposizione dei lavoratori ai rischi professionali.
@@ -78,41 +72,25 @@ export default function SopralluogoSection() {
 
           {/* Garanzia - Box DESTRA */}
           <div className="garanzia-box" style={{
-            background: 'linear-gradient(135deg, rgba(44, 82, 130, 0.05), rgba(66, 153, 225, 0.03))',
-            border: '2px solid rgba(44, 82, 130, 0.1)',
-            borderRadius: 'var(--border-radius-xl)',
-            padding: '2.5rem',
-            transition: 'all 0.4s ease',
-            position: 'relative',
-            overflow: 'hidden',
+            background: '#f4f7fa',
+            border: '1px solid #e4ecf5',
+            borderRadius: '16px',
+            padding: '2.2rem',
+            transition: 'all 0.3s ease',
             height: '100%'
           }}>
-            <div className="garanzia-icon-box mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full" style={{
-              background: 'linear-gradient(135deg, rgba(44, 82, 130, 0.1), rgba(66, 153, 225, 0.1))',
-              border: '2px solid rgba(44, 82, 130, 0.2)',
-              borderRadius: '50%',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(44, 82, 130, 0.2)'
-            }}>
-              <i className="fas fa-shield-alt text-2xl" style={{
-                color: 'var(--color-primary)',
-                transition: 'all 0.3s ease'
-              }}></i>
-            </div>
-            
-            <h3 className="garanzia-subtitle text-xl mb-4" style={{
+            <h3 className="garanzia-subtitle text-xl" style={{
               color: 'var(--color-primary)',
               fontWeight: '700',
-              marginBottom: '1.5rem',
-              position: 'relative'
+              marginBottom: '1.2rem'
             }}>
               GARANZIA PROMOSAN
             </h3>
-            
+
             <p className="text-gray-700" style={{
-              color: 'var(--color-gray-700)',
-              lineHeight: '1.8',
-              fontSize: '1rem',
+              color: '#475569',
+              lineHeight: '1.7',
+              fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
               margin: 0
             }}>
               PromoSan garantisce lo svolgimento puntuale dei sopralluoghi aziendali in conformità agli obblighi normativi, fornendo alle aziende un supporto qualificato nella verifica delle condizioni di salute e sicurezza degli ambienti di lavoro.

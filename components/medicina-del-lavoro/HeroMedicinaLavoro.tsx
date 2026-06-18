@@ -57,14 +57,16 @@ export default function HeroMedicinaLavoro({
             {ctaLabel}
           </Link>
 
-          {/* Scroll Indicator - Solo la freccia */}
+          {/* Scroll Indicator */}
           <div className="scroll-indicator">
             <button 
               onClick={scrollToContent}
               className="scroll-link"
               aria-label="Scorri verso il basso"
             >
-              <i className="fas fa-chevron-down scroll-arrow" />
+              <div className="scroll-mouse">
+                <span className="scroll-wheel" />
+              </div>
             </button>
           </div>
         </div>
@@ -98,19 +100,44 @@ export default function HeroMedicinaLavoro({
           transform: translateY(-2px);
         }
 
-        .scroll-arrow {
-          font-size: 1.5rem;
-          animation: bounceArrow 2s ease-in-out infinite;
+        .scroll-mouse {
+          width: 22px;
+          height: 36px;
+          border: 2px solid rgba(255, 255, 255, 0.8);
+          border-radius: 12px;
+          position: relative;
+          margin-top: 0.5rem;
+          transition: all 0.3s ease;
         }
 
-        @keyframes bounceArrow {
-          0%,100% { transform: translateY(0); }
-          50% { transform: translateY(8px); }
+        .scroll-wheel {
+          display: block;
+          width: 4px;
+          height: 8px;
+          background: #ffffff;
+          border-radius: 2px;
+          position: absolute;
+          left: 50%;
+          top: 6px;
+          transform: translateX(-50%);
+          animation: scrollWheel 1.8s ease-in-out infinite;
         }
 
-        @media (max-width: 480px) {
-          .scroll-arrow {
-            font-size: 2rem;
+        @keyframes scrollWheel {
+          0% {
+            transform: translate(-50%, 0);
+            opacity: 0;
+          }
+          15% {
+            opacity: 1;
+          }
+          50% {
+            transform: translate(-50%, 8px);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, 14px);
+            opacity: 0;
           }
         }
 

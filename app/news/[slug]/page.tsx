@@ -2,7 +2,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
-import Link from 'next/link';
 import Navbar from '../../../components/Navbar/Navbar';
 import Footer from '../../../components/Footer/Footer';
 import News1Hero from '../../../components/news1/News1Hero';
@@ -123,9 +122,6 @@ export default async function NewsSinglePage({ params }: PageProps) {
 
   const view = toView(news);
 
-  // toView normalizza già `image` a stringa URL.
-  const newsForHero = view;
-
   const newsForContent = {
     content: news.content,
     tags: news.tags ?? [],
@@ -140,27 +136,23 @@ export default async function NewsSinglePage({ params }: PageProps) {
     <>
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
-      <main className="container px-4 py-8 mx-auto mt-4">
-        <div className="mx-auto max-w-6xl">
-          {/* Breadcrumb */}
-          <nav className="mb-8 text-sm text-gray-600">
-            <ol className="flex flex-wrap items-center space-x-2">
-              <li>
-                <Link href="/" className="transition hover:text-primary">Home</Link>
-              </li>
-              <li><i className="text-xs fas fa-chevron-right"></i></li>
-              <li>
-                <Link href="/news" className="transition hover:text-primary">News</Link>
-              </li>
-              <li><i className="text-xs fas fa-chevron-right"></i></li>
-              <li className="font-medium text-gray-900 line-clamp-1">{news.title}</li>
-            </ol>
-          </nav>
+      <main style={{ overflowX: 'hidden' }}>
+        {/* Banner full-width senza container */}
+        <News1Hero news={view} />
 
-          <News1Hero news={newsForHero} />
-          <News1Content news={newsForContent} />
-          {related.length > 0 && <News1Related relatedNews={related} />}
+        {/* Contenuto articolo con max-width interno */}
+        <div className="container px-4 py-12 mx-auto">
+          <div className="mx-auto max-w-5xl">
+            <News1Content news={newsForContent} />
+          </div>
         </div>
+
+        {/* Correlati con padding laterale */}
+        {related.length > 0 && (
+          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.25rem 5rem' }}>
+            <News1Related relatedNews={related} />
+          </div>
+        )}
       </main>
 
       <BackToTop />

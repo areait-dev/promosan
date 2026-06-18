@@ -11,9 +11,10 @@ export interface OrariContattiProps {
 
 export default function OrariContatti({
   telefono = '+39 0932-862613',
-  email = 'info@promosan.it',
+  email = 'info@promosan.eu',
   orari = 'Lun-Ven: 9:00-18:00',
 }: OrariContattiProps = {}) {
+  const displayEmail = email || 'info@promosan.eu';
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,15 +37,14 @@ export default function OrariContatti({
       style={{
         background: '#ffffff',
         borderRadius: '1rem',
-        padding: '1.5rem',
-        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+        padding: '2rem 1.5rem',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+        border: '1px solid #e2e8f0',
         width: '100%',
         opacity: 1,
         transform: 'translateY(0)',
         transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
-        backgroundColor: '#ffffff',
         color: '#000000',
-        minHeight: 'auto',
         height:'fit-content',
         marginTop:0
       }}
@@ -52,29 +52,26 @@ export default function OrariContatti({
       <style>{`
         @media (max-width: 768px) {
           .contatti-card {
-            padding: 1.25rem !important;
+            padding: 1.5rem !important;
           }
           .contatti-info-box {
-            flex-direction: column !important;
-            gap: 0.75rem !important;
-          }
-          .contatti-info-content {
-            width: 100% !important;
+            align-items: center !important;
           }
         }
       `}</style>
 
       <h3 style={{
-        fontSize: '1.25rem',
-        fontWeight: '700',
-        color: '#2c5282',
-        marginBottom: '1.5rem',
+        fontSize: '1.1rem',
+        fontWeight: '800',
+        color: '#1a365d',
+        marginBottom: '1.75rem',
         display: 'flex',
         alignItems: 'center',
-        borderBottom: '2px solid #2c5282',
-        paddingBottom: '0.75rem'
+        gap: '0.75rem',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px'
       }}>
-        <i className="fas fa-clock" style={{ marginRight: '0.75rem', color: '#2c5282' }}></i>
+        <i className="fas fa-clock" style={{ color: '#204c84', fontSize: '1.2rem' }}></i>
         Orari e contatti
       </h3>
       
@@ -82,57 +79,55 @@ export default function OrariContatti({
       <div className="contatti-info-box" style={{
         display: 'flex',
         gap: '1rem',
-        marginBottom: '1.5rem',
-        padding: '1rem',
-        background: '#f0f0f0',
-        borderRadius: '0.75rem',
+        marginBottom: '2rem',
+        alignItems: 'flex-start'
       }}>
         <div style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: '2.5rem',
-          height: '2.5rem',
-          background: '#2c5282',
-          borderRadius: '0.5rem',
-          color: '#ffffff',
-          fontSize: '1rem',
+          width: '3rem',
+          height: '3rem',
+          background: '#eff6ff',
+          borderRadius: '50%',
+          color: '#2b578c',
+          fontSize: '1.1rem',
           flexShrink: 0
         }}>
           <i className="fas fa-phone-alt"></i>
         </div>
         <div className="contatti-info-content">
           <h4 style={{
-            fontSize: '0.875rem',
+            fontSize: '0.85rem',
             fontWeight: '600',
-            color: '#000000',
-            marginBottom: '0.25rem',
-            textTransform: 'uppercase'
+            color: '#64748b',
+            marginBottom: '0.25rem'
           }}>
             Chiamaci
           </h4>
           <a
-            href={`tel:${telefono.replace(/[\s-]/g, '')}`}
+            href="tel:+390932862613"
             style={{
               display: 'block',
-              fontSize: '1rem',
-              fontWeight: '600',
-              color: '#2c5282',
+              fontSize: '1.15rem',
+              fontWeight: '700',
+              color: '#1e293b',
               textDecoration: 'none',
-              marginBottom: '0.5rem'
+              marginBottom: '0.4rem'
             }}
           >
-            {telefono}
+            +39 0932-862613
           </a>
           <p style={{
             display: 'flex',
             alignItems: 'center',
-            fontSize: '0.875rem',
-            color: '#333333',
-            margin: 0
+            fontSize: '0.8rem',
+            color: '#64748b',
+            margin: 0,
+            gap: '0.35rem'
           }}>
-            <i className="fas fa-clock" style={{ marginRight: '0.5rem', fontSize: '0.75rem', color: '#2c5282' }}></i>
-            {orari}
+            <i className="far fa-clock" style={{ fontSize: '0.85rem', color: '#64748b' }}></i>
+            Lun-Ven: 9:00-18:00
           </p>
         </div>
       </div>
@@ -141,44 +136,41 @@ export default function OrariContatti({
       <div className="contatti-info-box" style={{
         display: 'flex',
         gap: '1rem',
-        padding: '1rem',
-        background: '#f0f0f0',
-        borderRadius: '0.75rem',
+        alignItems: 'flex-start'
       }}>
         <div style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: '2.5rem',
-          height: '2.5rem',
-          background: '#10b981',
-          borderRadius: '0.5rem',
-          color: '#ffffff',
-          fontSize: '1rem',
+          width: '3rem',
+          height: '3rem',
+          background: '#ecfdf5',
+          borderRadius: '50%',
+          color: '#10b981',
+          fontSize: '1.1rem',
           flexShrink: 0
         }}>
           <i className="fas fa-envelope"></i>
         </div>
         <div className="contatti-info-content">
           <h4 style={{
-            fontSize: '0.875rem',
+            fontSize: '0.85rem',
             fontWeight: '600',
-            color: '#000000',
-            marginBottom: '0.25rem',
-            textTransform: 'uppercase'
+            color: '#64748b',
+            marginBottom: '0.25rem'
           }}>
             Scrivici
           </h4>
           <a
-            href={`mailto:${email}`}
+            href={`mailto:${displayEmail}`}
             style={{
-              fontSize: '1rem',
-              fontWeight: '600',
-              color: '#2c5282',
+              fontSize: '1.15rem',
+              fontWeight: '700',
+              color: '#1e293b',
               textDecoration: 'none'
             }}
           >
-            {email}
+            {displayEmail}
           </a>
         </div>
       </div>

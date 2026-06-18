@@ -2,6 +2,7 @@
 import { Metadata } from 'next';
 import HeroAltriServizi from '../../components/altri-servizi/HeroAltriServizi';
 import ServiziInSviluppo from '../../components/altri-servizi/ServiziInSviluppo';
+import BannerInfo from '../../components/altri-servizi/BannerInfo';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { draftMode } from 'next/headers';
@@ -79,6 +80,7 @@ export default async function AltriServiziPage() {
           intro={altri?.servizi_sviluppo?.intro || undefined}
           focusItems={focusItems.length ? focusItems : undefined}
         />
+      <BannerInfo />
       <Footer options={options} />
     </main>
   );

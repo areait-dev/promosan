@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 
 export interface MissionVisionProps {
   missionText?: string; // HTML
   visionText?: string; // HTML
-  image?: string; // URL immagine decorativa opzionale (da WordPress)
 }
 
 const DEFAULT_MISSION_TEXT =
@@ -17,24 +15,12 @@ const DEFAULT_VISION_TEXT =
 export default function MissionVision({
   missionText = DEFAULT_MISSION_TEXT,
   visionText = DEFAULT_VISION_TEXT,
-  image,
 }: MissionVisionProps = {}) {
   const [activeTab, setActiveTab] = useState('mission');
 
   return (
     <section className="section">
       <div className="container">
-        {image && (
-          <div style={{ marginBottom: 'var(--space-xl)', textAlign: 'center' }}>
-            <Image
-              src={image}
-              alt="Mission e Vision PromoSan"
-              width={1000}
-              height={500}
-              style={{ width: '100%', height: 'auto', borderRadius: 'var(--border-radius-lg)' }}
-            />
-          </div>
-        )}
         {/* Switch buttons */}
         <div className="tabs-wrapper">
           <div className="tabs-container">
@@ -51,27 +37,25 @@ export default function MissionVision({
               VISION
             </button>
           </div>
-        </div>
-
-        {/* Content sections */}
+        </div>        {/* Content sections */}
         <div className="tabs-content">
           {/* Mission Section */}
           {activeTab === 'mission' && (
             <div className="tab-panel active">
               <div className="section-header">
-                <h2 className="section-title">MISSION</h2>
+                <h2 className="tab-title">MISSION</h2>
               </div>
-              
+
               <p
                 className="section-text mb-5"
                 dangerouslySetInnerHTML={{ __html: missionText }}
               />
-              
+
               <div>
-                <h4>IL NOSTRO IMPEGNO È GARANTIRE:</h4>
-                
+                <h3 className="tab-subtitle">IL NOSTRO IMPEGNO È GARANTIRE:</h3>
+
                 {/* Griglia responsive per Mission */}
-                <div className="responsive-grid responsive-grid-cols-2">
+                <div className="responsive-grid responsive-grid-cols-4">
                   <div className="card">
                     <div className="card-body">
                       <h4 className="card-title">COMPETENZA PROFESSIONALE</h4>
@@ -97,13 +81,6 @@ export default function MissionVision({
                     </div>
                   </div>
                 </div>
-                
-                {/* Citazione sotto le card */}
-                <div style={{ marginTop: '30px', textAlign: 'center', fontStyle: 'italic', padding: '0 15px' }}>
-                  <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: '#555' }}>
-                    Operiamo in piena conformità con il D.lgs.81/2008, seguendo ogni aspetto della Sorveglianza Sanitaria con precisione, professionalità e attenzione alla persona
-                  </p>
-                </div>
               </div>
             </div>
           )}
@@ -112,24 +89,24 @@ export default function MissionVision({
           {activeTab === 'vision' && (
             <div className="tab-panel active">
               <div className="section-header">
-                <h2 className="section-title">VISION</h2>
+                <h2 className="tab-title">VISION</h2>
               </div>
-              
+
               <p
                 className="section-text mb-5"
                 dangerouslySetInnerHTML={{ __html: visionText }}
               />
 
-              <h3 className="section-subtitle">I NOSTRI OBIETTIVI:</h3>
-              
+              <h3 className="tab-subtitle">I NOSTRI OBIETTIVI:</h3>
+
               {/* Griglia responsive per Vision */}
               <div className="responsive-grid responsive-grid-cols-3">
                 <div className="card">
                   <div className="card-body">
                     <h4 className="card-title">EFFICACIA ED EFFICIENZA</h4>
                     <p className="card-text">
-                      Garantire la qualità del servizio attraverso risorse professionali 
-                      qualificate e tecnologie all'avanguardia, ottimizzando ogni processo 
+                      Garantire la qualità del servizio attraverso risorse professionali
+                      qualificate e tecnologie all'avanguardia, ottimizzando ogni processo
                       aziendale.
                     </p>
                   </div>
@@ -138,8 +115,8 @@ export default function MissionVision({
                   <div className="card-body">
                     <h4 className="card-title">ATTENZIONE ALL'UTENZA</h4>
                     <p className="card-text">
-                      Soddisfare le esigenze delle aziende e dei lavoratori con servizi 
-                      rapidi, accessibili e di qualità, riducendo i tempi d'attesa e 
+                      Soddisfare le esigenze delle aziende e dei lavoratori con servizi
+                      rapidi, accessibili e di qualità, riducendo i tempi d'attesa e
                       ottimizzando i costi senza compromettere l'eccellenza.
                     </p>
                   </div>
@@ -148,7 +125,7 @@ export default function MissionVision({
                   <div className="card-body">
                     <h4 className="card-title">INNOVAZIONE E MIGLIORAMENTO CONTINUO</h4>
                     <p className="card-text">
-                      Investire costantemente in formazione, strumenti e metodologie per 
+                      Investire costantemente in formazione, strumenti e metodologie per
                       offrire soluzioni sempre più efficaci e personalizzate.
                     </p>
                   </div>
@@ -161,6 +138,66 @@ export default function MissionVision({
 
       {/* Stili aggiuntivi per garantire il corretto comportamento responsive */}
       <style jsx>{`
+        .section {
+          background-color: #f8fafc;
+          padding: var(--space-xl) 0;
+        }
+
+        .tabs-wrapper {
+          display: flex;
+          justify-content: center;
+          margin-bottom: var(--space-xl);
+        }
+
+        .tabs-container {
+          background-color: #e8eaf0;
+          border-radius: 6px;
+          padding: 4px;
+          display: inline-flex;
+          gap: 4px;
+        }
+
+        .tab-btn {
+          padding: 8px 24px;
+          font-weight: 700;
+          font-size: 14px;
+          border: none;
+          outline: none;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          background-color: transparent;
+          color: #718096;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+
+        .tab-btn.active {
+          background-color: #2c5282;
+          color: #ffffff;
+        }
+
+        .tab-btn:hover:not(.active) {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-title {
+          font-size: 32px;
+          font-weight: 700;
+          color: var(--color-primary);
+          margin-bottom: var(--space-md);
+          text-transform: uppercase;
+        }
+
+        .tab-subtitle {
+          font-size: 18px;
+          font-weight: 700;
+          color: var(--color-primary);
+          margin-top: var(--space-lg);
+          margin-bottom: var(--space-md);
+          text-transform: uppercase;
+        }
+
         .responsive-grid {
           display: grid;
           gap: var(--space-lg);
@@ -169,8 +206,14 @@ export default function MissionVision({
         }
 
         @media (min-width: 640px) {
-          .responsive-grid.responsive-grid-cols-2 {
+          .responsive-grid.responsive-grid-cols-4 {
             grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .responsive-grid.responsive-grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
           }
         }
 
@@ -184,6 +227,10 @@ export default function MissionVision({
         .card {
           width: 100%;
           margin-bottom: var(--space-md);
+          border-radius: 12px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          background-color: var(--color-white);
         }
 
         @media (min-width: 640px) {
@@ -198,18 +245,22 @@ export default function MissionVision({
           line-height: 1.6;
         }
 
-        .section-subtitle {
-          font-size: var(--text-lg);
-          margin-top: var(--space-lg);
-          margin-bottom: var(--space-md);
+        .card-title {
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--color-primary);
+          margin-bottom: 8px;
+          position: relative;
         }
 
-        .card-title {
-          font-size: var(--text-base);
+        .card-title::after {
+          display: none !important;
         }
 
         .card-text {
-          font-size: var(--text-sm);
+          font-size: 14px;
+          color: var(--color-gray-600);
+          line-height: 1.6;
         }
       `}</style>
     </section>

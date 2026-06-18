@@ -92,7 +92,9 @@ export default function Hero(props: HeroProps = {}) {
         <div className="scroll-indicator">
           <a href="#servizi" className="scroll-link" aria-label="Scorri ai servizi">
             <span>Scorri ai nostri servizi</span>
-            <i className="fas fa-chevron-down scroll-arrow" />
+            <div className="scroll-mouse">
+              <span className="scroll-wheel" />
+            </div>
           </a>
         </div>
       </div>
@@ -146,11 +148,11 @@ export default function Hero(props: HeroProps = {}) {
         }
 
         .hero-logo-wrapper {
-          margin-bottom: var(--space-xl);
+          margin-bottom: var(--space-md);
         }
 
         .hero-logo {
-          max-height: 90px;
+          max-height: 70px;
           width: auto;
           filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5)) drop-shadow(0 2px 4px rgba(0,0,0,0.3)) brightness(1.3) contrast(1.1);
         }
@@ -167,8 +169,8 @@ export default function Hero(props: HeroProps = {}) {
         .hero-title-homepage {
           color: var(--color-white);
           text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-          margin-bottom: var(--space-xl);
-          font-size: clamp(1.8rem, 5vw, 2.65rem);
+          margin-bottom: var(--space-md);
+          font-size: clamp(1.8rem, 5vw, 2.55rem);
           font-weight: 800;
           line-height: 1.2;
           max-width: 900px;
@@ -181,8 +183,8 @@ export default function Hero(props: HeroProps = {}) {
           justify-content: center;
           flex-wrap: wrap;
           max-width: 1000px;
-          margin: 0 auto var(--space-xl);
-          padding: var(--space-lg) var(--space-xl);
+          margin: 0 auto var(--space-md);
+          padding: 6px var(--space-md);
           background: rgba(255,255,255,0.08);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
@@ -193,7 +195,7 @@ export default function Hero(props: HeroProps = {}) {
         }
 
         .trust-item {
-          padding: var(--space-sm) var(--space-lg);
+          padding: 4px var(--space-xs);
           color: var(--color-white);
           font-weight: 700;
           font-size: clamp(0.75rem, 2vw, 0.875rem);
@@ -206,13 +208,13 @@ export default function Hero(props: HeroProps = {}) {
 
         .trust-divider {
           width: 1px;
-          height: 36px;
+          height: 24px;
           background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
         }
 
         .hero-cta {
-          margin-top: var(--space-xl);
-          margin-bottom: var(--space-2xl);
+          margin-top: var(--space-md);
+          margin-bottom: var(--space-xl);
         }
 
         .btn {
@@ -220,10 +222,10 @@ export default function Hero(props: HeroProps = {}) {
           align-items: center;
           justify-content: center;
           gap: var(--space-xs);
-          padding: var(--space-md) var(--space-xl);
+          padding: 8px 20px;
           font-weight: 700;
           font-size: var(--text-base);
-          border-radius: var(--border-radius-btn);
+          border-radius: 8px;
           transition: var(--transition-base);
           cursor: pointer;
           border: 2px solid transparent;
@@ -252,8 +254,8 @@ export default function Hero(props: HeroProps = {}) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-top: var(--space-2xl);
-          padding-bottom: var(--space-lg);
+          margin-top: var(--space-lg);
+          padding-bottom: var(--space-sm);
           width: 100%;
         }
 
@@ -276,9 +278,27 @@ export default function Hero(props: HeroProps = {}) {
           transform: translateY(-2px);
         }
 
-        .scroll-arrow {
-          font-size: var(--text-xl);
-          animation: bounceArrow 2s ease-in-out infinite;
+        .scroll-mouse {
+          width: 22px;
+          height: 36px;
+          border: 2px solid rgba(255, 255, 255, 0.8);
+          border-radius: 12px;
+          position: relative;
+          margin-top: var(--space-xs);
+          transition: var(--transition-base);
+        }
+
+        .scroll-wheel {
+          display: block;
+          width: 4px;
+          height: 8px;
+          background: var(--color-white);
+          border-radius: 2px;
+          position: absolute;
+          left: 50%;
+          top: 6px;
+          transform: translateX(-50%);
+          animation: scrollWheel 1.8s ease-in-out infinite;
         }
 
         @keyframes logoFloat {
@@ -286,9 +306,22 @@ export default function Hero(props: HeroProps = {}) {
           50% { transform: translateY(-8px); }
         }
 
-        @keyframes bounceArrow {
-          0%,100% { transform: translateY(0); }
-          50% { transform: translateY(8px); }
+        @keyframes scrollWheel {
+          0% {
+            transform: translate(-50%, 0);
+            opacity: 0;
+          }
+          15% {
+            opacity: 1;
+          }
+          50% {
+            transform: translate(-50%, 8px);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, 14px);
+            opacity: 0;
+          }
         }
 
         /* Tablet */
@@ -300,18 +333,18 @@ export default function Hero(props: HeroProps = {}) {
 
           .trust-bar {
             flex-direction: column;
-            padding: var(--space-md);
-            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            gap: 4px;
           }
 
           .trust-divider {
             width: 80%;
             height: 1px;
-            margin: var(--space-xs) 0;
+            margin: 2px 0;
           }
 
           .trust-item {
-            padding: var(--space-xs) 0;
+            padding: 2px 0;
             font-size: 0.8rem;
           }
 
@@ -333,7 +366,7 @@ export default function Hero(props: HeroProps = {}) {
           }
 
           .trust-bar {
-            padding: var(--space-sm);
+            padding: var(--space-xs) var(--space-sm);
           }
 
           .trust-item {
@@ -354,8 +387,10 @@ export default function Hero(props: HeroProps = {}) {
             display: none;
           }
 
-          .scroll-arrow {
-            font-size: var(--text-2xl);
+          .scroll-mouse {
+            width: 24px;
+            height: 40px;
+            margin-top: 0;
           }
         }
 

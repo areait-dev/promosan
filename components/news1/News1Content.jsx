@@ -1,84 +1,197 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 const News1Content = ({ news }) => {
-  const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(124);
-
-  const handleLike = () => {
-    if (liked) {
-      setLikeCount(prev => prev - 1);
-    } else {
-      setLikeCount(prev => prev + 1);
-    }
-    setLiked(!liked);
-  };
-
   return (
-    <article className="overflow-hidden mb-12 bg-white rounded-2xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
-      <div className="p-8 md:p-12 lg:p-16">
-        <div className="max-w-none prose prose-lg lg:prose-xl">
-          {/* Barra interazioni social */}
-          <div className="flex flex-col justify-between items-center pb-6 mb-8 border-b border-gray-200 md:flex-row">
-            <div className="flex items-center mb-4 space-x-4 md:mb-0">
-              <button
-                onClick={handleLike}
-                className={`flex items-center px-4 py-2 space-x-2 rounded-lg transition-colors hover:text-primary hover:bg-blue-50 ${
-                  liked ? 'text-primary' : 'text-gray-700'
-                }`}
-              >
-                <i className={`text-xl ${liked ? 'fas' : 'far'} fa-thumbs-up`}></i>
-                <span className="font-medium">{likeCount}</span>
-              </button>
-              <button className="flex items-center px-4 py-2 space-x-2 text-gray-700 rounded-lg transition-colors hover:text-primary hover:bg-blue-50">
-                <i className="text-xl far fa-comment"></i>
-                <span className="font-medium">18</span>
-              </button>
-              <button className="flex items-center px-4 py-2 space-x-2 text-gray-700 rounded-lg transition-colors hover:text-primary hover:bg-blue-50">
-                <i className="text-xl far fa-share-square"></i>
-                <span className="font-medium">Condividi</span>
-              </button>
-            </div>
+    <>
+      <div className="news-content-wrapper">
+        {/* ── CONTENUTO HTML ─────────────────────────────────────── */}
+        <div
+          className="news-article-body"
+          dangerouslySetInnerHTML={{ __html: news.content }}
+        />
 
-            <div className="flex items-center space-x-3">
-              <span className="text-sm text-gray-600">Condividi:</span>
-              {['linkedin-in', 'twitter', 'facebook-f'].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="flex justify-center items-center w-10 h-10 bg-blue-100 rounded-full transition-colors text-primary hover:bg-primary hover:text-white"
-                >
-                  <i className={`fab fa-${social}`}></i>
-                </a>
+        {/* ── TAGS ───────────────────────────────────────────────── */}
+        {news.tags && news.tags.length > 0 && (
+          <div className="news-tags">
+            <span className="news-tags-label">Tag:</span>
+            <div className="news-tags-list">
+              {news.tags.map((tag) => (
+                <span key={tag} className="news-tag">
+                  #{tag}
+                </span>
               ))}
             </div>
           </div>
-
-          {/* Contenuto HTML */}
-          <div
-            className="news-content"
-            dangerouslySetInnerHTML={{ __html: news.content }}
-          />
-
-          {/* Tags */}
-          {news.tags && (
-            <div className="pt-8 mt-16 border-t border-gray-200">
-              <div className="flex flex-wrap gap-3">
-                {news.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-5 py-2 text-base font-medium bg-blue-100 rounded-full text-primary"
-                  >
-                    <i className="mr-2 fas fa-tag"></i> {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </div>
-    </article>
+
+      <style jsx>{`
+        /* ── WRAPPER ────────────────────────────────────────────── */
+        .news-content-wrapper {
+          max-width: 920px;
+          padding: 5rem 6rem;
+        }
+
+        @media (max-width: 992px) {
+          .news-content-wrapper {
+          }
+        }
+
+        @media (max-width: 576px) {
+          .news-content-wrapper {
+            padding: 1.5rem 1.25rem;
+          }
+        }
+
+        /* ── ARTICLE BODY ───────────────────────────────────────── */
+        .news-article-body {
+          font-family: 'Georgia', 'Times New Roman', serif;
+          font-size: 1.125rem;
+          line-height: 1.9;
+          color: #2d3748;
+        }
+
+        /* Headings */
+        .news-article-body :global(h2) {
+          font-family: 'Inter', system-ui, sans-serif;
+          font-size: 1.65rem;
+          font-weight: 700;
+          color: #1a202c;
+          margin: 3rem 0 1.25rem;
+          line-height: 1.35;
+          letter-spacing: -0.02em;
+        }
+
+        .news-article-body :global(h3) {
+          font-family: 'Inter', system-ui, sans-serif;
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: #2d3748;
+          margin: 2.5rem 0 1rem;
+          line-height: 1.4;
+        }
+
+        .news-article-body :global(p) {
+          margin-bottom: 1.75rem;
+        }
+
+        .news-article-body :global(a) {
+          color: var(--color-primary, #1a56db);
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          font-weight: 500;
+          transition: color 0.2s;
+        }
+
+        .news-article-body :global(a:hover) {
+          color: var(--color-secondary, #0e4db8);
+        }
+
+        /* Liste */
+        .news-article-body :global(ul),
+        .news-article-body :global(ol) {
+          padding-left: 2rem;
+          margin-bottom: 1.75rem;
+        }
+
+        .news-article-body :global(li) {
+          margin-bottom: 0.65rem;
+        }
+
+        /* Quote */
+        .news-article-body :global(blockquote) {
+          border-left: 4px solid var(--color-primary, #1a56db);
+          margin: 2.5rem 0;
+          padding: 1.25rem 2rem;
+          background: #f7fafc;
+          border-radius: 0 12px 12px 0;
+          font-style: italic;
+          color: #4a5568;
+          font-size: 1.2rem;
+          line-height: 1.8;
+        }
+
+        /* Immagini */
+        .news-article-body :global(img) {
+          max-width: 100%;
+          border-radius: 16px;
+          margin: 2.5rem auto;
+          display: block;
+        }
+
+        /* Strong */
+        .news-article-body :global(strong) {
+          font-weight: 700;
+          color: #1a202c;
+        }
+
+        /* Tabelle */
+        .news-article-body :global(table) {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 2.5rem 0;
+          font-size: 0.95rem;
+        }
+
+        .news-article-body :global(th) {
+          font-weight: 700;
+          padding: 0.85rem 1.15rem;
+          border: 1px solid #e2e8f0;
+          text-align: left;
+        }
+
+        .news-article-body :global(td) {
+          color: #4a5568;
+        }
+
+        .news-article-body :global(tr:nth-child(even) td) {
+          background: #fcfdfd;
+        }
+
+        /* ── TAGS ───────────────────────────────────────────────── */
+        .news-tags {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+          margin-top: 3.5rem;
+          padding-top: 2.5rem;
+          border-top: 1px solid #edf2f7;
+        }
+
+        .news-tags-label {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #718096;
+          padding-top: 0.35rem;
+          flex-shrink: 0;
+        }
+
+        .news-tags-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .news-tag {
+          display: inline-block;
+          padding: 0.35rem 0.85rem;
+          background: #edf2f7;
+          color: #4a5568;
+          border-radius: 999px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          transition: all 0.2s;
+        }
+
+        .news-tag:hover {
+          background: #e2e8f0;
+          color: #2d3748;
+        }
+      `}</style>
+    </>
   );
 };
 

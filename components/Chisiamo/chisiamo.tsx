@@ -29,18 +29,6 @@ export default function ChiSiamo({
               dangerouslySetInnerHTML={{ __html: text }}
             />
           </div>
-
-          {fotoTeam && (
-            <div className="section-content" style={{ marginTop: 'var(--space-xl)' }}>
-              <Image
-                src={fotoTeam}
-                alt="Il team PromoSan"
-                width={1200}
-                height={675}
-                style={{ width: '100%', height: 'auto', borderRadius: 'var(--border-radius-lg)' }}
-              />
-            </div>
-          )}
         </div>
       </div>
     </section>

@@ -1,9 +1,7 @@
-// src/app/contatti/page.tsx
 import { Metadata } from 'next';
 import ContattiHeader from '../../components/Contatti/ContattiHeader';
 import ContattiForm from '../../components/Contatti/ContattiForm';
 import OrariContatti from '../../components/Contatti/OrariContatti';
-import AssistenzaRapida from '../../components/Contatti/AssistenzaRapida';
 import PrenotaConsulenza from '../../components/Contatti/PrenotaConsulenza';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
@@ -77,7 +75,7 @@ export const metadata: Metadata = {
                     width: 100% !important;
                   }
                   .colonna-destra {
-                    gap: 1rem !important;
+                    gap: 1.5rem !important;
                   }
                 }
               `}</style>
@@ -102,14 +100,13 @@ export const metadata: Metadata = {
                   width: '33.333%',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '0.5rem'
+                  gap: '1.5rem'
                 }}>
                   <OrariContatti
                     telefono={options?.telefono}
                     email={options?.email}
                     orari={options?.orari}
                   />
-                  <AssistenzaRapida whatsapp={options?.whatsapp} />
                   <PrenotaConsulenza
                     title={contatti?.prenota?.titolo || undefined}
                     items={prenotaItems.length ? prenotaItems : undefined}

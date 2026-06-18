@@ -101,7 +101,6 @@ export default async function Home() {
           <MissionVision
             missionText={home?.mission?.mission_testo || undefined}
             visionText={home?.mission?.vision_testo || undefined}
-            image={missionImg}
           />
         </section>
 
