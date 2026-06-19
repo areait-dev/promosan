@@ -35,7 +35,7 @@ const DEFAULT_OPTIONS: GlobalOptions = {
   rea: 'MI-1234567',
   orari: '',
   areaRiservataUrl: 'https://clienti.promotergroup.eu/login',
-  brochureUrl: '/Brochure PromoSan.pdf',
+  brochureUrl: '/assets/pdf/Brochure PromoSan.pdf',
   copyright: '© 2026 PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: 01840870883 - REA: MI-1234567',
   logoUrl: '/assets/img/PromoSan.png',
   logoBianco: '/assets/img/PromoSan_white.png',
@@ -79,7 +79,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
     },
     {
       name: 'Sedi',
-      path: '/sedi',
+      path: '/promo-health-center#strutture-section',
       type: 'link'
     },
     {
@@ -123,9 +123,11 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
     }, 1500);
   };
 
+  const brochureUrl = opt.brochureUrl || '/assets/pdf/Brochure PromoSan.pdf';
+
   const handleDownloadBrochure = () => {
     const link = document.createElement('a');
-    link.href = opt.brochureUrl;
+    link.href = encodeURI(brochureUrl);
     link.download = 'PromoSan_Brochure.pdf';
     document.body.appendChild(link);
     link.click();
@@ -203,9 +205,13 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
             <ul className="footer-nav">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.path} className="footer-nav-link">
-                    {item.name}
-                  </Link>
+                  {item.type === 'parent' ? (
+                    <span className="footer-nav-link">{item.name}</span>
+                  ) : (
+                    <Link href={item.path} className="footer-nav-link">
+                      {item.name}
+                    </Link>
+                  )}
 
                   {item.type === 'parent' && item.children && (
                     <div className="footer-submenu">
