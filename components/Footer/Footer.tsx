@@ -231,7 +231,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
             <div className="footer-buttons">
               <a
-                href={opt.areaRiservataUrl}
+                href="https://clienti.promotergroup.eu/login"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn-primary"

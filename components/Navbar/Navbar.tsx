@@ -152,7 +152,7 @@ export default function Navbar({
               <button type="submit" className="sr-only">Cerca</button>
             </form>
             <a
-              href={areaRiservataUrl}
+              href="https://clienti.promotergroup.eu/login"
               target="_blank"
               rel="noopener noreferrer"
               className="nav-pill"
@@ -282,7 +282,7 @@ export default function Navbar({
             {/* Area Riservata mobile */}
             <div className="px-4 py-2">
               <a
-                href={areaRiservataUrl}
+                href="https://clienti.promotergroup.eu/login"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-3 font-medium text-white"
