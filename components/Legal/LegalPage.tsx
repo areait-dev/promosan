@@ -2,9 +2,15 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import type { GlobalOptions } from '@/lib/wordpress';
 
+export interface LegalTable {
+  headers: string[];
+  rows: string[][];
+}
+
 export interface LegalSection {
   heading?: string;
-  paragraphs: string[];
+  paragraphs?: string[];
+  table?: LegalTable;
 }
 
 interface LegalPageProps {
@@ -36,11 +42,57 @@ export default function LegalPage({ title, intro, sections, options }: LegalPage
                     {section.heading}
                   </h2>
                 )}
-                {section.paragraphs.map((p, j) => (
+                {section.paragraphs?.map((p, j) => (
                   <p key={j} style={{ fontSize: '1rem', lineHeight: 1.7, color: '#475569', marginBottom: '0.75rem' }}>
                     {p}
                   </p>
                 ))}
+                {section.table && (
+                  <div style={{ overflowX: 'auto', marginTop: '0.5rem' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.92rem' }}>
+                      <thead>
+                        <tr>
+                          {section.table.headers.map((h, k) => (
+                            <th
+                              key={k}
+                              style={{
+                                textAlign: 'left',
+                                padding: '0.6rem 0.75rem',
+                                background: '#e2e8f0',
+                                color: '#0f172a',
+                                fontWeight: 600,
+                                border: '1px solid #cbd5e1',
+                                verticalAlign: 'top',
+                              }}
+                            >
+                              {h}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {section.table.rows.map((row, r) => (
+                          <tr key={r} style={{ background: r % 2 === 0 ? '#ffffff' : '#f8fafc' }}>
+                            {row.map((cell, c) => (
+                              <td
+                                key={c}
+                                style={{
+                                  padding: '0.6rem 0.75rem',
+                                  color: '#475569',
+                                  border: '1px solid #cbd5e1',
+                                  lineHeight: 1.6,
+                                  verticalAlign: 'top',
+                                }}
+                              >
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             ))}
           </div>

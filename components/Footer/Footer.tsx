@@ -280,6 +280,17 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                   </Link>
                 </span>
               ))}
+              <span className="footer-legal-item">
+                <span className="footer-legal-separator">•</span>
+                <button
+                  type="button"
+                  className="footer-legal-link"
+                  onClick={() => window.openCookiePreferences?.()}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}
+                >
+                  Gestisci preferenze cookie
+                </button>
+              </span>
             </div>
           </div>
         </div>
