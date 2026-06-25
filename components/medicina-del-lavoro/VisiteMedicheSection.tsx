@@ -47,7 +47,7 @@ export default function VisiteMedicheSection({
 
   const getIconPath = (iconName: string) => {
     const iconMap: Record<string, string> = {
-      'visiotest': '/assets/img/visita medica.svg',
+      'visiotest': '/assets/img/visiotest.svg',
       'spirometria': '/assets/img/spirometria.svg',
       'audiometria': '/assets/img/audiometria.svg',
       'ecg': '/assets/img/ECG.svg',
