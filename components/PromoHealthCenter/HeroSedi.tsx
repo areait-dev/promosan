@@ -18,7 +18,7 @@ const HeroSedi = ({
   subtitle = DEFAULT_SUBTITLE,
   backgroundImage,
 }: HeroSediProps = {}) => {
-  const gradient = 'linear-gradient(90deg, rgba(44,82,130,0.85) 0%, rgba(66,153,225,0.85) 100%)';
+  const gradient = 'linear-gradient(90deg, rgba(44,82,130,0.5) 0%, rgba(66,153,225,0.5) 100%)';
   return (
     <section
       className="hero-sedi"
@@ -29,7 +29,7 @@ const HeroSedi = ({
         position: 'relative',
         overflow: 'hidden',
         marginBottom: '80px',
-        minHeight: '75vh',
+        minHeight: '100dvh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'

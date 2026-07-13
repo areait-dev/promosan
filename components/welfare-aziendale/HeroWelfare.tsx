@@ -62,26 +62,35 @@ export default function HeroWelfare({
         ref={sectionRef}
         style={{
           position: 'relative',
-          minHeight: '100vh',
+          minHeight: '100dvh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #1a3650 0%, #2c5282 50%, #4299e1 100%)',
+          background: backgroundImage
+            ? undefined
+            : 'linear-gradient(135deg, #1a3650 0%, #2c5282 50%, #4299e1 100%)',
           overflow: 'hidden',
           padding: '4rem 1rem'
         }}
       >
-        {/* Immagine di sfondo opzionale (da WordPress) sotto il gradiente */}
+        {/* Immagine di sfondo opzionale (da WordPress), con tint gradiente semi-trasparente sopra */}
         {backgroundImage && (
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.35,
-            zIndex: 0,
-          }}></div>
+          <>
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              zIndex: 0,
+            }}></div>
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(26,54,80,0.55) 0%, rgba(44,82,130,0.5) 50%, rgba(66,153,225,0.45) 100%)',
+              zIndex: 1,
+            }}></div>
+          </>
         )}
 
         {/* Overlay pattern */}

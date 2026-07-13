@@ -104,6 +104,7 @@ export default function Hero(props: HeroProps = {}) {
         .hero {
           position: relative;
           min-height: 100vh;
+          min-height: 100dvh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -126,10 +127,10 @@ export default function Hero(props: HeroProps = {}) {
           position: absolute;
           inset: 0;
           background: linear-gradient(
-            135deg, 
-            rgba(44,82,130,0.8) 0%, 
-            rgba(66,153,225,0.65) 40%, 
-            rgba(49,130,206,0.5) 100%
+            135deg,
+            rgba(44,82,130,0.5) 0%,
+            rgba(66,153,225,0.4) 40%,
+            rgba(49,130,206,0.3) 100%
           );
           mix-blend-mode: multiply;
           z-index: 1;
@@ -398,6 +399,7 @@ export default function Hero(props: HeroProps = {}) {
         @media (max-height: 600px) and (orientation: landscape) {
           .hero-content-homepage {
             min-height: 100vh;
+            min-height: 100dvh;
             padding: var(--space-xl) 0;
           }
 

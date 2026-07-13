@@ -938,6 +938,7 @@ header li button,
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2965,7 +2966,8 @@ header li button,
 .hero-section-medicina {
   background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: var(--color-white);
-  height: 50vh !important;
+  height: 100vh !important;
+  height: 100dvh !important;
   min-height: 350px !important;
   display: flex !important;
   align-items: center !important;
@@ -2973,13 +2975,6 @@ header li button,
   text-align: center !important;
   position: relative;
   overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  .hero-section-medicina {
-    height: 40vh !important;
-    min-height: 300px !important;
-  }
 }
 
 .hero-section-medicina .hero-content {

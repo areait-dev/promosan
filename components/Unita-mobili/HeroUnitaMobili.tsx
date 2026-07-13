@@ -44,7 +44,7 @@ export default function HeroUnitaMobili({
   return (
     <section style={{
       position: 'relative',
-      minHeight: '100vh',
+      minHeight: '100dvh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -78,7 +78,7 @@ export default function HeroUnitaMobili({
           left: '0',
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(90deg, rgba(44, 82, 130, 0.85) 0%, rgba(66, 153, 225, 0.75) 100%)'
+          background: 'linear-gradient(90deg, rgba(44, 82, 130, 0.5) 0%, rgba(66, 153, 225, 0.4) 100%)'
         }}></div>
       </div>
 
