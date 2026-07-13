@@ -104,7 +104,8 @@ export default function Hero(props: HeroProps = {}) {
         .hero {
           position: relative;
           min-height: 100vh;
-          min-height: 100dvh;
+          min-height: 100svh;
+          max-height: 900px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -145,7 +146,6 @@ export default function Hero(props: HeroProps = {}) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          min-height: 70vh;
         }
 
         .hero-logo-wrapper {
@@ -398,8 +398,6 @@ export default function Hero(props: HeroProps = {}) {
         /* Landscape mobile */
         @media (max-height: 600px) and (orientation: landscape) {
           .hero-content-homepage {
-            min-height: 100vh;
-            min-height: 100dvh;
             padding: var(--space-xl) 0;
           }
 

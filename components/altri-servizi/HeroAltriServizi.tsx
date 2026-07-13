@@ -41,15 +41,16 @@ export default function HeroAltriServizi({
       ref={sectionRef}
       style={{
         position: 'relative',
-        minHeight: '100dvh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         background: backgroundImage
           ? undefined
           : 'linear-gradient(135deg, #1a3650 0%, #2c5282 50%, #4299e1 100%)',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        padding: '4rem 1rem'
       }}
+      className="hero-servizio"
     >
       {/* Immagine di sfondo opzionale (da WordPress), con tint gradiente semi-trasparente sopra */}
       {backgroundImage && (
@@ -336,6 +337,18 @@ export default function HeroAltriServizi({
           25% { transform: translate(-20px, 20px) scale(1.05); }
           50% { transform: translate(20px, -20px) scale(0.95); }
           75% { transform: translate(20px, 20px) scale(1.05); }
+        }
+
+        .hero-servizio {
+          min-height: 45vh;
+          min-height: 45svh;
+        }
+
+        @media (min-width: 768px) {
+          .hero-servizio {
+            min-height: 60vh;
+            min-height: 60svh;
+          }
         }
       `}</style>
     </section>

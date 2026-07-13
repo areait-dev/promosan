@@ -29,10 +29,10 @@ const HeroSedi = ({
         position: 'relative',
         overflow: 'hidden',
         marginBottom: '80px',
-        minHeight: '100dvh',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: '4rem 1rem'
       }}
     >
       {/* Pattern decorativo */}

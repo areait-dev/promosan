@@ -62,7 +62,6 @@ export default function HeroWelfare({
         ref={sectionRef}
         style={{
           position: 'relative',
-          minHeight: '100dvh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -72,6 +71,7 @@ export default function HeroWelfare({
           overflow: 'hidden',
           padding: '4rem 1rem'
         }}
+        className="hero-servizio"
       >
         {/* Immagine di sfondo opzionale (da WordPress), con tint gradiente semi-trasparente sopra */}
         {backgroundImage && (
@@ -113,7 +113,6 @@ export default function HeroWelfare({
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          minHeight: '70vh',
           width: '100%'
         }}>
           {/* Badge */}
@@ -377,6 +376,18 @@ export default function HeroWelfare({
         @media (max-height: 600px) and (orientation: landscape) {
           .scroll-indicator {
             margin-top: 2rem;
+          }
+        }
+
+        .hero-servizio {
+          min-height: 45vh;
+          min-height: 45svh;
+        }
+
+        @media (min-width: 768px) {
+          .hero-servizio {
+            min-height: 60vh;
+            min-height: 60svh;
           }
         }
       `}</style>

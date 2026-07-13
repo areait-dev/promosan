@@ -44,14 +44,13 @@ export default function HeroUnitaMobili({
   return (
     <section style={{
       position: 'relative',
-      minHeight: '100dvh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '2rem',
+      padding: '4rem 1rem',
       color: '#ffffff',
       overflow: 'hidden'
-    }}>
+    }} className="hero-servizio">
       {/* IMMAGINE DI BACKGROUND */}
       <div style={{
         position: 'absolute',
@@ -106,8 +105,7 @@ export default function HeroUnitaMobili({
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        minHeight: '70vh'
+        alignItems: 'center'
       }}>
         <div style={{ textAlign: 'center' }}>
           {/* Badge */}
@@ -308,6 +306,18 @@ export default function HeroUnitaMobili({
         @media (max-width: 480px) {
           button span {
             display: none;
+          }
+        }
+
+        .hero-servizio {
+          min-height: 45vh;
+          min-height: 45svh;
+        }
+
+        @media (min-width: 768px) {
+          .hero-servizio {
+            min-height: 60vh;
+            min-height: 60svh;
           }
         }
       `}</style>
