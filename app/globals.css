@@ -1898,10 +1898,18 @@ header li button,
   color: white;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .hero-sedi {
-    min-height: 60vh;
-    min-height: 60svh;
+    min-height: 65vh;
+    min-height: 65svh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-sedi {
+    min-height: 80vh;
+    min-height: 80svh;
+    max-height: 1000px;
   }
 }
 
@@ -2985,10 +2993,18 @@ header li button,
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .hero-section-medicina {
-    min-height: 60vh !important;
-    min-height: 60svh !important;
+    min-height: 65vh !important;
+    min-height: 65svh !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section-medicina {
+    min-height: 80vh !important;
+    min-height: 80svh !important;
+    max-height: 1000px !important;
   }
 }
 

@@ -344,10 +344,18 @@ export default function HeroAltriServizi({
           min-height: 45svh;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 768px) and (max-width: 1023px) {
           .hero-servizio {
-            min-height: 60vh;
-            min-height: 60svh;
+            min-height: 65vh;
+            min-height: 65svh;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .hero-servizio {
+            min-height: 80vh;
+            min-height: 80svh;
+            max-height: 1000px;
           }
         }
       `}</style>
