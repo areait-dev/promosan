@@ -24,7 +24,7 @@ const HeroSedi = ({
       className="hero-sedi"
       style={{
         background: backgroundImage
-          ? `${gradient}, url(${backgroundImage}) center bottom / cover no-repeat`
+          ? `${gradient}, url(${backgroundImage}) center / cover no-repeat`
           : 'linear-gradient(90deg, #2c5282 0%, #4299e1 100%)',
         position: 'relative',
         overflow: 'hidden',

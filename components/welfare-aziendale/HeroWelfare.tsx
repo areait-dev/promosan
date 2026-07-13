@@ -81,7 +81,7 @@ export default function HeroWelfare({
               inset: 0,
               backgroundImage: `url(${backgroundImage})`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center bottom',
+              backgroundPosition: 'center',
               zIndex: 0,
             }}></div>
             <div style={{

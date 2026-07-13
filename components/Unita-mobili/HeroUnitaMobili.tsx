@@ -66,7 +66,7 @@ export default function HeroUnitaMobili({
           fill
           style={{
             objectFit: 'cover',
-            objectPosition: 'center bottom'
+            objectPosition: 'center'
           }}
           priority
         />
