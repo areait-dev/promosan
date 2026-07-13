@@ -60,7 +60,7 @@ export default function HeroAltriServizi({
             inset: 0,
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'center bottom',
             zIndex: 0,
           }}></div>
           <div style={{

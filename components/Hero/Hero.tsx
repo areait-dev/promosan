@@ -121,7 +121,7 @@ export default function Hero(props: HeroProps = {}) {
 
         .hero-bg-image {
           object-fit: cover;
-          object-position: center;
+          object-position: center bottom;
         }
 
         .hero-overlay {

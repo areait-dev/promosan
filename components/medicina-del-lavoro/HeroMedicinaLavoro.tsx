@@ -39,7 +39,7 @@ export default function HeroMedicinaLavoro({
       className="hero-section hero-section-medicina"
       style={
         backgroundImage
-          ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+          ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center bottom' }
           : undefined
       }
     >
