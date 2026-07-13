@@ -110,6 +110,7 @@ export default async function SediPage() {
     sedi.find((s) => s.servizi?.length)?.servizi ?? FALLBACK_SERVIZI;
   const sediContent = pageContent?.sedi;
   const heroBg = await mediaUrl(sediContent?.hero?.immagine, draft);
+  const retePartnerImage = await mediaUrl(sediContent?.rete_partner?.immagine, draft);
 
   return (
     <main className="sedi-page">
@@ -125,6 +126,7 @@ export default async function SediPage() {
       <RetePartner
         title={sediContent?.rete_partner?.titolo || undefined}
         text={sediContent?.rete_partner?.testo || undefined}
+        image={retePartnerImage || undefined}
       />
       <Footer options={options} />
     </main>

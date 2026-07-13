@@ -158,7 +158,7 @@ export interface PageContentFields {
   // --- Promo Health Center ---
   sedi?: {
     hero?: { titolo?: string; sottotitolo?: string; immagine?: WPImage | false };
-    rete_partner?: { titolo?: string; testo?: string };
+    rete_partner?: { titolo?: string; testo?: string; immagine?: WPImage | false };
   };
   // --- Contatti ---
   contatti?: {

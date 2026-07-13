@@ -5,15 +5,18 @@ import Image from 'next/image';
 export interface RetePartnerProps {
   title?: string;
   text?: string; // HTML
+  image?: string;
 }
 
 const DEFAULT_TITLE = 'RETE DI PARTNER QUALIFICATI';
 const DEFAULT_TEXT =
   'La nostra presenza è ulteriormente rafforzata da una distribuzione capillare di partner certificati su tutto il territorio nazionale. Questa rete di professionisti qualificati ci consente di garantire vicinanza alle aziende clienti, tempestività negli interventi e standard qualitativi uniformi, anche nelle aree più periferiche.';
+const DEFAULT_IMAGE = '/Screenshot 2026-03-03 144118.png';
 
 export default function RetePartner({
   title = DEFAULT_TITLE,
   text = DEFAULT_TEXT,
+  image = DEFAULT_IMAGE,
 }: RetePartnerProps = {}) {
   return (
     <section style={{ padding: '3rem 0', backgroundColor: 'white' }}>
@@ -71,7 +74,7 @@ export default function RetePartner({
               boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
             }}>
               <Image
-                src="/Screenshot 2026-03-03 144118.png"
+                src={image}
                 alt="Rete di partner qualificati PromoSan"
                 fill
                 style={{ objectFit: 'cover' }}

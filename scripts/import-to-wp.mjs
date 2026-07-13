@@ -735,6 +735,7 @@ const PAGE_IMAGES = {
   },
   'promo-health-center': {
     'sedi.hero.immagine': 'camper7.png',
+    'sedi.rete_partner.immagine': 'Screenshot 2026-03-03 144118.png',
   },
   // 'contatti' non ha campi immagine.
 };
