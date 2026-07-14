@@ -43,6 +43,7 @@ export default function HeroMedicinaLavoro({
           : undefined
       }
     >
+      {backgroundImage && <div className="hero-overlay" aria-hidden="true" />}
       <div className="hero-content">
         <div className="hero-inner">
           <div className="hero-badge">
@@ -74,6 +75,14 @@ export default function HeroMedicinaLavoro({
 
       {/* Solo gli stili per la scroll arrow come nella homepage */}
       <style jsx>{`
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, rgba(26, 54, 80, 0.7) 0%, rgba(44, 82, 130, 0.45) 55%, rgba(44, 82, 130, 0.2) 100%);
+          z-index: 1;
+          pointer-events: none;
+        }
+
         .scroll-indicator {
           display: flex;
           flex-direction: column;

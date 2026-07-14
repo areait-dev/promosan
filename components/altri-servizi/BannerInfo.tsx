@@ -30,7 +30,7 @@ export default function BannerInfo() {
 
       <style jsx>{`
         .banner-info-section {
-          background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+          background: linear-gradient(to right, #2c5282, #4299e1);
           padding: 4.5rem 1rem;
           text-align: center;
           color: #ffffff;
@@ -87,7 +87,7 @@ export default function BannerInfo() {
 
         .banner-button:hover {
           background: #ffffff;
-          color: #2563eb;
+          color: #2c5282;
           transform: translateY(-2px);
           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }

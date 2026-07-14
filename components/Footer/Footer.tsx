@@ -390,7 +390,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
         }
 
         .footer-newsletter-btn {
-          background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+          background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%) !important;
           color: #fff !important;
           padding: 0 24px !important;
           height: 42px;

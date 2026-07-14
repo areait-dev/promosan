@@ -107,8 +107,8 @@ export default function ContattiForm() {
         }
         
         .form-input-field:focus {
-          border-color: #2563eb !important;
-          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+          border-color: #2c5282 !important;
+          box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.1) !important;
         }
       `}</style>
 
@@ -515,7 +515,7 @@ export default function ContattiForm() {
             style={{
               width: '100%',
               padding: '0.9rem',
-              background: '#3b82f6',
+              background: 'linear-gradient(135deg, #2c5282, #4299e1)',
               color: '#ffffff',
               border: 'none',
               borderRadius: '8px',

@@ -66,7 +66,7 @@ export default function NominaMedicoSection() {
           {/* Card 2 - SOLO COORDINATO */}
           <Card 
             badgeText="Flessibile"
-            badgeColor="#3b82f6"
+            badgeColor="#4299e1"
             title="SOLO COORDINATO"
             description="Il servizio si concentra sull'attività operativa di sorveglianza sanitaria, perfetto per aziende che hanno già una struttura di coordinamento definita o che necessitano di supporto specialistico su specifiche sedi o reparti."
             recommendation="Aziende con team RSPP interno, realtà che hanno già strutture di coordinamento"

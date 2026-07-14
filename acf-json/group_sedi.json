@@ -10,7 +10,7 @@
       "name": "regione",
       "type": "text",
       "required": 1,
-      "instructions": "Es. Sicilia, Veneto."
+      "instructions": "Es. Sicilia, Veneto, Piemonte."
     },
     {
       "key": "field_sede_indirizzo",

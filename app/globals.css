@@ -2982,8 +2982,8 @@ header li button,
 .hero-section-medicina {
   background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: var(--color-white);
-  min-height: 45vh !important;
-  min-height: 45svh !important;
+  min-height: 80vh !important;
+  min-height: 80svh !important;
   padding: 4rem var(--space-md) !important;
   display: flex !important;
   align-items: center !important;
@@ -2991,6 +2991,12 @@ header li button,
   text-align: center !important;
   position: relative;
   overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .hero-section-medicina {
+    background-position: right center !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -3009,6 +3015,10 @@ header li button,
 }
 
 .hero-section-medicina .hero-content {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
   width: 100% !important;
   max-width: var(--container-max-width) !important;
   margin: 0 auto !important;
