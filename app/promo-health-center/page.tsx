@@ -35,7 +35,7 @@ interface SedeData {
 }
 
 // Fallback usato finché il fetch da WordPress non è collegato.
-const FALLBACK_SEDI_DATA: { sicilia: SedeData; veneto: SedeData } = {
+const FALLBACK_SEDI_DATA: { sicilia: SedeData; veneto: SedeData; piemonte: SedeData } = {
   sicilia: {
     regione: 'Sicilia',
     indirizzo: 'Via del Carrubbo sn, Vittoria (RG)',
@@ -56,6 +56,15 @@ const FALLBACK_SEDI_DATA: { sicilia: SedeData; veneto: SedeData } = {
     mappaTitolo: 'Mappa sede Veneto',
     googleMapsLink: 'https://maps.google.com/?q=Via+Europa+Unita+12+A+Postioma+Paese+TV',
   },
+  piemonte: {
+    regione: 'Piemonte',
+    indirizzo: 'Via Trento, 21, Grugliasco (TO)',
+    telefono: '0932862613',
+    email: 'info@promosan.eu',
+    mappaUrl: 'https://www.google.com/maps?q=Via+Trento,+21,+10095+Grugliasco+TO&output=embed',
+    mappaTitolo: 'Mappa sede Piemonte',
+    googleMapsLink: 'https://maps.app.goo.gl/5ZQqgvfGGXnptBEx5',
+  },
 };
 
 const FALLBACK_SERVIZI = [
@@ -68,7 +77,7 @@ const FALLBACK_SERVIZI = [
 ];
 
 // Converte l'array di Sede (lib) nella struttura attesa da SediInteractive.
-function buildSediData(sedi: Sede[]): { sicilia: SedeData; veneto: SedeData } {
+function buildSediData(sedi: Sede[]): { sicilia: SedeData; veneto: SedeData; piemonte: SedeData } {
   const result = { ...FALLBACK_SEDI_DATA };
   for (const sede of sedi) {
     const regione = (sede.regione || '').toLowerCase();
@@ -84,6 +93,7 @@ function buildSediData(sedi: Sede[]): { sicilia: SedeData; veneto: SedeData } {
     };
     if (regione.includes('sicilia')) result.sicilia = data;
     else if (regione.includes('veneto')) result.veneto = data;
+    else if (regione.includes('piemonte')) result.piemonte = data;
   }
   return result;
 }

@@ -20,12 +20,13 @@ interface SediInteractiveProps {
   sediData: {
     sicilia: SedeData;
     veneto: SedeData;
+    piemonte: SedeData;
   };
   servizi: string[];
 }
 
 const SediInteractive = ({ sediData, servizi }: SediInteractiveProps) => {
-  const [sedeAttiva, setSedeAttiva] = useState<'sicilia' | 'veneto'>('sicilia');
+  const [sedeAttiva, setSedeAttiva] = useState<'sicilia' | 'veneto' | 'piemonte'>('sicilia');
 
   return (
     <>

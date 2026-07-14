@@ -18,7 +18,7 @@ interface SedeData {
 
 // Definisci i tipi per le props del componente
 interface SedeCardProps {
-  sede: 'sicilia' | 'veneto';
+  sede: 'sicilia' | 'veneto' | 'piemonte';
   data: SedeData;
   servizi: string[];
 }
@@ -83,12 +83,9 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
           <i className="fas fa-paper-plane"></i>
           Contatta questa sede
         </Link>
-        <a 
-          href={sede === 'sicilia' 
-            ? "https://maps.google.com/?q=Via+del+Carrubbo+sn+Vittoria+RG" 
-            : "https://maps.google.com/?q=Via+Europa+unita+12/A+Postioma+Paese+TV"
-          } 
-          target="_blank" 
+        <a
+          href={data.googleMapsLink || `https://maps.google.com/?q=${encodeURIComponent(data.indirizzo)}`}
+          target="_blank"
           rel="noopener noreferrer"
           className="btn-map"
         >

@@ -3,8 +3,8 @@
 import React from 'react';
 
 interface SediToggleProps {
-  sedeAttiva: 'sicilia' | 'veneto';
-  setSedeAttiva: (sede: 'sicilia' | 'veneto') => void;
+  sedeAttiva: 'sicilia' | 'veneto' | 'piemonte';
+  setSedeAttiva: (sede: 'sicilia' | 'veneto' | 'piemonte') => void;
 }
 
 const SediToggle = ({ sedeAttiva, setSedeAttiva }: SediToggleProps) => {
@@ -20,11 +20,17 @@ const SediToggle = ({ sedeAttiva, setSedeAttiva }: SediToggleProps) => {
         >
           SICILIA
         </button>
-        <button 
+        <button
           className={`sedi-toggle-btn ${sedeAttiva === 'veneto' ? 'active' : ''}`}
           onClick={() => setSedeAttiva('veneto')}
         >
           VENETO
+        </button>
+        <button
+          className={`sedi-toggle-btn ${sedeAttiva === 'piemonte' ? 'active' : ''}`}
+          onClick={() => setSedeAttiva('piemonte')}
+        >
+          PIEMONTE
         </button>
       </div>
 
