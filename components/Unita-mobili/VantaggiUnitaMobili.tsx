@@ -120,12 +120,8 @@ export default function VantaggiUnitaMobili({
           </p>
         </div>
 
-        {/* Grid vantaggi - 5 colonne */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(5, 1fr)', 
-          gap: '1rem' 
-        }}>
+        {/* Grid vantaggi - 5 colonne su desktop, responsive sotto */}
+        <div className="vantaggi-grid">
           {vantaggi.map((vantaggio, index) => (
             <div
               key={vantaggio.id}
@@ -312,6 +308,30 @@ export default function VantaggiUnitaMobili({
 
       {/* Stili animazioni globali */}
       <style jsx>{`
+        .vantaggi-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+          .vantaggi-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .vantaggi-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .vantaggi-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
         @keyframes expandWidth {
           from { transform: scaleX(0); }
           to { transform: scaleX(1); }

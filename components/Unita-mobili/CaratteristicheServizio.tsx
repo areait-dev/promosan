@@ -264,12 +264,8 @@ export default function CaratteristicheServizio({
                   borderRadius: '9999px'
                 }}></div>
 
-                {/* Grid ORIZZONTALE a 3 colonne */}
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(3, 1fr)', 
-                  gap: '1.5rem'
-                }}>
+                {/* Grid ORIZZONTALE a 3 colonne, responsive sotto */}
+                <div className="caratteristiche-grid">
                   {caratteristiche.map((cat) => (
                     <div
                       key={cat.id}
@@ -329,13 +325,8 @@ export default function CaratteristicheServizio({
             </div>
           </div>
 
-          {/* Due card finali - ORIZZONTALI */}
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(2, 1fr)', 
-            gap: '2rem',
-            marginTop: '1rem'
-          }}>
+          {/* Due card finali - ORIZZONTALI, responsive sotto */}
+          <div className="finali-grid">
             {[0, 1].map((_, index) => (
               <div
                 key={index}
@@ -388,6 +379,31 @@ export default function CaratteristicheServizio({
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .caratteristiche-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+
+        .finali-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+          margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+          .caratteristiche-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .finali-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </section>
   );
 }
