@@ -250,7 +250,7 @@ h6 {
 }
 
 p {
-  font-size: 16px;
+  font-size: var(--text-base);
   line-height: var(--line-height-relaxed);
   color: var(--color-gray-600);
   margin-bottom: var(--space-md);
