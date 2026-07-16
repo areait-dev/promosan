@@ -1418,7 +1418,16 @@ header li button,
   z-index: 10;
   box-shadow: var(--shadow-2xl);
   aspect-ratio: auto;
-  height: auto;
+  /* Altezza fissa uguale per tutte le card, calibrata sul contenuto più
+     lungo (Medicina del lavoro) così nessuna card viene tagliata */
+  height: 400px;
+}
+
+@media (max-width: 768px) {
+  .service-card.card-hovered {
+    height: auto;
+    min-height: 380px;
+  }
 }
 
 /* Immagine di sfondo */
