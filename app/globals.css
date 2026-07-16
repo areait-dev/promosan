@@ -899,6 +899,11 @@ header li button,
   .search-input {
     width: 150px;
   }
+
+  /* "Area Riservata" resta staccato dal bordo destro del container */
+  .hidden.lg\:flex.gap-6.items-center {
+    padding-right: 1.5rem;
+  }
 }
 
 /* Responsive navbar */
