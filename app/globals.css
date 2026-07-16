@@ -878,6 +878,29 @@ header li button,
   }
 }
 
+/* Notebook 13" (~1024-1366px di larghezza reale finestra): la navbar completa
+   (5 voci + dropdown + search fissa 240px + Area Riservata) non ci sta nel
+   container di 960/1140px senza stringere pill/search, causando overlap. */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  header nav.lg\:flex {
+    padding-left: 0.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .nav-pill {
+    padding: 0.7rem 0.9rem !important;
+  }
+
+  header .search-form {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+
+  .search-input {
+    width: 150px;
+  }
+}
+
 /* Responsive navbar */
 @media (min-width: 1024px) {
   .lg\:flex.gap-6.items-center {
