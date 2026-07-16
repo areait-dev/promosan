@@ -1419,14 +1419,6 @@ header li button,
   box-shadow: var(--shadow-2xl);
   aspect-ratio: auto;
   height: auto;
-  min-height: 280px;
-}
-
-@media (max-width: 768px) {
-  .service-card.card-hovered {
-    height: auto;
-    min-height: 380px;
-  }
 }
 
 /* Immagine di sfondo */
