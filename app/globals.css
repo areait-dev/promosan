@@ -902,7 +902,7 @@ header li button,
 
   /* "Area Riservata" resta staccato dal bordo destro del container */
   .hidden.lg\:flex.gap-6.items-center {
-    padding-right: 1.5rem;
+    padding-right: 3.5rem !important;
   }
 }
 
