@@ -91,8 +91,8 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   const btnBase: React.CSSProperties = {
-    padding: '0.6rem 1.25rem',
-    borderRadius: '8px',
+    padding: '0.7rem 1.6rem',
+    borderRadius: '14px',
     fontWeight: 600,
     cursor: 'pointer',
   };

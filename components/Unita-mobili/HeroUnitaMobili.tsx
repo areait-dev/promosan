@@ -16,8 +16,8 @@ const DEFAULT_BADGE = 'Unità mobili';
 const DEFAULT_TITLE = 'PORTIAMO LA MEDICINA DEL LAVORO DIRETTAMENTE DOVE LAVORI';
 const DEFAULT_BTN1_LABEL = 'Scopri i vantaggi';
 const DEFAULT_BTN1_LINK = '#vantaggi';
-const DEFAULT_BTN2_LABEL = "Prenota un'unità mobile";
-const DEFAULT_BTN2_LINK = '/contatti';
+const DEFAULT_BTN2_LABEL = 'Come funziona';
+const DEFAULT_BTN2_LINK = '#caratteristiche-unita-mobile';
 
 export default function HeroUnitaMobili({
   badge = DEFAULT_BADGE,
@@ -153,10 +153,10 @@ export default function HeroUnitaMobili({
               href={btn1Link}
               style={{
                 display: 'inline-block',
-                padding: '1rem 2rem',
+                padding: '0.7rem 1.6rem',
                 fontWeight: '700',
                 color: '#ffffff',
-                borderRadius: '0.75rem',
+                borderRadius: '14px',
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',
                 backgroundColor: '#3182ce',
@@ -184,10 +184,10 @@ export default function HeroUnitaMobili({
               href={btn2Link}
               style={{
                 display: 'inline-block',
-                padding: '0.75rem 1rem',
+                padding: '0.7rem 1.6rem',
                 fontWeight: '700',
                 color: 'rgba(255, 255, 255, 0.9)',
-                borderRadius: '0.5rem',
+                borderRadius: '14px',
                 border: '2px solid #ffffff',
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',

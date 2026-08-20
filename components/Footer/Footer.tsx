@@ -395,7 +395,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
           padding: 0 24px !important;
           height: 42px;
           border: none;
-          border-radius: 8px;
+          border-radius: 14px;
           font-weight: 700;
           font-size: 0.85rem;
           cursor: pointer;
@@ -532,8 +532,8 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
           background-color: #1a2c42 !important;
           border: 1px solid rgba(255, 255, 255, 0.1) !important;
           color: #fff !important;
-          border-radius: 8px !important;
-          padding: 10px 16px !important;
+          border-radius: 14px !important;
+          padding: 0.7rem 1.6rem !important;
           font-weight: 700 !important;
           font-size: 0.82rem !important;
           display: inline-flex;
@@ -551,8 +551,8 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
         .footer-btn-secondary {
           background: linear-gradient(135deg, #4299e1, #2b6cb0) !important;
           color: #fff !important;
-          border-radius: 8px !important;
-          padding: 10px 16px !important;
+          border-radius: 14px !important;
+          padding: 0.7rem 1.6rem !important;
           font-weight: 700 !important;
           font-size: 0.82rem !important;
           display: inline-flex;

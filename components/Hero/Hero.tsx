@@ -21,8 +21,8 @@ const DEFAULT_HERO: Required<HeroProps> = {
     "RIDUCIAMO I TEMPI D'ATTESA",
     'GESTIAMO TUTTE LE SCADENZE',
   ],
-  ctaLabel: 'Richiedi un preventivo',
-  ctaLink: '#contatti',
+  ctaLabel: 'Scopri i servizi',
+  ctaLink: '#servizi',
 };
 
 export default function Hero(props: HeroProps = {}) {

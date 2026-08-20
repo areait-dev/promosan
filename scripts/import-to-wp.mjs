@@ -317,8 +317,8 @@ const PAGES = {
         badge: '',
         titolo: 'RAGGIUNGIAMO OVUNQUE I TUOI LAVORATORI',
         sottotitolo: '',
-        btn1_label: 'Richiedi un preventivo',
-        btn1_link: '#contatti',
+        btn1_label: 'Scopri i servizi',
+        btn1_link: '#servizi',
       },
       servizi: {
         titolo: 'I NOSTRI SERVIZI',
@@ -360,8 +360,8 @@ const PAGES = {
       hero: {
         badge: 'Medicina del Lavoro',
         titolo: 'IL TUO PARTNER PER LA SORVEGLIANZA SANITARIA',
-        btn1_label: 'Richiedi un preventivo',
-        btn1_link: '/contatti',
+        btn1_label: 'Scopri il servizio',
+        btn1_link: '',
       },
       benefits: {
         titolo: 'PERCHÈ SCEGLIERE PROMOSAN?',
@@ -387,8 +387,8 @@ const PAGES = {
         titolo: 'PORTIAMO LA MEDICINA DEL LAVORO DIRETTAMENTE DOVE LAVORI',
         btn1_label: 'Scopri i vantaggi',
         btn1_link: '#vantaggi',
-        btn2_label: "Prenota un'unità mobile",
-        btn2_link: '/contatti',
+        btn2_label: 'Come funziona',
+        btn2_link: '#caratteristiche-unita-mobile',
       },
       caratteristiche: {
         titolo: 'CARATTERISTICHE DEL SERVIZIO',

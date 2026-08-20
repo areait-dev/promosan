@@ -550,10 +550,10 @@ export default function News({
         .btn-archive {
           background: var(--color-primary) !important;
           color: var(--color-white) !important;
-          padding: 14px 30px !important;
+          padding: 0.7rem 1.6rem !important;
           font-weight: 700 !important;
           font-size: 0.95rem !important;
-          border-radius: 10px !important;
+          border-radius: 14px !important;
           box-shadow: 0 4px 14px rgba(44, 82, 130, 0.2) !important;
           transition: all 0.2s ease !important;
           text-decoration: none !important;

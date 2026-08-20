@@ -68,8 +68,9 @@ export default function Services({
         {/* Griglia servizi */}
         <div className="services-grid">
           {services.map((service, index) => (
-            <div 
+            <Link
               key={index}
+              href={service.link}
               className={`service-card ${hoveredCard === index ? 'card-hovered' : ''}`}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -100,16 +101,8 @@ export default function Services({
                   </p>
                 </div>
                 
-                <div className="card-button-container">
-                  <Link 
-                    href={service.link}
-                    className="btn btn-small btn-white"
-                  >
-                    Richiedi informazioni
-                  </Link>
-                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

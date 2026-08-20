@@ -101,12 +101,12 @@ export default function CtaWelfare() {
           data-animate="true"
           style={{
             display: 'inline-block',
-            padding: '1rem 2.5rem',
+            padding: '0.7rem 1.6rem',
             fontSize: '1.125rem',
             fontWeight: '700',
             background: '#ffffff',
             color: '#2c5282',
-            borderRadius: '0.75rem',
+            borderRadius: '14px',
             textDecoration: 'none',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: 0,

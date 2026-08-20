@@ -96,9 +96,9 @@ export default function AssistenzaRapida({
         style={{
           display: 'flex',
           alignItems: 'center',
-          padding: '1rem',
+          padding: '0.7rem 1.6rem',
           background: '#25D366',
-          borderRadius: '0.75rem',
+          borderRadius: '14px',
           textDecoration: 'none',
           marginBottom: '1rem',
         }}

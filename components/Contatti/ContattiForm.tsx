@@ -514,11 +514,11 @@ export default function ContattiForm() {
             disabled={status === 'loading'}
             style={{
               width: '100%',
-              padding: '0.9rem',
+              padding: '0.7rem 1.6rem',
               background: 'linear-gradient(135deg, #2c5282, #4299e1)',
               color: '#ffffff',
               border: 'none',
-              borderRadius: '8px',
+              borderRadius: '14px',
               fontSize: '0.95rem',
               fontWeight: '700',
               cursor: status === 'loading' ? 'not-allowed' : 'pointer',

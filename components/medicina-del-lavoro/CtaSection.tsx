@@ -61,10 +61,10 @@ export default function CtaSection() {
               href="/contatti" 
               style={{
                 display: 'inline-block',
-                padding: '1rem 2rem',
+                padding: '0.7rem 1.6rem',
                 fontWeight: '700',
                 backgroundColor: '#ffffff',
-                borderRadius: '0.75rem',
+                borderRadius: '14px',
                 color: '#2c5282',
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',

@@ -170,11 +170,11 @@ export default function HeroAltriServizi({
           <Link 
             href="#servizi"
             style={{
-              padding: '1rem 1.5rem',
+              padding: '0.7rem 1.6rem',
               background: '#ffffff',
               color: '#2c5282',
               fontWeight: '700',
-              borderRadius: '0.75rem',
+              borderRadius: '14px',
               textDecoration: 'none',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               display: 'inline-block'
@@ -199,11 +199,11 @@ export default function HeroAltriServizi({
           <Link 
             href="#contatti"
             style={{
-              padding: '1rem 1.5rem',
+              padding: '0.7rem 1.6rem',
               background: 'transparent',
               color: '#ffffff',
               fontWeight: '700',
-              borderRadius: '0.75rem',
+              borderRadius: '14px',
               border: '2px solid #ffffff',
               textDecoration: 'none',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',

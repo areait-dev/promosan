@@ -183,12 +183,12 @@ export default function HeroWelfare({
             <a
               href={btn1Link}
               style={{
-                padding: '0.75rem 2rem',
-                fontSize: '1rem',
+                padding: '0.7rem 1.6rem',
+                fontSize: 'var(--text-sm)',
                 fontWeight: '600',
                 color: '#ffffff',
                 background: '#4299e1',
-                borderRadius: '9999px',
+                borderRadius: '14px',
                 border: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -215,12 +215,12 @@ export default function HeroWelfare({
             <a
               href={btn2Link}
               style={{
-                padding: '0.75rem 2rem',
-                fontSize: '1rem',
+                padding: '0.7rem 1.6rem',
+                fontSize: 'var(--text-sm)',
                 fontWeight: '600',
                 color: 'rgba(255, 255, 255, 0.9)',
                 background: 'transparent',
-                borderRadius: '9999px',
+                borderRadius: '14px',
                 border: '2px solid #ffffff',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',

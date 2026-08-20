@@ -1094,9 +1094,9 @@ header li button,
 }
 
 .hero-cta .btn {
-  padding: 8px 20px !important;
-  font-size: 0.95rem !important;
-  border-radius: 8px !important;
+  padding: 0.7rem 1.6rem !important;
+  font-size: var(--text-sm) !important;
+  border-radius: var(--border-radius-btn) !important;
 }
 
 /* Scroll indicator */
@@ -1379,6 +1379,10 @@ header li button,
   text-align: justify;
 }
 
+#servizi.section > .container {
+  max-width: min(1400px, 95vw);
+}
+
 /* Griglia servizi */
 .services-grid {
   display: grid !important;
@@ -1403,6 +1407,8 @@ header li button,
 /* Card base */
 .service-card {
   position: relative;
+  display: block;
+  text-decoration: none;
   border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
@@ -1420,7 +1426,7 @@ header li button,
   aspect-ratio: auto;
   /* Altezza fissa uguale per tutte le card, calibrata sul contenuto più
      lungo (Medicina del lavoro) così nessuna card viene tagliata */
-  height: 600px;
+  height: 400px;
 }
 
 @media (max-width: 768px) {
@@ -1988,7 +1994,8 @@ header li button,
 }
 
 .hero-buttons .btn {
-  padding: 0.75rem 2rem;
+  padding: 0.7rem 1.6rem;
+  font-size: var(--text-sm);
   font-weight: 600;
   border-radius: var(--border-radius-btn);
   transition: all 0.3s ease;
@@ -3074,6 +3081,11 @@ header li button,
 .hero-section-medicina .btn-white.btn-large {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.hero-section-medicina .hero-inner > .btn {
+  padding: 0.7rem 1.6rem !important;
+  font-size: var(--text-sm) !important;
 }
 
 .hero-section-medicina .hero-title {

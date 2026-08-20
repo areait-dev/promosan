@@ -290,12 +290,12 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
                 className="pacchetto-button"
                 style={{
                   display: 'block',
-                  padding: '1rem',
+                  padding: '0.7rem 1.6rem',
                   width: '100%',
                   fontWeight: '600',
                   textAlign: 'center',
                   textDecoration: 'none',
-                  borderRadius: '0.75rem',
+                  borderRadius: '14px',
                   border: pacchetto.bgClass === 'gradient' ? 'none' : '2px solid #2c5282',
                   background: pacchetto.bgClass === 'gradient' ? '#ffffff' : 'transparent',
                   color: pacchetto.bgClass === 'gradient' ? '#2c5282' : '#2c5282',
