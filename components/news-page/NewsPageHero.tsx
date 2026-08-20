@@ -18,7 +18,7 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
       color: '#ffffff'
     }}>
       <Image
-        src="/assets/img/254458.jpg"
+        src="/assets/img/news-hero-tablet.png"
         alt=""
         fill
         priority
@@ -27,7 +27,7 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(to right, rgba(44,82,130,0.92), rgba(66,153,225,0.85), rgba(44,82,130,0.92))'
+        background: 'linear-gradient(to right, rgba(44,82,130,0.55), rgba(66,153,225,0.4), rgba(44,82,130,0.55))'
       }}></div>
       <div style={{
         position: 'relative',
