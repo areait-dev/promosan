@@ -70,6 +70,8 @@ export default async function AltriServiziPage() {
         badge={altri?.hero?.badge || undefined}
         title={altri?.hero?.titolo || undefined}
         subtitle={altri?.hero?.sottotitolo || undefined}
+        btn1Label={altri?.hero?.btn1_label || undefined}
+        btn2Label={altri?.hero?.btn2_label || undefined}
         backgroundImage={heroBg}
       />
 

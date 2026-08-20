@@ -157,7 +157,7 @@ export interface PageContentFields {
   };
   // --- Promo Health Center ---
   sedi?: {
-    hero?: { titolo?: string; sottotitolo?: string; immagine?: WPImage | false };
+    hero?: { titolo?: string; sottotitolo?: string; btn1_label?: string; btn2_label?: string; immagine?: WPImage | false };
     rete_partner?: { titolo?: string; testo?: string; immagine?: WPImage | false };
   };
   // --- Contatti ---

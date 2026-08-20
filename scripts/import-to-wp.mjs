@@ -450,6 +450,8 @@ const PAGES = {
         titolo: 'ALTRI SERVIZI',
         sottotitolo:
           "L'evoluzione continua dei servizi sanitari per rispondere alle esigenze emergenti",
+        btn1_label: 'Scopri i servizi',
+        btn2_label: 'Contatti',
       },
       servizi_sviluppo: {
         badge: 'INNOVAZIONE IN CORSO',
@@ -472,6 +474,8 @@ const PAGES = {
         titolo: 'PRESENTI DOVE SERVE, QUANDO SERVE',
         sottotitolo:
           'PromoSan garantisce copertura su tutto il territorio nazionale grazie a una rete capillare e flessibile, pensata per rispondere alle esigenze di ogni azienda, ovunque essa operi.',
+        btn1_label: 'Scopri le nostre sedi',
+        btn2_label: 'Contattaci',
       },
       rete_partner: {
         titolo: 'RETE DI PARTNER QUALIFICATI',

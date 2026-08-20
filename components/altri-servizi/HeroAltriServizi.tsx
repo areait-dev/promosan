@@ -8,6 +8,8 @@ export interface HeroAltriServiziProps {
   badge?: string;
   title?: string;
   subtitle?: string;
+  btn1Label?: string;
+  btn2Label?: string;
   backgroundImage?: string;
 }
 
@@ -15,11 +17,15 @@ const DEFAULT_BADGE = 'Servizi in Evoluzione';
 const DEFAULT_TITLE = 'ALTRI SERVIZI';
 const DEFAULT_SUBTITLE =
   "L'evoluzione continua dei servizi sanitari per rispondere alle esigenze emergenti";
+const DEFAULT_BTN1_LABEL = 'Scopri i servizi';
+const DEFAULT_BTN2_LABEL = 'Contatti';
 
 export default function HeroAltriServizi({
   badge = DEFAULT_BADGE,
   title = DEFAULT_TITLE,
   subtitle = DEFAULT_SUBTITLE,
+  btn1Label = DEFAULT_BTN1_LABEL,
+  btn2Label = DEFAULT_BTN2_LABEL,
   backgroundImage,
 }: HeroAltriServiziProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -191,7 +197,7 @@ export default function HeroAltriServizi({
             }}
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span>Scopri i servizi</span>
+              <span>{btn1Label}</span>
               <i className="fas fa-chevron-down"></i>
             </span>
           </Link>
@@ -224,7 +230,7 @@ export default function HeroAltriServizi({
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <i className="fas fa-envelope"></i>
-              <span>Contattaci</span>
+              <span>{btn2Label}</span>
             </span>
           </Link>
         </div>

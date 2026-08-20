@@ -274,6 +274,8 @@
             { "key": "field_altri_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
             { "key": "field_altri_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
             { "key": "field_altri_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_altri_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text", "instructions": "Il link resta fisso (scorre alla sezione servizi), qui si modifica solo il testo." },
+            { "key": "field_altri_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text", "instructions": "Il link resta fisso (scorre alla sezione contatti), qui si modifica solo il testo." },
             { "key": "field_altri_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." }
           ]
         },
@@ -316,6 +318,8 @@
           "sub_fields": [
             { "key": "field_sedi_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
             { "key": "field_sedi_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_sedi_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text", "instructions": "Il link resta fisso (scorre alla sezione sedi), qui si modifica solo il testo." },
+            { "key": "field_sedi_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text", "instructions": "Il link resta fisso (va alla pagina contatti), qui si modifica solo il testo." },
             { "key": "field_sedi_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." }
           ]
         },
@@ -327,7 +331,8 @@
           "layout": "block",
           "sub_fields": [
             { "key": "field_sedi_rp_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
-            { "key": "field_sedi_rp_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 }
+            { "key": "field_sedi_rp_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_sedi_rp_immagine", "label": "Immagine", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine della sezione Rete di Partner Qualificati. Se vuota viene usata l'immagine predefinita." }
           ]
         }
       ]
