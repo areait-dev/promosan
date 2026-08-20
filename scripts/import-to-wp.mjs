@@ -4,7 +4,8 @@
  * Popola WordPress (REST API) con tutti i contenuti hardcoded del front-end:
  *  - Campi ACF delle 7 pagine (group_pagina_hero_cta, organizzato per Tab/sezione)
  *  - Opzioni globali (group_opzioni_globali)
- *  - CPT: news (4 demo), sedi (Sicilia/Veneto), pacchetti (Essential/Business/Premium), faq
+ *  - CPT: sedi (Sicilia/Veneto), pacchetti (Essential/Business/Premium), faq
+ *    (le news si gestiscono manualmente da WordPress, non da questo script)
  *
  * Lettura credenziali da .env.local:
  *   NEXT_PUBLIC_WP_API_URL  (es. https://wp.promosan.eu/wp-json/wp/v2)
@@ -19,7 +20,7 @@
  * IMMAGINI: vengono caricate automaticamente da public/assets/img/ nella Media
  *     Library (uploadMedia, con dedup per slug) e collegate ai campi ACF di tipo
  *     image come ID allegato. Le mappature filename->campo sono in PAGE_IMAGES /
- *     OPZIONI_IMAGES / NEWS_IMAGES / SEDI_IMAGES / PACCHETTI_IMAGES.
+ *     OPZIONI_IMAGES / SEDI_IMAGES / PACCHETTI_IMAGES.
  *
  * Al termine viene stampato un riepilogo (pagine, immagini, CPT, errori).
  */
@@ -522,45 +523,8 @@ const OPZIONI_GLOBALI = {
   social_instagram: '#',
 };
 
-// CPT news — 4 articoli demo.
-const NEWS = [
-  {
-    slug: 'nuovo-decreto-sorveglianza-sanitaria',
-    title: 'Nuovo decreto sulla sorveglianza sanitaria: cosa cambia',
-    excerpt:
-      'Le novità normative introdotte e gli impatti pratici per le aziende.',
-    content:
-      '<p>Una panoramica delle ultime modifiche normative in materia di sorveglianza sanitaria e dei relativi adempimenti per i datori di lavoro.</p>',
-    acf: { tempo_lettura: 5, visualizzazioni: 120, autore: { nome: 'Redazione PromoSan', ruolo: 'Medicina del Lavoro', iniziali: 'PS' } },
-  },
-  {
-    slug: 'unita-mobili-nuova-dotazione',
-    title: 'Le Unità Mobili PromoSan si rinnovano',
-    excerpt:
-      'Nuova strumentazione a bordo per visite e accertamenti ancora più rapidi.',
-    content:
-      '<p>Abbiamo aggiornato la dotazione tecnologica delle nostre Unità Mobili per garantire tempi di attesa ridotti e standard qualitativi elevati ovunque.</p>',
-    acf: { tempo_lettura: 4, visualizzazioni: 85, autore: { nome: 'Redazione PromoSan', ruolo: 'Operations', iniziali: 'PS' } },
-  },
-  {
-    slug: 'welfare-aziendale-vantaggi-fiscali',
-    title: 'Welfare aziendale: i vantaggi fiscali per le imprese',
-    excerpt:
-      'Come trasformare la prevenzione in un beneficio per azienda e dipendenti.',
-    content:
-      '<p>Un approfondimento sui vantaggi fiscali del welfare aziendale e su come strutturare pacchetti efficaci per il benessere dei lavoratori.</p>',
-    acf: { tempo_lettura: 6, visualizzazioni: 210, autore: { nome: 'Redazione PromoSan', ruolo: 'Welfare', iniziali: 'PS' } },
-  },
-  {
-    slug: 'prevenzione-screening-oncologici',
-    title: 'Prevenzione: l’importanza degli screening oncologici',
-    excerpt:
-      'Programmi di prevenzione estesi: perché iniziare ora.',
-    content:
-      '<p>La prevenzione è al centro del percorso di salute delle persone. Scopri i nostri programmi di screening e di educazione sanitaria.</p>',
-    acf: { tempo_lettura: 5, visualizzazioni: 64, autore: { nome: 'Redazione PromoSan', ruolo: 'Prevenzione', iniziali: 'PS' } },
-  },
-];
+// CPT news: gestite manualmente da WordPress, non da questo script
+// (esiste già un solo articolo reale, non vanno generate news demo).
 
 // CPT sedi — Sicilia e Veneto (da FALLBACK_SEDI_DATA + FALLBACK_SERVIZI).
 const SEDI_SERVIZI = nl([
@@ -751,12 +715,6 @@ const OPZIONI_IMAGES = {
 };
 
 // CPT: slug -> filename per il campo acf.immagine.
-const NEWS_IMAGES = {
-  'nuovo-decreto-sorveglianza-sanitaria': 'hand-with-pen-filling-out-document.jpg',
-  'unita-mobili-nuova-dotazione': 'camper5.png',
-  'welfare-aziendale-vantaggi-fiscali': 'teamwork-concept.jpg',
-  'prevenzione-screening-oncologici': 'close-up-doctor-holding-red-heart.jpg',
-};
 const SEDI_IMAGES = {
   sicilia: 'Promo_Health_Center_Logo_def.png',
   veneto: 'Promo_Health_Center_Logo_def.png',
@@ -789,17 +747,7 @@ async function main() {
   await applyImages(OPZIONI_GLOBALI, OPZIONI_IMAGES);
   await updatePageAcf('opzioni-globali', OPZIONI_GLOBALI);
 
-  console.log('\n— CPT News —');
-  for (const n of NEWS) {
-    const imgId = await uploadMedia(NEWS_IMAGES[n.slug]);
-    const acf = { ...n.acf, ...(imgId ? { immagine: imgId } : {}) };
-    await upsertPost(
-      'news',
-      n.slug,
-      { title: n.title, excerpt: n.excerpt, content: n.content, acf, ...(imgId ? { featured_media: imgId } : {}) },
-      n.title
-    );
-  }
+  console.log('\n— CPT News — SALTATO (le news reali si gestiscono da WP, non da questo script)');
 
   console.log('\n— CPT Sedi —');
   for (const s of SEDI) {
