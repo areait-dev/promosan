@@ -9,8 +9,12 @@ export interface HeroProps {
   title?: string;
   trustItems?: string[];
   ctaLabel?: string;
-  ctaLink?: string;
 }
+
+// Il link del CTA resta fisso allo scroll in-page verso i servizi:
+// non è configurabile da CMS per evitare che porti fuori pagina
+// prima che l'utente abbia visto i contenuti.
+const CTA_LINK = '#servizi';
 
 const DEFAULT_HERO: Required<HeroProps> = {
   backgroundImage: '/assets/img/camper9.jpg',
@@ -22,7 +26,6 @@ const DEFAULT_HERO: Required<HeroProps> = {
     'GESTIAMO TUTTE LE SCADENZE',
   ],
   ctaLabel: 'Scopri i servizi',
-  ctaLink: '#servizi',
 };
 
 export default function Hero(props: HeroProps = {}) {
@@ -32,7 +35,6 @@ export default function Hero(props: HeroProps = {}) {
     title = DEFAULT_HERO.title,
     trustItems = DEFAULT_HERO.trustItems,
     ctaLabel = DEFAULT_HERO.ctaLabel,
-    ctaLink = DEFAULT_HERO.ctaLink,
   } = props;
 
   return (
@@ -82,7 +84,7 @@ export default function Hero(props: HeroProps = {}) {
 
           {/* CTA Button */}
           <div className="hero-cta">
-            <Link href={ctaLink} className="btn btn-white">
+            <Link href={CTA_LINK} className="btn btn-white">
               {ctaLabel}
             </Link>
           </div>

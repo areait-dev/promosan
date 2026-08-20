@@ -46,6 +46,7 @@ export default async function MedicinaDelLavoroPage() {
         <HeroMedicinaLavoro
           badge={medicina?.hero?.badge || undefined}
           title={medicina?.hero?.titolo || undefined}
+          ctaLabel={medicina?.hero?.btn1_label || undefined}
           backgroundImage={heroBg}
         />
         <NominaMedicoSection />
