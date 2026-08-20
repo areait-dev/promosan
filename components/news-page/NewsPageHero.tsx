@@ -18,7 +18,7 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
       color: '#ffffff'
     }}>
       <Image
-        src="/assets/img/close-up-stethoscope-desk.jpg"
+        src="/assets/img/254458.jpg"
         alt=""
         fill
         priority
