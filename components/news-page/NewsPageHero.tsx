@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 interface NewsPageHeroProps {
   searchQuery: string;
@@ -11,11 +12,25 @@ interface NewsPageHeroProps {
 export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHeroProps) {
   return (
     <section style={{
+      position: 'relative',
+      overflow: 'hidden',
       padding: '5rem 0',
-      background: 'linear-gradient(to right, #2c5282, #4299e1, #2c5282)',
       color: '#ffffff'
     }}>
+      <Image
+        src="/assets/img/close-up-stethoscope-desk.jpg"
+        alt=""
+        fill
+        priority
+        style={{ objectFit: 'cover', objectPosition: 'center' }}
+      />
       <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(to right, rgba(44,82,130,0.92), rgba(66,153,225,0.85), rgba(44,82,130,0.92))'
+      }}></div>
+      <div style={{
+        position: 'relative',
         maxWidth: '1280px',
         margin: '0 auto',
         padding: '0 1rem'
@@ -25,13 +40,18 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
             marginBottom: '1.5rem',
             fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
             fontWeight: '700',
-            lineHeight: '1.2'
+            lineHeight: '1.2',
+            color: '#ffffff',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            textShadow: '0 2px 12px rgba(0, 0, 0, 0.35)'
           }}>
-            News & Aggiornamenti
+            News
           </h1>
           <p style={{
             margin: '0 auto',
             maxWidth: '600px',
+            color: '#ffffff',
             fontSize: '1.25rem',
             opacity: 0.9,
             lineHeight: '1.6'
