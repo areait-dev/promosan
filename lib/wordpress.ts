@@ -481,7 +481,7 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
   // Niente Options Page (Pro): i social sono campi flat social_linkedin/social_facebook/social_instagram.
   const data = await wpFetch<any[]>(
     `/pages?slug=${OPTIONS_PAGE_SLUG}`,
-    { revalidate: 300, draft }
+    { revalidate: 0, draft }
   );
   const acf = data[0]?.acf ?? {};
   // I loghi possono arrivare come ID allegato (REST ACF nativo): risolviamo l'URL.
