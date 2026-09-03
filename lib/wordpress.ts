@@ -93,7 +93,6 @@ export interface GlobalOptions {
   telefono: string;
   email: string;
   piva: string;
-  rea: string;
   orari: string;
   areaRiservataUrl: string;
   brochureUrl: string;
@@ -492,7 +491,6 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
     telefono: acf.telefono ?? "",
     email: acf.email ?? "",
     piva: acf.piva ?? "",
-    rea: acf.rea ?? "",
     orari: acf.orari ?? "",
     areaRiservataUrl: acf.area_riservata_url ?? "",
     brochureUrl: acf.brochure_url ?? "",

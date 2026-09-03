@@ -52,12 +52,6 @@
       "type": "text"
     },
     {
-      "key": "field_opt_rea",
-      "label": "REA",
-      "name": "rea",
-      "type": "text"
-    },
-    {
       "key": "field_opt_area_riservata",
       "label": "URL Area Riservata",
       "name": "area_riservata_url",

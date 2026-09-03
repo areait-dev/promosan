@@ -31,7 +31,6 @@ const DEFAULT_OPTIONS: GlobalOptions = {
   telefono: '800 034 615',
   email: 'info@promosan.eu',
   piva: '01840870883',
-  rea: 'MI-1234567',
   orari: '',
   areaRiservataUrl: 'https://clienti.promotergroup.eu/login',
   brochureUrl: '/assets/pdf/Brochure PromoSan.pdf',
@@ -45,13 +44,16 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
   const opt: GlobalOptions = {
     ...DEFAULT_OPTIONS,
     ...options,
+    // Campo con dato legale reale: se ACF torna stringa vuota (non ancora
+    // compilato in WP) non deve azzerare il default, a differenza degli altri
+    // campi opzionali dove vuoto è un valore legittimo.
+    piva: options?.piva || DEFAULT_OPTIONS.piva,
     social: { ...DEFAULT_OPTIONS.social, ...(options?.social ?? {}) },
   };
 
   const currentYear = new Date().getFullYear();
   const copyright =
-    opt.copyright ||
-    `© ${currentYear} PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: ${opt.piva} - REA: ${opt.rea}`;
+    opt.copyright || `© ${currentYear} PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: ${opt.piva}`;
 
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);

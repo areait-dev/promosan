@@ -514,8 +514,7 @@ const OPZIONI_GLOBALI = {
   telefono: '+39 0932 862613',
   email: 'info@promosan.eu',
   orari: 'Lun-Ven: 9:00-18:00',
-  piva: '',
-  rea: '',
+  piva: '01840870883',
   area_riservata_url: 'https://clienti.promotergroup.eu/login',
   brochure_url: '',
   // Vuoto di proposito: il Footer costruisce il copyright con l'anno corrente
