@@ -247,11 +247,12 @@ export default function HeroWelfare({
 
           {/* Scroll Indicator - Stile identico alla homepage */}
           <div className="scroll-indicator">
-            <button 
+            <button
               onClick={scrollToContent}
               className="scroll-link"
+              aria-label="Scorri per saperne di più"
             >
-              <span>Scorri per saperne di più</span>
+              <span aria-hidden="true">Scorri per saperne di più</span>
               <div className="scroll-mouse">
                 <span className="scroll-wheel" />
               </div>

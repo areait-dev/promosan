@@ -90,8 +90,8 @@ export default function Hero(props: HeroProps = {}) {
 
         {/* Scroll Indicator */}
         <div className="scroll-indicator">
-          <a href="#servizi" className="scroll-link">
-            <span>Scorri ai nostri servizi</span>
+          <a href="#servizi" className="scroll-link" aria-label="Scorri ai nostri servizi">
+            <span aria-hidden="true">Scorri ai nostri servizi</span>
             <div className="scroll-mouse">
               <span className="scroll-wheel" />
             </div>
