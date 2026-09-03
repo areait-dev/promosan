@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import PreviewBanner from "../components/PreviewBanner";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
+import ScrollRevealProvider from "../components/ScrollRevealProvider";
 
 export const metadata: Metadata = {
   title: "PromoSan - Medicina del Lavoro | Welfare Aziendale | Unità Mobili",
@@ -65,6 +66,7 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         {/* Banner visibile solo in Draft Mode (preview contenuti non pubblicati) */}
         <PreviewBanner />
+        <ScrollRevealProvider />
         {children}
         <CookieBanner />
       </body>
