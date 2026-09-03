@@ -57,8 +57,8 @@ export default function Hero(props: HeroProps = {}) {
             src={logo}
             alt="PromoSan Logo"
             className="hero-logo"
-            width={200}
-            height={60}
+            width={270}
+            height={50}
             priority
             style={{ width: 'auto', height: 'auto' }}
           />

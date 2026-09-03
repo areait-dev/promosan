@@ -77,10 +77,10 @@ export default function Navbar({
               <Image
                 src={logoUrl}
                 alt="PromoSan Logo"
-                width={140}
-                height={40}
-                sizes="140px"
-                className="brightness-0 invert h-8 lg:h-[38px] w-auto"
+                width={205}
+                height={38}
+                sizes="205px"
+                className="brightness-0 invert h-8 w-[173px] lg:h-[38px] lg:w-[205px]"
                 priority
               />
             </Link>

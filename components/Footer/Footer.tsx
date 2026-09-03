@@ -221,9 +221,9 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
               <Image
                 src={opt.logoBianco || '/assets/img/PromoSan_white.png'}
                 alt="Logo"
-                width={160}
-                height={45}
-                sizes="(max-width: 768px) 40vw, 160px"
+                width={216}
+                height={40}
+                sizes="(max-width: 768px) 40vw, 216px"
                 className="footer-logo-img mb-4 w-1/2 h-auto"
               />
               <p className="footer-tagline">{tagline}</p>
