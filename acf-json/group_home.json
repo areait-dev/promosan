@@ -1,0 +1,97 @@
+{
+  "key": "group_home",
+  "title": "Contenuti Pagina - Home",
+  "fields": [
+    {
+      "key": "field_home",
+      "label": "Home",
+      "name": "home",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_home_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_home_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_home_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array" },
+            { "key": "field_home_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_home_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text" },
+            { "key": "field_home_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
+            { "key": "field_home_hero_btn2_link", "label": "Bottone 2 - Link", "name": "btn2_link", "type": "text" }
+          ]
+        },
+        {
+          "key": "field_home_servizi",
+          "label": "Servizi",
+          "name": "servizi",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_servizi_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_servizi_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_home_servizi_lista", "label": "Lista servizi", "name": "lista", "type": "textarea", "rows": 6, "instructions": "Una voce per riga: Titolo | Descrizione | percorso-immagine | link" }
+          ]
+        },
+        {
+          "key": "field_home_numeri",
+          "label": "Numeri",
+          "name": "numeri",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_numeri_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_numeri_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_home_numeri_lista", "label": "Statistiche", "name": "lista", "type": "textarea", "rows": 4, "instructions": "Una voce per riga: valore | suffisso | etichetta (es. 25000 | + | VISITE MEDICHE)" }
+          ]
+        },
+        {
+          "key": "field_home_mission",
+          "label": "Mission & Vision",
+          "name": "mission",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_mission_testo", "label": "Testo Mission", "name": "mission_testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_home_vision_testo", "label": "Testo Vision", "name": "vision_testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_home_mission_immagine", "label": "Immagine decorativa", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine decorativa opzionale per la sezione Mission/Vision." }
+          ]
+        },
+        {
+          "key": "field_home_chisiamo",
+          "label": "Chi Siamo",
+          "name": "chisiamo",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_home_chisiamo_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_home_chisiamo_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_home_chisiamo_foto_team", "label": "Foto team", "name": "foto_team", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Foto del team mostrata nella sezione Chi Siamo. Se vuota viene usata l'immagine predefinita /assets/img/fototeam.jpg." }
+          ]
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "55"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Contenuti editoriali della pagina Home (wp.promosan.eu, id 55). Sostituisce il tab 'Home' del vecchio group_pagina_hero_cta condiviso."
+}

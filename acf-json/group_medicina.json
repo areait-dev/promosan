@@ -1,0 +1,68 @@
+{
+  "key": "group_medicina",
+  "title": "Contenuti Pagina - Medicina del Lavoro",
+  "fields": [
+    {
+      "key": "field_medicina",
+      "label": "Medicina del Lavoro",
+      "name": "medicina",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_medicina_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_medicina_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_medicina_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_medicina_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." },
+            { "key": "field_medicina_hero_btn1_label", "label": "Bottone - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_medicina_hero_btn1_link", "label": "Bottone - Link", "name": "btn1_link", "type": "text" }
+          ]
+        },
+        {
+          "key": "field_medicina_benefits",
+          "label": "Perché sceglierci",
+          "name": "benefits",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_medicina_benefits_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_medicina_benefits_lista", "label": "Lista", "name": "lista", "type": "textarea", "rows": 6, "instructions": "Una voce per riga: Titolo | Descrizione" }
+          ]
+        },
+        {
+          "key": "field_medicina_visite",
+          "label": "Visite Mediche",
+          "name": "visite",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_medicina_visite_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_medicina_visite_intro", "label": "Introduzione", "name": "intro", "type": "wysiwyg", "media_upload": 0 }
+          ]
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "114"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Contenuti editoriali della pagina Medicina del Lavoro (wp.promosan.eu, id 114). Sostituisce il tab 'Medicina del Lavoro' del vecchio group_pagina_hero_cta condiviso."
+}

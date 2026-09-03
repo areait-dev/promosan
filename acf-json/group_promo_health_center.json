@@ -1,0 +1,60 @@
+{
+  "key": "group_promo_health_center",
+  "title": "Contenuti Pagina - Promo Health Center",
+  "fields": [
+    {
+      "key": "field_sedi",
+      "label": "Promo Health Center",
+      "name": "sedi",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_sedi_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_sedi_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_sedi_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_sedi_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_sedi_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text", "instructions": "Es. #strutture-section per scorrere alla sezione sedi, oppure un URL/percorso." },
+            { "key": "field_sedi_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
+            { "key": "field_sedi_hero_btn2_link", "label": "Bottone 2 - Link", "name": "btn2_link", "type": "text" },
+            { "key": "field_sedi_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." }
+          ]
+        },
+        {
+          "key": "field_sedi_rete_partner",
+          "label": "Rete Partner",
+          "name": "rete_partner",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_sedi_rp_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_sedi_rp_testo", "label": "Testo", "name": "testo", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_sedi_rp_immagine", "label": "Immagine", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine della sezione Rete di Partner Qualificati. Se vuota viene usata l'immagine predefinita." }
+          ]
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "122"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Contenuti editoriali della pagina Promo Health Center (wp.promosan.eu, id 122). Sostituisce il tab 'Promo Health Center' del vecchio group_pagina_hero_cta condiviso. Non confondere con group_sedi.json, che sono i dati del CPT 'sedi' (Sicilia/Veneto)."
+}

@@ -1,0 +1,60 @@
+{
+  "key": "group_altri_servizi",
+  "title": "Contenuti Pagina - Altri Servizi",
+  "fields": [
+    {
+      "key": "field_altri",
+      "label": "Altri Servizi",
+      "name": "altri",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_altri_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_altri_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_altri_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_altri_hero_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 3 },
+            { "key": "field_altri_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text", "instructions": "Il link resta fisso (scorre alla sezione servizi), qui si modifica solo il testo." },
+            { "key": "field_altri_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text", "instructions": "Il link resta fisso (scorre alla sezione contatti), qui si modifica solo il testo." },
+            { "key": "field_altri_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito." }
+          ]
+        },
+        {
+          "key": "field_altri_servizi_sviluppo",
+          "label": "Servizi in sviluppo",
+          "name": "servizi_sviluppo",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_altri_ss_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_altri_ss_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_altri_ss_intro", "label": "Introduzione", "name": "intro", "type": "wysiwyg", "media_upload": 0 },
+            { "key": "field_altri_ss_focus", "label": "Focus prevenzione", "name": "focus_lista", "type": "textarea", "rows": 5, "instructions": "Una voce per riga" }
+          ]
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "117"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Contenuti editoriali della pagina Altri Servizi (wp.promosan.eu, id 117). Sostituisce il tab 'Altri Servizi' del vecchio group_pagina_hero_cta condiviso."
+}

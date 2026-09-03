@@ -1,0 +1,56 @@
+{
+  "key": "group_contatti",
+  "title": "Contenuti Pagina - Contatti",
+  "fields": [
+    {
+      "key": "field_contatti",
+      "label": "Contatti",
+      "name": "contatti",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_contatti_header",
+          "label": "Header",
+          "name": "header",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_contatti_header_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_contatti_header_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_contatti_header_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 2 }
+          ]
+        },
+        {
+          "key": "field_contatti_prenota",
+          "label": "Prenota consulenza",
+          "name": "prenota",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_contatti_prenota_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_contatti_prenota_lista", "label": "Punti elenco", "name": "lista", "type": "textarea", "rows": 5, "instructions": "Una voce per riga" },
+            { "key": "field_contatti_prenota_nota", "label": "Nota", "name": "nota", "type": "textarea", "rows": 2 }
+          ]
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "124"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Contenuti editoriali della pagina Contatti (wp.promosan.eu, id 124). Sostituisce il tab 'Contatti' del vecchio group_pagina_hero_cta condiviso."
+}

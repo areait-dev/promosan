@@ -1,0 +1,71 @@
+{
+  "key": "group_unita",
+  "title": "Contenuti Pagina - Unità Mobili",
+  "fields": [
+    {
+      "key": "field_unita",
+      "label": "Unità Mobili",
+      "name": "unita",
+      "type": "group",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_unita_hero",
+          "label": "Hero",
+          "name": "hero",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_unita_hero_badge", "label": "Badge", "name": "badge", "type": "text" },
+            { "key": "field_unita_hero_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_unita_hero_immagine", "label": "Immagine di sfondo", "name": "immagine", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all", "show_in_rest": 1, "instructions": "Immagine di sfondo dell'hero. Se vuota viene usato lo sfondo predefinito (/assets/img/camper5.png)." },
+            { "key": "field_unita_hero_btn1_label", "label": "Bottone 1 - Etichetta", "name": "btn1_label", "type": "text" },
+            { "key": "field_unita_hero_btn1_link", "label": "Bottone 1 - Link", "name": "btn1_link", "type": "text" },
+            { "key": "field_unita_hero_btn2_label", "label": "Bottone 2 - Etichetta", "name": "btn2_label", "type": "text" },
+            { "key": "field_unita_hero_btn2_link", "label": "Bottone 2 - Link", "name": "btn2_link", "type": "text" }
+          ]
+        },
+        {
+          "key": "field_unita_caratteristiche",
+          "label": "Caratteristiche del servizio",
+          "name": "caratteristiche",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_unita_caratteristiche_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_unita_caratteristiche_intro", "label": "Introduzione", "name": "intro", "type": "wysiwyg", "media_upload": 0 }
+          ]
+        },
+        {
+          "key": "field_unita_vantaggi",
+          "label": "Vantaggi",
+          "name": "vantaggi",
+          "type": "group",
+          "layout": "block",
+          "sub_fields": [
+            { "key": "field_unita_vantaggi_titolo", "label": "Titolo", "name": "titolo", "type": "text" },
+            { "key": "field_unita_vantaggi_sottotitolo", "label": "Sottotitolo", "name": "sottotitolo", "type": "textarea", "rows": 2 },
+            { "key": "field_unita_vantaggi_lista", "label": "Lista vantaggi", "name": "lista", "type": "textarea", "rows": 6, "instructions": "Una voce per riga: Titolo | Descrizione (HTML ammesso)" }
+          ]
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "115"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 1,
+  "description": "Contenuti editoriali della pagina Unità Mobili (wp.promosan.eu, id 115). Sostituisce il tab 'Unità Mobili' del vecchio group_pagina_hero_cta condiviso."
+}
