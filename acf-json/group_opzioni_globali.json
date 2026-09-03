@@ -101,7 +101,7 @@
       {
         "param": "page",
         "operator": "==",
-        "value": "opzioni-globali"
+        "value": "112"
       }
     ]
   ],
@@ -110,5 +110,5 @@
   "style": "default",
   "active": true,
   "show_in_rest": 1,
-  "description": "Contatti, social e dati legali globali. Campi semplici (text/email/url) su una pagina WordPress normale con slug 'opzioni-globali'. Niente Options Page (ACF free). NB: nella regola di location 'page', sostituisci il valore con l'ID della pagina creata se ACF non accetta lo slug."
+  "description": "Contatti, social e dati legali globali. Campi semplici (text/email/url) sulla pagina WordPress 'Opzioni Globali' (slug 'opzioni-globali', id 112 su wp.promosan.eu). Niente Options Page (ACF free)."
 }

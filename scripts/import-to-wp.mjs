@@ -518,7 +518,10 @@ const OPZIONI_GLOBALI = {
   rea: '',
   area_riservata_url: 'https://clienti.promotergroup.eu/login',
   brochure_url: '',
-  copyright: '© PromoSan S.r.l. - Tutti i diritti riservati',
+  // Vuoto di proposito: il Footer costruisce il copyright con l'anno corrente
+  // (new Date().getFullYear()) quando questo campo ACF è vuoto — se qui
+  // mettessimo un valore statico, sovrascriverebbe quella logica ad ogni import.
+  copyright: '',
   social_linkedin: '#',
   social_facebook: '#',
   social_instagram: '#',
