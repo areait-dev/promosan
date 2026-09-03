@@ -30,13 +30,12 @@ export interface FooterProps {
 const DEFAULT_OPTIONS: GlobalOptions = {
   telefono: '800 034 615',
   email: 'info@promosan.eu',
-  whatsapp: '',
   piva: '01840870883',
   rea: 'MI-1234567',
   orari: '',
   areaRiservataUrl: 'https://clienti.promotergroup.eu/login',
   brochureUrl: '/assets/pdf/Brochure PromoSan.pdf',
-  copyright: '© 2026 PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: 01840870883 - REA: MI-1234567',
+  copyright: '',
   logoUrl: '/assets/img/PromoSan.png',
   logoBianco: '/assets/img/PromoSan_white.png',
   social: { linkedin: '#', facebook: '#', instagram: '#' },
@@ -49,13 +48,15 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
     social: { ...DEFAULT_OPTIONS.social, ...(options?.social ?? {}) },
   };
 
+  const currentYear = new Date().getFullYear();
   const copyright =
-    opt.copyright && opt.copyright.includes('01840870883')
-      ? opt.copyright
-      : `© 2026 PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: 01840870883 - REA: MI-1234567`;
+    opt.copyright ||
+    `© ${currentYear} PromoSan S.r.l. - Tutti i diritti riservati - P.IVA: ${opt.piva} - REA: ${opt.rea}`;
 
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [newsletterError, setNewsletterError] = useState('');
 
   const telefono = opt.telefono || '800 034 615';
   const emailVal = opt.email || 'info@promosan.eu';
@@ -106,21 +107,38 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
     { name: 'Termini e Condizioni', href: '/termini-e-condizioni' },
   ];
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert('Inserisci una email valida');
+      setNewsletterStatus('error');
+      setNewsletterError('Inserisci una email valida.');
       return;
     }
 
     setIsSubmitting(true);
+    setNewsletterStatus('idle');
 
-    setTimeout(() => {
-      alert('Grazie per l\'iscrizione!');
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Iscrizione non riuscita.');
+      }
+
+      setNewsletterStatus('success');
       setEmail('');
+    } catch (err) {
+      setNewsletterStatus('error');
+      setNewsletterError(err instanceof Error ? err.message : 'Iscrizione non riuscita.');
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const brochureUrl = opt.brochureUrl || '/assets/pdf/Brochure PromoSan.pdf';
@@ -168,6 +186,16 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                 {isSubmitting ? 'Invio...' : 'Iscriviti'}
               </button>
             </form>
+            {newsletterStatus === 'success' && (
+              <p className="footer-newsletter-feedback footer-newsletter-feedback-success" role="status">
+                Grazie per l&apos;iscrizione!
+              </p>
+            )}
+            {newsletterStatus === 'error' && (
+              <p className="footer-newsletter-feedback footer-newsletter-feedback-error" role="alert">
+                {newsletterError}
+              </p>
+            )}
           </div>
         </div>
 
@@ -182,8 +210,8 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                 alt="Logo"
                 width={160}
                 height={45}
-                className="footer-logo-img mb-4"
-                style={{ width: '50%', height: 'auto' }}
+                sizes="(max-width: 768px) 40vw, 160px"
+                className="footer-logo-img mb-4 w-1/2 h-auto"
               />
               <p className="footer-tagline">{tagline}</p>
             </div>
@@ -237,10 +265,10 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
             <div className="footer-buttons">
               <a
-                href="https://clienti.promotergroup.eu/login"
+                href={opt.areaRiservataUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-btn-primary"
+                className="footer-btn footer-btn-primary"
               >
                 <i className="fas fa-lock"></i>
                 Area Riservata
@@ -248,7 +276,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
               <button
                 onClick={handleDownloadBrochure}
-                className="footer-btn-secondary"
+                className="footer-btn footer-btn-secondary"
               >
                 <i className="fas fa-file-pdf"></i>
                 Scarica Brochure

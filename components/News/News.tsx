@@ -3,6 +3,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { NewsItem } from '../../lib/wordpress';
 
 export interface NewsProps {
@@ -208,7 +209,8 @@ export default function News({
                 const primaryCategory = item.categories[0] ?? 'normativa';
                 const tagLabel = CATEGORY_LABELS[primaryCategory] ?? primaryCategory;
                 const imageUrl =
-                  typeof item.image === 'string' ? item.image : item.image?.url ?? '';
+                  (typeof item.image === 'string' ? item.image : item.image?.url) ||
+                  '/assets/img/news-strategia-nazionale.jpg';
 
                 // Formatta la data completa in italiano (es. "12 gennaio 2026")
                 const fullDateFormatted = (() => {
@@ -232,10 +234,12 @@ export default function News({
                       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
                       <div className="news-card-image">
-                        <img
+                        <Image
                           src={imageUrl}
                           alt={item.title}
+                          fill
                           className="news-card-img"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                         />
                         <div className="news-card-date">
                           <div className="news-card-day">{day}</div>

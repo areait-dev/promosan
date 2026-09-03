@@ -85,6 +85,7 @@ export default async function Home() {
           backgroundImage={heroBg}
           logo={options?.logoBianco || undefined}
           ctaLabel={hero?.btn1_label || undefined}
+          ctaLink={hero?.btn1_link || undefined}
         />
 
         {/* Sezioni con spacing uniforme */}

@@ -129,7 +129,9 @@ export default async function SediPage() {
         title={sediContent?.hero?.titolo || undefined}
         subtitle={sediContent?.hero?.sottotitolo || undefined}
         btn1Label={sediContent?.hero?.btn1_label || undefined}
+        btn1Link={sediContent?.hero?.btn1_link || undefined}
         btn2Label={sediContent?.hero?.btn2_label || undefined}
+        btn2Link={sediContent?.hero?.btn2_link || undefined}
         backgroundImage={heroBg}
       />
       <div id="strutture-section" className="container mx-auto px-4 md:px-6 py-16">

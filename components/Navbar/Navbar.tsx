@@ -16,8 +16,9 @@ export default function Navbar({
 }: NavbarProps = {}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServiziOpen, setIsServiziOpen] = useState(false);
+  const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   const router = useRouter();
 
   useEffect(() => {
@@ -52,13 +53,23 @@ export default function Navbar({
       router.push(`/ricerca?q=${encodeURIComponent(searchQuery)}`);
       setSearchQuery('');
       closeMobileMenu();
+      setIsSearchOverlayOpen(false);
     }
   };
+
+  useEffect(() => {
+    if (!isSearchOverlayOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsSearchOverlayOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSearchOverlayOpen]);
 
   return (
     <header className="bg-primary sticky top-0 z-50 w-full shadow-xl">
       <div className="container">
-        <div className="flex justify-between items-center h-40">
+        <div className="navbar-inner flex justify-between items-center h-[100px] lg:h-20">
           {/* Logo a sinistra */}
           <div className="flex-shrink-0">
             <Link href="/" onClick={closeMobileMenu}>
@@ -67,15 +78,15 @@ export default function Navbar({
                 alt="PromoSan Logo"
                 width={140}
                 height={40}
-                className="brightness-0 invert"
-                style={{ width: 'auto', height: '38px' }}
+                sizes="140px"
+                className="brightness-0 invert h-8 lg:h-[38px] w-auto"
                 priority
               />
             </Link>
           </div>
 
           {/* Menu Desktop (centrato nello spazio tra logo e azioni) */}
-          <nav className="hidden lg:flex flex-1 justify-center">
+          <nav className="navbar-menu hidden lg:flex flex-1 justify-center">
             <ul className="flex gap-1 items-center px-2 py-2 rounded-full">
               <li>
                 <Link href="/" className="nav-pill" onClick={closeMobileMenu}>
@@ -139,9 +150,11 @@ export default function Navbar({
             </ul>
           </nav>
 
-          {/* Desktop Actions */}
-          <div className="hidden lg:flex gap-6 items-center">
-            <form onSubmit={handleSearch} className="search-form">
+          {/* Desktop Actions: la search testuale sta comoda solo da 1536px in su;
+              tra 1024 e 1535px (notebook) mostriamo solo l'icona con overlay,
+              per evitare l'overlap tra menu/search/CTA in quella fascia. */}
+          <div className="navbar-actions hidden lg:flex gap-3 2xl:gap-6 items-center">
+            <form onSubmit={handleSearch} className="search-form hidden 2xl:flex">
               <input
                 type="text"
                 placeholder="Cerca..."
@@ -151,8 +164,16 @@ export default function Navbar({
               />
               <button type="submit" className="sr-only">Cerca</button>
             </form>
+            <button
+              type="button"
+              onClick={() => setIsSearchOverlayOpen(true)}
+              className="search-icon-btn flex 2xl:hidden"
+              aria-label="Cerca"
+            >
+              <i className="fas fa-search"></i>
+            </button>
             <a
-              href="https://clienti.promotergroup.eu/login"
+              href={areaRiservataUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="nav-pill"
@@ -282,7 +303,7 @@ export default function Navbar({
             {/* Area Riservata mobile */}
             <div className="px-4 py-2">
               <a
-                href="https://clienti.promotergroup.eu/login"
+                href={areaRiservataUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-3 font-medium text-white"
@@ -293,6 +314,41 @@ export default function Navbar({
               </a>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Overlay ricerca: usato tra 1024 e 1535px (icona), vedi navbar-actions */}
+      {isSearchOverlayOpen && (
+        <div
+          className="search-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Cerca nel sito"
+          onClick={() => setIsSearchOverlayOpen(false)}
+        >
+          <form
+            onSubmit={handleSearch}
+            className="search-overlay-panel"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <i className="fas fa-search text-gray-400"></i>
+            <input
+              type="text"
+              autoFocus
+              placeholder="Cerca nel sito..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-overlay-input"
+            />
+            <button
+              type="button"
+              onClick={() => setIsSearchOverlayOpen(false)}
+              className="search-overlay-close"
+              aria-label="Chiudi ricerca"
+            >
+              <i className="fas fa-times"></i>
+            </button>
+          </form>
         </div>
       )}
     </header>

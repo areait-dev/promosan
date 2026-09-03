@@ -39,13 +39,6 @@
       "type": "email"
     },
     {
-      "key": "field_opt_whatsapp",
-      "label": "Numero WhatsApp",
-      "name": "whatsapp",
-      "type": "text",
-      "instructions": "Solo cifre con prefisso internazionale, es. 390932862613."
-    },
-    {
       "key": "field_opt_orari",
       "label": "Orari",
       "name": "orari",

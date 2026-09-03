@@ -92,7 +92,6 @@ export interface FaqItem {
 export interface GlobalOptions {
   telefono: string;
   email: string;
-  whatsapp: string;
   piva: string;
   rea: string;
   orari: string;
@@ -157,7 +156,7 @@ export interface PageContentFields {
   };
   // --- Promo Health Center ---
   sedi?: {
-    hero?: { titolo?: string; sottotitolo?: string; btn1_label?: string; btn2_label?: string; immagine?: WPImage | false };
+    hero?: { titolo?: string; sottotitolo?: string; btn1_label?: string; btn1_link?: string; btn2_label?: string; btn2_link?: string; immagine?: WPImage | false };
     rete_partner?: { titolo?: string; testo?: string; immagine?: WPImage | false };
   };
   // --- Contatti ---
@@ -492,7 +491,6 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
   return {
     telefono: acf.telefono ?? "",
     email: acf.email ?? "",
-    whatsapp: acf.whatsapp ?? "",
     piva: acf.piva ?? "",
     rea: acf.rea ?? "",
     orari: acf.orari ?? "",

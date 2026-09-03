@@ -9,12 +9,8 @@ export interface HeroProps {
   title?: string;
   trustItems?: string[];
   ctaLabel?: string;
+  ctaLink?: string;
 }
-
-// Il link del CTA resta fisso allo scroll in-page verso i servizi:
-// non è configurabile da CMS per evitare che porti fuori pagina
-// prima che l'utente abbia visto i contenuti.
-const CTA_LINK = '#servizi';
 
 const DEFAULT_HERO: Required<HeroProps> = {
   backgroundImage: '/assets/img/camper9.jpg',
@@ -26,6 +22,7 @@ const DEFAULT_HERO: Required<HeroProps> = {
     'GESTIAMO TUTTE LE SCADENZE',
   ],
   ctaLabel: 'Scopri i servizi',
+  ctaLink: '#servizi',
 };
 
 export default function Hero(props: HeroProps = {}) {
@@ -35,6 +32,7 @@ export default function Hero(props: HeroProps = {}) {
     title = DEFAULT_HERO.title,
     trustItems = DEFAULT_HERO.trustItems,
     ctaLabel = DEFAULT_HERO.ctaLabel,
+    ctaLink = DEFAULT_HERO.ctaLink,
   } = props;
 
   return (
@@ -84,7 +82,7 @@ export default function Hero(props: HeroProps = {}) {
 
           {/* CTA Button */}
           <div className="hero-cta">
-            <Link href={CTA_LINK} className="btn btn-white">
+            <Link href={ctaLink} className="btn btn-white">
               {ctaLabel}
             </Link>
           </div>
@@ -173,7 +171,9 @@ export default function Hero(props: HeroProps = {}) {
           color: var(--color-white);
           text-shadow: 0 4px 15px rgba(0,0,0,0.5);
           margin-bottom: var(--space-md);
-          font-size: clamp(1.8rem, 5vw, 2.55rem);
+          /* Scalatura fluida su tutto il range (360px-1920px+): il clamp gestisce
+             da solo l'adattamento, niente ridefinizioni fisse per breakpoint. */
+          font-size: clamp(1.4rem, 5vw, 2.55rem);
           font-weight: 800;
           line-height: 1.2;
           max-width: 900px;
@@ -329,11 +329,6 @@ export default function Hero(props: HeroProps = {}) {
 
         /* Tablet */
         @media (max-width: 768px) {
-          .hero-title-homepage {
-            font-size: 2rem;
-            margin-bottom: var(--space-lg);
-          }
-
           .trust-bar {
             flex-direction: column;
             padding: var(--space-sm) var(--space-md);
@@ -363,11 +358,6 @@ export default function Hero(props: HeroProps = {}) {
 
         /* Mobile */
         @media (max-width: 480px) {
-          .hero-title-homepage {
-            font-size: 1.5rem;
-            margin-bottom: var(--space-md);
-          }
-
           .trust-bar {
             padding: var(--space-xs) var(--space-sm);
           }

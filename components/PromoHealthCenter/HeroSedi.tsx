@@ -7,7 +7,9 @@ export interface HeroSediProps {
   title?: string;
   subtitle?: string;
   btn1Label?: string;
+  btn1Link?: string;
   btn2Label?: string;
+  btn2Link?: string;
   backgroundImage?: string;
 }
 
@@ -15,13 +17,17 @@ const DEFAULT_TITLE = 'PRESENTI DOVE SERVE, QUANDO SERVE';
 const DEFAULT_SUBTITLE =
   'PromoSan garantisce copertura su tutto il territorio nazionale grazie a una rete capillare e flessibile, pensata per rispondere alle esigenze di ogni azienda, ovunque essa operi.';
 const DEFAULT_BTN1_LABEL = 'Scopri le nostre sedi';
+const DEFAULT_BTN1_LINK = '#strutture-section';
 const DEFAULT_BTN2_LABEL = 'Contattaci';
+const DEFAULT_BTN2_LINK = '/contatti';
 
 const HeroSedi = ({
   title = DEFAULT_TITLE,
   subtitle = DEFAULT_SUBTITLE,
   btn1Label = DEFAULT_BTN1_LABEL,
+  btn1Link = DEFAULT_BTN1_LINK,
   btn2Label = DEFAULT_BTN2_LABEL,
+  btn2Link = DEFAULT_BTN2_LINK,
   backgroundImage,
 }: HeroSediProps = {}) => {
   const gradient = 'linear-gradient(90deg, rgba(44,82,130,0.5) 0%, rgba(66,153,225,0.5) 100%)';
@@ -54,10 +60,10 @@ const HeroSedi = ({
         </p>
         
         <div className="hero-buttons">
-          <Link href="#strutture-section" className="btn btn-white">
+          <Link href={btn1Link} className="btn btn-white">
             {btn1Label}
           </Link>
-          <Link href="/contatti" className="btn btn-outline">
+          <Link href={btn2Link} className="btn btn-outline">
             {btn2Label}
           </Link>
         </div>

@@ -476,7 +476,9 @@ const PAGES = {
         sottotitolo:
           'PromoSan garantisce copertura su tutto il territorio nazionale grazie a una rete capillare e flessibile, pensata per rispondere alle esigenze di ogni azienda, ovunque essa operi.',
         btn1_label: 'Scopri le nostre sedi',
+        btn1_link: '#strutture-section',
         btn2_label: 'Contattaci',
+        btn2_link: '/contatti',
       },
       rete_partner: {
         titolo: 'RETE DI PARTNER QUALIFICATI',
@@ -511,7 +513,6 @@ const PAGES = {
 const OPZIONI_GLOBALI = {
   telefono: '+39 0932 862613',
   email: 'info@promosan.eu',
-  whatsapp: '390932862613',
   orari: 'Lun-Ven: 9:00-18:00',
   piva: '',
   rea: '',

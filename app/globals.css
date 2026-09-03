@@ -100,11 +100,6 @@
   --transition-slow: all 0.5s ease;
   --transition-fast: all 0.2s ease;
 
-  /* Navbar */
-  --navbar-height-desktop: 180px;
-  --navbar-height-mobile: 100px;
-  --logo-height-desktop: 38px;
-  --logo-height-mobile: 32px;
 }
 
 /* ========== MEDIA QUERIES PER CONTAINER ========== */
@@ -512,18 +507,12 @@ header {
 }
 
 header .container,
-header .flex,
-header .h-40,
+header .navbar-inner,
 header nav,
 header .nav-pill {
   color: white !important;
   opacity: 1 !important;
   visibility: visible !important;
-}
-
-header img {
-  height: var(--logo-height-desktop) !important;
-  width: auto !important;
 }
 
 header,
@@ -672,8 +661,8 @@ header li button,
 /* Hamburger menu */
 .hamburger-btn {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -861,97 +850,77 @@ header li button,
   box-shadow: none !important;
 }
 
-/* Spaziatura navbar desktop: spinge il menu a sinistra e garantisce un gap
-   sufficiente perché lo sfondo bianco dell'hover dei pill non tocchi la search */
-@media (min-width: 1024px) {
-  header nav.lg\:flex {
-    padding-left: 1rem;
-    padding-right: 4rem;
-    /* gap menu -> search (> padding del pill = 1.5rem) */
-  }
-
-  header .search-form {
-    margin-left: 1.5rem;
-    /* ulteriore gap dal menu */
-    margin-right: 1rem;
-    /* gap dall'Area Riservata */
-  }
+/* Spaziatura navbar desktop: il gap tra menu/search/Area Riservata è gestito
+   direttamente in JSX con gap-3/2xl:gap-6 su .navbar-actions e gap-1 su .navbar-menu,
+   niente più override su combinazioni di classi Tailwind (.lg\:flex.gap-6...). */
+.navbar-menu {
+  padding-left: 1rem;
 }
 
-/* Notebook 13" (~1024-1535px di larghezza reale finestra, es. MacBook Pro 13"
-   2018 = 1440px logici): la navbar completa (5 voci + dropdown + search fissa
-   240px + Area Riservata) non ci sta nel container di 960/1140px senza
-   stringere pill/search, causando overlap. */
-@media (min-width: 1024px) and (max-width: 1535px) {
-  header nav.lg\:flex {
-    padding-left: 0.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .nav-pill {
-    padding: 0.7rem 0.9rem !important;
-  }
-
-  header .search-form {
-    margin-left: 0.75rem;
-    margin-right: 0.75rem;
-  }
-
-  .search-input {
-    width: 150px;
-  }
-
-  /* "Area Riservata" resta staccato dal bordo destro del container */
-  .hidden.lg\:flex.gap-6.items-center {
-    padding-right: 6rem !important;
-  }
+/* Tra 1024 e 1535px (notebook) la search testuale è sostituita da un'icona che apre
+   l'overlay (vedi .search-icon-btn / .search-overlay in Navbar.tsx): niente più
+   compressione di padding/width di pill e search per farceli entrare a forza. */
+.search-icon-btn {
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-full);
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: var(--transition-base);
 }
 
-/* Responsive navbar */
-@media (min-width: 1024px) {
-  .lg\:flex.gap-6.items-center {
-    display: flex !important;
-  }
-
-  .hamburger-btn {
-    display: none !important;
-  }
-
-  nav.lg\:flex {
-    display: flex !important;
-  }
+.search-icon-btn:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
 }
 
-@media (max-width: 1023px) {
-
-  .lg\:flex.gap-6.items-center,
-  header .search-form,
-  nav.lg\:flex {
-    display: none !important;
-  }
-
-  .hamburger-btn {
-    display: flex !important;
-  }
-
-  header .h-40 {
-    height: var(--navbar-height-mobile) !important;
-  }
-
-  header img {
-    height: var(--logo-height-mobile) !important;
-  }
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(26, 54, 93, 0.6);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6rem 1rem 1rem;
 }
 
-@media (min-width: 1024px) {
-  header .h-40 {
-    height: 80px !important;
-    /* Altezza desiderata per desktop */
-  }
+.search-overlay-panel {
+  width: 100%;
+  max-width: 32rem;
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-2xl);
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
 
-  header img {
-    height: var(--logo-height-desktop, 40px) !important;
-  }
+.search-overlay-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: var(--text-lg);
+  color: var(--color-gray-800);
+  background: transparent;
+}
+
+.search-overlay-close {
+  background: transparent;
+  border: none;
+  color: var(--color-gray-400);
+  cursor: pointer;
+  font-size: var(--text-lg);
+  padding: var(--space-xs);
+}
+
+.search-overlay-close:hover {
+  color: var(--color-gray-700);
 }
 
 /* Forza colore testo voci menu */
@@ -2225,24 +2194,6 @@ header li button,
   transition: var(--transition-base);
 }
 
-@media (max-width: 992px) {
-  .map-container {
-    height: 350px;
-  }
-}
-
-@media (max-width: 768px) {
-  .map-container {
-    height: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .map-container {
-    height: 280px;
-  }
-}
-
 .map-container:hover {
   box-shadow: var(--shadow-xl);
   opacity: 0.95;
@@ -2812,6 +2763,19 @@ header li button,
   transition: var(--transition-base);
   white-space: nowrap;
   font-size: var(--text-base);
+}
+
+.footer-newsletter-feedback {
+  margin-top: var(--space-sm);
+  font-size: var(--text-sm);
+}
+
+.footer-newsletter-feedback-success {
+  color: #86efac;
+}
+
+.footer-newsletter-feedback-error {
+  color: #fca5a5;
 }
 
 .footer-grid {
