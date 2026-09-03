@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { ChevronDown, Search, Lock, X } from 'lucide-react';
 
 export interface NavbarProps {
   logoUrl?: string;
@@ -98,7 +99,7 @@ export default function Navbar({
               <li className="relative group">
                 <button className="nav-pill flex items-center gap-1">
                   <span>Servizi</span>
-                  <i className="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                  <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
                 </button>
                 <div className="dropdown-menu">
                   <Link
@@ -170,7 +171,7 @@ export default function Navbar({
               className="search-icon-btn flex 2xl:hidden"
               aria-label="Cerca"
             >
-              <i className="fas fa-search"></i>
+              <Search className="h-4 w-4" />
             </button>
             <a
               href={areaRiservataUrl}
@@ -217,9 +218,9 @@ export default function Navbar({
                 onClick={() => setIsServiziOpen(!isServiziOpen)}
               >
                 <span>Servizi</span>
-                <i className={`fas fa-chevron-down mobile-dropdown-icon ${
+                <ChevronDown className={`mobile-dropdown-icon h-4 w-4 ${
                   isServiziOpen ? 'rotate-180 text-primary' : ''
-                }`}></i>
+                }`} />
               </button>
               
               <div className={`mobile-submenu ${
@@ -289,7 +290,7 @@ export default function Navbar({
             {/* Ricerca Mobile */}
             <div className="px-4 py-3">
               <form onSubmit={handleSearch} className="relative">
-                <i className="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Cerca nel sito..."
@@ -309,7 +310,7 @@ export default function Navbar({
                 className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-3 font-medium text-white"
                 onClick={closeMobileMenu}
               >
-                <i className="fas fa-lock"></i>
+                <Lock className="h-4 w-4" />
                 <span>Area Riservata</span>
               </a>
             </div>
@@ -331,7 +332,7 @@ export default function Navbar({
             className="search-overlay-panel"
             onClick={(e) => e.stopPropagation()}
           >
-            <i className="fas fa-search text-gray-400"></i>
+            <Search className="h-4 w-4 text-gray-400" />
             <input
               type="text"
               autoFocus
@@ -346,7 +347,7 @@ export default function Navbar({
               className="search-overlay-close"
               aria-label="Chiudi ricerca"
             >
-              <i className="fas fa-times"></i>
+              <X className="h-4 w-4" />
             </button>
           </form>
         </div>

@@ -1,5 +1,4 @@
 // app/page.tsx
-import Navbar from "../components/Navbar/Navbar";
 import Hero from "../components/Hero/Hero";
 import ChiSiamo from "../components/Chisiamo/chisiamo";
 import MissionVision from "../components/MissionVision/MissionVision";
@@ -78,7 +77,6 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <main>
         <Hero
           title={hero?.titolo || undefined}

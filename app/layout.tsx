@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
+import { Titillium_Web } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import PreviewBanner from "../components/PreviewBanner";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
 import ScrollRevealProvider from "../components/ScrollRevealProvider";
+import Navbar from "../components/Navbar/Navbar";
+import { getGlobalOptions } from "../lib/wordpress";
+
+// Self-hosted da Next (nessun round-trip verso fonts.googleapis.com, niente FOUT).
+const titilliumWeb = Titillium_Web({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-titillium",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "PromoSan - Medicina del Lavoro | Welfare Aziendale | Unità Mobili",
@@ -16,15 +27,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Montata qui (invece che in ogni singola pagina) così resta un unico
+  // componente che persiste tra le navigazioni client-side, senza essere
+  // re-idratata ad ogni cambio pagina.
+  let areaRiservataUrl: string | undefined;
+  try {
+    areaRiservataUrl = (await getGlobalOptions()).areaRiservataUrl || undefined;
+  } catch (error) {
+    console.error("[RootLayout] Fetch opzioni globali fallito, uso i default:", error);
+  }
+
   return (
-    <html lang="it">
+    <html lang="it" className={titilliumWeb.variable}>
       <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         {/* Google Consent Mode v2: nega per default i cookie non tecnici finché l'utente non sceglie */}
         <Script id="consent-default" strategy="beforeInteractive">
           {`
@@ -67,6 +87,7 @@ export default function RootLayout({
         {/* Banner visibile solo in Draft Mode (preview contenuti non pubblicati) */}
         <PreviewBanner />
         <ScrollRevealProvider />
+        <Navbar areaRiservataUrl={areaRiservataUrl} />
         {children}
         <CookieBanner />
       </body>

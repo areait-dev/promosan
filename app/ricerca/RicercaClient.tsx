@@ -3,7 +3,7 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
-import Navbar from '../../components/Navbar/Navbar';
+import { Search, FileText, ArrowRight, Newspaper } from 'lucide-react';
 import Footer from '../../components/Footer/Footer';
 import NewsPageCard from '../../components/news-page/NewsPageCard';
 import { searchSitePages, type SitePage } from '../../lib/searchIndex';
@@ -74,13 +74,12 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
 
   return (
     <main className="w-full overflow-x-hidden">
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
 
       {/* Hero ricerca */}
       <section className="w-full bg-gradient-to-br from-[#1e3a5f] via-primary to-secondary text-white pt-28 pb-20">
         <div className="w-full max-w-3xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-sm font-medium mb-6">
-            <i className="fas fa-search"></i>
+            <Search className="h-4 w-4" />
             <span>Ricerca nel sito</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
@@ -129,7 +128,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
                         className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 group"
                       >
                         <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
-                          <i className="far fa-file-alt text-primary group-hover:text-white"></i>
+                          <FileText className="h-4 w-4 text-primary group-hover:text-white" />
                         </div>
                         <div>
                           <span className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors block mb-1">
@@ -139,7 +138,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
                             {page.description}
                           </span>
                         </div>
-                        <i className="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-primary transition-colors mt-1"></i>
+                        <ArrowRight className="ml-auto mt-1 h-4 w-4 text-gray-300 transition-colors group-hover:text-primary" />
                       </Link>
                     ))}
                   </div>
@@ -162,7 +161,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
           ) : (
             <div className="text-center py-20">
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-search text-4xl text-gray-400"></i>
+                <Search className="h-10 w-10 text-gray-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
                 {hasQuery ? 'Nessun risultato trovato' : 'Inizia la tua ricerca'}
@@ -177,7 +176,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
                   href="/news"
                   className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors"
                 >
-                  <i className="fas fa-newspaper"></i>
+                  <Newspaper className="h-4 w-4" />
                   Sfoglia tutte le news
                 </Link>
               )}

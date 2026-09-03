@@ -4,6 +4,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Clock, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { NewsItem } from '../../lib/wordpress';
 
 export interface NewsProps {
@@ -266,10 +267,10 @@ export default function News({
                         </p>
                         <div className="news-card-footer">
                           <span className="news-card-time">
-                            <i className="far fa-clock"></i> {item.readTime} min
+                            <Clock className="inline h-3 w-3" /> {item.readTime} min
                           </span>
                           <span className="news-card-link-text">
-                            Leggi <i className="ml-1 text-xs fas fa-arrow-right"></i>
+                            Leggi <ArrowRight className="ml-1 inline h-3 w-3" />
                           </span>
                         </div>
                       </div>
@@ -288,7 +289,7 @@ export default function News({
                 className="carousel-btn"
                 aria-label="Articolo precedente"
               >
-                <i className="fas fa-chevron-left"></i>
+                <ChevronLeft className="h-4 w-4" />
               </button>
 
               <div className="carousel-indicators">
@@ -310,7 +311,7 @@ export default function News({
                 className="carousel-btn"
                 aria-label="Articolo successivo"
               >
-                <i className="fas fa-chevron-right"></i>
+                <ChevronRight className="h-4 w-4" />
               </button>
             </div>
           )}

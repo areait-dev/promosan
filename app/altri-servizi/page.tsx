@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import HeroAltriServizi from '../../components/altri-servizi/HeroAltriServizi';
 import ServiziInSviluppo from '../../components/altri-servizi/ServiziInSviluppo';
 import BannerInfo from '../../components/altri-servizi/BannerInfo';
-import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { draftMode } from 'next/headers';
 import {
@@ -65,7 +64,6 @@ export default async function AltriServiziPage() {
       minHeight: '100vh'
     }}>
       {/* Hero Section */}
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <HeroAltriServizi
         badge={altri?.hero?.badge || undefined}
         title={altri?.hero?.titolo || undefined}

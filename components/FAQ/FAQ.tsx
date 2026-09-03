@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { ChevronDown, HelpCircle, BriefcaseMedical, FileSignature } from 'lucide-react';
+import type { ComponentType, SVGProps } from 'react';
 import type { FaqItem } from '../../lib/wordpress';
 
 export interface FAQProps {
@@ -74,11 +76,11 @@ export default function FAQ({
     list: FaqItem[],
     categoryIndex: number,
     columnTitle: string,
-    columnIcon: string
+    ColumnIcon: ComponentType<SVGProps<SVGSVGElement>>
   ) => (
     <div className="faq-column">
       <h3 className="faq-column-title">
-        <i className={`fas ${columnIcon}`}></i>
+        <ColumnIcon className="h-4 w-4" />
         {columnTitle}
       </h3>
 
@@ -94,7 +96,7 @@ export default function FAQ({
             >
               <div className="faq-question">
                 <h4>{faq.question}</h4>
-                <i className={`fas fa-chevron-down faq-question-icon ${isActive ? 'rotated' : ''}`}></i>
+                <ChevronDown className={`faq-question-icon h-4 w-4 ${isActive ? 'rotated' : ''}`} />
               </div>
 
               <div className={`faq-answer ${isActive ? 'visible' : ''}`}>
@@ -117,7 +119,7 @@ export default function FAQ({
         <div className="section-header faq-header">
           <div className="faq-badge">
             <span className="faq-badge-icon">
-              <i className="fas fa-question" />
+              <HelpCircle className="h-4 w-4" />
             </span>
             FAQ
           </div>
@@ -179,8 +181,8 @@ export default function FAQ({
 
         {/* FAQ Grid */}
         <div className="faq-grid">
-          {renderColumn(servizi, 0, 'Servizi & Costi', 'fa-briefcase-medical')}
-          {renderColumn(normative, 1, 'Normative & Procedure', 'fa-file-contract')}
+          {renderColumn(servizi, 0, 'Servizi & Costi', BriefcaseMedical)}
+          {renderColumn(normative, 1, 'Normative & Procedure', FileSignature)}
         </div>
       </div>
     </section>

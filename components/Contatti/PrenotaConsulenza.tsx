@@ -3,6 +3,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { CalendarCheck, CheckCircle2 } from 'lucide-react';
 
 export interface PrenotaConsulenzaProps {
   title?: string;
@@ -88,7 +89,7 @@ export default function PrenotaConsulenza({
           color: '#ffffff',
           flexShrink: 0
         }}>
-          <i className="fas fa-calendar-check"></i>
+          <CalendarCheck size={14} />
         </div>
         <h3 style={{
           fontSize: '1.1rem',
@@ -108,7 +109,7 @@ export default function PrenotaConsulenza({
       }}>
         {items.map((item, index) => (
           <li key={index} style={{ display: 'flex', gap: '0.6rem', marginBottom: '0.85rem', alignItems: 'center' }}>
-            <i className="fas fa-check-circle" style={{ color: '#204c84', flexShrink: 0, fontSize: '0.95rem' }}></i>
+            <CheckCircle2 size={15} style={{ color: '#204c84', flexShrink: 0 }} />
             <span style={{ color: '#475569', fontWeight: '500', fontSize: '0.9rem' }}>{item}</span>
           </li>
         ))}

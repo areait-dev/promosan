@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Caratteristica {
   id: number;
@@ -189,7 +190,7 @@ export default function CaratteristicheServizio({
                         }}
                         aria-label="Immagine precedente"
                       >
-                        <i className="fas fa-chevron-left" style={{ color: '#2c5282' }}></i>
+                        <ChevronLeft size={16} style={{ color: '#2c5282' }} />
                       </button>
                       <button
                         onClick={nextSlide}
@@ -212,7 +213,7 @@ export default function CaratteristicheServizio({
                         }}
                         aria-label="Immagine successiva"
                       >
-                        <i className="fas fa-chevron-right" style={{ color: '#2c5282' }}></i>
+                        <ChevronRight size={16} style={{ color: '#2c5282' }} />
                       </button>
 
                       {/* Indicatori */}

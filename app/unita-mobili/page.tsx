@@ -1,5 +1,4 @@
 import HeroUnitaMobili from '../../components/Unita-mobili/HeroUnitaMobili';
-import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import VantaggiUnitaMobili from '../../components/Unita-mobili/VantaggiUnitaMobili';
 import CaratteristicheServizio from '../../components/Unita-mobili/CaratteristicheServizio';
@@ -34,7 +33,6 @@ export default async function UnitaMobiliPage() {
 
   return (
     <main>
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <HeroUnitaMobili
         badge={unita?.hero?.badge || undefined}
         title={unita?.hero?.titolo || undefined}

@@ -3,7 +3,6 @@ import ContattiHeader from '../../components/Contatti/ContattiHeader';
 import ContattiForm from '../../components/Contatti/ContattiForm';
 import OrariContatti from '../../components/Contatti/OrariContatti';
 import PrenotaConsulenza from '../../components/Contatti/PrenotaConsulenza';
-import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { draftMode } from 'next/headers';
 import {
@@ -46,7 +45,6 @@ export const metadata: Metadata = {
 
     return (
       <>
-        <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
         <main>
           <section id="contatti" style={{
             padding: '4rem 0',

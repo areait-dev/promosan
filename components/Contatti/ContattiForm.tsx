@@ -2,6 +2,21 @@
 'use client';
 
 import React, { useState, FormEvent, ChangeEvent } from 'react';
+import {
+  Send,
+  User,
+  Mail,
+  Building2,
+  Phone,
+  Briefcase,
+  Users,
+  MessageCircle,
+  Info,
+  ShieldCheck,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+} from 'lucide-react';
 
 interface FormData {
   nome: string;
@@ -132,7 +147,7 @@ export default function ContattiForm() {
           color: '#ffffff',
           flexShrink: 0
         }}>
-          <i className="fas fa-paper-plane" style={{ fontSize: '1rem', transform: 'rotate(-10deg)' }}></i>
+          <Send size={16} style={{ transform: 'rotate(-10deg)' }} />
         </div>
         <div>
           <h2 style={{ 
@@ -177,7 +192,7 @@ export default function ContattiForm() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                <i className="fas fa-user" style={{ marginRight: '0.5rem', color: '#1a365d', fontSize: '0.85rem' }}></i>
+                <User size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Nome e Cognome *
               </label>
               <input 
@@ -212,7 +227,7 @@ export default function ContattiForm() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                <i className="fas fa-envelope" style={{ marginRight: '0.5rem', color: '#1a365d', fontSize: '0.85rem' }}></i>
+                <Mail size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Email *
               </label>
               <input 
@@ -247,7 +262,7 @@ export default function ContattiForm() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                <i className="fas fa-building" style={{ marginRight: '0.5rem', color: '#1a365d', fontSize: '0.85rem' }}></i>
+                <Building2 size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Azienda
               </label>
               <input 
@@ -281,7 +296,7 @@ export default function ContattiForm() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                <i className="fas fa-phone" style={{ marginRight: '0.5rem', color: '#1a365d', fontSize: '0.85rem' }}></i>
+                <Phone size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Telefono *
               </label>
               <input 
@@ -316,7 +331,7 @@ export default function ContattiForm() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                <i className="fas fa-briefcase" style={{ marginRight: '0.5rem', color: '#1a365d', fontSize: '0.85rem' }}></i>
+                <Briefcase size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Servizio di interesse *
               </label>
               <select 
@@ -357,7 +372,7 @@ export default function ContattiForm() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                <i className="fas fa-users" style={{ marginRight: '0.5rem', color: '#1a365d', fontSize: '0.85rem' }}></i>
+                <Users size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Numero dipendenti
               </label>
               <select 
@@ -396,7 +411,7 @@ export default function ContattiForm() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                <i className="fas fa-comment-dots" style={{ marginRight: '0.5rem', color: '#1a365d', fontSize: '0.85rem' }}></i>
+                <MessageCircle size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Messaggio *
               </label>
               <textarea 
@@ -427,7 +442,7 @@ export default function ContattiForm() {
                 alignItems: 'center',
                 gap: '0.25rem'
               }}>
-                <i className="fas fa-info-circle" style={{ color: '#2b578c' }}></i>
+                <Info size={16} style={{ color: '#2b578c' }} />
                 Più informazioni ci fornisci, più preciso sarà il nostro preventivo
               </p>
             </div>
@@ -478,7 +493,7 @@ export default function ContattiForm() {
             fontSize: '0.8rem',
             color: '#64748b'
           }}>
-            <i className="fas fa-shield-alt" style={{ color: '#2b578c' }}></i>
+            <ShieldCheck size={16} style={{ color: '#2b578c' }} />
             <span>I tuoi dati sono protetti e sicuri</span>
           </div>
 
@@ -500,10 +515,11 @@ export default function ContattiForm() {
                 border: `1px solid ${status === 'success' ? '#a7f3d0' : '#fecaca'}`
               }}
             >
-              <i
-                className={status === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'}
-                style={{ marginTop: '0.15rem', flexShrink: 0 }}
-              ></i>
+              {status === 'success' ? (
+                <CheckCircle2 size={16} style={{ marginTop: '0.15rem', flexShrink: 0 }} />
+              ) : (
+                <AlertCircle size={16} style={{ marginTop: '0.15rem', flexShrink: 0 }} />
+              )}
               <span>{feedback}</span>
             </div>
           )}
@@ -531,7 +547,11 @@ export default function ContattiForm() {
               boxShadow: '0 4px 12px rgba(59, 130, 246, 0.2)'
             }}
           >
-            <i className={status === 'loading' ? 'fas fa-spinner fa-spin' : 'fas fa-paper-plane'}></i>
+            {status === 'loading' ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <Send size={16} />
+            )}
             {status === 'loading' ? 'Invio in corso...' : 'Richiedi preventivo'}
           </button>
         </form>

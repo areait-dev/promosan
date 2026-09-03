@@ -1,6 +1,5 @@
 // src/app/welfare-aziendale/page.tsx
 import { Metadata } from 'next';
-import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import HeroWelfare from '../../components/welfare-aziendale/HeroWelfare';
 import IntroduzioneWelfare from '../../components/welfare-aziendale/IntroduzioneWelfare';
@@ -59,7 +58,6 @@ export default async function WelfareAziendalePage() {
       overflowX: 'hidden',
       width: '100%'
     }}>
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       {/* Hero Section */}
       <HeroWelfare
         badge={welfare?.hero?.badge || undefined}

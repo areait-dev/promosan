@@ -16,7 +16,8 @@ const config: Config = {
         "accent-light": "#63b3ed",
       },
       fontFamily: {
-        sans: ["Titillium Web", "system-ui", "sans-serif"],
+        // Self-hosted via next/font (variabile --font-titillium impostata in layout.tsx).
+        sans: ["var(--font-titillium)", "system-ui", "sans-serif"],
       },
     },
   },

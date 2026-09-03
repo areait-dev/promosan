@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 
 export default function Error({
@@ -18,7 +17,6 @@ export default function Error({
 
   return (
     <>
-      <Navbar />
       <main>
         <section className="section" style={{ textAlign: 'center', padding: '6rem 1rem' }}>
           <div className="container">

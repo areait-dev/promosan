@@ -2,11 +2,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Search } from 'lucide-react';
 import NewsPageHero from '../../components/news-page/NewsPageHero';
 import NewsPageFilters from '../../components/news-page/NewsPageFilters';
 import NewsPageCard from '../../components/news-page/NewsPageCard';
 import NewsPagePagination from '../../components/news-page/NewsPagePagination';
-import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import type { GlobalOptions, NewsItem as WPNewsItem } from '../../lib/wordpress';
 
@@ -138,7 +138,6 @@ export default function NewsClient({ initialNews, options }: NewsClientProps) {
 
   return (
     <main style={{ overflowX: 'hidden', width: '100%' }}>
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <NewsPageHero searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
       <section style={{ padding: '4rem 1rem' }}>
@@ -170,7 +169,7 @@ export default function NewsClient({ initialNews, options }: NewsClientProps) {
             </>
           ) : (
             <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-              <i className="fas fa-search" style={{ fontSize: '3rem', color: '#9ca3af', marginBottom: '1rem' }}></i>
+              <Search size={48} style={{ color: '#9ca3af', marginBottom: '1rem' }} />
               <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>
                 Nessun risultato trovato
               </h3>

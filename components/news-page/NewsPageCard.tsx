@@ -3,6 +3,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Clock, ArrowRight } from 'lucide-react';
 
 interface NewsItem {
   id: number;
@@ -146,7 +147,7 @@ export default function NewsPageCard({ news }: NewsPageCardProps) {
           borderTop: '1px solid #f3f4f6'
         }}>
           <span style={{ display: 'flex', gap: '0.25rem', alignItems: 'center', fontSize: '0.875rem', color: '#6b7280' }}>
-            <i className="far fa-clock"></i> {news.readTime} min
+            <Clock className="inline h-3 w-3" /> {news.readTime} min
           </span>
           <Link
             href={`/news/${news.slug ?? news.id}`}
@@ -168,7 +169,7 @@ export default function NewsPageCard({ news }: NewsPageCardProps) {
             }}
           >
             Leggi articolo
-            <i className="fas fa-arrow-right"></i>
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

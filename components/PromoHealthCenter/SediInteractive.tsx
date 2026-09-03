@@ -1,9 +1,16 @@
 // components/PromoHealthCenter/SediInteractive.tsx
 'use client';
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import SediToggle from './SediToggle';
 import SedeCard from './SedeCard';
-import MappaIframe from './MappaIframe';
+
+// Iframe Google Maps: non necessario al render iniziale, caricato solo lato
+// client in un chunk separato.
+const MappaIframe = dynamic(() => import('./MappaIframe'), {
+  ssr: false,
+  loading: () => <div className="map-container" aria-hidden="true" />,
+});
 
 interface SedeData {
   regione: string;

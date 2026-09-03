@@ -1,5 +1,4 @@
 // app/medicina-del-lavoro/page.tsx
-import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer';
 import HeroMedicinaLavoro from '../../components/medicina-del-lavoro/HeroMedicinaLavoro';
 import NominaMedicoSection from '../../components/medicina-del-lavoro/NominaMedicoSection';
@@ -41,7 +40,6 @@ export default async function MedicinaDelLavoroPage() {
 
   return (
     <>
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <main>
         <HeroMedicinaLavoro
           badge={medicina?.hero?.badge || undefined}

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { ArrowUp } from 'lucide-react';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +29,7 @@ const BackToTop = () => {
         isVisible ? 'block' : 'hidden'
       }`}
     >
-      <i className="fas fa-arrow-up"></i>
+      <ArrowUp className="h-4 w-4" />
     </button>
   );
 };

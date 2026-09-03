@@ -1,4 +1,5 @@
 import React from 'react';
+import { Calendar, Phone, Info, Check } from 'lucide-react';
 
 const CtaAltriServizi = () => {
   return (
@@ -19,7 +20,7 @@ const CtaAltriServizi = () => {
               className="relative px-8 py-4 font-bold bg-white rounded-xl transition-all duration-300 group text-[#2c5282] hover:bg-gray-100 hover:shadow-2xl hover:scale-105"
             >
               <span className="flex relative z-10 gap-2 items-center">
-                <i className="transition-transform duration-300 fas fa-calendar group-hover:rotate-12"></i>
+                <Calendar size={16} className="transition-transform duration-300 group-hover:rotate-12" />
                 <span>Diventa Partner Innovativo</span>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r rounded-xl transition-all duration-500 from-[#2c5282]/0 to-[#4299e1]/0 group-hover:from-[#2c5282]/5 group-hover:to-[#4299e1]/5"></div>
@@ -30,7 +31,7 @@ const CtaAltriServizi = () => {
               className="relative px-8 py-4 font-bold text-white rounded-xl border-2 border-white transition-all duration-300 group hover:bg-white hover:text-[#2c5282] hover:shadow-2xl hover:scale-105"
             >
               <span className="flex relative z-10 gap-2 items-center">
-                <i className="transition-transform duration-300 fas fa-phone group-hover:scale-110"></i>
+                <Phone size={16} className="transition-transform duration-300 group-hover:scale-110" />
                 <span>Chiamaci ora per informazioni</span>
               </span>
               <div className="absolute inset-0 rounded-xl transition-all duration-500 bg-white/0 group-hover:bg-white/5"></div>
@@ -39,9 +40,9 @@ const CtaAltriServizi = () => {
           
           <div className="mt-8">
             <p className="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg transition-all duration-300 text-white/70 bg-white/5 hover:bg-white/10 hover:scale-105 group">
-              <i className="fas fa-info-circle"></i>
+              <Info size={16} />
               <span>Servizio attivo dal lunedì al venerdì, 8:00-18:00. Rispondiamo entro 24 ore</span>
-              <i className="ml-2 opacity-0 transition-opacity duration-300 fas fa-check group-hover:opacity-100"></i>
+              <Check size={16} className="ml-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </p>
           </div>
         </div>

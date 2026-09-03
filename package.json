@@ -12,6 +12,7 @@
     "import:wp:full": "node scripts/import-to-wp.mjs --with-media"
   },
   "dependencies": {
+    "lucide-react": "^1.40.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-countup": "^6.5.3",
@@ -29,6 +30,7 @@
     "@types/scrollreveal": "^0.0.11",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

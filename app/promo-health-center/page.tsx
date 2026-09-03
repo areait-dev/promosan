@@ -1,5 +1,4 @@
 // app/promo-health-center/page.tsx
-import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import HeroSedi from '../../components/PromoHealthCenter/HeroSedi';
 import SediInteractive from '../../components/PromoHealthCenter/SediInteractive';
@@ -124,7 +123,6 @@ export default async function SediPage() {
 
   return (
     <main className="sedi-page">
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <HeroSedi
         title={sediContent?.hero?.titolo || undefined}
         subtitle={sediContent?.hero?.sottotitolo || undefined}

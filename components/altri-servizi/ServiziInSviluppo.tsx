@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { FlaskConical } from 'lucide-react';
 import CardServizio from './CardServizio';
 import FocusGrid from './FocusGrid';
 
@@ -83,7 +84,7 @@ export default function ServiziInSviluppo({
               transition: 'opacity 0.7s ease-out, transform 0.7s ease-out'
             }}
           >
-            <i className="fas fa-flask"></i>
+            <FlaskConical size={14} />
             <span>{badge}</span>
           </div>
 

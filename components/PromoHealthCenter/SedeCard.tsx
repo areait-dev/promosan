@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Building2, Phone, Mail, Send, MapPin } from 'lucide-react';
 
 // Definisci i tipi per i dati della sede
 interface SedeData {
@@ -42,7 +43,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
       <div className="card-info">
         <div className="info-item">
           <div className="info-icon">
-            <i className="fas fa-building"></i>
+            <Building2 className="h-4 w-4" />
           </div>
           <div>
             <span className="info-label">Indirizzo</span>
@@ -51,7 +52,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
         </div>
         <div className="info-item">
           <div className="info-icon">
-            <i className="fas fa-phone"></i>
+            <Phone className="h-4 w-4" />
           </div>
           <div>
             <span className="info-label">Telefono</span>
@@ -60,7 +61,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
         </div>
         <div className="info-item">
           <div className="info-icon">
-            <i className="fas fa-envelope"></i>
+            <Mail className="h-4 w-4" />
           </div>
           <div>
             <span className="info-label">Email</span>
@@ -80,7 +81,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
       
       <div className="card-buttons">
         <Link href="/contatti" className="btn-contact">
-          <i className="fas fa-paper-plane"></i>
+          <Send className="h-4 w-4" />
           Contatta questa sede
         </Link>
         <a
@@ -89,7 +90,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
           rel="noopener noreferrer"
           className="btn-map"
         >
-          <i className="fas fa-map-marker-alt"></i>
+          <MapPin className="h-4 w-4" />
           Vai alla mappa
         </a>
       </div>

@@ -2,20 +2,22 @@
 'use client';
 
 import React from 'react';
+import type { ComponentType, SVGProps } from 'react';
+import { Gavel, BriefcaseMedical, Calendar, Lightbulb, Handshake } from 'lucide-react';
 
 interface Filter {
   id: string;
   label: string;
-  icon: string | null;
+  Icon: ComponentType<SVGProps<SVGSVGElement>> | null;
 }
 
 const filters: Filter[] = [
-  { id: 'tutte', label: 'Tutte le news', icon: null },
-  { id: 'normativa', label: 'Normativa', icon: 'fa-gavel' },
-  { id: 'servizi', label: 'Servizi', icon: 'fa-briefcase-medical' },
-  { id: 'eventi', label: 'Eventi', icon: 'fa-calendar-alt' },
-  { id: 'innovazione', label: 'Innovazione', icon: 'fa-lightbulb' },
-  { id: 'welfare', label: 'Welfare', icon: 'fa-handshake' },
+  { id: 'tutte', label: 'Tutte le news', Icon: null },
+  { id: 'normativa', label: 'Normativa', Icon: Gavel },
+  { id: 'servizi', label: 'Servizi', Icon: BriefcaseMedical },
+  { id: 'eventi', label: 'Eventi', Icon: Calendar },
+  { id: 'innovazione', label: 'Innovazione', Icon: Lightbulb },
+  { id: 'welfare', label: 'Welfare', Icon: Handshake },
 ];
 
 interface NewsPageFiltersProps {
@@ -57,7 +59,7 @@ export default function NewsPageFilters({ activeFilter, onFilterChange }: NewsPa
             }
           }}
         >
-          {filter.icon && <i className={`mr-2 fas ${filter.icon}`} style={{ marginRight: '0.5rem' }}></i>}
+          {filter.Icon && <filter.Icon className="mr-2 inline h-4 w-4" style={{ marginRight: '0.5rem' }} />}
           {filter.label}
         </button>
       ))}

@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import type { ComponentType, SVGProps } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Mail, Phone, Lock, FileText } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from '../icons/SocialIcons';
 import type { GlobalOptions } from '../../lib/wordpress';
 
 interface NavItem {
@@ -13,7 +16,7 @@ interface NavItem {
 }
 
 interface SocialLink {
-  icon: string;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
   href: string;
 }
 
@@ -98,9 +101,9 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
   ];
 
   const socialLinks: SocialLink[] = [
-    { icon: 'fab fa-linkedin-in', href: opt.social.linkedin },
-    { icon: 'fab fa-facebook-f', href: opt.social.facebook },
-    { icon: 'fab fa-instagram', href: opt.social.instagram },
+    { Icon: LinkedinIcon, href: opt.social.linkedin },
+    { Icon: FacebookIcon, href: opt.social.facebook },
+    { Icon: InstagramIcon, href: opt.social.instagram },
   ];
 
   const legalLinks: LegalLink[] = [
@@ -143,6 +146,13 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
     }
   };
 
+  // TODO(performance): 'public/assets/pdf/Brochure PromoSan.pdf' pesa ~67MB ed è
+  // servito dal deploy Next.js stesso — va spostato su uno storage/CDN esterno
+  // (es. bucket S3/R2, o direttamente Media Library di WordPress) e l'URL
+  // risultante va incollato nel campo ACF "URL Brochure (PDF)" (opt.brochureUrl,
+  // già letto qui sotto): a quel punto questo fallback locale non serve più e il
+  // file può essere rimosso da public/. Nessuna destinazione esterna decisa
+  // ancora: lasciato così per non rompere il download nel frattempo.
   const brochureUrl = opt.brochureUrl || '/assets/pdf/Brochure PromoSan.pdf';
 
   const handleDownloadBrochure = () => {
@@ -178,7 +188,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                   onChange={(e) => setEmail(e.target.value)}
                   className="footer-newsletter-input"
                 />
-                <i className="fas fa-envelope footer-newsletter-icon"></i>
+                <Mail className="footer-newsletter-icon h-4 w-4" />
               </div>
               <button
                 type="submit"
@@ -219,11 +229,11 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
             </div>
             <div className="footer-contacts">
               <div className="footer-contact-item">
-                <i className="fas fa-phone"></i>
+                <Phone className="h-4 w-4" />
                 <a href={`tel:${telefono.replace(/[\s-]/g, '')}`}>{telefono}</a>
               </div>
               <div className="footer-contact-item">
-                <i className="fas fa-envelope"></i>
+                <Mail className="h-4 w-4" />
                 <a href={`mailto:${emailVal}`}>{emailVal}</a>
               </div>
             </div>
@@ -272,7 +282,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                 rel="noopener noreferrer"
                 className="footer-btn footer-btn-primary"
               >
-                <i className="fas fa-lock"></i>
+                <Lock className="h-4 w-4" />
                 Area Riservata
               </a>
 
@@ -280,7 +290,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                 onClick={handleDownloadBrochure}
                 className="footer-btn footer-btn-secondary"
               >
-                <i className="fas fa-file-pdf"></i>
+                <FileText className="h-4 w-4" />
                 Scarica Brochure
               </button>
             </div>
@@ -296,7 +306,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`${social.icon}`}></i>
+                  <social.Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>

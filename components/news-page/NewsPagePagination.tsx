@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface NewsPagePaginationProps {
   currentPage: number;
@@ -67,7 +68,7 @@ export default function NewsPagePagination({
           }
         }}
       >
-        <i className="fas fa-chevron-left" style={{ marginRight: '0.5rem' }}></i> 
+        <ChevronLeft size={16} style={{ marginRight: '0.5rem' }} />
         Precedente
       </button>
 
@@ -121,7 +122,7 @@ export default function NewsPagePagination({
         }}
       >
         Successivo 
-        <i className="fas fa-chevron-right" style={{ marginLeft: '0.5rem' }}></i>
+        <ChevronRight size={16} style={{ marginLeft: '0.5rem' }} />
       </button>
     </div>
   );

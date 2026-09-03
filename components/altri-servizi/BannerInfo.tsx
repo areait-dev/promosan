@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Phone, Clock } from 'lucide-react';
 
 export default function BannerInfo() {
   return (
@@ -16,13 +17,13 @@ export default function BannerInfo() {
           
           <div className="banner-cta">
             <a href="tel:+390932862613" className="banner-button">
-              <i className="fas fa-phone-alt"></i>
+              <Phone size={14} />
               <span>Chiamaci ora per informazioni</span>
             </a>
           </div>
 
           <div className="banner-note">
-            <i className="far fa-clock"></i>
+            <Clock size={14} />
             <span>Servizio attivo dal lunedì al venerdì, 9:00-18:00. Rispondiamo entro 24 ore</span>
           </div>
         </div>

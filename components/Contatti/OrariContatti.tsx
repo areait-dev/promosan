@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { Clock, Phone, Mail } from 'lucide-react';
 
 export interface OrariContattiProps {
   telefono?: string;
@@ -71,7 +72,7 @@ export default function OrariContatti({
         textTransform: 'uppercase',
         letterSpacing: '0.5px'
       }}>
-        <i className="fas fa-clock" style={{ color: '#204c84', fontSize: '1.2rem' }}></i>
+        <Clock size={19} style={{ color: '#204c84' }} />
         Orari e contatti
       </h3>
       
@@ -94,7 +95,7 @@ export default function OrariContatti({
           fontSize: '1.1rem',
           flexShrink: 0
         }}>
-          <i className="fas fa-phone-alt"></i>
+          <Phone size={14} />
         </div>
         <div className="contatti-info-content">
           <h4 style={{
@@ -126,7 +127,7 @@ export default function OrariContatti({
             margin: 0,
             gap: '0.35rem'
           }}>
-            <i className="far fa-clock" style={{ fontSize: '0.85rem', color: '#64748b' }}></i>
+            <Clock size={14} style={{ color: '#64748b' }} />
             Lun-Ven: 9:00-18:00
           </p>
         </div>
@@ -150,7 +151,7 @@ export default function OrariContatti({
           fontSize: '1.1rem',
           flexShrink: 0
         }}>
-          <i className="fas fa-envelope"></i>
+          <Mail size={14} />
         </div>
         <div className="contatti-info-content">
           <h4 style={{

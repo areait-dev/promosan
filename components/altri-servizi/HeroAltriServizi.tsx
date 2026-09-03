@@ -3,6 +3,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { Plus, ChevronDown, Mail } from 'lucide-react';
 
 export interface HeroAltriServiziProps {
   badge?: string;
@@ -116,7 +117,7 @@ export default function HeroAltriServizi({
             transition: 'opacity 0.7s ease-out, transform 0.7s ease-out'
           }}
         >
-          <i className="fas fa-plus" style={{ fontSize: '0.75rem' }}></i>
+          <Plus size={12} />
           <span>{badge}</span>
         </div>
 
@@ -198,7 +199,7 @@ export default function HeroAltriServizi({
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span>{btn1Label}</span>
-              <i className="fas fa-chevron-down"></i>
+              <ChevronDown size={16} />
             </span>
           </Link>
 
@@ -229,7 +230,7 @@ export default function HeroAltriServizi({
             }}
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <i className="fas fa-envelope"></i>
+              <Mail size={16} />
               <span>{btn2Label}</span>
             </span>
           </Link>

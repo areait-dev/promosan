@@ -3,6 +3,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { Search } from 'lucide-react';
 
 interface NewsPageHeroProps {
   searchQuery: string;
@@ -95,7 +96,7 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
                 border: 'none',
                 cursor: 'pointer'
               }}>
-                <i className="fas fa-search" style={{ color: '#9ca3af' }}></i>
+                <Search size={16} style={{ color: '#9ca3af' }} />
               </button>
             </div>
           </div>

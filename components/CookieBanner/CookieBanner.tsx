@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Cookie } from 'lucide-react';
 
 const STORAGE_KEY = 'promosan-cookie-consent';
 
@@ -99,7 +100,7 @@ export default function CookieBanner() {
     >
       <div className="cookie-banner-head">
         <div className="cookie-banner-icon">
-          <i className="fas fa-cookie-bite" aria-hidden="true"></i>
+          <Cookie className="h-5 w-5" aria-hidden="true" />
         </div>
         <div className="cookie-banner-body">
           <p className="cookie-banner-title">La tua privacy conta per noi</p>

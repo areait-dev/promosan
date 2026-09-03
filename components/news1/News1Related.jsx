@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import Link from 'next/link';
+import { Clock, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -118,10 +119,10 @@ const News1Related = ({ relatedNews }) => {
                       </div>
                       <div className="news-card-footer">
                         <span className="news-card-time">
-                          <i className="far fa-clock"></i> {item.readTime} min
+                          <Clock className="inline h-3 w-3" /> {item.readTime} min
                         </span>
                         <span className="news-card-link-text">
-                          Leggi <i className="ml-1 text-xs fas fa-arrow-right"></i>
+                          Leggi <ArrowRight className="ml-1 inline h-3 w-3" />
                         </span>
                       </div>
                     </div>
@@ -139,7 +140,7 @@ const News1Related = ({ relatedNews }) => {
             className="carousel-btn"
             aria-label="Articolo precedente"
           >
-            <i className="fas fa-chevron-left"></i>
+            <ChevronLeft className="h-4 w-4" />
           </button>
 
           <button
@@ -147,7 +148,7 @@ const News1Related = ({ relatedNews }) => {
             className="carousel-btn"
             aria-label="Articolo successivo"
           >
-            <i className="fas fa-chevron-right"></i>
+            <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>

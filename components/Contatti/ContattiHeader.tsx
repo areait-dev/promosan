@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { MessageSquare } from 'lucide-react';
 
 export interface ContattiHeaderProps {
   badge?: string;
@@ -62,7 +63,7 @@ export default function ContattiHeader({
           transition: 'opacity 0.7s ease-out, transform 0.7s ease-out'
         }}
       >
-        <i className="fas fa-comments"></i>
+        <MessageSquare size={14} />
         <span>{badge}</span>
       </div>
 
