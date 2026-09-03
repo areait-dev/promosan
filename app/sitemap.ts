@@ -19,10 +19,20 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/termini-e-condizioni", priority: 0.2, changeFrequency: "yearly" },
 ];
 
+// Solo data (YYYY-MM-DD), niente ora/millisecondi: il formato W3C Datetime
+// raccomandato da sitemaps.org è più stretto di un ISO 8601 completo, e un
+// Date passato a Next.js viene serializzato con .toISOString() (millisecondi
+// inclusi) — alcuni parser di sitemap sono rigidi su questo dettaglio.
+function toSitemapDate(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const today = toSitemapDate(new Date());
+
   const staticEntries: MetadataRoute.Sitemap = STATIC_PAGES.map((page) => ({
     url: `${SITE_URL}${page.path}`,
-    lastModified: new Date(),
+    lastModified: today,
     changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
@@ -34,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const news = await getNews(100);
     newsEntries = news.map((item) => ({
       url: `${SITE_URL}/news/${item.slug}`,
-      lastModified: new Date(item.date),
+      lastModified: toSitemapDate(new Date(item.date)),
       changeFrequency: "monthly",
       priority: 0.6,
     }));
