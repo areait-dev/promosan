@@ -250,9 +250,8 @@ export default function HeroWelfare({
             <button 
               onClick={scrollToContent}
               className="scroll-link"
-              aria-label="Scorri ai contenuti"
             >
-              <span>Scopri di più</span>
+              <span>Scorri per saperne di più</span>
               <div className="scroll-mouse">
                 <span className="scroll-wheel" />
               </div>

@@ -161,7 +161,7 @@ export default function ContattiForm() {
             INVIA UN MESSAGGIO
           </h2>
           <p style={{ 
-            color: '#64748b',
+            color: '#475569',
             fontSize: '0.85rem'
           }}>
             Compila il form per ricevere un preventivo personalizzato
@@ -322,7 +322,7 @@ export default function ContattiForm() {
 
             {/* Servizio */}
             <div>
-              <label style={{
+              <label htmlFor="servizio" style={{
                 display: 'block',
                 marginBottom: '0.5rem',
                 fontSize: '0.75rem',
@@ -334,7 +334,8 @@ export default function ContattiForm() {
                 <Briefcase size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Servizio di interesse *
               </label>
-              <select 
+              <select
+                id="servizio"
                 name="servizio"
                 value={formData.servizio}
                 onChange={handleChange}
@@ -363,7 +364,7 @@ export default function ContattiForm() {
 
             {/* Dipendenti */}
             <div>
-              <label style={{
+              <label htmlFor="dipendenti" style={{
                 display: 'block',
                 marginBottom: '0.5rem',
                 fontSize: '0.75rem',
@@ -375,7 +376,8 @@ export default function ContattiForm() {
                 <Users size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
                 Numero dipendenti
               </label>
-              <select 
+              <select
+                id="dipendenti"
                 name="dipendenti"
                 value={formData.dipendenti}
                 onChange={handleChange}
@@ -437,7 +439,7 @@ export default function ContattiForm() {
               <p style={{
                 marginTop: '0.5rem',
                 fontSize: '0.75rem',
-                color: '#64748b',
+                color: '#475569',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.25rem'
@@ -491,7 +493,7 @@ export default function ContattiForm() {
             alignItems: 'center',
             marginBottom: '1.5rem',
             fontSize: '0.8rem',
-            color: '#64748b'
+            color: '#475569'
           }}>
             <ShieldCheck size={16} style={{ color: '#2b578c' }} />
             <span>I tuoi dati sono protetti e sicuri</span>

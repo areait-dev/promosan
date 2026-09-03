@@ -14,18 +14,15 @@ type ScrollRevealInstance = ReturnType<typeof ScrollRevealType>;
 // Import dinamico: la libreria referenzia `window`/`document` a livello di modulo,
 // incompatibile con l'SSR di Next.
 function revealCurrentPage(sr: ScrollRevealInstance) {
-  // Ogni sezione di contenuto (esclusi gli hero, gia' visibili al primo paint
-  // e animati separatamente sotto).
+  // Hero ESCLUSO di proposito: e' contenuto sopra la piega, visibile al primo
+  // paint. Animarlo (fade+translate dopo il caricamento) sposta l'elemento
+  // dopo che è già stato dipinto, e Lighthouse lo conta come layout shift —
+  // era la causa principale di un CLS di 0.14 (soglia "good" è 0.1). L'hero
+  // resta quindi sempre visibile da subito, senza animazione JS.
   sr.reveal('main > section:not([class*="hero"])', {
     origin: "bottom",
     interval: 120,
   });
-
-  // Hero: titolo/CTA/trust-bar animano in sequenza invece della sezione intera.
-  sr.reveal(
-    '.hero-title-homepage, .hero-cta, .hero-subtitle, .trust-bar, [class*="hero"] h1, [class*="hero"] .btn',
-    { origin: "bottom", interval: 150, distance: "24px" }
-  );
 
   // Card ricorrenti con markup noto in tutto il sito.
   // .stat-card (Numeri) e altre con animazione propria via IntersectionObserver: esclusi qui.

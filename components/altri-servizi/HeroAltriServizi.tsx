@@ -266,7 +266,7 @@ export default function HeroAltriServizi({
               e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
             }}
           >
-            <span>Scopri di più</span>
+            <span>Scorri per saperne di più</span>
             <div className="scroll-mouse">
               <span className="scroll-wheel" />
             </div>

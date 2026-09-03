@@ -170,9 +170,9 @@ export default function NewsClient({ initialNews, options }: NewsClientProps) {
           ) : (
             <div style={{ textAlign: 'center', padding: '4rem 0' }}>
               <Search size={48} style={{ color: '#9ca3af', marginBottom: '1rem' }} />
-              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>
                 Nessun risultato trovato
-              </h3>
+              </h2>
               <p style={{ color: '#6b7280' }}>
                 Prova a modificare i filtri di ricerca o la categoria selezionata
               </p>

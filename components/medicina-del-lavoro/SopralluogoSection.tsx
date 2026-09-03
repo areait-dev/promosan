@@ -53,7 +53,7 @@ export default function SopralluogoSection() {
             </h3>
 
             <p className="text-gray-700" style={{
-              color: '#64748b',
+              color: '#475569',
               lineHeight: '1.7',
               marginBottom: '1.2rem',
               fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)'
@@ -61,7 +61,7 @@ export default function SopralluogoSection() {
               Il sopralluogo negli ambienti di lavoro è un obbligo fondamentale del Medico Competente stabilito dall'<strong style={{ color: 'var(--color-primary)', fontWeight: '700' }}>art. 25 comma 1 lettera l) del D.Lgs. 81/08</strong>.
             </p>
             <p className="text-gray-700" style={{
-              color: '#64748b',
+              color: '#475569',
               lineHeight: '1.7',
               fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
               margin: 0

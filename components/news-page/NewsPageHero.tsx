@@ -87,15 +87,24 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               />
-              <button style={{
-                position: 'absolute',
-                right: '0.75rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer'
-              }}>
+              <button
+                type="button"
+                aria-label="Cerca"
+                style={{
+                  position: 'absolute',
+                  right: '0.25rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '44px',
+                  height: '44px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
                 <Search size={16} style={{ color: '#9ca3af' }} />
               </button>
             </div>

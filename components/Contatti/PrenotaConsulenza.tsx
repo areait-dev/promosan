@@ -117,7 +117,7 @@ export default function PrenotaConsulenza({
 
       <p style={{
         fontSize: '0.75rem',
-        color: '#64748b',
+        color: '#475569',
         lineHeight: 1.5,
         margin: 0
       }}>

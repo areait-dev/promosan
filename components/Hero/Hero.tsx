@@ -90,7 +90,7 @@ export default function Hero(props: HeroProps = {}) {
 
         {/* Scroll Indicator */}
         <div className="scroll-indicator">
-          <a href="#servizi" className="scroll-link" aria-label="Scorri ai servizi">
+          <a href="#servizi" className="scroll-link">
             <span>Scorri ai nostri servizi</span>
             <div className="scroll-mouse">
               <span className="scroll-wheel" />
@@ -178,6 +178,11 @@ export default function Hero(props: HeroProps = {}) {
           line-height: 1.2;
           max-width: 900px;
           padding: 0 var(--space-md);
+          /* Riserva lo spazio per 2 righe: il fallback font (in attesa del
+             caricamento di Titillium Web via next/font) ha metriche leggermente
+             diverse e può far andare il testo a capo diversamente, causando un
+             layout shift quando il font reale sostituisce il fallback. */
+          min-height: calc(2 * 1.2em);
         }
 
         .trust-bar {
@@ -195,6 +200,10 @@ export default function Hero(props: HeroProps = {}) {
           border: 1px solid rgba(255,255,255,0.15);
           box-shadow: var(--shadow-lg);
           width: 100%;
+          /* Riserva l'altezza di una riga: se il fallback font va a capo
+             diversamente dal font reale una volta caricato, l'hero (centrato
+             verticalmente) non si riposiziona di conseguenza. */
+          min-height: 40px;
         }
 
         .trust-item {

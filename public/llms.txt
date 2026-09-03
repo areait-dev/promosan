@@ -1,0 +1,25 @@
+# PromoSan
+
+> PromoSan S.r.l. è un'azienda italiana specializzata in medicina del lavoro, sorveglianza sanitaria e servizi sanitari per le imprese, con copertura su tutto il territorio nazionale grazie a una rete di Unità Mobili attrezzate e sedi Promo Health Center dislocate sul territorio.
+
+PromoSan nasce dall'esperienza di Promotergroup S.p.A. e offre alle aziende clienti un unico interlocutore per tutti gli obblighi di medicina del lavoro: nomina del medico competente, visite mediche periodiche, sorveglianza sanitaria, formazione e welfare aziendale. Le Unità Mobili permettono di erogare le visite direttamente presso la sede del cliente, riducendo tempi e costi rispetto a soluzioni tradizionali.
+
+## Servizi
+
+- [Medicina del Lavoro](https://promosan.eu/medicina-del-lavoro): nomina del medico competente, sorveglianza sanitaria, visite mediche e adempimenti normativi (D.Lgs. 81/08).
+- [Unità Mobili](https://promosan.eu/unita-mobili): visite mediche e accertamenti sanitari direttamente in azienda o in cantiere, tramite cliniche mobili attrezzate.
+- [Welfare Aziendale](https://promosan.eu/welfare-aziendale): pacchetti di prevenzione e benessere per i dipendenti (check-up, screening, programmi salute).
+- [Altri Servizi](https://promosan.eu/altri-servizi): servizi complementari in ambito sicurezza e prevenzione sul lavoro.
+- [Promo Health Center](https://promosan.eu/promo-health-center): rete di sedi fisiche e partner qualificati sul territorio nazionale.
+
+## Pagine principali
+
+- [Home](https://promosan.eu/): presentazione dell'azienda, numeri, servizi principali e ultime news.
+- [News](https://promosan.eu/news): aggiornamenti normativi e novità sulla medicina del lavoro.
+- [Contatti](https://promosan.eu/contatti): richiesta di preventivo, prenotazione consulenza, orari e recapiti.
+
+## Informazioni aziendali
+
+- Ragione sociale: PromoSan S.r.l.
+- Settore: medicina del lavoro, sicurezza sul lavoro, welfare aziendale
+- Copertura: territorio nazionale italiano

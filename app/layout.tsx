@@ -36,8 +36,29 @@ export default async function RootLayout({
   // componente che persiste tra le navigazioni client-side, senza essere
   // re-idratata ad ogni cambio pagina.
   let areaRiservataUrl: string | undefined;
+  let organizationJsonLd: Record<string, unknown> | undefined;
   try {
-    areaRiservataUrl = (await getGlobalOptions()).areaRiservataUrl || undefined;
+    const options = await getGlobalOptions();
+    areaRiservataUrl = options.areaRiservataUrl || undefined;
+
+    // JSON-LD Organization: aiuta crawler/agenti AI a capire cosa offre il
+    // sito senza dover interpretare solo il layout visivo (vedi anche
+    // public/llms.txt, stesso obiettivo in formato Markdown).
+    const sameAs = [options.social.linkedin, options.social.facebook, options.social.instagram]
+      .filter((url) => url && url !== "#");
+    organizationJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      name: "PromoSan S.r.l.",
+      url: "https://promosan.eu",
+      logo: "https://promosan.eu/assets/img/PromoSan.png",
+      description:
+        "PromoSan S.r.l. è il tuo partner per la medicina del lavoro, welfare aziendale e servizi sanitari mobili, con copertura su tutto il territorio nazionale.",
+      telephone: options.telefono || undefined,
+      email: options.email || undefined,
+      areaServed: "IT",
+      ...(sameAs.length ? { sameAs } : {}),
+    };
   } catch (error) {
     console.error("[RootLayout] Fetch opzioni globali fallito, uso i default:", error);
   }
@@ -45,6 +66,12 @@ export default async function RootLayout({
   return (
     <html lang="it" className={titilliumWeb.variable}>
       <head>
+        {organizationJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          />
+        )}
         {/* Google Consent Mode v2: nega per default i cookie non tecnici finché l'utente non sceglie */}
         <Script id="consent-default" strategy="beforeInteractive">
           {`

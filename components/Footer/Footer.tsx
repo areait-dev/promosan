@@ -18,6 +18,7 @@ interface NavItem {
 interface SocialLink {
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
   href: string;
+  label: string;
 }
 
 interface LegalLink {
@@ -101,9 +102,9 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
   ];
 
   const socialLinks: SocialLink[] = [
-    { Icon: LinkedinIcon, href: opt.social.linkedin },
-    { Icon: FacebookIcon, href: opt.social.facebook },
-    { Icon: InstagramIcon, href: opt.social.instagram },
+    { Icon: LinkedinIcon, href: opt.social.linkedin, label: 'PromoSan su LinkedIn' },
+    { Icon: FacebookIcon, href: opt.social.facebook, label: 'PromoSan su Facebook' },
+    { Icon: InstagramIcon, href: opt.social.instagram, label: 'PromoSan su Instagram' },
   ];
 
   const legalLinks: LegalLink[] = [
@@ -305,6 +306,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                   className="footer-social-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.label}
                 >
                   <social.Icon className="h-4 w-4" />
                 </a>
@@ -637,11 +639,11 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
           display: flex;
           gap: 12px;
           font-size: 0.78rem;
-          color: #64748b;
+          color: #94a3b8;
         }
 
         .footer-legal-link {
-          color: #64748b;
+          color: #94a3b8;
           transition: color 0.2s ease;
         }
 
@@ -657,7 +659,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
         .footer-copyright {
           text-align: left !important;
           font-size: 0.78rem;
-          color: #64748b;
+          color: #94a3b8;
           margin-top: 24px;
         }
       `}</style>

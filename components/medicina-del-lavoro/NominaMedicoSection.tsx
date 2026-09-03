@@ -178,7 +178,7 @@ function Card({
       </h4>
       
       <p style={{ 
-        color: '#64748b', 
+        color: '#475569', 
         marginBottom: '1.8rem',
         lineHeight: '1.7',
         flex: '1',
@@ -196,7 +196,7 @@ function Card({
         <h6 style={{ 
           fontSize: '11px', 
           fontWeight: '700', 
-          color: '#64748b', 
+          color: '#475569', 
           marginBottom: '6px', 
           textTransform: 'uppercase', 
           letterSpacing: '0.5px' 

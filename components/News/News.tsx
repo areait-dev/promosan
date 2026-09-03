@@ -386,7 +386,7 @@ export default function News({
           font-size: 0.65rem;
           font-weight: 700;
           text-transform: uppercase;
-          color: #64748b;
+          color: #475569;
         }
 
         .news-card-tag {
@@ -459,7 +459,7 @@ export default function News({
         }
 
         .news-card-excerpt {
-          color: #64748b;
+          color: #475569;
           font-size: 0.85rem;
           line-height: 1.6;
           margin-bottom: 16px;
@@ -510,7 +510,7 @@ export default function News({
           background: var(--color-white) !important;
           border: 1px solid #e2e8f0 !important;
           border-radius: var(--border-radius-full);
-          color: #64748b !important;
+          color: #475569 !important;
           font-size: 0.9rem;
           transition: all 0.2s ease;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;

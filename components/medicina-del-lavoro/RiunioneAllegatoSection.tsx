@@ -130,7 +130,7 @@ export default function RiunioneAllegatoSection() {
         }
 
         .ra-card-text {
-          color: #64748b;
+          color: #475569;
           line-height: 1.7;
           font-size: clamp(0.85rem, 2.5vw, 0.95rem);
         }

@@ -101,7 +101,7 @@ export default function OrariContatti({
           <h4 style={{
             fontSize: '0.85rem',
             fontWeight: '600',
-            color: '#64748b',
+            color: '#475569',
             marginBottom: '0.25rem'
           }}>
             Chiamaci
@@ -123,11 +123,11 @@ export default function OrariContatti({
             display: 'flex',
             alignItems: 'center',
             fontSize: '0.8rem',
-            color: '#64748b',
+            color: '#475569',
             margin: 0,
             gap: '0.35rem'
           }}>
-            <Clock size={14} style={{ color: '#64748b' }} />
+            <Clock size={14} style={{ color: '#475569' }} />
             Lun-Ven: 9:00-18:00
           </p>
         </div>
@@ -157,7 +157,7 @@ export default function OrariContatti({
           <h4 style={{
             fontSize: '0.85rem',
             fontWeight: '600',
-            color: '#64748b',
+            color: '#475569',
             marginBottom: '0.25rem'
           }}>
             Scrivici

@@ -44,7 +44,7 @@ const News1Related = ({ relatedNews }) => {
         <h2 className="section-title" style={{ fontSize: '1.75rem', fontWeight: '800', color: '#1a365d', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
           ALTRE NEWS
         </h2>
-        <p className="section-subtitle" style={{ color: '#64748b', fontSize: '0.95rem', marginTop: '0.4rem' }}>
+        <p className="section-subtitle" style={{ color: '#475569', fontSize: '0.95rem', marginTop: '0.4rem' }}>
           Approfondisci con gli ultimi aggiornamenti e articoli correlati
         </p>
       </div>
@@ -210,7 +210,7 @@ const News1Related = ({ relatedNews }) => {
           font-size: 0.65rem;
           font-weight: 700;
           text-transform: uppercase;
-          color: #64748b;
+          color: #475569;
         }
 
         .news-card-tag {
@@ -283,7 +283,7 @@ const News1Related = ({ relatedNews }) => {
         }
 
         .news-card-excerpt {
-          color: #64748b;
+          color: #475569;
           font-size: 0.85rem;
           line-height: 1.6;
           margin-bottom: 16px;
@@ -334,7 +334,7 @@ const News1Related = ({ relatedNews }) => {
           background: #ffffff !important;
           border: 1px solid #e2e8f0 !important;
           border-radius: 50%;
-          color: #64748b !important;
+          color: #475569 !important;
           font-size: 0.9rem;
           transition: all 0.2s ease;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;

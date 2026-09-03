@@ -112,7 +112,7 @@ export default function NewsPageCard({ news }: NewsPageCardProps) {
         </span>
       </div>
       <div style={{ padding: '1.5rem' }}>
-        <h3 style={{
+        <h2 style={{
           marginBottom: '0.75rem',
           fontSize: '1.25rem',
           fontWeight: '700',
@@ -127,7 +127,7 @@ export default function NewsPageCard({ news }: NewsPageCardProps) {
         }}
         >
           {news.title}
-        </h3>
+        </h2>
         <p style={{
           marginBottom: '1rem',
           color: '#4b5563',

@@ -249,9 +249,8 @@ export default function HeroUnitaMobili({
                 e.currentTarget.style.color = 'rgba(255,255,255,0.9)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
-              aria-label="Scorri verso il basso"
             >
-              <span>Scopri di più</span>
+              <span>Scorri per saperne di più</span>
               <div className="scroll-mouse">
                 <span className="scroll-wheel" />
               </div>
