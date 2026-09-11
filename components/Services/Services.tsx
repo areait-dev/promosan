@@ -91,7 +91,7 @@ export default function Services({
               
               {/* Contenuto */}
               <div className="card-content">
-                <h3 className="card-title">
+                <h3 className="service-card-title">
                   {service.title}
                 </h3>
                 

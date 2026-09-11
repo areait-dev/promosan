@@ -81,7 +81,7 @@ export default function CaratteristicheServizio({
       <div className="mx-auto max-w-7xl px-4">
         {/* Header */}
         <div className="mb-6">
-          <h3 className="mb-6 text-left text-3xl font-bold text-primary">{title}</h3>
+          <h2 className="mb-6 text-left text-3xl font-bold text-primary">{title}</h2>
         </div>
 
         <p
@@ -184,7 +184,7 @@ export default function CaratteristicheServizio({
                 style={{ transform: 'translateY(20px)', transitionDelay: `${(cat.id + 1) * 0.1}s` }}
               >
                 <div className="h-full rounded-xl border border-secondary/20 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
-                  <h4 className="mb-4 text-left text-lg font-bold text-primary">{cat.title}</h4>
+                  <h4 className="mb-4 text-left text-xl font-bold text-primary">{cat.title}</h4>
                   <ul className="flex flex-col gap-3">
                     {cat.items.map((item, idx) => (
                       <li key={idx} className="flex items-start">

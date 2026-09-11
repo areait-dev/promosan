@@ -94,15 +94,15 @@ export default function BenefitsSection({
                 pointerEvents: 'none'
               }} className="hover-gradient"></div>
               
-              <h4 style={{ 
-                marginBottom: '1rem', 
-                fontSize: 'clamp(1rem, 3vw, 1.25rem)', 
-                fontWeight: '700', 
+              <h3 style={{
+                marginBottom: '1rem',
+                fontSize: 'clamp(1rem, 3vw, 1.25rem)',
+                fontWeight: '700',
                 color: '#2c5282',
                 lineHeight: '1.4'
               }}>
                 {benefit.title}
-              </h4>
+              </h3>
               
               <p style={{ 
                 lineHeight: '1.625', 

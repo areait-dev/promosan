@@ -193,16 +193,16 @@ function Card({
         borderRadius: '12px',
         marginTop: 'auto'
       }}>
-        <h6 style={{ 
-          fontSize: '11px', 
-          fontWeight: '700', 
-          color: '#475569', 
-          marginBottom: '6px', 
-          textTransform: 'uppercase', 
-          letterSpacing: '0.5px' 
+        <h5 style={{
+          fontSize: '11px',
+          fontWeight: '700',
+          color: '#475569',
+          marginBottom: '6px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px'
         }}>
           Consigliato per:
-        </h6>
+        </h5>
         <p style={{ 
           color: '#334155', 
           fontWeight: '600',

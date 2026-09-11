@@ -71,7 +71,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
       </div>
       
       <div className="card-services">
-        <h4 className="services-title">Servizi principali</h4>
+        <h4 className="sede-services-title">Servizi principali</h4>
         <div className="service-badges-grid">
           {servizi.map((servizio: string, index: number) => (
             <span key={index} className="service-badge">{servizio}</span>
