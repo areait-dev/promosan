@@ -6,7 +6,6 @@ import Footer from '../../../components/Footer/Footer';
 import News1Hero from '../../../components/news1/News1Hero';
 import News1Content from '../../../components/news1/News1Content';
 import News1Related from '../../../components/news1/News1RelatedLazy';
-import BackToTop from '../../../components/news1/BackToTop';
 import {
   getNews,
   getNewsBySlug,
@@ -153,7 +152,6 @@ export default async function NewsSinglePage({ params }: PageProps) {
         )}
       </main>
 
-      <BackToTop />
       <Footer options={options} />
     </>
   );

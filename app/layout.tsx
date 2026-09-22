@@ -6,6 +6,7 @@ import PreviewBanner from "../components/PreviewBanner";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
 import ScrollRevealProvider from "../components/ScrollRevealProvider";
 import Navbar from "../components/Navbar/Navbar";
+import BackToTop from "../components/BackToTop";
 import { getGlobalOptions } from "../lib/wordpress";
 
 // Self-hosted da Next (nessun round-trip verso fonts.googleapis.com, niente FOUT).
@@ -116,6 +117,7 @@ export default async function RootLayout({
         <ScrollRevealProvider />
         <Navbar areaRiservataUrl={areaRiservataUrl} />
         {children}
+        <BackToTop />
         <CookieBanner />
       </body>
     </html>
