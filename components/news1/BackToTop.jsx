@@ -25,8 +25,8 @@ const BackToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed right-8 bottom-8 w-12 h-12 text-white rounded-full shadow-lg transition bg-primary hover:bg-blue-700 ${
-        isVisible ? 'block' : 'hidden'
+      className={`fixed right-8 bottom-8 w-12 h-12 flex items-center justify-center text-white rounded-full shadow-lg transition bg-primary hover:bg-blue-700 ${
+        isVisible ? 'flex' : 'hidden'
       }`}
     >
       <ArrowUp className="h-4 w-4" />
