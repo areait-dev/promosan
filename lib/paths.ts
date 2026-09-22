@@ -44,8 +44,9 @@ export function resolvePreviewPath(postType: string, slug: string): string {
 export function resolveRevalidatePaths(postType: string, slug: string): string[] {
   switch (postType) {
     case "news":
-      // Le news compaiono nell'archivio /news e tra le ultime news in home.
-      return ["/news", "/"];
+      // Le news compaiono nell'archivio /news, tra le ultime news in home,
+      // e nella pagina di dettaglio /news/<slug>.
+      return slug ? ["/news", "/", `/news/${slug}`] : ["/news", "/"];
     case "sedi":
       return ["/promo-health-center"];
     case "pacchetti":
