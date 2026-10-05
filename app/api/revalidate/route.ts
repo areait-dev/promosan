@@ -42,6 +42,12 @@ export async function POST(request: NextRequest) {
     revalidatePath(path);
   }
 
+  // Le Opzioni globali (contatti, social, loghi) sono lette dal root layout:
+  // compaiono in TUTTE le pagine, quindi si rigenera l'intero albero.
+  if (postType === "page" && slug === "opzioni-globali") {
+    revalidatePath("/", "layout");
+  }
+
   // 4. Risposta. `path` riporta la route primaria (la prima della lista).
   return NextResponse.json({
     revalidated: true,
