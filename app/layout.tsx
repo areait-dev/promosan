@@ -8,6 +8,7 @@ import ScrollRevealProvider from "../components/ScrollRevealProvider";
 import Navbar from "../components/Navbar/Navbar";
 import BackToTop from "../components/BackToTop";
 import { getGlobalOptions } from "../lib/wordpress";
+import { SITE_URL } from "../lib/site";
 
 // Self-hosted da Next (nessun round-trip verso fonts.googleapis.com, niente FOUT).
 const titilliumWeb = Titillium_Web({
@@ -18,6 +19,10 @@ const titilliumWeb = Titillium_Web({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  // "./" = canonical relativo alla route corrente, ereditato da tutte le pagine
+  // (le news lo sovrascrivono con quello di Yoast, già riscritto su www).
+  alternates: { canonical: "./" },
   title: "PromoSan - Medicina del Lavoro | Welfare Aziendale | Unità Mobili",
   description: "PromoSan S.r.l. è il tuo partner per la medicina del lavoro, welfare aziendale e servizi sanitari mobili.",
   icons: {
@@ -51,8 +56,8 @@ export default async function RootLayout({
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       name: "PromoSan S.r.l.",
-      url: "https://promosan.eu",
-      logo: "https://promosan.eu/assets/img/PromoSan.png",
+      url: "https://www.promosan.eu",
+      logo: "https://www.promosan.eu/assets/img/PromoSan.png",
       description:
         "PromoSan S.r.l. è il tuo partner per la medicina del lavoro, welfare aziendale e servizi sanitari mobili, con copertura su tutto il territorio nazionale.",
       telephone: options.telefono || undefined,

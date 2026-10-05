@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getNews } from "../lib/wordpress";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://promosan.eu";
+import { SITE_URL } from "../lib/site";
 
 // Pagine statiche del sito, con priorità/frequenza indicativa in base
 // all'importanza (home e servizi principali più alte, legal più basse).

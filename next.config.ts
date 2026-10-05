@@ -65,6 +65,19 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_WP_API_URL: `https://${WP_HOST}/wp-json/wp/v2`,
   },
 
+  // Dominio canonico = www: l'apex risponde 200 senza redirect, quindi Google
+  // può indicizzare due host. 301 apex -> www (qui, indipendente dai redirect Vercel).
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "promosan.eu" }],
+        destination: "https://www.promosan.eu/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       {

@@ -8,6 +8,7 @@
 // passa quel campo a yoastToMetadata() insieme ai fallback locali.
 
 import type { Metadata } from 'next';
+import { toPublicUrl } from './site';
 
 /** Dati SEO normalizzati estratti da `yoast_head_json`. */
 export interface SeoFields {
@@ -30,7 +31,7 @@ export function extractYoast(raw: any): SeoFields | undefined {
     title: yoast.title ?? raw?.title?.rendered ?? '',
     description: yoast.description ?? '',
     ogImage: yoast.og_image?.[0]?.url ?? '',
-    canonical: yoast.canonical ?? '',
+    canonical: yoast.canonical ? toPublicUrl(yoast.canonical) : '',
     ogType: yoast.og_type ?? 'article',
   };
 }
