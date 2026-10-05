@@ -100,6 +100,8 @@ export interface GlobalOptions {
   logoUrl: string;
   logoBianco: string;
   social: { linkedin: string; facebook: string; instagram: string };
+  /** Personalizzazioni dei testi del sito (campo ACF `testi_sito`): chiave -> testo. */
+  testi: Record<string, string>;
 }
 
 /**
@@ -474,6 +476,27 @@ export async function getFaq(draft = false): Promise<FaqItem[]> {
 /*                           OPZIONI GLOBALI (ACF)                            */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * Converte il campo `testi_sito` (una riga per voce, formato `chiave = testo`)
+ * in un dizionario. Righe vuote o che iniziano con # vengono ignorate; valori
+ * vuoti non sovrascrivono il testo predefinito. La sequenza \n nel testo
+ * diventa un a capo.
+ */
+export function parseTesti(raw: unknown): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (typeof raw !== "string") return out;
+  for (const line of raw.split(/\r?\n/)) {
+    const t = line.trim();
+    if (!t || t.startsWith("#")) continue;
+    const i = t.indexOf("=");
+    if (i < 1) continue;
+    const key = t.slice(0, i).trim();
+    const val = t.slice(i + 1).trim().replace(/\\n/g, "\n");
+    if (key && val) out[key] = val;
+  }
+  return out;
+}
+
 export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
   // Pagina WordPress normale (slug 'opzioni-globali') con campi ACF semplici.
   // Niente Options Page (Pro): i social sono campi flat social_linkedin/social_facebook/social_instagram.
@@ -502,12 +525,31 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
       facebook: acf.social_facebook ?? "#",
       instagram: acf.social_instagram ?? "#",
     },
+    testi: parseTesti(acf.testi_sito),
   };
 }
 
 /* -------------------------------------------------------------------------- */
 /*                          PAGINE / CONTENUTI ACF                            */
 /* -------------------------------------------------------------------------- */
+
+/**
+ * Titolo e contenuto HTML (editor di WordPress) di una pagina nativa, per slug.
+ * Usata dalle pagine legali: se la pagina esiste e ha contenuto, sostituisce il testo del codice.
+ * Ritorna null se la pagina non esiste o il contenuto è vuoto.
+ */
+export async function getPageContent(
+  slug: string,
+  draft = false
+): Promise<{ title: string; html: string } | null> {
+  const data = await wpFetch<any[]>(
+    `/pages?slug=${encodeURIComponent(slug)}&_fields=id,slug,title,content`,
+    { draft }
+  );
+  const html = String(data[0]?.content?.rendered ?? "").trim();
+  if (!html) return null;
+  return { title: String(data[0]?.title?.rendered ?? "").trim(), html };
+}
 
 /**
  * Recupera i campi ACF di una pagina per slug (es. 'home', 'medicina-del-lavoro').

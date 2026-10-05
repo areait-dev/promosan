@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Plus, ChevronDown, Mail } from 'lucide-react';
+import { T } from "@/components/Testi";
 
 export interface HeroAltriServiziProps {
   badge?: string;
@@ -268,7 +269,7 @@ export default function HeroAltriServizi({
               e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
             }}
           >
-            <span>Scorri per saperne di più</span>
+            <span><T k="hero-altri-servizi.scorri-per-saperne-di-piu">Scorri per saperne di più</T></span>
             <div className="scroll-mouse">
               <span className="scroll-wheel" />
             </div>

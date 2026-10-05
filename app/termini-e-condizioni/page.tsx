@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import LegalPage from '../../components/Legal/LegalPage';
-import { getGlobalOptions, type GlobalOptions } from '@/lib/wordpress';
+import { getGlobalOptions, getPageContent, type GlobalOptions } from '@/lib/wordpress';
 
 export const revalidate = 60;
 
@@ -14,8 +14,12 @@ export const metadata: Metadata = {
 export default async function TerminiCondizioniPage() {
   const { isEnabled: draft } = await draftMode();
   let options: GlobalOptions | undefined;
+  let wpPage: { title: string; html: string } | null = null;
   try {
-    options = await getGlobalOptions(draft);
+    [options, wpPage] = await Promise.all([
+      getGlobalOptions(draft),
+      getPageContent('termini-e-condizioni', draft).catch(() => null),
+    ]);
   } catch (error) {
     console.error('[Termini] Fetch WordPress fallito, uso i default:', error);
   }
@@ -25,6 +29,7 @@ export default async function TerminiCondizioniPage() {
       title="Termini e Condizioni"
       intro="L’accesso e l’utilizzo del sito di Promo. San. S.r.l. implicano la presa visione e l’accettazione dei presenti termini e condizioni. Ultimo aggiornamento: 22/04/2026 — Rev. 01."
       options={options}
+      html={wpPage?.html}
       sections={[
         {
           heading: '1. Titolare del sito',

@@ -1,3 +1,4 @@
+import { T } from "@/components/Testi";
 export default function ValutazioneRischiSection() {
   return (
     <section className="section section-white" id="valutazione-rischi">
@@ -5,9 +6,9 @@ export default function ValutazioneRischiSection() {
         
         {/* Header Section */}
         <div className="section-header">
-          <h2 className="section-title">VALUTAZIONE DEI RISCHI E PROTOCOLLO SANITARIO</h2>
+          <h2 className="section-title"><T k="valutazione-rischi-section.valutazione-dei-rischi-e-protocollo-sanitario">VALUTAZIONE DEI RISCHI E PROTOCOLLO SANITARIO</T></h2>
           <p className="section-subtitle">
-            Il Medico Competente partecipa attivamente alla <strong className="text-primary">valutazione dei rischi</strong> aziendali attraverso sopralluoghi negli ambienti di lavoro, l'analisi delle mansioni e la partecipazione alle riunioni periodiche sulla sicurezza. Questo contributo permette di identificare i rischi specifici per la salute e stabilire quando è necessario attivare la sorveglianza sanitaria.
+            <T k="valutazione-rischi-section.il-medico-competente-partecipa-attivamente-alla">Il Medico Competente partecipa attivamente alla</T> <strong className="text-primary"><T k="valutazione-rischi-section.valutazione-dei-rischi">valutazione dei rischi</T></strong> <T k="valutazione-rischi-section.aziendali-attraverso-sopralluoghi-negli-ambienti-di">aziendali attraverso sopralluoghi negli ambienti di lavoro, l'analisi delle mansioni e la partecipazione alle riunioni periodiche sulla sicurezza. Questo contributo permette di identificare i rischi specifici per la salute e stabilire quando è necessario attivare la sorveglianza sanitaria.</T>
           </p>
         </div>
 
@@ -31,7 +32,7 @@ export default function ValutazioneRischiSection() {
               display: 'inline-block',
               paddingBottom: '10px'
             }}>
-              PROTOCOLLO SANITARIO
+              <T k="valutazione-rischi-section.protocollo-sanitario">PROTOCOLLO SANITARIO</T>
               <span style={{
                 position: 'absolute',
                 bottom: '0',
@@ -53,7 +54,7 @@ export default function ValutazioneRischiSection() {
               marginBottom: '1.5rem',
               color: 'var(--color-gray-700)'
             }}>
-              Il protocollo sanitario è lo strumento che definisce come viene effettuata la sorveglianza sanitaria. Il Medico Competente lo elabora in base ai rischi identificati e agli standard scientifici più aggiornati, individuando per ogni mansione gli accertamenti necessari: visite mediche, esami strumentali, analisi di laboratorio e consulenze specialistiche.
+              <T k="valutazione-rischi-section.il-protocollo-sanitario-e-lo-strumento">Il protocollo sanitario è lo strumento che definisce come viene effettuata la sorveglianza sanitaria. Il Medico Competente lo elabora in base ai rischi identificati e agli standard scientifici più aggiornati, individuando per ogni mansione gli accertamenti necessari: visite mediche, esami strumentali, analisi di laboratorio e consulenze specialistiche.</T>
             </p>
 
             {/* Testo accertamenti - SENZA BOX, solo testo stilizzato */}
@@ -69,7 +70,7 @@ export default function ValutazioneRischiSection() {
                 fontSize: '1.05rem',
                 fontWeight: '600'
               }}>
-                Tutti gli accertamenti sono mirati al rischio specifico e il meno invasivi possibile.
+                <T k="valutazione-rischi-section.tutti-gli-accertamenti-sono-mirati-al">Tutti gli accertamenti sono mirati al rischio specifico e il meno invasivi possibile.</T>
               </p>
             </div>
           </div>

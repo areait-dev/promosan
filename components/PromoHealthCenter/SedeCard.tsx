@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Building2, Phone, Mail, Send, MapPin } from 'lucide-react';
+import { T } from "@/components/Testi";
 
 // Definisci i tipi per i dati della sede
 interface SedeData {
@@ -46,7 +47,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
             <Building2 className="h-4 w-4" />
           </div>
           <div>
-            <span className="info-label">Indirizzo</span>
+            <span className="info-label"><T k="sede-card.indirizzo">Indirizzo</T></span>
             <p className="info-text">{data.indirizzo}</p>
           </div>
         </div>
@@ -55,7 +56,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
             <Phone className="h-4 w-4" />
           </div>
           <div>
-            <span className="info-label">Telefono</span>
+            <span className="info-label"><T k="sede-card.telefono">Telefono</T></span>
             <p className="info-text">{data.telefono}</p>
           </div>
         </div>
@@ -64,14 +65,14 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
             <Mail className="h-4 w-4" />
           </div>
           <div>
-            <span className="info-label">Email</span>
+            <span className="info-label"><T k="sede-card.email">Email</T></span>
             <p className="info-text">{data.email}</p>
           </div>
         </div>
       </div>
       
       <div className="card-services">
-        <h4 className="sede-services-title">Servizi principali</h4>
+        <h4 className="sede-services-title"><T k="sede-card.servizi-principali">Servizi principali</T></h4>
         <div className="service-badges-grid">
           {servizi.map((servizio: string, index: number) => (
             <span key={index} className="service-badge">{servizio}</span>
@@ -82,7 +83,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
       <div className="card-buttons">
         <Link href="/contatti" className="btn-contact">
           <Send className="h-4 w-4" />
-          Contatta questa sede
+          <T k="sede-card.contatta-questa-sede">Contatta questa sede</T>
         </Link>
         <a
           href={data.googleMapsLink || `https://maps.google.com/?q=${encodeURIComponent(data.indirizzo)}`}
@@ -91,7 +92,7 @@ const SedeCard = ({ sede, data, servizi }: SedeCardProps) => {
           className="btn-map"
         >
           <MapPin className="h-4 w-4" />
-          Vai alla mappa
+          <T k="sede-card.vai-alla-mappa">Vai alla mappa</T>
         </a>
       </div>
     </div>

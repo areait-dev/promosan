@@ -2,6 +2,21 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import type { GlobalOptions } from '@/lib/wordpress';
 
+const LEGAL_HTML_CSS = `
+.legal-wp { color: #475569; font-size: 1rem; line-height: 1.7; }
+.legal-wp h2 { font-size: 1.4rem; font-weight: 600; margin: 2rem 0 0.75rem; color: #0f172a; }
+.legal-wp h3 { font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: #0f172a; }
+.legal-wp p { margin: 0 0 0.75rem; }
+.legal-wp ul, .legal-wp ol { margin: 0 0 0.75rem 1.25rem; }
+.legal-wp ul { list-style: disc; }
+.legal-wp ol { list-style: decimal; }
+.legal-wp a { color: #204c84; text-decoration: underline; }
+.legal-wp .wp-block-table, .legal-wp figure.wp-block-table { overflow-x: auto; margin: 0.5rem 0 1rem; }
+.legal-wp table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.legal-wp th { text-align: left; padding: 0.6rem 0.75rem; background: #e2e8f0; color: #0f172a; font-weight: 600; border: 1px solid #cbd5e1; vertical-align: top; }
+.legal-wp td { padding: 0.6rem 0.75rem; border: 1px solid #cbd5e1; vertical-align: top; }
+`;
+
 export interface LegalTable {
   headers: string[];
   rows: string[][];
@@ -18,9 +33,11 @@ interface LegalPageProps {
   intro?: string;
   sections: LegalSection[];
   options?: GlobalOptions;
+  /** HTML dall'editor di WordPress: se presente sostituisce intro e sezioni. */
+  html?: string;
 }
 
-export default function LegalPage({ title, intro, sections, options }: LegalPageProps) {
+export default function LegalPage({ title, intro, sections, options, html }: LegalPageProps) {
   return (
     <>
       <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
@@ -30,6 +47,13 @@ export default function LegalPage({ title, intro, sections, options }: LegalPage
             <h1 style={{ fontSize: '2.25rem', fontWeight: 700, marginBottom: '1.5rem', color: '#0f172a' }}>
               {title}
             </h1>
+            {html ? (
+              <>
+                <style>{LEGAL_HTML_CSS}</style>
+                <div className="legal-wp" dangerouslySetInnerHTML={{ __html: html }} />
+              </>
+            ) : (
+              <>
             {intro && (
               <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: '#475569', marginBottom: '2rem' }}>
                 {intro}
@@ -95,6 +119,8 @@ export default function LegalPage({ title, intro, sections, options }: LegalPage
                 )}
               </div>
             ))}
+              </>
+            )}
           </div>
         </section>
       </main>

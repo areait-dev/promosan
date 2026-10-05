@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { T } from "@/components/Testi";
 
 interface NewsPagePaginationProps {
   currentPage: number;
@@ -69,7 +70,7 @@ export default function NewsPagePagination({
         }}
       >
         <ChevronLeft size={16} style={{ marginRight: '0.5rem' }} />
-        Precedente
+        <T k="news-page-pagination.precedente">Precedente</T>
       </button>
 
       {pages.map((page) => (
@@ -121,7 +122,7 @@ export default function NewsPagePagination({
           }
         }}
       >
-        Successivo 
+        <T k="news-page-pagination.successivo">Successivo</T> 
         <ChevronRight size={16} style={{ marginLeft: '0.5rem' }} />
       </button>
     </div>

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import LegalPage from '../../components/Legal/LegalPage';
-import { getGlobalOptions, type GlobalOptions } from '@/lib/wordpress';
+import { getGlobalOptions, getPageContent, type GlobalOptions } from '@/lib/wordpress';
 
 export const revalidate = 60;
 
@@ -14,8 +14,12 @@ export const metadata: Metadata = {
 export default async function CookiePolicyPage() {
   const { isEnabled: draft } = await draftMode();
   let options: GlobalOptions | undefined;
+  let wpPage: { title: string; html: string } | null = null;
   try {
-    options = await getGlobalOptions(draft);
+    [options, wpPage] = await Promise.all([
+      getGlobalOptions(draft),
+      getPageContent('cookie-policy', draft).catch(() => null),
+    ]);
   } catch (error) {
     console.error('[Cookie] Fetch WordPress fallito, uso i default:', error);
   }
@@ -25,6 +29,7 @@ export default async function CookiePolicyPage() {
       title="Cookie Policy"
       intro="Questa pagina descrive l’utilizzo dei cookie e delle tecnologie analoghe sul sito di Promo. San. S.r.l. Ultimo aggiornamento: 22/04/2026 — Rev. 01."
       options={options}
+      html={wpPage?.html}
       sections={[
         {
           heading: '12. Cosa sono i cookie',

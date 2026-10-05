@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Clock, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { NewsItem } from '../../lib/wordpress';
+import { T, useT } from "@/components/Testi";
 
 export interface NewsProps {
   title?: string;
@@ -82,6 +83,7 @@ export default function News({
   archiveLink = '/news',
   items = DEFAULT_ITEMS,
 }: NewsProps = {}) {
+  const t = useT();
   const carouselRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [itemsPerView, setItemsPerView] = useState<number>(3);
@@ -171,7 +173,7 @@ export default function News({
   const getTagStyle = (tag: string): React.CSSProperties => {
     const styles: Record<string, React.CSSProperties> = {
       'Normativa': { background: '#dbeafe', color: '#1e40af' },
-      'Sicurezza sul lavoro': { background: '#fee2e2', color: '#991b1b' },
+      "Sicurezza sul lavoro": { background: '#fee2e2', color: '#991b1b' },
       'Sicurezza': { background: '#fee2e2', color: '#991b1b' },
       'Innovazione': { background: '#dcfce7', color: '#166534' },
       'Welfare': { background: '#f3e8ff', color: '#6b21a8' },
@@ -254,7 +256,7 @@ export default function News({
                         </div>
                         {/* Red News label and Date overlay at the bottom of the image */}
                         <div className="news-card-bottom-bar">
-                          <span className="news-card-bottom-label">News</span>
+                          <span className="news-card-bottom-label"><T k="news.news">News</T></span>
                           <span className="news-card-bottom-date">{fullDateFormatted}</span>
                         </div>
                       </div>
@@ -267,10 +269,10 @@ export default function News({
                         </p>
                         <div className="news-card-footer">
                           <span className="news-card-time">
-                            <Clock className="inline h-3 w-3" /> {item.readTime} min
+                            <Clock className="inline h-3 w-3" /> {item.readTime} <T k="news.min">min</T>
                           </span>
                           <span className="news-card-link-text">
-                            Leggi <ArrowRight className="ml-1 inline h-3 w-3" />
+                            <T k="news.leggi">Leggi</T> <ArrowRight className="ml-1 inline h-3 w-3" />
                           </span>
                         </div>
                       </div>
@@ -322,7 +324,7 @@ export default function News({
             href={archiveLink}
             className="btn-archive"
           >
-            Vedi tutte le news
+            <T k="news.vedi-tutte-le-news">Vedi tutte le news</T>
           </Link>
         </div>
       </div>

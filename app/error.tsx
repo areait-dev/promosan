@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import Footer from '../components/Footer/Footer';
+import { T } from "@/components/Testi";
 
 export default function Error({
   error,
@@ -29,21 +30,21 @@ export default function Error({
                 marginBottom: 'var(--space-md)',
               }}
             >
-              Ops.
+              <T k="pagina.error.ops">Ops.</T>
             </p>
             <h1 className="section-title" style={{ display: 'block' }}>
-              Qualcosa è andato storto
+              <T k="pagina.error.qualcosa-e-andato-storto">Qualcosa è andato storto</T>
             </h1>
             <p className="section-subtitle" style={{ margin: '0 auto var(--space-xl)', maxWidth: '38rem' }}>
-              Si è verificato un errore imprevisto. Riprova, oppure torna alla home
-              o contattaci se il problema persiste.
+              <T k="pagina.error.si-e-verificato-un-errore-imprevisto">Si è verificato un errore imprevisto. Riprova, oppure torna alla home
+              o contattaci se il problema persiste.</T>
             </p>
             <div style={{ display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button type="button" onClick={reset} className="btn btn-primary">
-                Riprova
+                <T k="pagina.error.riprova">Riprova</T>
               </button>
               <Link href="/" className="btn btn-outline">
-                Torna alla Home
+                <T k="pagina.error.torna-alla-home">Torna alla Home</T>
               </Link>
             </div>
           </div>

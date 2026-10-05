@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ChevronDown, Search, Lock, X } from 'lucide-react';
+import { T, useT } from "@/components/Testi";
 
 export interface NavbarProps {
   logoUrl?: string;
@@ -15,6 +16,7 @@ export default function Navbar({
   logoUrl = '/assets/img/PromoSan_white.png',
   areaRiservataUrl = 'https://clienti.promotergroup.eu/login',
 }: NavbarProps = {}) {
+  const t = useT();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServiziOpen, setIsServiziOpen] = useState(false);
   const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
@@ -91,14 +93,14 @@ export default function Navbar({
             <ul className="flex gap-1 items-center px-2 py-2 rounded-full">
               <li>
                 <Link href="/" className="nav-pill" onClick={closeMobileMenu}>
-                  Home
+                  <T k="navbar.home">Home</T>
                 </Link>
               </li>
 
               {/* Servizi Dropdown */}
               <li className="relative group">
                 <button className="nav-pill flex items-center gap-1">
-                  <span>Servizi</span>
+                  <span><T k="navbar.servizi">Servizi</T></span>
                   <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
                 </button>
                 <div className="dropdown-menu">
@@ -107,45 +109,45 @@ export default function Navbar({
                     className="dropdown-item"
                     onClick={closeMobileMenu}
                   >
-                    Medicina del lavoro
+                    <T k="navbar.medicina-del-lavoro">Medicina del lavoro</T>
                   </Link>
                   <Link
                     href="/unita-mobili"
                     className="dropdown-item"
                     onClick={closeMobileMenu}
                   >
-                    Unità mobili
+                    <T k="navbar.unita-mobili">Unità mobili</T>
                   </Link>
                   <Link
                     href="/welfare-aziendale"
                     className="dropdown-item"
                     onClick={closeMobileMenu}
                   >
-                    Welfare aziendale
+                    <T k="navbar.welfare-aziendale">Welfare aziendale</T>
                   </Link>
                   <Link
                     href="/altri-servizi"
                     className="dropdown-item"
                     onClick={closeMobileMenu}
                   >
-                    Altri Servizi
+                    <T k="navbar.altri-servizi">Altri Servizi</T>
                   </Link>
                 </div>
               </li>
 
               <li>
                 <Link href="/promo-health-center" className="nav-pill" onClick={closeMobileMenu}>
-                  Sedi
+                  <T k="navbar.sedi">Sedi</T>
                 </Link>
               </li>
               <li>
                 <Link href="/news" className="nav-pill" onClick={closeMobileMenu}>
-                  News
+                  <T k="navbar.news">News</T>
                 </Link>
               </li>
               <li>
                 <Link href="/contatti" className="nav-pill" onClick={closeMobileMenu}>
-                  Contatti
+                  <T k="navbar.contatti">Contatti</T>
                 </Link>
               </li>
             </ul>
@@ -163,7 +165,7 @@ export default function Navbar({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="search-input"
               />
-              <button type="submit" className="sr-only">Cerca</button>
+              <button type="submit" className="sr-only"><T k="navbar.cerca">Cerca</T></button>
             </form>
             <button
               type="button"
@@ -179,7 +181,7 @@ export default function Navbar({
               rel="noopener noreferrer"
               className="nav-pill"
             >
-              Area Riservata
+              <T k="navbar.area-riservata">Area Riservata</T>
             </a>
           </div>
 
@@ -206,7 +208,7 @@ export default function Navbar({
               className="mobile-nav-link"
               onClick={closeMobileMenu}
             >
-              Home
+              <T k="navbar.home">Home</T>
             </Link>
 
             <div className="mobile-divider"></div>
@@ -217,7 +219,7 @@ export default function Navbar({
                 className="mobile-dropdown-btn"
                 onClick={() => setIsServiziOpen(!isServiziOpen)}
               >
-                <span>Servizi</span>
+                <span><T k="navbar.servizi">Servizi</T></span>
                 <ChevronDown className={`mobile-dropdown-icon h-4 w-4 ${
                   isServiziOpen ? 'rotate-180 text-primary' : ''
                 }`} />
@@ -232,28 +234,28 @@ export default function Navbar({
                     className="mobile-submenu-link"
                     onClick={closeMobileMenu}
                   >
-                    Medicina del lavoro
+                    <T k="navbar.medicina-del-lavoro">Medicina del lavoro</T>
                   </Link>
                   <Link 
                     href="/unita-mobili" 
                     className="mobile-submenu-link"
                     onClick={closeMobileMenu}
                   >
-                    Unità mobili
+                    <T k="navbar.unita-mobili">Unità mobili</T>
                   </Link>
                   <Link 
                     href="/welfare-aziendale" 
                     className="mobile-submenu-link"
                     onClick={closeMobileMenu}
                   >
-                    Welfare aziendale
+                    <T k="navbar.welfare-aziendale">Welfare aziendale</T>
                   </Link>
                   <Link 
                     href="/altri-servizi" 
                     className="mobile-submenu-link"
                     onClick={closeMobileMenu}
                   >
-                    Altri Servizi
+                    <T k="navbar.altri-servizi">Altri Servizi</T>
                   </Link>
                 </div>
               </div>
@@ -266,7 +268,7 @@ export default function Navbar({
               className="mobile-nav-link"
               onClick={closeMobileMenu}
             >
-              Sedi
+              <T k="navbar.sedi">Sedi</T>
             </Link>
 
             <Link
@@ -274,7 +276,7 @@ export default function Navbar({
               className="mobile-nav-link"
               onClick={closeMobileMenu}
             >
-              News
+              <T k="navbar.news">News</T>
             </Link>
 
             <Link 
@@ -282,7 +284,7 @@ export default function Navbar({
               className="mobile-nav-link"
               onClick={closeMobileMenu}
             >
-              Contatti
+              <T k="navbar.contatti">Contatti</T>
             </Link>
 
             <div className="mobile-divider"></div>
@@ -293,7 +295,7 @@ export default function Navbar({
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Cerca nel sito..."
+                  placeholder={t("navbar.cerca-nel-sito", "Cerca nel sito...")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-10 pr-4"
@@ -311,7 +313,7 @@ export default function Navbar({
                 onClick={closeMobileMenu}
               >
                 <Lock className="h-4 w-4" />
-                <span>Area Riservata</span>
+                <span><T k="navbar.area-riservata">Area Riservata</T></span>
               </a>
             </div>
           </div>
@@ -336,7 +338,7 @@ export default function Navbar({
             <input
               type="text"
               autoFocus
-              placeholder="Cerca nel sito..."
+              placeholder={t("navbar.cerca-nel-sito", "Cerca nel sito...")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="search-overlay-input"

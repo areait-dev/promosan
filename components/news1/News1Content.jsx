@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { T } from "@/components/Testi";
 
 const News1Content = ({ news }) => {
   return (
@@ -15,7 +16,7 @@ const News1Content = ({ news }) => {
         {/* ── TAGS ───────────────────────────────────────────────── */}
         {news.tags && news.tags.length > 0 && (
           <div className="news-tags">
-            <span className="news-tags-label">Tag:</span>
+            <span className="news-tags-label"><T k="news1-content.tag">Tag:</T></span>
             <div className="news-tags-list">
               {news.tags.map((tag) => (
                 <span key={tag} className="news-tag">

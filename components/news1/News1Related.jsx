@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Clock, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { T } from "@/components/Testi";
 
 const CATEGORY_LABELS = {
   normativa: 'Normativa',
@@ -42,10 +43,10 @@ const News1Related = ({ relatedNews }) => {
     <section className="section-news" style={{ padding: '4rem 0' }}>
       <div className="section-header text-left" style={{ marginBottom: '2.5rem' }}>
         <h2 className="section-title" style={{ fontSize: '1.75rem', fontWeight: '800', color: '#1a365d', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          ALTRE NEWS
+          <T k="news1-related.altre-news">ALTRE NEWS</T>
         </h2>
         <p className="section-subtitle" style={{ color: '#475569', fontSize: '0.95rem', marginTop: '0.4rem' }}>
-          Approfondisci con gli ultimi aggiornamenti e articoli correlati
+          <T k="news1-related.approfondisci-con-gli-ultimi-aggiornamenti-e">Approfondisci con gli ultimi aggiornamenti e articoli correlati</T>
         </p>
       </div>
 
@@ -104,7 +105,7 @@ const News1Related = ({ relatedNews }) => {
                         {tagLabel}
                       </div>
                       <div className="news-card-bottom-bar">
-                        <span className="news-card-bottom-label">News</span>
+                        <span className="news-card-bottom-label"><T k="news1-related.news">News</T></span>
                         <span className="news-card-bottom-date">{fullDateFormatted}</span>
                       </div>
                     </div>
@@ -119,10 +120,10 @@ const News1Related = ({ relatedNews }) => {
                       </div>
                       <div className="news-card-footer">
                         <span className="news-card-time">
-                          <Clock className="inline h-3 w-3" /> {item.readTime} min
+                          <Clock className="inline h-3 w-3" /> {item.readTime} <T k="news1-related.min">min</T>
                         </span>
                         <span className="news-card-link-text">
-                          Leggi <ArrowRight className="ml-1 inline h-3 w-3" />
+                          <T k="news1-related.leggi">Leggi</T> <ArrowRight className="ml-1 inline h-3 w-3" />
                         </span>
                       </div>
                     </div>

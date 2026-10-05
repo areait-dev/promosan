@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { T } from "@/components/Testi";
 
 export interface MissionVisionProps {
   missionText?: string; // HTML
@@ -28,13 +29,13 @@ export default function MissionVision({
               onClick={() => setActiveTab('mission')}
               className={`tab-btn ${activeTab === 'mission' ? 'active' : ''}`}
             >
-              MISSION
+              <T k="mission-vision.mission">MISSION</T>
             </button>
             <button
               onClick={() => setActiveTab('vision')}
               className={`tab-btn ${activeTab === 'vision' ? 'active' : ''}`}
             >
-              VISION
+              <T k="mission-vision.vision">VISION</T>
             </button>
           </div>
         </div>        {/* Content sections */}
@@ -43,7 +44,7 @@ export default function MissionVision({
           {activeTab === 'mission' && (
             <div className="tab-panel active">
               <div className="section-header">
-                <h2 className="tab-title">MISSION</h2>
+                <h2 className="tab-title"><T k="mission-vision.mission">MISSION</T></h2>
               </div>
 
               <p
@@ -52,32 +53,32 @@ export default function MissionVision({
               />
 
               <div>
-                <h3 className="tab-subtitle">IL NOSTRO IMPEGNO È GARANTIRE:</h3>
+                <h3 className="tab-subtitle"><T k="mission-vision.il-nostro-impegno-e-garantire">IL NOSTRO IMPEGNO È GARANTIRE:</T></h3>
 
                 {/* Griglia responsive per Mission */}
                 <div className="responsive-grid responsive-grid-cols-4">
                   <div className="card">
                     <div className="card-body">
-                      <h4 className="card-title">COMPETENZA PROFESSIONALE</h4>
-                      <p className="card-text">Attraverso medici specializzati e costantemente aggiornati</p>
+                      <h4 className="card-title"><T k="mission-vision.competenza-professionale">COMPETENZA PROFESSIONALE</T></h4>
+                      <p className="card-text"><T k="mission-vision.attraverso-medici-specializzati-e-costantemente-aggiornati">Attraverso medici specializzati e costantemente aggiornati</T></p>
                     </div>
                   </div>
                   <div className="card">
                     <div className="card-body">
-                      <h4 className="card-title">RISPETTO DELLA DIGNITÀ E PRIVACY</h4>
-                      <p className="card-text">Di ogni lavoratore in ogni fase del percorso</p>
+                      <h4 className="card-title"><T k="mission-vision.rispetto-della-dignita-e-privacy">RISPETTO DELLA DIGNITÀ E PRIVACY</T></h4>
+                      <p className="card-text"><T k="mission-vision.di-ogni-lavoratore-in-ogni-fase">Di ogni lavoratore in ogni fase del percorso</T></p>
                     </div>
                   </div>
                   <div className="card">
                     <div className="card-body">
-                      <h4 className="card-title">QUALITÀ DEL SERVIZIO</h4>
-                      <p className="card-text">Attraverso il miglioramento continuo dei processi</p>
+                      <h4 className="card-title"><T k="mission-vision.qualita-del-servizio">QUALITÀ DEL SERVIZIO</T></h4>
+                      <p className="card-text"><T k="mission-vision.attraverso-il-miglioramento-continuo-dei-processi">Attraverso il miglioramento continuo dei processi</T></p>
                     </div>
                   </div>
                   <div className="card">
                     <div className="card-body">
-                      <h4 className="card-title">SUPPORTO COMPLETO</h4>
-                      <p className="card-text">Alle imprese di ogni dimensione, dalle PMI alle realtà strutturate</p>
+                      <h4 className="card-title"><T k="mission-vision.supporto-completo">SUPPORTO COMPLETO</T></h4>
+                      <p className="card-text"><T k="mission-vision.alle-imprese-di-ogni-dimensione-dalle">Alle imprese di ogni dimensione, dalle PMI alle realtà strutturate</T></p>
                     </div>
                   </div>
                 </div>
@@ -89,7 +90,7 @@ export default function MissionVision({
           {activeTab === 'vision' && (
             <div className="tab-panel active">
               <div className="section-header">
-                <h2 className="tab-title">VISION</h2>
+                <h2 className="tab-title"><T k="mission-vision.vision">VISION</T></h2>
               </div>
 
               <p
@@ -97,36 +98,36 @@ export default function MissionVision({
                 dangerouslySetInnerHTML={{ __html: visionText }}
               />
 
-              <h3 className="tab-subtitle">I NOSTRI OBIETTIVI:</h3>
+              <h3 className="tab-subtitle"><T k="mission-vision.i-nostri-obiettivi">I NOSTRI OBIETTIVI:</T></h3>
 
               {/* Griglia responsive per Vision */}
               <div className="responsive-grid responsive-grid-cols-3">
                 <div className="card">
                   <div className="card-body">
-                    <h4 className="card-title">EFFICACIA ED EFFICIENZA</h4>
+                    <h4 className="card-title"><T k="mission-vision.efficacia-ed-efficienza">EFFICACIA ED EFFICIENZA</T></h4>
                     <p className="card-text">
-                      Garantire la qualità del servizio attraverso risorse professionali
+                      <T k="mission-vision.garantire-la-qualita-del-servizio-attraverso">Garantire la qualità del servizio attraverso risorse professionali
                       qualificate e tecnologie all'avanguardia, ottimizzando ogni processo
-                      aziendale.
+                      aziendale.</T>
                     </p>
                   </div>
                 </div>
                 <div className="card">
                   <div className="card-body">
-                    <h4 className="card-title">ATTENZIONE ALL'UTENZA</h4>
+                    <h4 className="card-title"><T k="mission-vision.attenzione-all-utenza">ATTENZIONE ALL'UTENZA</T></h4>
                     <p className="card-text">
-                      Soddisfare le esigenze delle aziende e dei lavoratori con servizi
+                      <T k="mission-vision.soddisfare-le-esigenze-delle-aziende-e">Soddisfare le esigenze delle aziende e dei lavoratori con servizi
                       rapidi, accessibili e di qualità, riducendo i tempi d'attesa e
-                      ottimizzando i costi senza compromettere l'eccellenza.
+                      ottimizzando i costi senza compromettere l'eccellenza.</T>
                     </p>
                   </div>
                 </div>
                 <div className="card">
                   <div className="card-body">
-                    <h4 className="card-title">INNOVAZIONE E MIGLIORAMENTO CONTINUO</h4>
+                    <h4 className="card-title"><T k="mission-vision.innovazione-e-miglioramento-continuo">INNOVAZIONE E MIGLIORAMENTO CONTINUO</T></h4>
                     <p className="card-text">
-                      Investire costantemente in formazione, strumenti e metodologie per
-                      offrire soluzioni sempre più efficaci e personalizzate.
+                      <T k="mission-vision.investire-costantemente-in-formazione-strumenti-e">Investire costantemente in formazione, strumenti e metodologie per
+                      offrire soluzioni sempre più efficaci e personalizzate.</T>
                     </p>
                   </div>
                 </div>

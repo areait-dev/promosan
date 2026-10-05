@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import LegalPage from '../../components/Legal/LegalPage';
-import { getGlobalOptions, type GlobalOptions } from '@/lib/wordpress';
+import { getGlobalOptions, getPageContent, type GlobalOptions } from '@/lib/wordpress';
 
 export const revalidate = 60;
 
@@ -14,8 +14,12 @@ export const metadata: Metadata = {
 export default async function PrivacyPolicyPage() {
   const { isEnabled: draft } = await draftMode();
   let options: GlobalOptions | undefined;
+  let wpPage: { title: string; html: string } | null = null;
   try {
-    options = await getGlobalOptions(draft);
+    [options, wpPage] = await Promise.all([
+      getGlobalOptions(draft),
+      getPageContent('privacy-policy', draft).catch(() => null),
+    ]);
   } catch (error) {
     console.error('[Privacy] Fetch WordPress fallito, uso i default:', error);
   }
@@ -25,6 +29,7 @@ export default async function PrivacyPolicyPage() {
       title="Privacy Policy"
       intro="Informativa resa ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679. La presente informativa descrive le modalità di trattamento dei dati personali degli utenti che consultano il sito e utilizzano gli strumenti digitali collegati a Promo. San. S.r.l. Ultimo aggiornamento: 22/04/2026 — Rev. 01."
       options={options}
+      html={wpPage?.html}
       sections={[
         {
           heading: '1. Titolare del trattamento',

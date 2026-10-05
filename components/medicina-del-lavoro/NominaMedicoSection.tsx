@@ -1,7 +1,9 @@
 'use client'
 import React from 'react';
+import { T, useT } from "@/components/Testi";
 
 export default function NominaMedicoSection() {
+  const t = useT();
   return (
     <section className="section section-light" id="nomina-medico">
       <div className="container">
@@ -12,7 +14,7 @@ export default function NominaMedicoSection() {
             fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
             lineHeight: '1.2'
           }}>
-            NOMINA DEL MEDICO COMPETENTE
+            <T k="nomina-medico-section.nomina-del-medico-competente">NOMINA DEL MEDICO COMPETENTE</T>
           </h2>
           <p className="section-subtitle" style={{
             fontSize: 'clamp(0.95rem, 3vw, 1.1rem)',
@@ -20,7 +22,7 @@ export default function NominaMedicoSection() {
             maxWidth: '1200px',
             textAlign: 'justify'
           }}>
-            La nomina del Medico Competente rappresenta un adempimento fondamentale per le aziende soggette all'obbligo di sorveglianza sanitaria. Secondo il <strong style={{ color: 'var(--color-primary)' }}>D.Lgs. 81/08</strong>, il Medico Competente è il professionista sanitario specializzato in medicina del lavoro che collabora con il datore di lavoro nella tutela della salute e della sicurezza dei lavoratori, attuando la sorveglianza sanitaria prevista dalla legge.
+            <T k="nomina-medico-section.la-nomina-del-medico-competente-rappresenta">La nomina del Medico Competente rappresenta un adempimento fondamentale per le aziende soggette all'obbligo di sorveglianza sanitaria. Secondo il</T> <strong style={{ color: 'var(--color-primary)' }}><T k="nomina-medico-section.d-lgs-81-08">D.Lgs. 81/08</T></strong><T k="nomina-medico-section.il-medico-competente-e-il-professionista">, il Medico Competente è il professionista sanitario specializzato in medicina del lavoro che collabora con il datore di lavoro nella tutela della salute e della sicurezza dei lavoratori, attuando la sorveglianza sanitaria prevista dalla legge.</T>
           </p>
         </div>
 
@@ -33,7 +35,7 @@ export default function NominaMedicoSection() {
           lineHeight: '1.3',
           wordBreak: 'break-word'
         }}>
-          MODALITÀ DI NOMINA PERSONALIZZABILI
+          <T k="nomina-medico-section.modalita-di-nomina-personalizzabili">MODALITÀ DI NOMINA PERSONALIZZABILI</T>
         </h3>
         <p style={{ 
           fontSize: 'clamp(0.95rem, 3vw, 1.1rem)', 
@@ -42,7 +44,7 @@ export default function NominaMedicoSection() {
           maxWidth: '1200px',
           lineHeight: '1.6'
         }}>
-          Scegli la soluzione più adatta alla tua azienda. Ogni modalità offre vantaggi specifici in base alle dimensioni, alla complessità organizzativa e alle esigenze specifiche.
+          <T k="nomina-medico-section.scegli-la-soluzione-piu-adatta-alla">Scegli la soluzione più adatta alla tua azienda. Ogni modalità offre vantaggi specifici in base alle dimensioni, alla complessità organizzativa e alle esigenze specifiche.</T>
         </p>
 
         {/* Grid Cards - completamente responsive */}
@@ -56,29 +58,29 @@ export default function NominaMedicoSection() {
           
           {/* Card 1 - COORDINATORE/COORDINATO */}
           <Card 
-            badgeText="Ideale per Gruppi"
+            badgeText={t("nomina-medico-section.ideale-per-gruppi", "Ideale per Gruppi")}
             badgeColor="#204c84"
             title="COORDINATORE/COORDINATO"
-            description="Una soluzione integrata che prevede sia la funzione di coordinamento di più medici competenti, ideale per realtà complesse con sedi multiple o articolazioni organizzative distribuite sul territorio, sia l'operatività diretta nella sorveglianza sanitaria."
-            recommendation="Gruppi aziendali, multinazionali, aziende con più sedi operative"
+            description={t("nomina-medico-section.una-soluzione-integrata-che-prevede-sia", "Una soluzione integrata che prevede sia la funzione di coordinamento di più medici competenti, ideale per realtà complesse con sedi multiple o articolazioni organizzative distribuite sul territorio, sia l'operatività diretta nella sorveglianza sanitaria.")}
+            recommendation={t("nomina-medico-section.gruppi-aziendali-multinazionali-aziende-con-piu", "Gruppi aziendali, multinazionali, aziende con più sedi operative")}
           />
 
           {/* Card 2 - SOLO COORDINATO */}
           <Card 
             badgeText="Flessibile"
             badgeColor="#4299e1"
-            title="SOLO COORDINATO"
-            description="Il servizio si concentra sull'attività operativa di sorveglianza sanitaria, perfetto per aziende che hanno già una struttura di coordinamento definita o che necessitano di supporto specialistico su specifiche sedi o reparti."
-            recommendation="Aziende con team RSPP interno, realtà che hanno già strutture di coordinamento"
+            title={t("nomina-medico-section.solo-coordinato", "SOLO COORDINATO")}
+            description={t("nomina-medico-section.il-servizio-si-concentra-sull-attivita", "Il servizio si concentra sull'attività operativa di sorveglianza sanitaria, perfetto per aziende che hanno già una struttura di coordinamento definita o che necessitano di supporto specialistico su specifiche sedi o reparti.")}
+            recommendation={t("nomina-medico-section.aziende-con-team-rspp-interno-realta", "Aziende con team RSPP interno, realtà che hanno già strutture di coordinamento")}
           />
 
           {/* Card 3 - MEDICO COMPETENTE DEDICATO */}
           <Card 
-            badgeText="Soluzione Standard"
+            badgeText={t("nomina-medico-section.soluzione-standard", "Soluzione Standard")}
             badgeColor="#2c5282"
-            title="MEDICO COMPETENTE DEDICATO"
-            description="La nomina con tutti gli obblighi normativi per aziende di piccole dimensioni, con un professionista dedicato che segue in modo continuativo tutti gli aspetti della medicina del lavoro aziendale."
-            recommendation="PMI, startup, aziende che cercano una soluzione completa e autonoma"
+            title={t("nomina-medico-section.medico-competente-dedicato", "MEDICO COMPETENTE DEDICATO")}
+            description={t("nomina-medico-section.la-nomina-con-tutti-gli-obblighi", "La nomina con tutti gli obblighi normativi per aziende di piccole dimensioni, con un professionista dedicato che segue in modo continuativo tutti gli aspetti della medicina del lavoro aziendale.")}
+            recommendation={t("nomina-medico-section.pmi-startup-aziende-che-cercano-una", "PMI, startup, aziende che cercano una soluzione completa e autonoma")}
           />
 
         </div>
@@ -201,7 +203,7 @@ function Card({
           textTransform: 'uppercase',
           letterSpacing: '0.5px'
         }}>
-          Consigliato per:
+          <T k="nomina-medico-section.consigliato-per">Consigliato per:</T>
         </h5>
         <p style={{ 
           color: '#334155', 

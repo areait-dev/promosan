@@ -3,6 +3,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { T } from "@/components/Testi";
 
 export default function CtaWelfare() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -78,7 +79,7 @@ export default function CtaWelfare() {
             transition: 'opacity 0.7s ease-out, transform 0.7s ease-out'
           }}
         >
-          PRONTO A TRASFORMARE IL TUO BENESSERE IN VALORE?
+          <T k="cta-welfare.pronto-a-trasformare-il-tuo-benessere">PRONTO A TRASFORMARE IL TUO BENESSERE IN VALORE?</T>
         </h2>
 
         <p 
@@ -93,7 +94,7 @@ export default function CtaWelfare() {
             transitionDelay: '0.2s'
           }}
         >
-          Contattaci per una consulenza personalizzata sui pacchetti welfare
+          <T k="cta-welfare.contattaci-per-una-consulenza-personalizzata-sui">Contattaci per una consulenza personalizzata sui pacchetti welfare</T>
         </p>
 
         <Link 
@@ -124,7 +125,7 @@ export default function CtaWelfare() {
             e.currentTarget.style.boxShadow = 'none';
           }}
         >
-          Richiedi un preventivo
+          <T k="cta-welfare.richiedi-un-preventivo">Richiedi un preventivo</T>
         </Link>
       </div>
 

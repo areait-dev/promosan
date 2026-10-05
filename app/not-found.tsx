@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Footer from '../components/Footer/Footer';
+import { T } from "@/components/Testi";
 
 export const metadata: Metadata = {
   title: 'Pagina non trovata | PromoSan',
@@ -25,18 +26,18 @@ export default function NotFound() {
               404
             </p>
             <h1 className="section-title" style={{ display: 'block' }}>
-              Pagina non trovata
+              <T k="pagina.not-found.pagina-non-trovata">Pagina non trovata</T>
             </h1>
             <p className="section-subtitle" style={{ margin: '0 auto var(--space-xl)', maxWidth: '38rem' }}>
-              La pagina che stai cercando non esiste o è stata spostata. Torna alla home
-              o contattaci se pensi che sia un errore.
+              <T k="pagina.not-found.la-pagina-che-stai-cercando-non">La pagina che stai cercando non esiste o è stata spostata. Torna alla home
+              o contattaci se pensi che sia un errore.</T>
             </p>
             <div style={{ display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link href="/" className="btn btn-primary">
-                Torna alla Home
+                <T k="pagina.not-found.torna-alla-home">Torna alla Home</T>
               </Link>
               <Link href="/contatti" className="btn btn-outline">
-                Contattaci
+                <T k="pagina.not-found.contattaci">Contattaci</T>
               </Link>
             </div>
           </div>

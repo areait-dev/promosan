@@ -88,6 +88,15 @@
       "label": "Social - Instagram",
       "name": "social_instagram",
       "type": "url"
+    },
+    {
+      "key": "field_opt_testi_sito",
+      "label": "Testi del sito (personalizzazioni)",
+      "name": "testi_sito",
+      "type": "textarea",
+      "rows": 20,
+      "new_lines": "",
+      "instructions": "Una riga per testo, nel formato: chiave = nuovo testo. Esempio: contatti.orari = Lun-Ven: 9:00-18:00. Se una chiave non c'è o il testo è vuoto, il sito usa il testo predefinito. L'elenco delle chiavi disponibili è nel file TESTI-SITO.md."
     }
   ],
   "location": [

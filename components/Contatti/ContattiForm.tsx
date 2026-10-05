@@ -17,6 +17,7 @@ import {
   AlertCircle,
   Loader2,
 } from 'lucide-react';
+import { T, useT } from "@/components/Testi";
 
 interface FormData {
   nome: string;
@@ -30,6 +31,7 @@ interface FormData {
 }
 
 export default function ContattiForm() {
+  const t = useT();
   const [formData, setFormData] = useState<FormData>({
     nome: '',
     email: '',
@@ -80,7 +82,7 @@ export default function ContattiForm() {
       }
 
       setStatus('success');
-      setFeedback('Grazie! La tua richiesta è stata inviata. Ti risponderemo a breve.');
+      setFeedback(t("contatti-form.grazie-la-tua-richiesta-e-stata", "Grazie! La tua richiesta è stata inviata. Ti risponderemo a breve."));
       setFormData({
         nome: '',
         email: '',
@@ -93,7 +95,7 @@ export default function ContattiForm() {
       });
     } catch (err) {
       setStatus('error');
-      setFeedback(err instanceof Error ? err.message : 'Si è verificato un errore. Riprova più tardi.');
+      setFeedback(err instanceof Error ? err.message : t("contatti-form.si-e-verificato-un-errore-riprova", "Si è verificato un errore. Riprova più tardi."));
     }
   };
 
@@ -158,13 +160,13 @@ export default function ContattiForm() {
             textTransform: 'uppercase',
             letterSpacing: '0.5px'
           }}>
-            INVIA UN MESSAGGIO
+            <T k="contatti-form.invia-un-messaggio">INVIA UN MESSAGGIO</T>
           </h2>
           <p style={{ 
             color: '#475569',
             fontSize: '0.85rem'
           }}>
-            Compila il form per ricevere un preventivo personalizzato
+            <T k="contatti-form.compila-il-form-per-ricevere-un">Compila il form per ricevere un preventivo personalizzato</T>
           </p>
         </div>
       </div>
@@ -193,7 +195,7 @@ export default function ContattiForm() {
                 letterSpacing: '0.5px'
               }}>
                 <User size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
-                Nome e Cognome *
+                <T k="contatti-form.nome-e-cognome">Nome e Cognome *</T>
               </label>
               <input 
                 type="text" 
@@ -201,7 +203,7 @@ export default function ContattiForm() {
                 value={formData.nome}
                 onChange={handleChange}
                 required
-                placeholder="Mario Rossi"
+                placeholder={t("contatti-form.mario-rossi", "Mario Rossi")}
                 className="form-input-field"
                 style={{
                   width: '100%',
@@ -228,7 +230,7 @@ export default function ContattiForm() {
                 letterSpacing: '0.5px'
               }}>
                 <Mail size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
-                Email *
+                <T k="contatti-form.email">Email *</T>
               </label>
               <input 
                 type="email" 
@@ -263,14 +265,14 @@ export default function ContattiForm() {
                 letterSpacing: '0.5px'
               }}>
                 <Building2 size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
-                Azienda
+                <T k="contatti-form.azienda">Azienda</T>
               </label>
               <input 
                 type="text" 
                 name="azienda"
                 value={formData.azienda}
                 onChange={handleChange}
-                placeholder="Nome della tua azienda"
+                placeholder={t("contatti-form.nome-della-tua-azienda", "Nome della tua azienda")}
                 className="form-input-field"
                 style={{
                   width: '100%',
@@ -297,7 +299,7 @@ export default function ContattiForm() {
                 letterSpacing: '0.5px'
               }}>
                 <Phone size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
-                Telefono *
+                <T k="contatti-form.telefono">Telefono *</T>
               </label>
               <input 
                 type="tel" 
@@ -332,7 +334,7 @@ export default function ContattiForm() {
                 letterSpacing: '0.5px'
               }}>
                 <Briefcase size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
-                Servizio di interesse *
+                <T k="contatti-form.servizio-di-interesse">Servizio di interesse *</T>
               </label>
               <select
                 id="servizio"
@@ -353,12 +355,12 @@ export default function ContattiForm() {
                   transition: 'all 0.2s ease'
                 }}
               >
-                <option value="">Seleziona un servizio</option>
-                <option value="medicina">Medicina del lavoro</option>
-                <option value="unita-mobili">Unità mobili</option>
-                <option value="welfare">Welfare aziendale</option>
-                <option value="sicurezza">Sicurezza sul lavoro</option>
-                <option value="formazione">Formazione</option>
+                <option value=""><T k="contatti-form.seleziona-un-servizio">Seleziona un servizio</T></option>
+                <option value="medicina"><T k="contatti-form.medicina-del-lavoro">Medicina del lavoro</T></option>
+                <option value="unita-mobili"><T k="contatti-form.unita-mobili">Unità mobili</T></option>
+                <option value="welfare"><T k="contatti-form.welfare-aziendale">Welfare aziendale</T></option>
+                <option value="sicurezza"><T k="contatti-form.sicurezza-sul-lavoro">Sicurezza sul lavoro</T></option>
+                <option value="formazione"><T k="contatti-form.formazione">Formazione</T></option>
               </select>
             </div>
 
@@ -374,7 +376,7 @@ export default function ContattiForm() {
                 letterSpacing: '0.5px'
               }}>
                 <Users size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
-                Numero dipendenti
+                <T k="contatti-form.numero-dipendenti">Numero dipendenti</T>
               </label>
               <select
                 id="dipendenti"
@@ -394,11 +396,11 @@ export default function ContattiForm() {
                   transition: 'all 0.2s ease'
                 }}
               >
-                <option value="">Seleziona fascia dipendenti</option>
-                <option value="1-10">1-10 dipendenti</option>
-                <option value="11-50">11-50 dipendenti</option>
-                <option value="51-200">51-200 dipendenti</option>
-                <option value="200+">200+ dipendenti</option>
+                <option value=""><T k="contatti-form.seleziona-fascia-dipendenti">Seleziona fascia dipendenti</T></option>
+                <option value="1-10"><T k="contatti-form.1-10-dipendenti">1-10 dipendenti</T></option>
+                <option value="11-50"><T k="contatti-form.11-50-dipendenti">11-50 dipendenti</T></option>
+                <option value="51-200"><T k="contatti-form.51-200-dipendenti">51-200 dipendenti</T></option>
+                <option value="200+"><T k="contatti-form.200-dipendenti">200+ dipendenti</T></option>
               </select>
             </div>
 
@@ -414,7 +416,7 @@ export default function ContattiForm() {
                 letterSpacing: '0.5px'
               }}>
                 <MessageCircle size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
-                Messaggio *
+                <T k="contatti-form.messaggio">Messaggio *</T>
               </label>
               <textarea 
                 name="messaggio"
@@ -422,7 +424,7 @@ export default function ContattiForm() {
                 onChange={handleChange}
                 required 
                 rows={4}
-                placeholder="Descrivici le tue esigenze..."
+                placeholder={t("contatti-form.descrivici-le-tue-esigenze", "Descrivici le tue esigenze...")}
                 className="form-input-field"
                 style={{
                   width: '100%',
@@ -445,7 +447,7 @@ export default function ContattiForm() {
                 gap: '0.25rem'
               }}>
                 <Info size={16} style={{ color: '#2b578c' }} />
-                Più informazioni ci fornisci, più preciso sarà il nostro preventivo
+                <T k="contatti-form.piu-informazioni-ci-fornisci-piu-preciso">Più informazioni ci fornisci, più preciso sarà il nostro preventivo</T>
               </p>
             </div>
           </div>
@@ -481,7 +483,7 @@ export default function ContattiForm() {
                 }}
               />
               <span style={{ color: '#475569', lineHeight: 1.5 }}>
-                Acconsento al trattamento dei dati personali secondo la privacy policy di PromoSan.
+                <T k="contatti-form.acconsento-al-trattamento-dei-dati-personali">Acconsento al trattamento dei dati personali secondo la privacy policy di PromoSan.</T>
               </span>
             </label>
           </div>
@@ -496,7 +498,7 @@ export default function ContattiForm() {
             color: '#475569'
           }}>
             <ShieldCheck size={16} style={{ color: '#2b578c' }} />
-            <span>I tuoi dati sono protetti e sicuri</span>
+            <span><T k="contatti-form.i-tuoi-dati-sono-protetti-e">I tuoi dati sono protetti e sicuri</T></span>
           </div>
 
           {/* Messaggio di feedback */}
@@ -554,7 +556,7 @@ export default function ContattiForm() {
             ) : (
               <Send size={16} />
             )}
-            {status === 'loading' ? 'Invio in corso...' : 'Richiedi preventivo'}
+            {status === 'loading' ? t("contatti-form.invio-in-corso", "Invio in corso...") : t("contatti-form.richiedi-preventivo", "Richiedi preventivo")}
           </button>
         </form>
       </div>

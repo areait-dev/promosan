@@ -4,6 +4,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Search } from 'lucide-react';
+import { T, useT } from "@/components/Testi";
 
 interface NewsPageHeroProps {
   searchQuery: string;
@@ -11,6 +12,7 @@ interface NewsPageHeroProps {
 }
 
 export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHeroProps) {
+  const t = useT();
   return (
     <section style={{
       position: 'relative',
@@ -47,7 +49,7 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
             letterSpacing: '0.5px',
             textShadow: '0 2px 12px rgba(0, 0, 0, 0.35)'
           }}>
-            News
+            <T k="news-page-hero.news">News</T>
           </h1>
           <p style={{
             margin: '0 auto',
@@ -57,7 +59,7 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
             opacity: 0.9,
             lineHeight: '1.6'
           }}>
-            Rimani informato sulle ultime normative e innovazioni nel settore della medicina del lavoro
+            <T k="news-page-hero.rimani-informato-sulle-ultime-normative-e">Rimani informato sulle ultime normative e innovazioni nel settore della medicina del lavoro</T>
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
             <div style={{
@@ -67,7 +69,7 @@ export default function NewsPageHero({ searchQuery, onSearchChange }: NewsPageHe
             }}>
               <input
                 type="text"
-                placeholder="Cerca articoli, normative, aggiornamenti..."
+                placeholder={t("news-page-hero.cerca-articoli-normative-aggiornamenti", "Cerca articoli, normative, aggiornamenti...")}
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 style={{

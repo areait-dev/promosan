@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { T, useT } from "@/components/Testi";
 
 interface Caratteristica {
   id: number;
@@ -42,6 +43,7 @@ export default function CaratteristicheServizio({
   title = DEFAULT_TITLE,
   intro = DEFAULT_INTRO,
 }: CaratteristicheServizioProps = {}) {
+  const t = useT();
   const sectionRef = useRef<HTMLElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -95,12 +97,12 @@ export default function CaratteristicheServizio({
           style={{ transform: 'translateY(20px)', transitionDelay: '0.1s' }}
         >
           <h4 className="mb-4 text-left text-xl font-bold text-primary">
-            UNITÀ MOBILE DI TELEMEDICINA BREVETTATA
+            <T k="caratteristiche-servizio.unita-mobile-di-telemedicina-brevettata">UNITÀ MOBILE DI TELEMEDICINA BREVETTATA</T>
           </h4>
           <p className="text-gray-600">
-            <strong className="text-primary">PromoSan detiene il brevetto</strong> per l&apos;Unità
+            <strong className="text-primary"><T k="caratteristiche-servizio.promosan-detiene-il-brevetto">PromoSan detiene il brevetto</T></strong> <T k="caratteristiche-servizio.per-l-apos-unita-mobile-di">per l&apos;Unità
             Mobile di Telemedicina sul Lavoro, un&apos;innovazione all&apos;avanguardia che anticipa le
-            evoluzioni future nel settore della Medicina del Lavoro.
+            evoluzioni future nel settore della Medicina del Lavoro.</T>
           </p>
         </div>
 
@@ -172,7 +174,7 @@ export default function CaratteristicheServizio({
         {/* Sezione "CARATTERISTICHE DELL'UNITÀ MOBILE" a card */}
         <div id="caratteristiche-unita-mobile" className="mb-16">
           <h2 className="mb-4 text-3xl font-bold leading-tight text-primary">
-            CARATTERISTICHE DELL&apos;UNITÀ MOBILE
+            <T k="caratteristiche-servizio.caratteristiche-dell-apos-unita-mobile">CARATTERISTICHE DELL&apos;UNITÀ MOBILE</T>
           </h2>
           <div className="mb-8 h-1 w-24 rounded-full bg-gradient-to-r from-secondary to-primary" />
 
@@ -209,24 +211,24 @@ export default function CaratteristicheServizio({
             >
               <div className="flex h-full flex-col rounded-xl bg-white p-8 shadow-lg transition-all duration-300">
                 <h4 className="mb-4 w-full text-left text-xl font-bold text-primary transition-colors duration-300">
-                  {index === 0 ? 'SOLUZIONE FLESSIBILE' : 'EFFICIENZA OPERATIVA'}
+                  {index === 0 ? t("caratteristiche-servizio.soluzione-flessibile", "SOLUZIONE FLESSIBILE") : t("caratteristiche-servizio.efficienza-operativa", "EFFICIENZA OPERATIVA")}
                 </h4>
                 <p className="text-left text-gray-600">
                   {index === 0 ? (
                     <>
-                      Particolarmente indicata per{' '}
+                      <T k="caratteristiche-servizio.particolarmente-indicata-per">Particolarmente indicata per</T>{' '}
                       <strong className="text-primary transition-colors duration-300">
-                        aziende con sedi distribuite
+                        <T k="caratteristiche-servizio.aziende-con-sedi-distribuite">aziende con sedi distribuite</T>
                       </strong>{' '}
-                      sul territorio, cantieri temporanei, stabilimenti in aree remote.
+                      <T k="caratteristiche-servizio.sul-territorio-cantieri-temporanei-stabilimenti-in">sul territorio, cantieri temporanei, stabilimenti in aree remote.</T>
                     </>
                   ) : (
                     <>
-                      Soluzione ideale per situazioni in cui è necessario{' '}
+                      <T k="caratteristiche-servizio.soluzione-ideale-per-situazioni-in-cui">Soluzione ideale per situazioni in cui è necessario</T>{' '}
                       <strong className="text-primary transition-colors duration-300">
-                        minimizzare l&apos;interruzione dell&apos;attività lavorativa
+                        <T k="caratteristiche-servizio.minimizzare-l-apos-interruzione-dell-apos">minimizzare l&apos;interruzione dell&apos;attività lavorativa</T>
                       </strong>{' '}
-                      ed eliminare la necessità di spostamenti.
+                      <T k="caratteristiche-servizio.ed-eliminare-la-necessita-di-spostamenti">ed eliminare la necessità di spostamenti.</T>
                     </>
                   )}
                 </p>

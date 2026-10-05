@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { T } from "@/components/Testi";
 
 export interface HeroWelfareProps {
   badge?: string;
@@ -254,7 +255,7 @@ export default function HeroWelfare({
               className="scroll-link"
               aria-label="Scorri per saperne di più"
             >
-              <span aria-hidden="true">Scorri per saperne di più</span>
+              <span aria-hidden="true"><T k="hero-welfare.scorri-per-saperne-di-piu">Scorri per saperne di più</T></span>
               <div className="scroll-mouse">
                 <span className="scroll-wheel" />
               </div>

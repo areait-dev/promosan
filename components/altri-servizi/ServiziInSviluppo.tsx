@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { FlaskConical } from 'lucide-react';
 import CardServizio from './CardServizio';
 import FocusGrid from './FocusGrid';
+import { T, useT } from "@/components/Testi";
 
 export interface ServiziInSviluppoProps {
   badge?: string;
@@ -30,6 +31,7 @@ export default function ServiziInSviluppo({
   intro = DEFAULT_INTRO,
   focusItems = DEFAULT_FOCUS,
 }: ServiziInSviluppoProps = {}) {
+  const t = useT();
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -45,7 +47,7 @@ export default function ServiziInSviluppo({
   }, []);
 
   const adiFeatures = [
-    { title: 'Obiettivo principale', text: 'Garantire cure di qualità nel comfort domestico' }
+    { title: t("servizi-in-sviluppo.obiettivo-principale", "Obiettivo principale"), text: t("servizi-in-sviluppo.garantire-cure-di-qualita-nel-comfort", "Garantire cure di qualità nel comfort domestico") }
   ];
 
   return (
@@ -154,12 +156,12 @@ export default function ServiziInSviluppo({
             flexDirection: 'column'
           }}>
             <CardServizio 
-              title="ASSISTENZA DOMICILIARE INTEGRATA"
+              title={t("servizi-in-sviluppo.assistenza-domiciliare-integrata", "ASSISTENZA DOMICILIARE INTEGRATA")}
               badge="ADI"
-              badgeLabel="Servizio integrato"
-              description="L'ADI si configura come un servizio di assistenza sanitaria e socio-sanitaria erogato direttamente al domicilio della persona, garantendo continuità assistenziale e qualità delle cure in un contesto familiare."
+              badgeLabel={t("servizi-in-sviluppo.servizio-integrato", "Servizio integrato")}
+              description={t("servizi-in-sviluppo.l-adi-si-configura-come-un", "L'ADI si configura come un servizio di assistenza sanitaria e socio-sanitaria erogato direttamente al domicilio della persona, garantendo continuità assistenziale e qualità delle cure in un contesto familiare.")}
               features={adiFeatures}
-              footerText="In sviluppo"
+              footerText={t("servizi-in-sviluppo.in-sviluppo", "In sviluppo")}
             />
           </div>
 
@@ -173,14 +175,14 @@ export default function ServiziInSviluppo({
             flexDirection: 'column'
           }}>
             <CardServizio 
-              title="PROGRAMMI AVANZATI DI PREVENZIONE"
+              title={t("servizi-in-sviluppo.programmi-avanzati-di-prevenzione", "PROGRAMMI AVANZATI DI PREVENZIONE")}
               badge="ESTESO"
-              badgeLabel="Programmi avanzati"
+              badgeLabel={t("servizi-in-sviluppo.programmi-avanzati", "Programmi avanzati")}
               description={[
-                "Oltre ai programmi di prevenzione già inclusi nel welfare aziendale, PromoSan sta sviluppando percorsi di prevenzione estesi anche alla popolazione generale.",
-                "L'obiettivo è creare una rete di servizi che metta la prevenzione al centro del percorso di salute delle persone."
+                t("servizi-in-sviluppo.oltre-ai-programmi-di-prevenzione-gia", "Oltre ai programmi di prevenzione già inclusi nel welfare aziendale, PromoSan sta sviluppando percorsi di prevenzione estesi anche alla popolazione generale."),
+                t("servizi-in-sviluppo.l-obiettivo-e-creare-una-rete", "L'obiettivo è creare una rete di servizi che metta la prevenzione al centro del percorso di salute delle persone.")
               ]}
-              footerText="In sviluppo"
+              footerText={t("servizi-in-sviluppo.in-sviluppo", "In sviluppo")}
             >
               <div style={{ marginTop: '2rem' }}>
                 <h4 style={{
@@ -197,7 +199,7 @@ export default function ServiziInSviluppo({
                   e.currentTarget.style.color = '#2c5282';
                 }}
                 >
-                  Focus principali:
+                  <T k="servizi-in-sviluppo.focus-principali">Focus principali:</T>
                 </h4>
                 <FocusGrid items={focusItems} />
               </div>

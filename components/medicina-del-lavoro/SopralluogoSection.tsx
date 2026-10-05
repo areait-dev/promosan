@@ -1,4 +1,5 @@
 'use client'
+import { T } from "@/components/Testi";
 export default function SopralluogoSection() {
   return (
     <section className="section section-white" id="sopralluogo">
@@ -10,7 +11,7 @@ export default function SopralluogoSection() {
             fontSize: 'clamp(1.5rem, 4vw, 2.2rem)',
             fontWeight: 800,
             color: 'var(--color-dark)'
-          }}>SOPRALLUOGO AZIENDALE</h2>
+          }}><T k="sopralluogo-section.sopralluogo-aziendale">SOPRALLUOGO AZIENDALE</T></h2>
           <span className="norm-badge" style={{
             background: '#204c84',
             color: 'var(--color-white)',
@@ -21,7 +22,7 @@ export default function SopralluogoSection() {
             textTransform: 'uppercase',
             letterSpacing: '0.5px'
           }}>
-            Art. 25 D.Lgs. 81/08
+            <T k="sopralluogo-section.art-25-d-lgs-81-08">Art. 25 D.Lgs. 81/08</T>
           </span>
         </div>
 
@@ -49,7 +50,7 @@ export default function SopralluogoSection() {
               fontWeight: '700',
               marginBottom: '1.2rem'
             }}>
-              OBBLIGO FONDAMENTALE
+              <T k="sopralluogo-section.obbligo-fondamentale">OBBLIGO FONDAMENTALE</T>
             </h3>
 
             <p className="text-gray-700" style={{
@@ -58,7 +59,7 @@ export default function SopralluogoSection() {
               marginBottom: '1.2rem',
               fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)'
             }}>
-              Il sopralluogo negli ambienti di lavoro è un obbligo fondamentale del Medico Competente stabilito dall'<strong style={{ color: 'var(--color-primary)', fontWeight: '700' }}>art. 25 comma 1 lettera l) del D.Lgs. 81/08</strong>.
+              <T k="sopralluogo-section.il-sopralluogo-negli-ambienti-di-lavoro">Il sopralluogo negli ambienti di lavoro è un obbligo fondamentale del Medico Competente stabilito dall'</T><strong style={{ color: 'var(--color-primary)', fontWeight: '700' }}><T k="sopralluogo-section.art-25-comma-1-lettera-l">art. 25 comma 1 lettera l) del D.Lgs. 81/08</T></strong>.
             </p>
             <p className="text-gray-700" style={{
               color: '#475569',
@@ -66,7 +67,7 @@ export default function SopralluogoSection() {
               fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
               margin: 0
             }}>
-              Questa attività permette di conoscere direttamente i luoghi di lavoro, verificare le condizioni ambientali e valutare l'esposizione dei lavoratori ai rischi professionali.
+              <T k="sopralluogo-section.questa-attivita-permette-di-conoscere-direttamente">Questa attività permette di conoscere direttamente i luoghi di lavoro, verificare le condizioni ambientali e valutare l'esposizione dei lavoratori ai rischi professionali.</T>
             </p>
           </div>
 
@@ -84,7 +85,7 @@ export default function SopralluogoSection() {
               fontWeight: '700',
               marginBottom: '1.2rem'
             }}>
-              GARANZIA PROMOSAN
+              <T k="sopralluogo-section.garanzia-promosan">GARANZIA PROMOSAN</T>
             </h3>
 
             <p className="text-gray-700" style={{
@@ -93,7 +94,7 @@ export default function SopralluogoSection() {
               fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
               margin: 0
             }}>
-              PromoSan garantisce lo svolgimento puntuale dei sopralluoghi aziendali in conformità agli obblighi normativi, fornendo alle aziende un supporto qualificato nella verifica delle condizioni di salute e sicurezza degli ambienti di lavoro.
+              <T k="sopralluogo-section.promosan-garantisce-lo-svolgimento-puntuale-dei">PromoSan garantisce lo svolgimento puntuale dei sopralluoghi aziendali in conformità agli obblighi normativi, fornendo alle aziende un supporto qualificato nella verifica delle condizioni di salute e sicurezza degli ambienti di lavoro.</T>
             </p>
           </div>
 

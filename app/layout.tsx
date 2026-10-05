@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar/Navbar";
 import BackToTop from "../components/BackToTop";
 import { getGlobalOptions } from "../lib/wordpress";
 import { SITE_URL } from "../lib/site";
+import { TestiProvider } from "../components/Testi";
 
 // Self-hosted da Next (nessun round-trip verso fonts.googleapis.com, niente FOUT).
 const titilliumWeb = Titillium_Web({
@@ -42,10 +43,12 @@ export default async function RootLayout({
   // componente che persiste tra le navigazioni client-side, senza essere
   // re-idratata ad ogni cambio pagina.
   let areaRiservataUrl: string | undefined;
+  let testi: Record<string, string> = {};
   let organizationJsonLd: Record<string, unknown> | undefined;
   try {
     const options = await getGlobalOptions();
     areaRiservataUrl = options.areaRiservataUrl || undefined;
+    testi = options.testi;
 
     // JSON-LD Organization: aiuta crawler/agenti AI a capire cosa offre il
     // sito senza dover interpretare solo il layout visivo (vedi anche
@@ -118,12 +121,14 @@ export default async function RootLayout({
       </head>
       <body className="antialiased" suppressHydrationWarning>
         {/* Banner visibile solo in Draft Mode (preview contenuti non pubblicati) */}
-        <PreviewBanner />
-        <ScrollRevealProvider />
-        <Navbar areaRiservataUrl={areaRiservataUrl} />
-        {children}
-        <BackToTop />
-        <CookieBanner />
+        <TestiProvider testi={testi}>
+          <PreviewBanner />
+          <ScrollRevealProvider />
+          <Navbar areaRiservataUrl={areaRiservataUrl} />
+          {children}
+          <BackToTop />
+          <CookieBanner />
+        </TestiProvider>
       </body>
     </html>
   );

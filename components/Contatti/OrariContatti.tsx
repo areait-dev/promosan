@@ -3,6 +3,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Clock, Phone, Mail } from 'lucide-react';
+import { T, useT } from "@/components/Testi";
 
 export interface OrariContattiProps {
   telefono?: string;
@@ -15,6 +16,7 @@ export default function OrariContatti({
   email = 'info@promosan.eu',
   orari = 'Lun-Ven: 9:00-18:00',
 }: OrariContattiProps = {}) {
+  const t = useT();
   const displayEmail = email || 'info@promosan.eu';
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -73,7 +75,7 @@ export default function OrariContatti({
         letterSpacing: '0.5px'
       }}>
         <Clock size={19} style={{ color: '#204c84' }} />
-        Orari e contatti
+        <T k="orari-contatti.orari-e-contatti">Orari e contatti</T>
       </h3>
       
       {/* Telefono */}
@@ -104,7 +106,7 @@ export default function OrariContatti({
             color: '#475569',
             marginBottom: '0.25rem'
           }}>
-            Chiamaci
+            <T k="orari-contatti.chiamaci">Chiamaci</T>
           </h4>
           <a
             href="tel:+390932862613"
@@ -128,7 +130,7 @@ export default function OrariContatti({
             gap: '0.35rem'
           }}>
             <Clock size={14} style={{ color: '#475569' }} />
-            {orari || 'Lun-Ven: 9:00-18:00'}
+            {orari || t("orari-contatti.lun-ven-9-00-18-00", "Lun-Ven: 9:00-18:00")}
           </p>
         </div>
       </div>
@@ -160,7 +162,7 @@ export default function OrariContatti({
             color: '#475569',
             marginBottom: '0.25rem'
           }}>
-            Scrivici
+            <T k="orari-contatti.scrivici">Scrivici</T>
           </h4>
           <a
             href={`mailto:${displayEmail}`}

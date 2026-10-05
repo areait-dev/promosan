@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Mail, Phone, Lock, FileText } from 'lucide-react';
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from '../icons/SocialIcons';
 import type { GlobalOptions } from '../../lib/wordpress';
+import { T, useT } from "@/components/Testi";
 
 interface NavItem {
   name: string;
@@ -42,9 +43,11 @@ const DEFAULT_OPTIONS: GlobalOptions = {
   logoUrl: '/assets/img/PromoSan.png',
   logoBianco: '/assets/img/PromoSan_white.png',
   social: { linkedin: '#', facebook: '#', instagram: '#' },
+  testi: {},
 };
 
 export default function Footer({ options, tagline = 'Consulenza specializzata per la Sanità' }: FooterProps = {}) {
+  const t = useT();
   const opt: GlobalOptions = {
     ...DEFAULT_OPTIONS,
     ...options,
@@ -102,9 +105,9 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
   ];
 
   const socialLinks: SocialLink[] = [
-    { Icon: LinkedinIcon, href: opt.social.linkedin, label: 'PromoSan su LinkedIn' },
-    { Icon: FacebookIcon, href: opt.social.facebook, label: 'PromoSan su Facebook' },
-    { Icon: InstagramIcon, href: opt.social.instagram, label: 'PromoSan su Instagram' },
+    { Icon: LinkedinIcon, href: opt.social.linkedin, label: t("footer.promosan-su-linkedin", "PromoSan su LinkedIn") },
+    { Icon: FacebookIcon, href: opt.social.facebook, label: t("footer.promosan-su-facebook", "PromoSan su Facebook") },
+    { Icon: InstagramIcon, href: opt.social.instagram, label: t("footer.promosan-su-instagram", "PromoSan su Instagram") },
   ];
 
   const legalLinks: LegalLink[] = [
@@ -118,7 +121,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setNewsletterStatus('error');
-      setNewsletterError('Inserisci una email valida.');
+      setNewsletterError(t("footer.inserisci-una-email-valida", "Inserisci una email valida."));
       return;
     }
 
@@ -141,7 +144,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
       setEmail('');
     } catch (err) {
       setNewsletterStatus('error');
-      setNewsletterError(err instanceof Error ? err.message : 'Iscrizione non riuscita.');
+      setNewsletterError(err instanceof Error ? err.message : t("footer.iscrizione-non-riuscita", "Iscrizione non riuscita."));
     } finally {
       setIsSubmitting(false);
     }
@@ -173,8 +176,8 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
         <div className="footer-newsletter">
           <div className="footer-newsletter-content">
             <div className="footer-newsletter-text">
-              <h3>Newsletter</h3>
-              <p>Ricevi le ultime novità normative</p>
+              <h3><T k="footer.newsletter">Newsletter</T></h3>
+              <p><T k="footer.ricevi-le-ultime-novita-normative">Ricevi le ultime novità normative</T></p>
             </div>
             <form
               onSubmit={handleNewsletterSubmit}
@@ -183,7 +186,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
               <div className="footer-newsletter-input-wrapper">
                 <input
                   type="email"
-                  placeholder="La tua email"
+                  placeholder={t("footer.la-tua-email", "La tua email")}
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -201,7 +204,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
             </form>
             {newsletterStatus === 'success' && (
               <p className="footer-newsletter-feedback footer-newsletter-feedback-success" role="status">
-                Grazie per l&apos;iscrizione!
+                <T k="footer.grazie-per-l-apos-iscrizione">Grazie per l&apos;iscrizione!</T>
               </p>
             )}
             {newsletterStatus === 'error' && (
@@ -242,7 +245,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
           {/* Colonna 2: Navigazione */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Navigazione</h4>
+            <h4 className="footer-col-title"><T k="footer.navigazione">Navigazione</T></h4>
             <ul className="footer-nav">
               {navItems.map((item) => (
                 <li key={item.name}>
@@ -274,7 +277,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
           {/* Colonna 3: Accesso & Social */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Accesso</h4>
+            <h4 className="footer-col-title"><T k="footer.accesso">Accesso</T></h4>
 
             <div className="footer-buttons">
               <a
@@ -284,7 +287,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                 className="footer-btn footer-btn-primary"
               >
                 <Lock className="h-4 w-4" />
-                Area Riservata
+                <T k="footer.area-riservata">Area Riservata</T>
               </a>
 
               <button
@@ -292,11 +295,11 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                 className="footer-btn footer-btn-secondary"
               >
                 <FileText className="h-4 w-4" />
-                Scarica Brochure
+                <T k="footer.scarica-brochure">Scarica Brochure</T>
               </button>
             </div>
 
-            <h4 className="footer-col-title">Seguici</h4>
+            <h4 className="footer-col-title"><T k="footer.seguici">Seguici</T></h4>
 
             <div className="footer-social">
               {socialLinks.map((social, index) => (
@@ -330,7 +333,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
                   onClick={() => window.openCookiePreferences?.()}
                   style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}
                 >
-                  Gestisci preferenze cookie
+                  <T k="footer.gestisci-preferenze-cookie">Gestisci preferenze cookie</T>
                 </button>
               </span>
             </div>

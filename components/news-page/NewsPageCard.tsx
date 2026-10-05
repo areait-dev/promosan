@@ -4,6 +4,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Clock, ArrowRight } from 'lucide-react';
+import { T } from "@/components/Testi";
 
 interface NewsItem {
   id: number;
@@ -147,7 +148,7 @@ export default function NewsPageCard({ news }: NewsPageCardProps) {
           borderTop: '1px solid #f3f4f6'
         }}>
           <span style={{ display: 'flex', gap: '0.25rem', alignItems: 'center', fontSize: '0.875rem', color: '#6b7280' }}>
-            <Clock className="inline h-3 w-3" /> {news.readTime} min
+            <Clock className="inline h-3 w-3" /> {news.readTime} <T k="news-page-card.min">min</T>
           </span>
           <Link
             href={`/news/${news.slug ?? news.id}`}
@@ -168,7 +169,7 @@ export default function NewsPageCard({ news }: NewsPageCardProps) {
               e.currentTarget.style.color = '#2c5282';
             }}
           >
-            Leggi articolo
+            <T k="news-page-card.leggi-articolo">Leggi articolo</T>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { T } from "@/components/Testi";
 
 export default function CtaSection() {
   return (
@@ -37,7 +38,7 @@ export default function CtaSection() {
             fontWeight: '700',
             color: 'rgba(255, 255, 255, 0.9)'
           }}>
-            METTI IN SICUREZZA LA TUA AZIENDA
+            <T k="cta-section.metti-in-sicurezza-la-tua-azienda">METTI IN SICUREZZA LA TUA AZIENDA</T>
           </h2>
           
           <p style={{ 
@@ -47,7 +48,7 @@ export default function CtaSection() {
             color: 'rgba(255, 255, 255, 0.9)',
             lineHeight: '1.6'
           }}>
-            Tutela la salute dei tuoi collaboratori con un servizio di Medicina del Lavoro completo, chiaro e affidabile.
+            <T k="cta-section.tutela-la-salute-dei-tuoi-collaboratori">Tutela la salute dei tuoi collaboratori con un servizio di Medicina del Lavoro completo, chiaro e affidabile.</T>
           </p>
           
           <div style={{ 
@@ -84,7 +85,7 @@ export default function CtaSection() {
               }}
             >
               <span style={{ position: 'relative', zIndex: '1' }}>
-                Richiedi una consulenza gratuita
+                <T k="cta-section.richiedi-una-consulenza-gratuita">Richiedi una consulenza gratuita</T>
               </span>
               
               {/* Shine effect */}

@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { T } from "@/components/Testi";
 
 export interface HeroProps {
   backgroundImage?: string;
@@ -91,7 +92,7 @@ export default function Hero(props: HeroProps = {}) {
         {/* Scroll Indicator */}
         <div className="scroll-indicator">
           <a href="#servizi" className="scroll-link" aria-label="Scorri ai nostri servizi">
-            <span aria-hidden="true">Scorri ai nostri servizi</span>
+            <span aria-hidden="true"><T k="hero.scorri-ai-nostri-servizi">Scorri ai nostri servizi</T></span>
             <div className="scroll-mouse">
               <span className="scroll-wheel" />
             </div>

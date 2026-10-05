@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown, HelpCircle, BriefcaseMedical, FileSignature } from 'lucide-react';
 import type { ComponentType, SVGProps } from 'react';
 import type { FaqItem } from '../../lib/wordpress';
+import { T, useT } from "@/components/Testi";
 
 export interface FAQProps {
   title?: string;
@@ -61,6 +62,7 @@ export default function FAQ({
   subtitle = DEFAULT_SUBTITLE,
   items = DEFAULT_ITEMS,
 }: FAQProps = {}) {
+  const t = useT();
   const [activeFaq, setActiveFaq] = useState<string | null>(null);
 
   const source = items.length ? items : DEFAULT_ITEMS;
@@ -121,7 +123,7 @@ export default function FAQ({
             <span className="faq-badge-icon">
               <HelpCircle className="h-4 w-4" />
             </span>
-            FAQ
+            <T k="faq.faq">FAQ</T>
           </div>
           <h2 className="section-title">{title}</h2>
           <p className="section-subtitle">{subtitle}</p>
@@ -181,8 +183,8 @@ export default function FAQ({
 
         {/* FAQ Grid */}
         <div className="faq-grid">
-          {renderColumn(servizi, 0, 'Servizi & Costi', BriefcaseMedical)}
-          {renderColumn(normative, 1, 'Normative & Procedure', FileSignature)}
+          {renderColumn(servizi, 0, t("faq.servizi-costi", "Servizi & Costi"), BriefcaseMedical)}
+          {renderColumn(normative, 1, t("faq.normative-procedure", "Normative & Procedure"), FileSignature)}
         </div>
       </div>
     </section>

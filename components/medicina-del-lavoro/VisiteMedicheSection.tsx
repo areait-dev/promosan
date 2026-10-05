@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { T, useT } from "@/components/Testi";
 
 export interface VisiteMedicheSectionProps {
   title?: string;
@@ -16,6 +17,7 @@ export default function VisiteMedicheSection({
   title = DEFAULT_TITLE,
   intro = DEFAULT_INTRO,
 }: VisiteMedicheSectionProps = {}) {
+  const t = useT();
   const [activeTab, setActiveTab] = useState('tipologie');
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   
@@ -54,8 +56,8 @@ export default function VisiteMedicheSection({
       'drug test': '/assets/img/drug test.svg',
       'alcol test': '/assets/img/alcol test.svg',
       'ematochimici': '/assets/img/ematochimici.svg',
-      'unità mobile': '/assets/img/unita-mobile.svg',
-      'visita medica': '/assets/img/visita-medica.svg'
+      "unità mobile": '/assets/img/unita-mobile.svg',
+      "visita medica": '/assets/img/visita-medica.svg'
     };
     
     return iconMap[iconName] || `/assets/icons/${iconName}.svg`;
@@ -133,11 +135,11 @@ export default function VisiteMedicheSection({
                 }
               }}
             >
-              {tab === 'tipologie' && 'TIPOLOGIE DI VISITE'}
-              {tab === 'cartella' && 'CARTELLA SANITARIA'}
+              {tab === 'tipologie' && t("visite-mediche-section.tipologie-di-visite", "TIPOLOGIE DI VISITE")}
+              {tab === 'cartella' && t("visite-mediche-section.cartella-sanitaria", "CARTELLA SANITARIA")}
               {tab === 'accertamenti' && 'ACCERTAMENTI'}
-              {tab === 'giudizio' && 'GIUDIZIO DI IDONEITÀ'}
-              {tab === 'portale' && 'PORTALE DIGITALE'}
+              {tab === 'giudizio' && t("visite-mediche-section.giudizio-di-idoneita", "GIUDIZIO DI IDONEITÀ")}
+              {tab === 'portale' && t("visite-mediche-section.portale-digitale", "PORTALE DIGITALE")}
             </button>
           ))}
         </div>
@@ -168,7 +170,7 @@ export default function VisiteMedicheSection({
                   height={24}
                   style={{ objectFit: 'contain' }}
                 />
-                LE VISITE MEDICHE PREVISTE DALLA NORMATIVA INCLUDONO:
+                <T k="visite-mediche-section.le-visite-mediche-previste-dalla-normativa">LE VISITE MEDICHE PREVISTE DALLA NORMATIVA INCLUDONO:</T>
               </h4>
             </div>
             
@@ -178,12 +180,12 @@ export default function VisiteMedicheSection({
               gap: '1.5rem' 
             }}>
               {[
-                "VISITA MEDICA PREVENTIVA",
-                "VISITA MEDICA PERIODICA", 
-                "VISITA MEDICA SU RICHIESTA DEL LAVORATORE",
-                "VISITA MEDICA PER CAMBIO MANSIONE",
-                "VISITA MEDICA PRECEDENTE ALLA RIPRESA DEL LAVORO",
-                "VISITA MEDICA ALLA CESSAZIONE DEL RAPPORTO DI LAVORO"
+                t("visite-mediche-section.visita-medica-preventiva", "VISITA MEDICA PREVENTIVA"),
+                t("visite-mediche-section.visita-medica-periodica", "VISITA MEDICA PERIODICA"), 
+                t("visite-mediche-section.visita-medica-su-richiesta-del-lavoratore", "VISITA MEDICA SU RICHIESTA DEL LAVORATORE"),
+                t("visite-mediche-section.visita-medica-per-cambio-mansione", "VISITA MEDICA PER CAMBIO MANSIONE"),
+                t("visite-mediche-section.visita-medica-precedente-alla-ripresa-del", "VISITA MEDICA PRECEDENTE ALLA RIPRESA DEL LAVORO"),
+                t("visite-mediche-section.visita-medica-alla-cessazione-del-rapporto", "VISITA MEDICA ALLA CESSAZIONE DEL RAPPORTO DI LAVORO")
               ].map((item, index) => (
                 <div 
                   key={index} 
@@ -226,7 +228,7 @@ export default function VisiteMedicheSection({
                 fontWeight: '700', 
                 color: '#2c5282' 
               }}>
-                ISTITUZIONE DELLA CARTELLA SANITARIA E DI RISCHIO
+                <T k="visite-mediche-section.istituzione-della-cartella-sanitaria-e-di">ISTITUZIONE DELLA CARTELLA SANITARIA E DI RISCHIO</T>
               </h3>
               <p style={{ 
                 lineHeight: '1.625', 
@@ -234,7 +236,7 @@ export default function VisiteMedicheSection({
                 color: '#374151',
                 fontSize: 'clamp(0.9rem, 3vw, 1rem)' 
               }}>
-                Per ogni lavoratore sottoposto a sorveglianza sanitaria, il Medico Competente istituisce e aggiorna una cartella sanitaria e di rischio. La cartella, custodita sotto la responsabilità del Medico Competente nel rispetto del segreto professionale, contiene tutti i dati relativi agli accertamenti sanitari effettuati, ai risultati degli esami e al giudizio di idoneità espresso.
+                <T k="visite-mediche-section.per-ogni-lavoratore-sottoposto-a-sorveglianza">Per ogni lavoratore sottoposto a sorveglianza sanitaria, il Medico Competente istituisce e aggiorna una cartella sanitaria e di rischio. La cartella, custodita sotto la responsabilità del Medico Competente nel rispetto del segreto professionale, contiene tutti i dati relativi agli accertamenti sanitari effettuati, ai risultati degli esami e al giudizio di idoneità espresso.</T>
               </p>
             </div>
           </div>
@@ -255,7 +257,7 @@ export default function VisiteMedicheSection({
                 fontWeight: '700', 
                 color: '#2c5282' 
               }}>
-                ACCERTAMENTI SANITARI
+                <T k="visite-mediche-section.accertamenti-sanitari">ACCERTAMENTI SANITARI</T>
               </h3>
               <p style={{ 
                 marginBottom: '2rem', 
@@ -263,7 +265,7 @@ export default function VisiteMedicheSection({
                 color: '#374151',
                 fontSize: 'clamp(0.9rem, 3vw, 1rem)' 
               }}>
-                Le visite mediche comprendono gli esami clinici e gli accertamenti diagnostici necessari, individuati dal Medico Competente in funzione dei rischi specifici della mansione. PromoSan effettua direttamente in azienda o presso le proprie strutture una gamma completa di accertamenti sanitari:
+                <T k="visite-mediche-section.le-visite-mediche-comprendono-gli-esami">Le visite mediche comprendono gli esami clinici e gli accertamenti diagnostici necessari, individuati dal Medico Competente in funzione dei rischi specifici della mansione. PromoSan effettua direttamente in azienda o presso le proprie strutture una gamma completa di accertamenti sanitari:</T>
               </p>
             </div>
             
@@ -273,13 +275,13 @@ export default function VisiteMedicheSection({
               gap: '1.5rem' 
             }}>
               {[
-                { icon: "visiotest", title: "VISIOTEST", desc: "Valutazione dell'acuità visiva e della percezione cromatica" },
-                { icon: "spirometria", title: "SPIROMETRIA", desc: "Esame della funzionalità respiratoria" },
-                { icon: "audiometria", title: "AUDIOMETRIA", desc: "Valutazione della capacità uditiva" },
-                { icon: "ecg", title: "ECG A RIPOSO", desc: "Elettrocardiogramma per la valutazione della funzionalità cardiaca" },
-                { icon: "drug test", title: "DRUG TEST ON-SITE", desc: "Test rapidi per la ricerca di sostanze stupefacenti" },
-                { icon: "alcol test", title: "ALCOL TEST MEDIANTE ETILOMETRI", desc: "Misurazione del tasso alcolemico" },
-                { icon: "ematochimici", title: "ESAMI EMATOCHIMICI", desc: "Analisi di laboratorio mirate ai rischi specifici" }
+                { icon: "visiotest", title: "VISIOTEST", desc: t("visite-mediche-section.valutazione-dell-acuita-visiva-e-della", "Valutazione dell'acuità visiva e della percezione cromatica") },
+                { icon: "spirometria", title: "SPIROMETRIA", desc: t("visite-mediche-section.esame-della-funzionalita-respiratoria", "Esame della funzionalità respiratoria") },
+                { icon: "audiometria", title: "AUDIOMETRIA", desc: t("visite-mediche-section.valutazione-della-capacita-uditiva", "Valutazione della capacità uditiva") },
+                { icon: "ecg", title: t("visite-mediche-section.ecg-a-riposo", "ECG A RIPOSO"), desc: t("visite-mediche-section.elettrocardiogramma-per-la-valutazione-della-funzionalita", "Elettrocardiogramma per la valutazione della funzionalità cardiaca") },
+                { icon: "drug test", title: t("visite-mediche-section.drug-test-on-site", "DRUG TEST ON-SITE"), desc: t("visite-mediche-section.test-rapidi-per-la-ricerca-di", "Test rapidi per la ricerca di sostanze stupefacenti") },
+                { icon: "alcol test", title: t("visite-mediche-section.alcol-test-mediante-etilometri", "ALCOL TEST MEDIANTE ETILOMETRI"), desc: t("visite-mediche-section.misurazione-del-tasso-alcolemico", "Misurazione del tasso alcolemico") },
+                { icon: "ematochimici", title: t("visite-mediche-section.esami-ematochimici", "ESAMI EMATOCHIMICI"), desc: t("visite-mediche-section.analisi-di-laboratorio-mirate-ai-rischi", "Analisi di laboratorio mirate ai rischi specifici") }
               ].map((item, index) => (
                 <div 
                   key={index} 
@@ -340,7 +342,7 @@ export default function VisiteMedicheSection({
                 fontWeight: '700', 
                 color: '#2c5282' 
               }}>
-                RILASCIO GIUDIZIO DI IDONEITÀ
+                <T k="visite-mediche-section.rilascio-giudizio-di-idoneita">RILASCIO GIUDIZIO DI IDONEITÀ</T>
               </h3>
               <p style={{ 
                 marginBottom: '2rem', 
@@ -348,7 +350,7 @@ export default function VisiteMedicheSection({
                 color: '#374151',
                 fontSize: 'clamp(0.9rem, 3vw, 1rem)' 
               }}>
-                Al termine della visita medica e sulla base dei risultati degli accertamenti effettuati, il Medico Competente esprime uno dei seguenti giudizi previsti dall'<strong style={{ color: '#2c5282' }}>art. 41</strong>:
+                <T k="visite-mediche-section.al-termine-della-visita-medica-e">Al termine della visita medica e sulla base dei risultati degli accertamenti effettuati, il Medico Competente esprime uno dei seguenti giudizi previsti dall'</T><strong style={{ color: '#2c5282' }}><T k="visite-mediche-section.art-41">art. 41</T></strong>:
               </p>
             </div>
             
@@ -358,10 +360,10 @@ export default function VisiteMedicheSection({
               gap: '1.5rem' 
             }}>
               {[
-                { title: "IDONEITÀ", desc: "Il lavoratore è idoneo a svolgere la mansione specifica" },
-                { title: "IDONEITÀ PARZIALE, TEMPORANEA O PERMANENTE, CON PRESCRIZIONI O LIMITAZIONI", desc: "Il lavoratore può svolgere la mansione con specifiche condizioni" },
-                { title: "INIDONEITÀ TEMPORANEA", desc: "Il lavoratore non può svolgere temporaneamente la mansione, con indicazione dei limiti temporali" },
-                { title: "INIDONEITÀ PERMANENTE", desc: "Il lavoratore non è idoneo a svolgere la mansione specifica" }
+                { title: "IDONEITÀ", desc: t("visite-mediche-section.il-lavoratore-e-idoneo-a-svolgere", "Il lavoratore è idoneo a svolgere la mansione specifica") },
+                { title: t("visite-mediche-section.idoneita-parziale-temporanea-o-permanente-con", "IDONEITÀ PARZIALE, TEMPORANEA O PERMANENTE, CON PRESCRIZIONI O LIMITAZIONI"), desc: t("visite-mediche-section.il-lavoratore-puo-svolgere-la-mansione", "Il lavoratore può svolgere la mansione con specifiche condizioni") },
+                { title: t("visite-mediche-section.inidoneita-temporanea", "INIDONEITÀ TEMPORANEA"), desc: t("visite-mediche-section.il-lavoratore-non-puo-svolgere-temporaneamente", "Il lavoratore non può svolgere temporaneamente la mansione, con indicazione dei limiti temporali") },
+                { title: t("visite-mediche-section.inidoneita-permanente", "INIDONEITÀ PERMANENTE"), desc: t("visite-mediche-section.il-lavoratore-non-e-idoneo-a", "Il lavoratore non è idoneo a svolgere la mansione specifica") }
               ].map((item, index) => (
                 <div 
                   key={index} 
@@ -406,7 +408,7 @@ export default function VisiteMedicheSection({
                 color: '#1f2937',
                 fontSize: 'clamp(0.9rem, 3vw, 1rem)' 
               }}>
-                <strong style={{ color: '#2c5282' }}>Il giudizio di idoneità viene comunicato sia al datore di lavoro che al lavoratore.</strong>
+                <strong style={{ color: '#2c5282' }}><T k="visite-mediche-section.il-giudizio-di-idoneita-viene-comunicato">Il giudizio di idoneità viene comunicato sia al datore di lavoro che al lavoratore.</T></strong>
               </p>
             </div>
           </div>
@@ -427,13 +429,13 @@ export default function VisiteMedicheSection({
                 fontWeight: '700', 
                 color: '#2c5282' 
               }}>
-                CONSEGNA DOCUMENTAZIONE TRAMITE PORTALE TELEMATICO
+                <T k="visite-mediche-section.consegna-documentazione-tramite-portale-telematico">CONSEGNA DOCUMENTAZIONE TRAMITE PORTALE TELEMATICO</T>
               </h3>
               <p style={{ 
                 fontSize: 'clamp(0.9rem, 3vw, 1rem)', 
                 color: '#374151' 
               }}>
-                PromoSan mette a disposizione un portale digitale dedicato attraverso cui datore di lavoro e lavoratori possono accedere in modo semplice e sicuro alla documentazione sanitaria.
+                <T k="visite-mediche-section.promosan-mette-a-disposizione-un-portale">PromoSan mette a disposizione un portale digitale dedicato attraverso cui datore di lavoro e lavoratori possono accedere in modo semplice e sicuro alla documentazione sanitaria.</T>
               </p>
             </div>
           </div>

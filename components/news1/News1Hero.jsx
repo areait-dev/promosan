@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { T } from "@/components/Testi";
 
 const getCategoryLabel = (cat) =>
 ({
@@ -81,7 +82,7 @@ const News1Hero = ({ news }) => {
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
                 </svg>
-                {news.readTime} min di lettura
+                {news.readTime} <T k="news1-hero.min-di-lettura">min di lettura</T>
               </span>
             )}
           </div>

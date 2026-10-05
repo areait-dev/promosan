@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import SediToggle from './SediToggle';
 import SedeCard from './SedeCard';
+import { T } from "@/components/Testi";
 
 // Iframe Google Maps: non necessario al render iniziale, caricato solo lato
 // client in un chunk separato.
@@ -58,7 +59,7 @@ const SediInteractive = ({ sediData, servizi }: SediInteractiveProps) => {
         <div className="sedi-content-left">
           <div className="sedi-map-wrapper">
             <h3 className="sedi-map-title">
-              Mappa - {sediData[sedeAttiva].regione}
+              <T k="sedi-interactive.mappa">Mappa -</T> {sediData[sedeAttiva].regione}
             </h3>
             <MappaIframe 
               url={sediData[sedeAttiva].mappaUrl}

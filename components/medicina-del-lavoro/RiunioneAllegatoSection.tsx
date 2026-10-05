@@ -1,4 +1,5 @@
 'use client';
+import { T } from "@/components/Testi";
 
 export default function RiunioneAllegatoSection() {
   return (
@@ -8,46 +9,46 @@ export default function RiunioneAllegatoSection() {
           
           {/* Column 1 */}
           <div className="ra-column">
-            <h3 className="ra-section-title">RIUNIONE PERIODICA E RELAZIONE SANITARIA</h3>
+            <h3 className="ra-section-title"><T k="riunione-allegato-section.riunione-periodica-e-relazione-sanitaria">RIUNIONE PERIODICA E RELAZIONE SANITARIA</T></h3>
             <div className="ra-card">
               <div className="ra-card-header">
-                <span className="ra-badge badge-obbligatorio">OBBLIGATORIO Art. 35</span>
+                <span className="ra-badge badge-obbligatorio"><T k="riunione-allegato-section.obbligatorio-art-35">OBBLIGATORIO Art. 35</T></span>
               </div>
               <div className="ra-card-body">
                 <p className="ra-card-text">
-                  La riunione periodica, prevista dall'art. 35 del D.Lgs. 81/08 per le aziende con più di 15 dipendenti, si svolge almeno una volta all'anno e coinvolge datore di lavoro, RSPP, Medico Competente e RLS. Durante l'incontro vengono discussi i risultati della sorveglianza sanitaria, l'andamento infortunistico e i programmi di prevenzione. Il Medico Competente presenta la relazione sanitaria annuale con i dati anonimi collettivi della sorveglianza effettuata.
+                  <T k="riunione-allegato-section.la-riunione-periodica-prevista-dall-art">La riunione periodica, prevista dall'art. 35 del D.Lgs. 81/08 per le aziende con più di 15 dipendenti, si svolge almeno una volta all'anno e coinvolge datore di lavoro, RSPP, Medico Competente e RLS. Durante l'incontro vengono discussi i risultati della sorveglianza sanitaria, l'andamento infortunistico e i programmi di prevenzione. Il Medico Competente presenta la relazione sanitaria annuale con i dati anonimi collettivi della sorveglianza effettuata.</T>
                 </p>
                 <p className="ra-card-text mt-4">
-                  Attraverso l'analisi e il confronto con le figure aziendali, i professionisti PromoSan forniscono raccomandazioni concrete che permettono di affinare i protocolli sanitari e ottimizzare le misure preventive, garantendo una tutela sempre più efficace della salute dei lavoratori.
+                  <T k="riunione-allegato-section.attraverso-l-analisi-e-il-confronto">Attraverso l'analisi e il confronto con le figure aziendali, i professionisti PromoSan forniscono raccomandazioni concrete che permettono di affinare i protocolli sanitari e ottimizzare le misure preventive, garantendo una tutela sempre più efficace della salute dei lavoratori.</T>
                 </p>
               </div>
               
               <div className="ra-bottom-box">
-                <div className="ra-box-title">Per quali aziende?</div>
-                <div className="ra-box-desc">Imprese e unità produttive con più di 15 lavoratori</div>
+                <div className="ra-box-title"><T k="riunione-allegato-section.per-quali-aziende">Per quali aziende?</T></div>
+                <div className="ra-box-desc"><T k="riunione-allegato-section.imprese-e-unita-produttive-con-piu">Imprese e unità produttive con più di 15 lavoratori</T></div>
               </div>
             </div>
           </div>
 
           {/* Column 2 */}
           <div className="ra-column">
-            <h3 className="ra-section-title">ALLEGATO 3B</h3>
+            <h3 className="ra-section-title"><T k="riunione-allegato-section.allegato-3b">ALLEGATO 3B</T></h3>
             <div className="ra-card">
               <div className="ra-card-header">
-                <span className="ra-badge badge-trasmissione">TRASMISSIONE Art. 40</span>
+                <span className="ra-badge badge-trasmissione"><T k="riunione-allegato-section.trasmissione-art-40">TRASMISSIONE Art. 40</T></span>
               </div>
               <div className="ra-card-body">
                 <p className="ra-card-text">
-                  L'Allegato 3B è un adempimento previsto dall'art. 40 del D.Lgs. 81/08 che prevede la trasmissione annuale all'INAIL dei dati aggregati sanitari e di rischio dei lavoratori sottoposti a sorveglianza sanitaria.
+                  <T k="riunione-allegato-section.l-allegato-3b-e-un-adempimento">L'Allegato 3B è un adempimento previsto dall'art. 40 del D.Lgs. 81/08 che prevede la trasmissione annuale all'INAIL dei dati aggregati sanitari e di rischio dei lavoratori sottoposti a sorveglianza sanitaria.</T>
                 </p>
                 <p className="ra-card-text mt-4">
-                  Il documento raccoglie in forma anonima le informazioni relative alle visite mediche, ai rischi lavorativi presenti in azienda e ai giudizi di idoneità espressi nell'anno precedente. La trasmissione avviene esclusivamente per via telematica attraverso il portale INAIL.
+                  <T k="riunione-allegato-section.il-documento-raccoglie-in-forma-anonima">Il documento raccoglie in forma anonima le informazioni relative alle visite mediche, ai rischi lavorativi presenti in azienda e ai giudizi di idoneità espressi nell'anno precedente. La trasmissione avviene esclusivamente per via telematica attraverso il portale INAIL.</T>
                 </p>
               </div>
               
               <div className="ra-bottom-box">
-                <div className="ra-box-title">Scadenza annuale</div>
-                <div className="ra-box-desc">Trasmissione entro il 31 Marzo dell'anno successivo</div>
+                <div className="ra-box-title"><T k="riunione-allegato-section.scadenza-annuale">Scadenza annuale</T></div>
+                <div className="ra-box-desc"><T k="riunione-allegato-section.trasmissione-entro-il-31-marzo-dell">Trasmissione entro il 31 Marzo dell'anno successivo</T></div>
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ import NewsPageCard from '../../components/news-page/NewsPageCard';
 import NewsPagePagination from '../../components/news-page/NewsPagePagination';
 import Footer from '../../components/Footer/Footer';
 import type { GlobalOptions, NewsItem as WPNewsItem } from '../../lib/wordpress';
+import { T } from "@/components/Testi";
 
 // Forma attesa da NewsPageCard (immagine come stringa).
 interface NewsItem {
@@ -171,10 +172,10 @@ export default function NewsClient({ initialNews, options }: NewsClientProps) {
             <div style={{ textAlign: 'center', padding: '4rem 0' }}>
               <Search size={48} style={{ color: '#9ca3af', marginBottom: '1rem' }} />
               <h2 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>
-                Nessun risultato trovato
+                <T k="pagina.news.nessun-risultato-trovato">Nessun risultato trovato</T>
               </h2>
               <p style={{ color: '#6b7280' }}>
-                Prova a modificare i filtri di ricerca o la categoria selezionata
+                <T k="pagina.news.prova-a-modificare-i-filtri-di">Prova a modificare i filtri di ricerca o la categoria selezionata</T>
               </p>
             </div>
           )}

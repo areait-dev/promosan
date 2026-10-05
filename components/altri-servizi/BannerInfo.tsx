@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Phone, Clock } from 'lucide-react';
+import { T } from "@/components/Testi";
 
 export default function BannerInfo() {
   return (
@@ -9,22 +10,22 @@ export default function BannerInfo() {
       <div className="container">
         <div className="banner-content">
           <h2 className="banner-title">
-            Innovazione in Azione: Scopri i Servizi del Futuro
+            <T k="banner-info.innovazione-in-azione-scopri-i-servizi">Innovazione in Azione: Scopri i Servizi del Futuro</T>
           </h2>
           <p className="banner-subtitle">
-            Unisciti alla rivoluzione sanitaria digitale e sperimenta oggi i servizi che definiranno la medicina di domani
+            <T k="banner-info.unisciti-alla-rivoluzione-sanitaria-digitale-e">Unisciti alla rivoluzione sanitaria digitale e sperimenta oggi i servizi che definiranno la medicina di domani</T>
           </p>
           
           <div className="banner-cta">
             <a href="tel:+390932862613" className="banner-button">
               <Phone size={14} />
-              <span>Chiamaci ora per informazioni</span>
+              <span><T k="banner-info.chiamaci-ora-per-informazioni">Chiamaci ora per informazioni</T></span>
             </a>
           </div>
 
           <div className="banner-note">
             <Clock size={14} />
-            <span>Servizio attivo dal lunedì al venerdì, 9:00-18:00. Rispondiamo entro 24 ore</span>
+            <span><T k="banner-info.servizio-attivo-dal-lunedi-al-venerdi">Servizio attivo dal lunedì al venerdì, 9:00-18:00. Rispondiamo entro 24 ore</T></span>
           </div>
         </div>
       </div>

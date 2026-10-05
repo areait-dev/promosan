@@ -1,6 +1,7 @@
 // components/PromoHealthCenter/SediToggle.tsx
 'use client';
 import React from 'react';
+import { T } from "@/components/Testi";
 
 interface SediToggleProps {
   sedeAttiva: 'sicilia' | 'veneto' | 'piemonte';
@@ -18,19 +19,19 @@ const SediToggle = ({ sedeAttiva, setSedeAttiva }: SediToggleProps) => {
           className={`sedi-toggle-btn ${sedeAttiva === 'sicilia' ? 'active' : ''}`}
           onClick={() => setSedeAttiva('sicilia')}
         >
-          SICILIA
+          <T k="sedi-toggle.sicilia">SICILIA</T>
         </button>
         <button
           className={`sedi-toggle-btn ${sedeAttiva === 'veneto' ? 'active' : ''}`}
           onClick={() => setSedeAttiva('veneto')}
         >
-          VENETO
+          <T k="sedi-toggle.veneto">VENETO</T>
         </button>
         <button
           className={`sedi-toggle-btn ${sedeAttiva === 'piemonte' ? 'active' : ''}`}
           onClick={() => setSedeAttiva('piemonte')}
         >
-          PIEMONTE
+          <T k="sedi-toggle.piemonte">PIEMONTE</T>
         </button>
       </div>
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Cookie } from 'lucide-react';
+import { T } from "@/components/Testi";
 
 const STORAGE_KEY = 'promosan-cookie-consent';
 
@@ -103,13 +104,13 @@ export default function CookieBanner() {
           <Cookie className="h-5 w-5" aria-hidden="true" />
         </div>
         <div className="cookie-banner-body">
-          <p className="cookie-banner-title">La tua privacy conta per noi</p>
+          <p className="cookie-banner-title"><T k="cookie-banner.la-tua-privacy-conta-per-noi">La tua privacy conta per noi</T></p>
           <p className="cookie-banner-text">
-            Utilizziamo cookie tecnici necessari e, previo consenso, cookie analytics e marketing per
+            <T k="cookie-banner.utilizziamo-cookie-tecnici-necessari-e-previo">Utilizziamo cookie tecnici necessari e, previo consenso, cookie analytics e marketing per
             migliorare il sito e offrire contenuti personalizzati. Puoi accettare, rifiutare o
-            personalizzare le preferenze. Per maggiori informazioni consulta la{' '}
-            <Link href="/cookie-policy">Cookie Policy</Link> e la{' '}
-            <Link href="/privacy-policy">Privacy Policy</Link>.
+            personalizzare le preferenze. Per maggiori informazioni consulta la</T>{' '}
+            <Link href="/cookie-policy"><T k="cookie-banner.cookie-policy">Cookie Policy</T></Link> <T k="cookie-banner.e-la">e la</T>{' '}
+            <Link href="/privacy-policy"><T k="cookie-banner.privacy-policy">Privacy Policy</T></Link>.
           </p>
         </div>
       </div>
@@ -118,8 +119,8 @@ export default function CookieBanner() {
         <div className="cookie-banner-panel">
           <div className="cookie-option">
             <span className="cookie-option-text">
-              <strong>Cookie tecnici</strong>
-              Sempre attivi. Necessari al funzionamento e alla sicurezza del sito.
+              <strong><T k="cookie-banner.cookie-tecnici">Cookie tecnici</T></strong>
+              <T k="cookie-banner.sempre-attivi-necessari-al-funzionamento-e">Sempre attivi. Necessari al funzionamento e alla sicurezza del sito.</T>
             </span>
             <span className="cookie-toggle">
               <input type="checkbox" checked disabled aria-label="Cookie tecnici, sempre attivi" />
@@ -128,8 +129,8 @@ export default function CookieBanner() {
           </div>
           <div className="cookie-option">
             <span className="cookie-option-text">
-              <strong>Cookie analytics</strong>
-              Statistiche aggregate sull&apos;utilizzo del sito (es. Google Analytics).
+              <strong><T k="cookie-banner.cookie-analytics">Cookie analytics</T></strong>
+              <T k="cookie-banner.statistiche-aggregate-sull-apos-utilizzo-del">Statistiche aggregate sull&apos;utilizzo del sito (es. Google Analytics).</T>
             </span>
             <label className="cookie-toggle">
               <input
@@ -143,8 +144,8 @@ export default function CookieBanner() {
           </div>
           <div className="cookie-option">
             <span className="cookie-option-text">
-              <strong>Cookie marketing</strong>
-              Contenuti e messaggi personalizzati, retargeting e misurazione campagne.
+              <strong><T k="cookie-banner.cookie-marketing">Cookie marketing</T></strong>
+              <T k="cookie-banner.contenuti-e-messaggi-personalizzati-retargeting-e">Contenuti e messaggi personalizzati, retargeting e misurazione campagne.</T>
             </span>
             <label className="cookie-toggle">
               <input
@@ -162,19 +163,19 @@ export default function CookieBanner() {
       <div className="cookie-banner-actions">
         {!showPanel && (
           <button type="button" onClick={() => setShowPanel(true)} className="cookie-btn cookie-btn-secondary">
-            Personalizza
+            <T k="cookie-banner.personalizza">Personalizza</T>
           </button>
         )}
         <button type="button" onClick={rejectAll} className="cookie-btn cookie-btn-secondary">
-          Rifiuta
+          <T k="cookie-banner.rifiuta">Rifiuta</T>
         </button>
         {showPanel && (
           <button type="button" onClick={saveSelection} className="cookie-btn cookie-btn-secondary">
-            Salva preferenze
+            <T k="cookie-banner.salva-preferenze">Salva preferenze</T>
           </button>
         )}
         <button type="button" onClick={acceptAll} className="cookie-btn cookie-btn-primary">
-          Accetta tutti
+          <T k="cookie-banner.accetta-tutti">Accetta tutti</T>
         </button>
       </div>
     </div>

@@ -8,6 +8,7 @@ import Footer from '../../components/Footer/Footer';
 import NewsPageCard from '../../components/news-page/NewsPageCard';
 import { searchSitePages, type SitePage } from '../../lib/searchIndex';
 import type { GlobalOptions, NewsItem as WPNewsItem } from '../../lib/wordpress';
+import { T, useT } from "@/components/Testi";
 
 // Forma attesa da NewsPageCard (immagine come stringa).
 interface CardItem {
@@ -46,6 +47,7 @@ interface RicercaClientProps {
 }
 
 export default function RicercaClient({ initialQuery, news, options }: RicercaClientProps) {
+  const t = useT();
   const items = useMemo<SearchableItem[]>(
     () => (news && news.length ? news.map(toSearchable) : []),
     [news]
@@ -80,14 +82,14 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
         <div className="w-full max-w-3xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-sm font-medium mb-6">
             <Search className="h-4 w-4" />
-            <span>Ricerca nel sito</span>
+            <span><T k="pagina.ricerca.ricerca-nel-sito">Ricerca nel sito</T></span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
-            Risultati della ricerca per:
+            <T k="pagina.ricerca.risultati-della-ricerca-per">Risultati della ricerca per:</T>
           </h1>
           {hasQuery && (
             <p className="text-2xl md:text-3xl font-semibold" style={{ color: '#ffffff' }}>
-              &ldquo;{initialQuery}&rdquo;
+              <T k="pagina.ricerca.ldquo">&ldquo;</T>{initialQuery}<T k="pagina.ricerca.rdquo">&rdquo;</T>
             </p>
           )}
         </div>
@@ -103,11 +105,11 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
                 {totalResults > 0 ? (
                   <>
                     <span className="font-bold text-primary text-2xl">{totalResults}</span>
-                    {' '}risultato{totalResults === 1 ? '' : 'i'} per{' '}
-                    <span className="font-semibold text-gray-900">&ldquo;{initialQuery}&rdquo;</span>
+                    {' '}<T k="pagina.ricerca.risultato">risultato</T>{totalResults === 1 ? '' : 'i'} <T k="pagina.ricerca.per">per</T>{' '}
+                    <span className="font-semibold text-gray-900"><T k="pagina.ricerca.ldquo">&ldquo;</T>{initialQuery}<T k="pagina.ricerca.rdquo">&rdquo;</T></span>
                   </>
                 ) : (
-                  <>Nessun risultato per <span className="font-semibold">&ldquo;{initialQuery}&rdquo;</span></>
+                  <><T k="pagina.ricerca.nessun-risultato-per">Nessun risultato per</T> <span className="font-semibold"><T k="pagina.ricerca.ldquo">&ldquo;</T>{initialQuery}<T k="pagina.ricerca.rdquo">&rdquo;</T></span></>
                 )}
               </p>
             </div>
@@ -118,7 +120,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
               {pageResults.length > 0 && (
                 <div className={results.length > 0 ? 'mb-14' : ''}>
                   <h2 className="text-xl font-bold text-gray-900 mb-5">
-                    Pagine del sito
+                    <T k="pagina.ricerca.pagine-del-sito">Pagine del sito</T>
                   </h2>
                   <div className="grid gap-4">
                     {pageResults.map((page) => (
@@ -148,7 +150,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
               {results.length > 0 && (
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 mb-5">
-                    News &amp; Articoli
+                    <T k="pagina.ricerca.news-amp-articoli">News &amp; Articoli</T>
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {results.map((item) => (
@@ -164,12 +166,12 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
                 <Search className="h-10 w-10 text-gray-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                {hasQuery ? 'Nessun risultato trovato' : 'Inizia la tua ricerca'}
+                {hasQuery ? t("pagina.ricerca.nessun-risultato-trovato", "Nessun risultato trovato") : t("pagina.ricerca.inizia-la-tua-ricerca", "Inizia la tua ricerca")}
               </h3>
               <p className="text-gray-500 max-w-md mx-auto">
                 {hasQuery
-                  ? 'Prova con parole chiave diverse o più generiche.'
-                  : 'Digita un termine nel campo qui sopra per cercare nel sito.'}
+                  ? t("pagina.ricerca.prova-con-parole-chiave-diverse-o", "Prova con parole chiave diverse o più generiche.")
+                  : t("pagina.ricerca.digita-un-termine-nel-campo-qui", "Digita un termine nel campo qui sopra per cercare nel sito.")}
               </p>
               {hasQuery && (
                 <Link
@@ -177,7 +179,7 @@ export default function RicercaClient({ initialQuery, news, options }: RicercaCl
                   className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors"
                 >
                   <Newspaper className="h-4 w-4" />
-                  Sfoglia tutte le news
+                  <T k="pagina.ricerca.sfoglia-tutte-le-news">Sfoglia tutte le news</T>
                 </Link>
               )}
             </div>

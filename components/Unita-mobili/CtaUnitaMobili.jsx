@@ -1,5 +1,6 @@
 // src/components/Unita-mobili/CtaUnitaMobili.jsx
 import React from 'react';
+import { T } from "@/components/Testi";
 
 const CtaUnitaMobili = () => {
   return (
@@ -8,12 +9,12 @@ const CtaUnitaMobili = () => {
         <div className="text-center">
           {/* Titolo */}
           <h2 className="mb-6 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
-            PORTIAMO LA SANITÀ NELLA TUA AZIENDA
+            <T k="cta-unita-mobili.portiamo-la-sanita-nella-tua-azienda">PORTIAMO LA SANITÀ NELLA TUA AZIENDA</T>
           </h2>
           
           {/* Sottotitolo */}
           <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-white/90">
-            Scopri come le nostre Unità Mobili possono ottimizzare la gestione della medicina del lavoro nella tua realtà aziendale.
+            <T k="cta-unita-mobili.scopri-come-le-nostre-unita-mobili">Scopri come le nostre Unità Mobili possono ottimizzare la gestione della medicina del lavoro nella tua realtà aziendale.</T>
           </p>
           
           {/* Bottone CTA */}
@@ -22,7 +23,7 @@ const CtaUnitaMobili = () => {
               href="/contatti"
               className="inline-block px-10 py-5 text-lg font-bold text-white rounded-xl transition-all duration-300 bg-accent hover:bg-white hover:text-primary hover:shadow-2xl"
             >
-              Richiedi una consulenza gratuita
+              <T k="cta-unita-mobili.richiedi-una-consulenza-gratuita">Richiedi una consulenza gratuita</T>
             </a>
           </div>
         </div>

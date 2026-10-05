@@ -3,6 +3,7 @@
 
 import { useEffect, useRef } from 'react';
 import type { PacchettoWelfare } from '../../lib/wordpress';
+import { T, useT } from "@/components/Testi";
 
 interface Pacchetto {
   id: string;
@@ -36,6 +37,7 @@ function toPacchetto(p: PacchettoWelfare): Pacchetto {
 }
 
 export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) {
+  const t = useT();
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -57,44 +59,44 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
     {
       id: 'essential',
       name: 'ESSENTIAL',
-      subtitle: 'PREVENZIONE DI BASE',
+      subtitle: t("pacchetti-welfare.prevenzione-di-base", "PREVENZIONE DI BASE"),
       features: [
-        { text: 'Check-up preventivi completi', included: true },
-        { text: 'Screening cardiovascolare', included: true },
+        { text: t("pacchetti-welfare.check-up-preventivi-completi", "Check-up preventivi completi"), included: true },
+        { text: t("pacchetti-welfare.screening-cardiovascolare", "Screening cardiovascolare"), included: true },
         { text: 'Telemedicina', included: true },
-        { text: 'Screening oncologici', included: false },
-        { text: 'Supporto psicologico', included: false },
-        { text: 'Valutazioni ergonomiche', included: false }
+        { text: t("pacchetti-welfare.screening-oncologici", "Screening oncologici"), included: false },
+        { text: t("pacchetti-welfare.supporto-psicologico", "Supporto psicologico"), included: false },
+        { text: t("pacchetti-welfare.valutazioni-ergonomiche", "Valutazioni ergonomiche"), included: false }
       ],
       bgClass: 'white'
     },
     {
       id: 'business',
       name: 'BUSINESS',
-      subtitle: 'PREVENZIONE COMPLETA',
+      subtitle: t("pacchetti-welfare.prevenzione-completa", "PREVENZIONE COMPLETA"),
       isPopular: true,
       features: [
-        { text: 'Check-up preventivi completi', included: true },
-        { text: 'Screening oncologici e cardiovascolari', included: true },
-        { text: 'Promozione salute (alimentazione, attività fisica)', included: true },
-        { text: 'Telemedicina e consulti specialistici', included: true },
-        { text: 'Supporto psicologico', included: true },
-        { text: 'Valutazioni ergonomiche', included: false }
+        { text: t("pacchetti-welfare.check-up-preventivi-completi", "Check-up preventivi completi"), included: true },
+        { text: t("pacchetti-welfare.screening-oncologici-e-cardiovascolari", "Screening oncologici e cardiovascolari"), included: true },
+        { text: t("pacchetti-welfare.promozione-salute-alimentazione-attivita-fisica", "Promozione salute (alimentazione, attività fisica)"), included: true },
+        { text: t("pacchetti-welfare.telemedicina-e-consulti-specialistici", "Telemedicina e consulti specialistici"), included: true },
+        { text: t("pacchetti-welfare.supporto-psicologico", "Supporto psicologico"), included: true },
+        { text: t("pacchetti-welfare.valutazioni-ergonomiche", "Valutazioni ergonomiche"), included: false }
       ],
       bgClass: 'gradient'
     },
     {
       id: 'premium',
       name: 'PREMIUM',
-      subtitle: 'PREVENZIONE TOTALE',
+      subtitle: t("pacchetti-welfare.prevenzione-totale", "PREVENZIONE TOTALE"),
       features: [
-        { text: 'Check-up preventivi completi', included: true },
-        { text: 'Screening oncologici e cardiovascolari', included: true },
-        { text: 'Promozione salute completa', included: true },
-        { text: 'Supporto psicologico dedicato', included: true },
-        { text: 'Telemedicina e consulti specialistici', included: true },
-        { text: 'Programma cessazione fumo', included: true },
-        { text: 'Valutazioni ergonomiche personalizzate', included: true }
+        { text: t("pacchetti-welfare.check-up-preventivi-completi", "Check-up preventivi completi"), included: true },
+        { text: t("pacchetti-welfare.screening-oncologici-e-cardiovascolari", "Screening oncologici e cardiovascolari"), included: true },
+        { text: t("pacchetti-welfare.promozione-salute-completa", "Promozione salute completa"), included: true },
+        { text: t("pacchetti-welfare.supporto-psicologico-dedicato", "Supporto psicologico dedicato"), included: true },
+        { text: t("pacchetti-welfare.telemedicina-e-consulti-specialistici", "Telemedicina e consulti specialistici"), included: true },
+        { text: t("pacchetti-welfare.programma-cessazione-fumo", "Programma cessazione fumo"), included: true },
+        { text: t("pacchetti-welfare.valutazioni-ergonomiche-personalizzate", "Valutazioni ergonomiche personalizzate"), included: true }
       ],
       bgClass: 'white'
     }
@@ -134,7 +136,7 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
               transitionDelay: '0.2s'
             }}
           >
-            PACCHETTI SU MISURA
+            <T k="pacchetti-welfare.pacchetti-su-misura">PACCHETTI SU MISURA</T>
           </h2>
 
           {/* Linea decorativa */}
@@ -171,7 +173,7 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
             }}
           >
             <p style={{ marginBottom: '1rem' }}>
-           PromoSan progetta soluzioni personalizzate in base alle caratteristiche dell'azienda e della popolazione lavorativa, tutti i pacchetti sono personalizzabili in base alle esigenze della tua azienda.
+           <T k="pacchetti-welfare.promosan-progetta-soluzioni-personalizzate-in-base">PromoSan progetta soluzioni personalizzate in base alle caratteristiche dell'azienda e della popolazione lavorativa, tutti i pacchetti sono personalizzabili in base alle esigenze della tua azienda.</T>
             </p>
           </div>
         </div>
@@ -239,7 +241,7 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
                   whiteSpace: 'nowrap',
                   zIndex: 10
                 }}>
-                  PIÙ RICHIESTO
+                  <T k="pacchetti-welfare.piu-richiesto">PIÙ RICHIESTO</T>
                 </div>
               )}
 
@@ -325,7 +327,7 @@ export default function PacchettiWelfare({ items }: PacchettiWelfareProps = {}) 
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                Richiedi preventivo
+                <T k="pacchetti-welfare.richiedi-preventivo">Richiedi preventivo</T>
               </a>
             </div>
           ))}
