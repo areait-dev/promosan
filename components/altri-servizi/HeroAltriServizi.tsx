@@ -3,6 +3,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Plus, ChevronDown, Mail } from 'lucide-react';
 
 export interface HeroAltriServiziProps {
@@ -62,14 +63,15 @@ export default function HeroAltriServizi({
       {/* Immagine di sfondo opzionale (da WordPress), con tint gradiente semi-trasparente sopra */}
       {backgroundImage && (
         <>
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center top',
-            zIndex: 0,
-          }}></div>
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            quality={75}
+            style={{ objectFit: 'cover', objectPosition: 'center top', zIndex: 0 }}
+          />
           <div style={{
             position: 'absolute',
             inset: 0,

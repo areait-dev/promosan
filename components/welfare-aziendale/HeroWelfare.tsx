@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export interface HeroWelfareProps {
   badge?: string;
@@ -76,14 +77,15 @@ export default function HeroWelfare({
         {/* Immagine di sfondo opzionale (da WordPress), con tint gradiente semi-trasparente sopra */}
         {backgroundImage && (
           <>
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              zIndex: 0,
-            }}></div>
+            <Image
+              src={backgroundImage}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              quality={75}
+              style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
+            />
             <div style={{
               position: 'absolute',
               inset: 0,

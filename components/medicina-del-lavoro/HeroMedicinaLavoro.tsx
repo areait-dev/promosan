@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image';
+
 export interface HeroMedicinaLavoroProps {
   badge?: string;
   title?: string;
@@ -31,15 +33,21 @@ export default function HeroMedicinaLavoro({
   };
 
   return (
-    <section
-      className="hero-section hero-section-medicina"
-      style={
-        backgroundImage
-          ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center top' }
-          : undefined
-      }
-    >
-      {backgroundImage && <div className="hero-overlay" aria-hidden="true" />}
+    <section className="hero-section hero-section-medicina">
+      {backgroundImage && (
+        <>
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            quality={75}
+            style={{ objectFit: 'cover', objectPosition: 'center top', zIndex: 0 }}
+          />
+          <div className="hero-overlay" aria-hidden="true" />
+        </>
+      )}
       <div className="hero-content">
         <div className="hero-inner">
           <div className="hero-badge">

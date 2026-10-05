@@ -35,9 +35,7 @@ const HeroSedi = ({
     <section
       className="hero-sedi"
       style={{
-        background: backgroundImage
-          ? `${gradient}, url(${backgroundImage}) center / cover no-repeat`
-          : 'linear-gradient(90deg, #2c5282 0%, #4299e1 100%)',
+        background: 'linear-gradient(90deg, #2c5282 0%, #4299e1 100%)',
         position: 'relative',
         overflow: 'hidden',
         marginBottom: '80px',
@@ -47,6 +45,21 @@ const HeroSedi = ({
         padding: '4rem 1rem'
       }}
     >
+      {backgroundImage && (
+        <>
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            quality={75}
+            style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: gradient, zIndex: 0 }} />
+        </>
+      )}
+
       {/* Pattern decorativo */}
       <div className="hero-pattern"></div>
       
