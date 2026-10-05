@@ -147,14 +147,7 @@ export default function NewsClient({ initialNews, options }: NewsClientProps) {
 
           {paginatedNews.length > 0 ? (
             <>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '2rem',
-                  marginBottom: '2rem',
-                }}
-              >
+              <div className="news-page-grid">
                 {paginatedNews.map((news) => (
                   <NewsPageCard key={news.id} news={news} />
                 ))}
@@ -191,6 +184,25 @@ export default function NewsClient({ initialNews, options }: NewsClientProps) {
         ::selection {
           background: #2c5282;
           color: #ffffff;
+        }
+
+        /* Griglia card: 3 colonne desktop, 2 tablet, 1 mobile (minmax(0,1fr) evita che i titoli allarghino la pagina). */
+        .news-page-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 2rem;
+          margin-bottom: 2rem;
+        }
+        @media (max-width: 1024px) {
+          .news-page-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+        @media (max-width: 640px) {
+          .news-page-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1.25rem;
+          }
         }
       `}</style>
       <Footer options={options} />

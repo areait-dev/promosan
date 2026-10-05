@@ -341,6 +341,19 @@ export default function News({
           transition: transform 0.3s ease, box-shadow 0.3s ease !important;
         }
 
+        /* Questa regola locale ha la precedenza su quella globale: serve il responsive qui. */
+        @media (max-width: 768px) {
+          .news-card {
+            width: calc(50% - 12px);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .news-card {
+            width: 100%;
+          }
+        }
+
         .news-card:hover {
           transform: translateY(-6px) !important;
           box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
