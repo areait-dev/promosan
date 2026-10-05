@@ -128,7 +128,7 @@ export default function OrariContatti({
             gap: '0.35rem'
           }}>
             <Clock size={14} style={{ color: '#475569' }} />
-            Lun-Ven: 9:00-18:00
+            {orari || 'Lun-Ven: 9:00-18:00'}
           </p>
         </div>
       </div>
