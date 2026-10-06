@@ -53,9 +53,9 @@ export default function HeroAltriServizi({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: backgroundImage
-          ? undefined
-          : 'linear-gradient(135deg, #1a3650 0%, #2c5282 50%, #4299e1 100%)',
+        // Gradiente sempre presente: fa da fallback mentre l'immagine WP si carica
+        // (senza, la hero resta bianca finché l'immagine non arriva).
+        background: 'linear-gradient(135deg, #1a3650 0%, #2c5282 50%, #4299e1 100%)',
         overflow: 'hidden',
         padding: '4rem 1rem'
       }}
