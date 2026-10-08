@@ -19,6 +19,27 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+async function logToSheet({ servizio, dipendenti, azienda }) {
+  const url = process.env.SHEETS_WEBHOOK_URL;
+  if (!url) return;
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        secret: process.env.SHEETS_WEBHOOK_SECRET || '',
+        servizio,
+        dipendenti: dipendenti || 'Non specificato',
+        azienda: azienda || 'Non specificata',
+      }),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!res.ok) console.error('[Sheets] Risposta non valida:', res.status);
+  } catch (err) {
+    console.error('[Sheets] Scrittura fallita:', err);
+  }
+}
+
 export async function POST(request) {
   let body;
   try {
@@ -84,6 +105,11 @@ export async function POST(request) {
         { status: 502 }
       );
     }
+
+    // Registro interno per le statistiche delle campagne: solo servizio,
+    // fascia dipendenti e azienda (nessun dato personale del contatto).
+    // Un errore qui non deve far fallire la richiesta: la mail è già partita.
+    await logToSheet({ servizio: servizioLabel, dipendenti, azienda });
 
     return Response.json({ success: true });
   } catch (err) {

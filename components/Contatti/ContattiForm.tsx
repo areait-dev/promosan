@@ -81,6 +81,15 @@ export default function ContattiForm() {
         throw new Error(data.error || 'Invio non riuscito. Riprova più tardi.');
       }
 
+      // Evento di conversione per GA4/Google Ads: solo servizio e fascia
+      // dipendenti, nessun dato personale.
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          servizio: formData.servizio || 'non_specificato',
+          dipendenti: formData.dipendenti || 'non_specificato',
+        });
+      }
+
       setStatus('success');
       setFeedback(t("contatti-form.grazie-la-tua-richiesta-e-stata", "Grazie! La tua richiesta è stata inviata. Ti risponderemo a breve."));
       setFormData({
