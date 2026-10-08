@@ -1,4 +1,3 @@
-import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import type { GlobalOptions } from '@/lib/wordpress';
 
@@ -40,7 +39,6 @@ interface LegalPageProps {
 export default function LegalPage({ title, intro, sections, options, html }: LegalPageProps) {
   return (
     <>
-      <Navbar areaRiservataUrl={options?.areaRiservataUrl} />
       <main>
         <section style={{ padding: '4rem 0', background: '#f9fafb' }}>
           <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 1rem' }}>
