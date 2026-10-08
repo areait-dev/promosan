@@ -97,6 +97,22 @@ const News1Content = ({ news }) => {
           margin-bottom: 1.75rem;
         }
 
+        /* !important necessario: globals.css azzera list-style su ul/ol/li con !important */
+        .news-article-body :global(ul),
+        .news-article-body :global(ul > li) {
+          list-style: disc !important;
+        }
+
+        .news-article-body :global(ol),
+        .news-article-body :global(ol > li) {
+          list-style: decimal !important;
+        }
+
+        .news-article-body :global(ul ul),
+        .news-article-body :global(ul ul > li) {
+          list-style: circle !important;
+        }
+
         .news-article-body :global(li) {
           margin-bottom: 0.65rem;
         }
