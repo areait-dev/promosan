@@ -69,6 +69,8 @@ const nextConfig: NextConfig = {
   // può indicizzare due host. 301 apex -> www (qui, indipendente dai redirect Vercel).
   async redirects() {
     return [
+      // /index serviva la home con 200: duplicato di "/".
+      { source: "/index", destination: "/", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "promosan.eu" }],

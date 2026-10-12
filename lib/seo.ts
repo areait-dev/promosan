@@ -31,7 +31,8 @@ export function extractYoast(raw: any): SeoFields | undefined {
     title: yoast.title ?? raw?.title?.rendered ?? '',
     description: yoast.description ?? '',
     ogImage: yoast.og_image?.[0]?.url ?? '',
-    canonical: yoast.canonical ? toPublicUrl(yoast.canonical) : '',
+    // Senza slash finale: il sito redirige /percorso/ -> /percorso (308).
+    canonical: yoast.canonical ? toPublicUrl(yoast.canonical).replace(/\/+$/, '') : '',
     ogType: yoast.og_type ?? 'article',
   };
 }

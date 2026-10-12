@@ -5,6 +5,7 @@ import MissionVision from "../components/MissionVision/MissionVision";
 import Services from "../components/Services/Services";
 import News from "../components/News/News";
 import Footer from "../components/Footer/Footer";
+import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import PromoSanNumeri from "../components/Numeri/PromoSanNumeri";
 import FAQ from "../components/FAQ/FAQ";
@@ -20,6 +21,11 @@ import {
   type FaqItem,
   type PageContentFields,
 } from "@/lib/wordpress";
+
+// Canonical esplicito: con "./" ereditato dal layout la home diventava /index.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 // ISR: rigenera la pagina al massimo ogni 60 secondi.
 export const revalidate = 60;
