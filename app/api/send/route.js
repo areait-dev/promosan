@@ -1,6 +1,7 @@
 // app/api/send/route.js
 import { Resend } from 'resend';
 import { validatePiva, pivaErrorMessage } from '@/lib/validation/piva';
+import { LEAD_COOKIE } from '@/lib/leadCookie';
 
 // Etichette leggibili per i valori delle select del form.
 const SERVIZI = {
@@ -123,7 +124,14 @@ export async function POST(request) {
     // Un errore qui non deve far fallire la richiesta: la mail è già partita.
     await logToSheet({ servizio: servizioLabel, dipendenti, azienda });
 
-    return Response.json({ success: true });
+    // Cookie di breve durata: autorizza l'accesso a /grazie (e l'evento
+    // generate_lead) solo dopo un invio riuscito. Leggibile dal client, che lo
+    // consuma al primo accesso.
+    const secure = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+    return Response.json(
+      { success: true },
+      { headers: { 'Set-Cookie': `${LEAD_COOKIE}=1; Path=/; Max-Age=120; SameSite=Lax${secure}` } }
+    );
   } catch (err) {
     console.error('[Resend] Eccezione invio:', err);
     return Response.json(

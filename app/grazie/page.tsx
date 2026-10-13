@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CheckCircle2, Phone } from 'lucide-react';
 import Footer from '../../components/Footer/Footer';
+import LeadTracker from '../../components/Contatti/LeadTracker';
 
 // Pagina di conversione (Google Ads): non indicizzabile, fuori da sitemap e menu.
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function GraziePage() {
   return (
     <>
+      <LeadTracker />
       <main>
         <section style={{ padding: '6rem 0', background: '#f9fafb' }}>
           <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 1rem' }}>
@@ -55,7 +57,7 @@ export default function GraziePage() {
                 Ti ricontatteremo entro 24 ore lavorative con un preventivo per la tua azienda.
               </p>
               <p style={{ color: '#475569', fontSize: '1rem', marginBottom: '2rem' }}>
-                Hai fretta? Chiamaci al{' '}
+                Chiamaci al{' '}
                 <a
                   href="tel:+390932862613"
                   style={{
