@@ -105,27 +105,27 @@ export default function ContattiForm() {
       }
 
       // Evento di conversione per GA4/Google Ads: solo servizio e fascia
-      // dipendenti, nessun dato personale.
+      // dipendenti, nessun dato personale. Si reindirizza a /grazie (caricamento
+      // completo, così il tag Google Ads rileva sempre la visita) appena l'evento
+      // è partito, con un timeout di sicurezza se gtag non risponde.
+      // Lo stato resta 'loading' (pulsante disabilitato) fino al cambio pagina.
+      let redirected = false;
+      const goToThanks = () => {
+        if (redirected) return;
+        redirected = true;
+        window.location.assign('/grazie');
+      };
+
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'generate_lead', {
           servizio: formData.servizio || 'non_specificato',
           dipendenti: formData.dipendenti || 'non_specificato',
+          event_callback: goToThanks,
         });
+        setTimeout(goToThanks, 300);
+      } else {
+        goToThanks();
       }
-
-      setStatus('success');
-      setFeedback(t("contatti-form.grazie-la-tua-richiesta-e-stata", "Grazie! La tua richiesta è stata inviata. Ti risponderemo a breve."));
-      setFormData({
-        nome: '',
-        email: '',
-        azienda: '',
-        partitaIva: '',
-        telefono: '',
-        servizio: '',
-        dipendenti: '',
-        messaggio: '',
-        privacy: false
-      });
     } catch (err) {
       setStatus('error');
       setFeedback(err instanceof Error ? err.message : t("contatti-form.si-e-verificato-un-errore-riprova", "Si è verificato un errore. Riprova più tardi."));
