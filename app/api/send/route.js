@@ -1,5 +1,6 @@
 // app/api/send/route.js
 import { Resend } from 'resend';
+import { validatePiva, pivaErrorMessage } from '@/lib/validation/piva';
 
 // Etichette leggibili per i valori delle select del form.
 const SERVIZI = {
@@ -52,6 +53,7 @@ export async function POST(request) {
     nome = '',
     email = '',
     azienda = '',
+    partitaIva = '',
     telefono = '',
     servizio = '',
     dipendenti = '',
@@ -60,9 +62,18 @@ export async function POST(request) {
   } = body || {};
 
   // Validazione dei campi obbligatori.
-  if (!nome.trim() || !email.trim() || !telefono.trim() || !messaggio.trim() || !privacy) {
+  if (!nome.trim() || !email.trim() || !telefono.trim() || !partitaIva.trim() || !messaggio.trim() || !privacy) {
     return Response.json(
       { success: false, error: 'Compila tutti i campi obbligatori e accetta la privacy policy.' },
+      { status: 400 }
+    );
+  }
+
+  const piva = validatePiva(partitaIva);
+  if (!piva.valid) {
+    const message = pivaErrorMessage(piva.error);
+    return Response.json(
+      { success: false, error: message, fieldErrors: { partitaIva: message } },
       { status: 400 }
     );
   }
@@ -89,6 +100,7 @@ export async function POST(request) {
           <li><strong>Nome e cognome:</strong> ${escapeHtml(nome)}</li>
           <li><strong>Email:</strong> ${escapeHtml(email)}</li>
           <li><strong>Azienda:</strong> ${escapeHtml(azienda) || '—'}</li>
+          <li><strong>Partita IVA:</strong> ${escapeHtml(piva.value)}</li>
           <li><strong>Telefono:</strong> ${escapeHtml(telefono)}</li>
           <li><strong>Servizio di interesse:</strong> ${escapeHtml(servizioLabel)}</li>
           <li><strong>Numero dipendenti:</strong> ${escapeHtml(dipendenti) || '—'}</li>

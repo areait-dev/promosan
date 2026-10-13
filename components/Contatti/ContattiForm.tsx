@@ -8,6 +8,7 @@ import {
   Mail,
   Building2,
   Phone,
+  FileText,
   Briefcase,
   Users,
   MessageCircle,
@@ -18,11 +19,13 @@ import {
   Loader2,
 } from 'lucide-react';
 import { T, useT } from "@/components/Testi";
+import { validatePiva, pivaErrorMessage } from "@/lib/validation/piva";
 
 interface FormData {
   nome: string;
   email: string;
   azienda: string;
+  partitaIva: string;
   telefono: string;
   servizio: string;
   dipendenti: string;
@@ -36,6 +39,7 @@ export default function ContattiForm() {
     nome: '',
     email: '',
     azienda: '',
+    partitaIva: '',
     telefono: '',
     servizio: '',
     dipendenti: '',
@@ -45,9 +49,13 @@ export default function ContattiForm() {
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState<string>('');
+  const [pivaError, setPivaError] = useState<string>('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
+
+    // L'errore della P.IVA viene mostrato solo al blur: mentre si scrive lo nascondiamo.
+    if (name === 'partitaIva') setPivaError('');
     
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
@@ -63,10 +71,23 @@ export default function ContattiForm() {
     }
   };
 
+  const handlePivaBlur = () => {
+    if (!formData.partitaIva.trim()) return;
+    const result = validatePiva(formData.partitaIva);
+    setPivaError(result.valid ? '' : pivaErrorMessage(result.error));
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
     setFeedback('');
+
+    const piva = validatePiva(formData.partitaIva);
+    if (!piva.valid) {
+      setPivaError(pivaErrorMessage(piva.error));
+      setStatus('idle');
+      return;
+    }
 
     try {
       const res = await fetch('/api/send', {
@@ -76,6 +97,8 @@ export default function ContattiForm() {
       });
 
       const data = await res.json().catch(() => ({}));
+
+      if (data.fieldErrors?.partitaIva) setPivaError(data.fieldErrors.partitaIva);
 
       if (!res.ok || !data.success) {
         throw new Error(data.error || 'Invio non riuscito. Riprova più tardi.');
@@ -96,6 +119,7 @@ export default function ContattiForm() {
         nome: '',
         email: '',
         azienda: '',
+        partitaIva: '',
         telefono: '',
         servizio: '',
         dipendenti: '',
@@ -294,6 +318,50 @@ export default function ContattiForm() {
                   transition: 'all 0.2s ease'
                 }}
               />
+            </div>
+
+            {/* Partita IVA */}
+            <div>
+              <label style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                color: '#1a365d',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px'
+              }}>
+                <FileText size={14} style={{ marginRight: '0.5rem', color: '#1a365d' }} />
+                <T k="contatti-form.partita-iva">Partita IVA *</T>
+              </label>
+              <input
+                type="text"
+                name="partitaIva"
+                value={formData.partitaIva}
+                onChange={handleChange}
+                required
+                inputMode="numeric"
+                onBlur={handlePivaBlur}
+                aria-invalid={!!pivaError}
+                aria-describedby={pivaError ? 'partitaIva-error' : undefined}
+                placeholder="12345678901"
+                className="form-input-field"
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1rem',
+                  border: `1px solid ${pivaError ? '#dc2626' : '#e2e8f0'}`,
+                  borderRadius: '8px',
+                  fontSize: '0.95rem',
+                  color: '#334155',
+                  outline: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+              />
+              {pivaError && (
+                <p id="partitaIva-error" role="alert" style={{ marginTop: '0.4rem', fontSize: '0.75rem', color: '#991b1b' }}>
+                  {pivaError}
+                </p>
+              )}
             </div>
 
             {/* Telefono */}
