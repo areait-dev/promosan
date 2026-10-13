@@ -6,3 +6,11 @@ export const SITE_URL = "https://www.promosan.eu";
 export function toPublicUrl(url: string): string {
   return url.replace(/^https?:\/\/(?:wp\.)?(?:www\.)?promosan\.eu/i, SITE_URL);
 }
+
+// Google Ads: ID account e etichetta della conversione "richiesta preventivo".
+// Sovrascrivibili da Vercel/.env con le variabili NEXT_PUBLIC_*.
+export const GOOGLE_ADS_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-18501673014";
+export const GOOGLE_ADS_CONVERSION_LABEL =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || "8QGVCI_BpJsdELbApPZE";
+export const GOOGLE_ADS_CONVERSION_SEND_TO = `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`;

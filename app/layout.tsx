@@ -8,7 +8,7 @@ import ScrollRevealProvider from "../components/ScrollRevealProvider";
 import Navbar from "../components/Navbar/Navbar";
 import BackToTop from "../components/BackToTop";
 import { getGlobalOptions } from "../lib/wordpress";
-import { SITE_URL } from "../lib/site";
+import { SITE_URL, GOOGLE_ADS_ID } from "../lib/site";
 import { TestiProvider } from "../components/Testi";
 
 // Self-hosted da Next (nessun round-trip verso fonts.googleapis.com, niente FOUT).
@@ -116,6 +116,7 @@ export default async function RootLayout({
           {`
             gtag('js', new Date());
             gtag('config', 'G-J6SFHPQRG6');
+            gtag('config', '${GOOGLE_ADS_ID}');
           `}
         </Script>
       </head>
