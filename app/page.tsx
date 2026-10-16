@@ -28,10 +28,10 @@ export const metadata: Metadata = {
 };
 
 // ISR: rigenera la pagina al massimo ogni 60 secondi.
-export const revalidate = 60;
+export const revalidate = 10;
 
 export default async function Home() {
-  // Draft Mode attivo (preview) -> fetch no-store; altrimenti ISR (revalidate 60).
+  // Draft Mode attivo (preview) -> fetch no-store; altrimenti ISR (revalidate 10).
   const { isEnabled: draft } = await draftMode();
 
   // Fetch parallelo dei dati CMS; fallback ai default dei componenti in caso di errore.

@@ -16,7 +16,7 @@ import {
 } from '@/lib/wordpress';
 import { yoastToMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
+export const revalidate = 10;
 
 interface PageProps {
   params: Promise<{ slug: string }>;

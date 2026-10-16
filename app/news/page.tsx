@@ -9,7 +9,7 @@ import {
   type NewsItem,
 } from '@/lib/wordpress';
 
-export const revalidate = 60;
+export const revalidate = 10;
 
 export const metadata: Metadata = {
   title: 'News & Aggiornamenti | PromoSan',

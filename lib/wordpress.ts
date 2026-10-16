@@ -24,7 +24,7 @@ const API_URL =
 const OPTIONS_PAGE_SLUG = "opzioni-globali";
 
 // Rivalidazione ISR di default (secondi). Override per singola chiamata se serve.
-const DEFAULT_REVALIDATE = 60;
+const DEFAULT_REVALIDATE = 10;
 
 /* -------------------------------------------------------------------------- */
 /*                                  Tipi                                       */
