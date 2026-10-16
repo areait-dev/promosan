@@ -190,11 +190,39 @@ function promosan_security_headers() {
  * chiamando l'endpoint /api/revalidate con il token segreto condiviso.
  * Configura le costanti NEXT_URL e WP_REVALIDATE_TOKEN in wp-config.php.
  * ========================================================================= */
-add_action( 'save_post', 'promosan_trigger_revalidate', 10, 3 );
-function promosan_trigger_revalidate( $post_id, $post, $update ) {
+// wp_after_insert_post scatta DOPO il salvataggio di meta/ACF e tassonomie
+// (save_post scattava prima, rigenerando la pagina con dati vecchi).
+add_action( 'wp_after_insert_post', 'promosan_revalidate_after_insert', 10, 2 );
+function promosan_revalidate_after_insert( $post_id, $post ) {
+	// Nell'editor a blocchi l'immagine in evidenza viene salvata DOPO questo
+	// hook: in quel caso ci pensa rest_after_insert_{post_type} (sotto).
+	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+		return;
+	}
+	promosan_trigger_revalidate( $post );
+}
 
-	// Salta autosave, revisioni e bozze automatiche.
-	if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+// Fine del salvataggio via REST (editor a blocchi): immagine in evidenza,
+// meta e tassonomie sono già scritte.
+add_action( 'init', function () {
+	foreach ( array( 'news', 'sedi', 'pacchetti', 'faq', 'page' ) as $type ) {
+		add_action( "rest_after_insert_{$type}", 'promosan_trigger_revalidate' );
+	}
+}, 99 );
+
+// Cambi di stato non coperti sopra: news programmate (future -> publish),
+// depubblicazioni e cestino.
+add_action( 'transition_post_status', 'promosan_revalidate_on_transition', 10, 3 );
+function promosan_revalidate_on_transition( $new_status, $old_status, $post ) {
+	if ( $new_status !== $old_status && ( 'publish' === $new_status || 'publish' === $old_status ) ) {
+		promosan_trigger_revalidate( $post );
+	}
+}
+
+function promosan_trigger_revalidate( $post ) {
+	static $sent = array();
+
+	if ( ! $post || wp_is_post_autosave( $post->ID ) || wp_is_post_revision( $post->ID ) ) {
 		return;
 	}
 	if ( 'auto-draft' === $post->post_status ) {
@@ -202,31 +230,35 @@ function promosan_trigger_revalidate( $post_id, $post, $update ) {
 	}
 
 	// Configurazione (definisci queste costanti in wp-config.php).
-	if ( ! defined( 'NEXT_URL' ) || ! defined( 'WP_REVALIDATE_TOKEN' ) ) {
-		return;
-	}
-	$token = WP_REVALIDATE_TOKEN;
-	if ( empty( NEXT_URL ) || empty( $token ) ) {
+	if ( ! defined( 'NEXT_URL' ) || ! defined( 'WP_REVALIDATE_TOKEN' ) || empty( NEXT_URL ) || empty( WP_REVALIDATE_TOKEN ) ) {
+		error_log( '[promosan] revalidate saltato: NEXT_URL / WP_REVALIDATE_TOKEN non definiti in wp-config.php' );
 		return;
 	}
 
-	// URL del webhook costruito dalla costante NEXT_URL di wp-config.php.
-	$revalidate_url = NEXT_URL . '/api/revalidate';
+	// Evita chiamate doppie per lo stesso post/stato nella stessa richiesta.
+	$key = $post->ID . ':' . $post->post_status;
+	if ( isset( $sent[ $key ] ) ) {
+		return;
+	}
+	$sent[ $key ] = true;
 
-	// Notifica asincrona (non blocca il salvataggio in admin).
-	wp_remote_post( $revalidate_url, array(
-		'method'   => 'POST',
-		'timeout'  => 5,
-		'blocking' => false,
-		'headers'  => array(
-			'Content-Type'        => 'application/json',
-			'X-WP-Revalidate-Token' => $token,
+	$response = wp_remote_post( rtrim( NEXT_URL, '/' ) . '/api/revalidate', array(
+		'timeout' => 3,
+		'headers' => array(
+			'Content-Type'          => 'application/json',
+			'X-WP-Revalidate-Token' => WP_REVALIDATE_TOKEN,
 		),
-		'body'     => wp_json_encode( array(
+		'body'    => wp_json_encode( array(
 			'post_type' => $post->post_type,
 			'slug'      => $post->post_name,
 		) ),
 	) );
+
+	if ( is_wp_error( $response ) ) {
+		error_log( '[promosan] revalidate fallito: ' . $response->get_error_message() );
+	} elseif ( 200 !== wp_remote_retrieve_response_code( $response ) ) {
+		error_log( '[promosan] revalidate HTTP ' . wp_remote_retrieve_response_code( $response ) . ' per ' . $post->post_type . '/' . $post->post_name );
+	}
 }
 
 /* =========================================================================
