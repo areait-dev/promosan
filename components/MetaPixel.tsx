@@ -12,6 +12,10 @@ import {
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
+if (!PIXEL_ID && process.env.NODE_ENV !== 'production') {
+  console.warn('[MetaPixel] NEXT_PUBLIC_META_PIXEL_ID mancante: il pixel non verrà caricato.');
+}
+
 // Meta Pixel: caricato solo con consenso "marketing" del CookieBanner. Reagisce
 // subito a accetta/revoca (evento custom + storage per le altre schede).
 // Niente <noscript>: non potrebbe rispettare il consenso.
@@ -46,6 +50,22 @@ export default function MetaPixel() {
     lastTracked.current = null;
   }, [granted]);
 
+  // next/script NON chiama onReady per gli script inline alla prima montata
+  // (nessun evento "load"): attendo che lo snippet abbia definito window.fbq.
+  useEffect(() => {
+    if (!granted || !PIXEL_ID) return;
+    let tries = 0;
+    const timer = setInterval(() => {
+      if (typeof window.fbq === 'function') {
+        setReady(true);
+        clearInterval(timer);
+      } else if (++tries > 100) {
+        clearInterval(timer);
+      }
+    }, 50);
+    return () => clearInterval(timer);
+  }, [granted]);
+
   // PageView al primo caricamento dopo il consenso e a ogni cambio rotta.
   useEffect(() => {
     if (!granted || !ready || typeof window.fbq !== 'function') return;
@@ -77,7 +97,6 @@ export default function MetaPixel() {
     <Script
       id="meta-pixel"
       strategy="afterInteractive"
-      onReady={() => setReady(true)}
     >
       {`
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
