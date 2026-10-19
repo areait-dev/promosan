@@ -8,6 +8,7 @@ import { Mail, Phone, Lock, FileText } from 'lucide-react';
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from '../icons/SocialIcons';
 import type { GlobalOptions } from '../../lib/wordpress';
 import { T, useT } from "@/components/Testi";
+import { trackMetaEvent } from '@/lib/metaPixel';
 
 interface NavItem {
   name: string;
@@ -142,6 +143,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
 
       setNewsletterStatus('success');
       setEmail('');
+      trackMetaEvent('Subscribe');
     } catch (err) {
       setNewsletterStatus('error');
       setNewsletterError(err instanceof Error ? err.message : t("footer.iscrizione-non-riuscita", "Iscrizione non riuscita."));

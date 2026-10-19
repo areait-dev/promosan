@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { LEAD_COOKIE } from '@/lib/leadCookie';
+import { trackMetaEvent } from '@/lib/metaPixel';
 import { GOOGLE_ADS_CONVERSION_SEND_TO } from '@/lib/site';
 
 // Su /grazie: se il cookie di invio riuscito è presente lo consuma e invia
@@ -19,6 +20,8 @@ export default function LeadTracker() {
       return;
     }
     document.cookie = `${LEAD_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
+
+    trackMetaEvent('Lead');
 
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'generate_lead', { form: 'preventivo_b2b' });

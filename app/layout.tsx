@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import PreviewBanner from "../components/PreviewBanner";
 import CookieBanner from "../components/CookieBanner/CookieBanner";
+import MetaPixel from "../components/MetaPixel";
 import ScrollRevealProvider from "../components/ScrollRevealProvider";
 import Navbar from "../components/Navbar/Navbar";
 import BackToTop from "../components/BackToTop";
@@ -129,6 +130,7 @@ export default async function RootLayout({
           {children}
           <BackToTop />
           <CookieBanner />
+          <MetaPixel />
         </TestiProvider>
       </body>
     </html>

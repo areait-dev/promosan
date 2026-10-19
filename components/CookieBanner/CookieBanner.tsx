@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Cookie } from 'lucide-react';
 import { T } from "@/components/Testi";
+import { CONSENT_CHANGE_EVENT } from '@/lib/metaPixel';
 
 const STORAGE_KEY = 'promosan-cookie-consent';
 
@@ -37,6 +38,8 @@ function save(prefs: Preferences) {
     /* storage non disponibile */
   }
   applyConsent(prefs);
+  // Notifica i listener (es. MetaPixel) senza ricaricare la pagina.
+  window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
 }
 
 export default function CookieBanner() {
