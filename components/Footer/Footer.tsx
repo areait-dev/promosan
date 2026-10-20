@@ -347,6 +347,17 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
           <p>
             {copyright}
           </p>
+          <p className="footer-powered">
+            Powered by{' '}
+            <a
+              href="https://www.promotergroup.eu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-powered-link"
+            >
+              Promoter Group
+            </a>
+          </p>
         </div>
       </div>
 
@@ -666,6 +677,21 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
           font-size: 0.78rem;
           color: #94a3b8;
           margin-top: 24px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 8px 24px;
+        }
+
+        .footer-powered-link {
+          color: #fff;
+          font-weight: 600;
+          transition: color 0.2s ease;
+        }
+
+        .footer-powered-link:hover {
+          color: #4299e1;
         }
       `}</style>
     </footer>
