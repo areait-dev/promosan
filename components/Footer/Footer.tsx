@@ -355,7 +355,7 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
               rel="noopener noreferrer"
               className="footer-powered-link"
             >
-              Promoter Group
+              PromoterGroup
             </a>
           </p>
         </div>
