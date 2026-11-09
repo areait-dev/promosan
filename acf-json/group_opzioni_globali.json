@@ -72,6 +72,21 @@
       "type": "text"
     },
     {
+      "key": "field_opt_powered_by_testo",
+      "label": "Powered by - Testo",
+      "name": "powered_by_testo",
+      "type": "text",
+      "default_value": "promotergroup",
+      "instructions": "Nome mostrato dopo \"Powered by\" nel footer. Lascia vuoto per nascondere."
+    },
+    {
+      "key": "field_opt_powered_by_url",
+      "label": "Powered by - URL",
+      "name": "powered_by_url",
+      "type": "url",
+      "default_value": "https://www.promotergroup.eu/"
+    },
+    {
       "key": "field_opt_social_linkedin",
       "label": "Social - LinkedIn",
       "name": "social_linkedin",

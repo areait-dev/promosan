@@ -97,6 +97,8 @@ export interface GlobalOptions {
   areaRiservataUrl: string;
   brochureUrl: string;
   copyright: string;
+  poweredByTesto: string;
+  poweredByUrl: string;
   logoUrl: string;
   logoBianco: string;
   social: { linkedin: string; facebook: string; instagram: string };
@@ -518,6 +520,8 @@ export async function getGlobalOptions(draft = false): Promise<GlobalOptions> {
     areaRiservataUrl: acf.area_riservata_url ?? "",
     brochureUrl: acf.brochure_url ?? "",
     copyright: acf.copyright ?? "",
+    poweredByTesto: acf.powered_by_testo ?? "promotergroup",
+    poweredByUrl: acf.powered_by_url ?? "https://www.promotergroup.eu/",
     logoUrl: logo?.url ?? IMAGE_FALLBACKS.logo,
     logoBianco: logoBianco?.url ?? IMAGE_FALLBACKS.logoBianco,
     social: {

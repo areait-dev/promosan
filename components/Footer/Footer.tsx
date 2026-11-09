@@ -41,6 +41,8 @@ const DEFAULT_OPTIONS: GlobalOptions = {
   areaRiservataUrl: 'https://clienti.promotergroup.eu/login',
   brochureUrl: '/assets/pdf/Brochure PromoSan.pdf',
   copyright: '',
+  poweredByTesto: 'promotergroup',
+  poweredByUrl: 'https://www.promotergroup.eu/',
   logoUrl: '/assets/img/PromoSan.png',
   logoBianco: '/assets/img/PromoSan_white.png',
   social: { linkedin: '#', facebook: '#', instagram: '#' },
@@ -347,17 +349,23 @@ export default function Footer({ options, tagline = 'Consulenza specializzata pe
           <p>
             {copyright}
           </p>
-          <p className="footer-powered">
-            Powered by{' '}
-            <a
-              href="https://www.promotergroup.eu/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-powered-link"
-            >
-              promotergroup
-            </a>
-          </p>
+          {opt.poweredByTesto && (
+            <p className="footer-powered">
+              Powered by{' '}
+              {opt.poweredByUrl ? (
+                <a
+                  href={opt.poweredByUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-powered-link"
+                >
+                  {opt.poweredByTesto}
+                </a>
+              ) : (
+                opt.poweredByTesto
+              )}
+            </p>
+          )}
         </div>
       </div>
 

@@ -521,6 +521,8 @@ const OPZIONI_GLOBALI = {
   // (new Date().getFullYear()) quando questo campo ACF è vuoto — se qui
   // mettessimo un valore statico, sovrascriverebbe quella logica ad ogni import.
   copyright: '',
+  powered_by_testo: 'promotergroup',
+  powered_by_url: 'https://www.promotergroup.eu/',
   social_linkedin: '#',
   social_facebook: '#',
   social_instagram: '#',
